@@ -1,0 +1,578 @@
+<style>
+    /* Premium Ultra-Modern Dark & Gold Attendance Architecture */
+    * {
+        font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Executive Hero Header Banner */
+    .attendance-hero-banner {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.22) 0%, rgba(20, 20, 30, 0.96) 60%, rgba(12, 12, 18, 0.98) 100%);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 24px;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .attendance-hero-banner::after {
+        content: '';
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    /* Glass KPI Cards */
+    .glass-attendance-kpi {
+        background: rgba(18, 18, 26, 0.85);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 18px;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .glass-attendance-kpi:hover {
+        border-color: rgba(212, 175, 55, 0.5);
+        transform: translateY(-5px);
+        box-shadow: 0 14px 35px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Highest Absences Class List View Item */
+    .absent-class-list-item {
+        background: linear-gradient(145deg, #12121a, #181826);
+        border: 1px solid rgba(239, 68, 68, 0.25);
+        border-radius: 20px;
+        padding: 18px 24px;
+        margin-bottom: 14px;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
+    }
+
+    .absent-class-list-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 15%;
+        bottom: 15%;
+        width: 4px;
+        background: linear-gradient(180deg, #ef4444, #f59e0b);
+        border-radius: 0 4px 4px 0;
+        opacity: 0.7;
+    }
+
+    .absent-class-list-item:hover {
+        border-color: rgba(239, 68, 68, 0.75);
+        box-shadow: 0 14px 35px rgba(239, 68, 68, 0.22);
+        transform: translateX(6px);
+    }
+
+    .btn-gold-shimmer {
+        background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
+        color: #050508;
+        font-weight: 800;
+        border: 1px solid rgba(255, 223, 0, 0.6);
+        border-radius: 14px;
+        padding: 10px 22px;
+        font-size: 0.88rem;
+        box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
+        transition: all 0.3s ease;
+    }
+
+    .btn-gold-shimmer:hover {
+        box-shadow: 0 10px 35px rgba(212, 175, 55, 0.75);
+        transform: translateY(-2px);
+        color: #000000;
+    }
+
+    .btn-card-details {
+        background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%);
+        color: #050508;
+        font-weight: 800;
+        border: 1px solid rgba(255, 215, 0, 0.5);
+        border-radius: 12px;
+        padding: 7px 16px;
+        font-size: 0.82rem;
+        box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+        transition: all 0.28s ease;
+    }
+
+    .btn-card-details:hover {
+        box-shadow: 0 8px 28px rgba(212, 175, 55, 0.75);
+        transform: translateY(-2px);
+        color: #000000;
+    }
+
+    .btn-outline-glass {
+        background: rgba(22, 22, 32, 0.85);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        color: #f0f0f5;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 7px 14px;
+        font-size: 0.82rem;
+        transition: all 0.28s ease;
+    }
+
+    .btn-outline-glass:hover {
+        background: rgba(212, 175, 55, 0.22);
+        color: #ffd700;
+        border-color: rgba(212, 175, 55, 0.85);
+    }
+</style>
+
+<div class="p-4">
+    <!-- Executive Hero Header Banner -->
+    <div class="attendance-hero-banner p-4 mb-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+                <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;"><i
+                        class="bi bi-calendar-check-fill me-1"></i> ប្រព័ន្ធគ្រប់គ្រងវត្តមាន និង អវត្តមាន</span>
+                <h2 class="fw-bold text-white mb-1">របាយការណ៍ស្ថិតិវត្តមាន និង អវត្តមានសិស្ស</h2>
+                <p class="text-muted small mb-0">តាមដានស្ថិតិអវត្តមានមានច្បាប់ និង អវត្តមានអត់ច្បាប់ជា ឆ្នាំ និង ខែ
+                    ព្រមទាំងបញ្ជីថ្នាក់ដែលមានសិស្សអវត្តមានច្រើនជាងគេ។</p>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-download me-1"></i> ទាញយករបាយការណ៍</button>
+                <button class="btn-gold-shimmer"><i class="bi bi-plus-lg me-1"></i> កត់ត្រាវត្តមានថ្មី</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Statistics KPI Row -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="glass-attendance-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-success extra-small fw-bold">✅ វត្តមានសរុប (Present)</span>
+                    <i class="bi bi-person-check-fill text-success fs-5"></i>
+                </div>
+                <h3 class="fw-bold text-success mb-0" id="kpi-attendance-present">១,២០១ នាក់</h3>
+                <span class="text-success extra-small"><i class="bi bi-graph-up me-1"></i>អត្រាវត្តមាន ៩៦.២%</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-attendance-kpi" style="border-color: rgba(245, 158, 11, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-warning extra-small fw-bold" style="color:#f59e0b;">🟡 អវត្តមានមានច្បាប់</span>
+                    <i class="bi bi-envelope-paper-fill text-warning fs-5"></i>
+                </div>
+                <h3 class="fw-bold text-warning mb-0" style="color:#f59e0b;" id="kpi-attendance-excused">៣២ នាក់</h3>
+                <span class="text-warning extra-small">មានលិខិតច្បាប់ត្រឹមត្រូវ</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-attendance-kpi" style="border-color: rgba(239, 68, 68, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-danger extra-small fw-bold">🔴 អវត្តមានអត់ច្បាប់</span>
+                    <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+                </div>
+                <h3 class="fw-bold text-danger mb-0" id="kpi-attendance-unexcused">១៥ នាក់</h3>
+                <span class="text-danger extra-small">ផ្ញើសារជូនអាណាព្យាបាល</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-attendance-kpi">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-muted extra-small">🏫 ថ្នាក់ត្រូវតាមដាន</span>
+                    <i class="bi bi-building-exclamation text-warning fs-5" style="color:#d4af37;"></i>
+                </div>
+                <h3 class="fw-bold text-white mb-0" id="kpi-attendance-risk-classes">៣ ថ្នាក់</h3>
+                <span class="text-muted extra-small">អវត្តមានច្រើនជាងគេ</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- STEP 1: GRAPH ANALYTICS SECTION (បង្ហាញពីចំនួនសិស្សដែលអវត្តមានមានច្បាប់ និង អវត្តមានអត់ច្បាប់ ជា ឆ្នាំ និង ខែ) -->
+    <div class="card-custom p-4 mb-4" style="border-color: rgba(212, 175, 55, 0.3) !important;">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+            <div>
+                <span class="badge bg-danger text-white extra-small fw-bold mb-1.5"><i
+                        class="bi bi-graph-down me-1"></i> ស្ថិតិអវត្តមានសិស្ស</span>
+                <h5 class="fw-bold text-white mb-0"><i
+                        class="bi bi-bar-chart-line text-warning me-2"></i>ក្រាហ្វិកចំនួនសិស្សអវត្តមាន (មានច្បាប់ និង
+                    អត់ច្បាប់)</h5>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <div class="bg-black p-1 rounded-pill border border-secondary d-inline-flex align-items-center">
+                    <button id="att-chart-btn-yearly"
+                        class="btn btn-warning btn-sm text-dark fw-bold rounded-pill px-3 py-1 me-1">
+                        📊 តាមឆ្នាំ (Yearly)
+                    </button>
+                    <button id="att-chart-btn-monthly"
+                        class="btn btn-outline-secondary btn-sm text-light rounded-pill px-3 py-1">
+                        📅 តាមខែ (Monthly)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart Legend -->
+        <div class="d-flex gap-4 mb-3">
+            <span class="small text-white"><i class="bi bi-circle-fill me-1.5" style="color:#f59e0b;"></i>
+                អវត្តមានមានច្បាប់ (Excused Absences)</span>
+            <span class="small text-white"><i class="bi bi-circle-fill text-danger me-1.5"></i> អវត្តមានអត់ច្បាប់
+                (Unexcused Absences)</span>
+        </div>
+
+        <div style="height: 280px; position: relative;">
+            <canvas id="studentAbsenceChart"></canvas>
+        </div>
+    </div>
+
+    <!-- STEP 2: HIGHEST ABSENT CLASSES LIST VIEW (បង្ហាញជា LIST ថ្នាក់ដែលមានសិស្សអវត្តមានច្រើនជាងគេ) -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+        <div>
+            <h5 class="fw-bold text-white mb-0"><i
+                    class="bi bi-exclamation-octagon-fill text-danger me-2"></i>បញ្ជីថ្នាក់រៀនដែលមានសិស្សអវត្តមានច្រើនជាងគេ
+                (Highest Absences Class List)</h5>
+            <p class="text-muted extra-small mb-0">រៀបតាមលំដាប់ថ្នាក់ដែលមានចំនួនថ្ងៃអវត្តមានសរុបច្រើនជាងគេបំផុតទៅតិច</p>
+        </div>
+        <div class="search-box" style="width: 280px;">
+            <i class="bi bi-search text-muted"></i>
+            <input type="text" id="absent-class-search-input" placeholder="ស្វែងរក ឈ្មោះថ្នាក់ ឬ គ្រូ...">
+        </div>
+    </div>
+
+    <!-- Container for List View Items -->
+    <div id="highest-absent-classes-container" class="mb-4">
+        <!-- Dynamic List Items Rendered Here -->
+    </div>
+</div>
+
+<!-- Modal showing individual student absences inside clicked class -->
+<div class="modal fade" id="classAbsenceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-danger shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div>
+                    <span class="badge bg-danger text-white mb-1" id="modal-class-risk-badge">🔴 អាសន្នខ្ពស់</span>
+                    <h4 class="fw-bold text-white mb-0" id="modal-class-title">ថ្នាក់ទី ១២-C</h4>
+                    <span class="text-muted small" id="modal-class-teacher">គ្រូបន្ទុកថ្នាក់: លី ម៉េងហុង</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <h6 class="fw-bold text-warning mb-3" style="color:#d4af37 !important;"><i
+                        class="bi bi-people me-2"></i>បញ្ជីឈ្មោះសិស្សដែលមានអវត្តមានក្នុងថ្នាក់នេះ</h6>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0" style="background: transparent;">
+                        <thead>
+                            <tr class="text-muted extra-small text-uppercase border-bottom border-dark">
+                                <th>ឈ្មោះសិស្ស</th>
+                                <th>អត្តលេខ</th>
+                                <th>មានច្បាប់</th>
+                                <th>អត់ច្បាប់</th>
+                                <th>សរុប</th>
+                                <th>ស្ថានភាព</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-class-students-tbody">
+                            <!-- Dynamic Rows Rendered Here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer border-top border-dark p-3">
+                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បិទផ្ទាំង</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        // Dataset of Classes with Highest Absences (Sorted by total absences descending)
+        const highestAbsentClassesDataset = [
+            {
+                "id": "CLS-303",
+                "class_name": "ថ្នាក់ទី ១២-C",
+                "teacher": "លី ម៉េងហុង",
+                "teacher_avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&auto=format&fit=crop&q=80",
+                "excused_days": 24,
+                "unexcused_days": 16,
+                "total_absent_days": 40,
+                "attendance_rate": "៨៤%",
+                "risk_level": "🔴 ខ្ពស់បំផុត",
+                "risk_badge_class": "bg-danger text-white",
+                "room": "សាលប្រជុំ ២០១",
+                "students": [
+                    { "name": "លី សុវណ្ណារ៉ា", "id": "STD-2026-003", "excused": 3, "unexcused": 1, "total": 4, "status": "សកម្ម" },
+                    { "name": "អ៊ុង វីរៈ", "id": "STD-2026-005", "excused": 4, "unexcused": 5, "total": 9, "status": "🚨 ត្រូវតាមដាន" }
+                ]
+            },
+            {
+                "id": "CLS-505",
+                "class_name": "ថ្នាក់ទី ១១-B",
+                "teacher": "អ៊ុង វីរៈ",
+                "teacher_avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80",
+                "excused_days": 20,
+                "unexcused_days": 12,
+                "total_absent_days": 32,
+                "attendance_rate": "៨៧%",
+                "risk_level": "🔴 ខ្ពស់",
+                "risk_badge_class": "bg-danger text-white",
+                "room": "បន្ទប់លេខ ៣០៣",
+                "students": [
+                    { "name": "ចាន់ ស្រីណេត", "id": "STD-2026-004", "excused": 2, "unexcused": 1, "total": 3, "status": "សកម្ម" }
+                ]
+            },
+            {
+                "id": "CLS-606",
+                "class_name": "ថ្នាក់ទី ១០-A",
+                "teacher": "ចាន់ សុភារម្យ",
+                "teacher_avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80",
+                "excused_days": 18,
+                "unexcused_days": 9,
+                "total_absent_days": 27,
+                "attendance_rate": "៩០%",
+                "risk_level": "🟡 មធ្យម",
+                "risk_badge_class": "bg-warning text-dark",
+                "room": "បន្ទប់លេខ ១០៥",
+                "students": [
+                    { "name": "ជា ពិសិដ្ឋ", "id": "STD-2026-006", "excused": 1, "unexcused": 0, "total": 1, "status": "សកម្ម" }
+                ]
+            },
+            {
+                "id": "CLS-404",
+                "class_name": "ថ្នាក់ទី ១១-A",
+                "teacher": "ម៉េង សុភ័ក្ត្រ",
+                "teacher_avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80",
+                "excused_days": 15,
+                "unexcused_days": 7,
+                "total_absent_days": 22,
+                "attendance_rate": "៩២%",
+                "risk_level": "🟡 មធ្យម",
+                "risk_badge_class": "bg-warning text-dark",
+                "room": "បន្ទប់លេខ ៣០១",
+                "students": []
+            },
+            {
+                "id": "CLS-101",
+                "class_name": "ថ្នាក់ទី ១២-A",
+                "teacher": "ស្រី ពេជ្រ",
+                "teacher_avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80",
+                "excused_days": 12,
+                "unexcused_days": 4,
+                "total_absent_days": 16,
+                "attendance_rate": "៩៥%",
+                "risk_level": "🟢 ធម្មតា",
+                "risk_badge_class": "bg-success text-white",
+                "room": "បន្ទប់លេខ ៣០២",
+                "students": []
+            }
+        ];
+
+        let absenceChartInstance = null;
+
+        // Render Absences Chart (ជា ឆ្នាំ និង ខែ)
+        function initStudentAbsenceChart(mode = 'yearly') {
+            const canvas = document.getElementById('studentAbsenceChart');
+            if (!canvas) return;
+
+            if (absenceChartInstance) {
+                absenceChartInstance.destroy();
+            }
+
+            const ctx = canvas.getContext('2d');
+            let labels, excusedData, unexcusedData;
+
+            if (mode === 'monthly') {
+                labels = ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'];
+                excusedData = [18, 22, 25, 30, 35, 28, 32, 26, 24, 20, 22, 19];
+                unexcusedData = [8, 12, 10, 15, 18, 11, 14, 10, 9, 7, 10, 8];
+            } else {
+                // Default: Yearly Data (២០២១ - ២០២៧)
+                labels = ['ឆ្នាំ ២០២១', 'ឆ្នាំ ២០២២', 'ឆ្នាំ ២០២៣', 'ឆ្នាំ ២០២៤', 'ឆ្នាំ ២០២៥', 'ឆ្នាំ ២០២៦', 'ឆ្នាំ ២០២៧'];
+                excusedData = [210, 185, 240, 290, 310, 260, 220];
+                unexcusedData = [95, 80, 110, 145, 130, 105, 85];
+            }
+
+            absenceChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'អវត្តមានមានច្បាប់',
+                            data: excusedData,
+                            backgroundColor: '#f59e0b',
+                            barThickness: mode === 'yearly' ? 18 : 10,
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'អវត្តមានអត់ច្បាប់',
+                            data: unexcusedData,
+                            backgroundColor: '#ef4444',
+                            barThickness: mode === 'yearly' ? 18 : 10,
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#8a8a98', font: { size: 12, family: 'Kantumruy Pro, Plus Jakarta Sans' } }
+                        },
+                        y: {
+                            grid: { color: '#1a1a22' },
+                            ticks: {
+                                color: '#8a8a98',
+                                font: { size: 11, family: 'Kantumruy Pro, Plus Jakarta Sans' },
+                                callback: function (value) { return value + ' ថ្ងៃ'; }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Render List View of Classes with Highest Absences
+        function renderHighestAbsentClassesList(classList) {
+            const container = document.getElementById('highest-absent-classes-container');
+            if (!container) return;
+
+            if (!classList || classList.length === 0) {
+                container.innerHTML = `
+                    <div class="card-custom p-4 text-center text-muted">
+                        <i class="bi bi-inbox fs-2 d-block mb-2 text-warning"></i>
+                        <p class="mb-0">មិនមានទិន្នន័យថ្នាក់រៀនឡើយ។</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = classList.map((c, index) => `
+                <div class="absent-class-list-item d-flex flex-wrap justify-content-between align-items-center gap-3">
+                    <!-- Left: Rank & Class Title -->
+                    <div class="d-flex align-items-center gap-3" style="min-width: 260px; flex: 1;">
+                        <div class="fw-bold text-center rounded-3 p-2.5 border" style="background:rgba(239, 68, 68, 0.15); border-color:rgba(239, 68, 68, 0.4); color:#ef4444; min-width:44px;">
+                            #${index + 1}
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <span class="badge ${c.risk_badge_class} px-2.5 py-0.5 extra-small fw-bold">${c.risk_level}</span>
+                                <code>${c.id}</code>
+                            </div>
+                            <h5 class="fw-bold text-white mb-0" style="font-size: 1.2rem;">${c.class_name}</h5>
+                            <span class="text-muted extra-small"><i class="bi bi-geo-alt me-1 text-warning" style="color:#d4af37 !important;"></i>${c.room}</span>
+                        </div>
+                    </div>
+
+                    <!-- Middle: Homeroom Teacher -->
+                    <div class="d-flex align-items-center gap-2.5" style="min-width: 200px;">
+                        <img src="${c.teacher_avatar}" class="rounded-circle border border-warning" width="36" height="36" alt="">
+                        <div class="extra-small">
+                            <span class="text-muted d-block">គ្រូបន្ទុកថ្នាក់:</span>
+                            <strong class="text-white">${c.teacher}</strong>
+                        </div>
+                    </div>
+
+                    <!-- Absences Stats Breakdown -->
+                    <div class="extra-small" style="min-width: 220px;">
+                        <div class="mb-0.5"><span class="text-warning fw-bold me-2" style="color:#f59e0b !important;">🟡 មានច្បាប់: ${c.excused_days} ថ្ងៃ</span></div>
+                        <div class="mb-0.5"><span class="text-danger fw-bold me-2">🔴 អត់ច្បាប់: ${c.unexcused_days} ថ្ងៃ</span></div>
+                        <div class="text-white fw-bold"><i class="bi bi-clock-history me-1 text-warning" style="color:#d4af37 !important;"></i>អវត្តមានសរុប: <strong class="text-danger">${c.total_absent_days} ថ្ងៃ</strong> (វត្តមាន ${c.attendance_rate})</div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <div>
+                        <button class="btn-card-details open-class-absence-modal-btn" data-class-index="${index}">
+                            ពិនិត្យបញ្ជីសិស្ស ➔
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Click listener to open modal details
+            document.querySelectorAll('.open-class-absence-modal-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const idx = parseInt(this.getAttribute('data-class-index'));
+                    const targetClass = classList[idx] || classList[0];
+                    showClassAbsenceModal(targetClass);
+                });
+            });
+        }
+
+        // Show Modal Function
+        function showClassAbsenceModal(classObj) {
+            document.getElementById('modal-class-title').innerText = classObj.class_name;
+            document.getElementById('modal-class-teacher').innerText = `គ្រូបន្ទុកថ្នាក់: ${classObj.teacher} • ${classObj.room}`;
+            document.getElementById('modal-class-risk-badge').innerText = classObj.risk_level;
+            document.getElementById('modal-class-risk-badge').className = `badge ${classObj.risk_badge_class} mb-1`;
+
+            const tbody = document.getElementById('modal-class-students-tbody');
+            if (tbody) {
+                const list = classObj.students && classObj.students.length > 0 ? classObj.students : [
+                    { "name": "សុខ ចាន់ដារ៉ា", "id": "STD-2026-001", "excused": 2, "unexcused": 0, "total": 2, "status": "សកម្ម" },
+                    { "name": "គឹម ស៊ាងហៃ", "id": "STD-2026-002", "excused": 1, "unexcused": 0, "total": 1, "status": "សកម្ម" }
+                ];
+                tbody.innerHTML = list.map(s => `
+                    <tr>
+                        <td class="fw-semibold text-white">${s.name}</td>
+                        <td><code>${s.id}</code></td>
+                        <td><span class="text-warning fw-bold" style="color:#f59e0b;">${s.excused} ថ្ងៃ</span></td>
+                        <td><span class="text-danger fw-bold">${s.unexcused} ថ្ងៃ</span></td>
+                        <td><span class="text-white fw-bold">${s.total} ថ្ងៃ</span></td>
+                        <td><span class="badge ${s.status.includes('🚨') ? 'bg-danger-subtle text-danger' : 'bg-success-subtle text-success'}">${s.status}</span></td>
+                    </tr>
+                `).join('');
+            }
+
+            const modalElem = document.getElementById('classAbsenceModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(modalElem);
+                bsModal.show();
+            }
+        }
+
+        // Event listeners for Chart Yearly vs Monthly switching
+        const btnYearly = document.getElementById('att-chart-btn-yearly');
+        const btnMonthly = document.getElementById('att-chart-btn-monthly');
+
+        if (btnYearly && btnMonthly) {
+            btnYearly.addEventListener('click', function () {
+                initStudentAbsenceChart('yearly');
+                btnYearly.className = 'btn btn-warning btn-sm text-dark fw-bold rounded-pill px-3 py-1 me-1';
+                btnMonthly.className = 'btn btn-outline-secondary btn-sm text-light rounded-pill px-3 py-1';
+            });
+
+            btnMonthly.addEventListener('click', function () {
+                initStudentAbsenceChart('monthly');
+                btnMonthly.className = 'btn btn-warning btn-sm text-dark fw-bold rounded-pill px-3 py-1 me-1';
+                btnYearly.className = 'btn btn-outline-secondary btn-sm text-light rounded-pill px-3 py-1 me-1';
+            });
+        }
+
+        // Search Input Filter
+        const searchInput = document.getElementById('absent-class-search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function () {
+                const q = this.value.toLowerCase().trim();
+                const filtered = highestAbsentClassesDataset.filter(c =>
+                    c.class_name.toLowerCase().includes(q) ||
+                    c.teacher.toLowerCase().includes(q) ||
+                    c.id.toLowerCase().includes(q)
+                );
+                renderHighestAbsentClassesList(filtered);
+            });
+        }
+
+        // Initial Render
+        initStudentAbsenceChart('yearly');
+        renderHighestAbsentClassesList(highestAbsentClassesDataset);
+    })();
+</script>

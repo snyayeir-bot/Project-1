@@ -1,0 +1,567 @@
+<style>
+    /* Ultra-Modern Dark & Gold Homeroom Class 12-A Architecture */
+    * {
+        font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .homeroom-banner {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(20, 20, 30, 0.96) 60%, rgba(12, 12, 18, 0.98) 100%);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 24px;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .homeroom-banner::after {
+        content: '';
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    /* Glass KPI Cards */
+    .glass-student-kpi {
+        background: rgba(18, 18, 26, 0.85);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 18px;
+        transition: all 0.35s ease;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .glass-student-kpi:hover {
+        border-color: rgba(212, 175, 55, 0.5);
+        transform: translateY(-4px);
+    }
+
+    .btn-gold-shimmer {
+        background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
+        color: #ffffff;
+        font-weight: 800;
+        border: 1px solid rgba(255, 223, 0, 0.6);
+        border-radius: 14px;
+        padding: 9px 20px;
+        font-size: 0.86rem;
+        box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
+        transition: all 0.3s ease;
+    }
+
+    .btn-gold-shimmer:hover {
+        box-shadow: 0 10px 35px rgba(212, 175, 55, 0.75);
+        transform: translateY(-2px);
+        color: #ffffff;
+    }
+
+    .btn-card-details {
+        background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%);
+        color: #ffffff;
+        font-weight: 800;
+        border: 1px solid rgba(255, 215, 0, 0.5);
+        border-radius: 12px;
+        padding: 6px 14px;
+        font-size: 0.81rem;
+        box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+        transition: all 0.28s ease;
+    }
+
+    .btn-card-details:hover {
+        box-shadow: 0 8px 28px rgba(212, 175, 55, 0.75);
+        transform: translateY(-2px);
+        color: #ffffff;
+    }
+
+    .btn-outline-glass {
+        background: rgba(22, 22, 32, 0.85);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        color: #ffffff;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 6px 14px;
+        font-size: 0.81rem;
+        transition: all 0.28s ease;
+    }
+
+    .btn-outline-glass:hover {
+        background: rgba(212, 175, 55, 0.22);
+        color: #ffd700;
+    }
+
+    .student-table th {
+        padding: 12px 14px !important;
+        font-size: 0.82rem;
+        white-space: nowrap;
+        background: rgba(16, 16, 26, 0.95) !important;
+        border-bottom: 2px solid rgba(212, 175, 55, 0.4) !important;
+        color: #d4af37 !important;
+        letter-spacing: 0.3px;
+    }
+
+    .student-table td {
+        padding: 11px 14px !important;
+        font-size: 0.88rem;
+        white-space: nowrap;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* FORCED ALL TEXT TO WHITE ACROSS ENTIRE PAGE & MODALS */
+    body, p, span, label, h1, h2, h3, h4, h5, h6, th, td, div, button, input, select {
+        color: #ffffff !important;
+    }
+
+    .text-muted, .extra-small {
+        color: #e0e0e0 !important;
+    }
+</style>
+
+<div class="p-4">
+    <!-- Homeroom Students Hero Banner -->
+    <div class="homeroom-banner p-4 mb-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;"><i class="bi bi-mortarboard-fill me-1"></i> Homeroom Class Roster</span>
+                <h2 class="fw-bold text-white mb-1">Class 12-A (Teacher Homeroom Directory)</h2>
+                <p class="text-white small mb-0">Displays Class 12-A roster (38 students) including Name, ID, Gender, Age, Class, GPA, Attendance, and Guardian details.</p>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-printer me-1"></i> Print Roster</button>
+                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#addNewStudentModal"><i class="bi bi-person-plus-fill me-1"></i> ➕ Add New Student</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Toast Notification -->
+    <div id="student-alert-toast" class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between" role="alert">
+        <div>
+            <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+            <span class="fw-bold text-white" id="student-alert-msg">New student successfully added to Class 12-A!</span>
+        </div>
+        <button type="button" class="btn-close" onclick="document.getElementById('student-alert-toast').classList.add('d-none');"></button>
+    </div>
+
+    <!-- Homeroom Class 12-A KPI Overview Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="glass-student-kpi">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-white extra-small">🎓 Total Class 12-A Students</span>
+                    <i class="bi bi-people-fill text-warning fs-5" style="color:#d4af37;"></i>
+                </div>
+                <h3 class="fw-bold text-white mb-0" id="total-students-count">38 Students</h3>
+                <span class="text-white extra-small"><i class="bi bi-gender-ambiguous me-1"></i>Male: 20 • Female: 18</span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="glass-student-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-white extra-small fw-bold">✅ Average Attendance Rate</span>
+                    <i class="bi bi-person-check-fill text-success fs-5"></i>
+                </div>
+                <h3 class="fw-bold text-white mb-0">96.2%</h3>
+                <span class="text-white extra-small"><i class="bi bi-graph-up me-1"></i>Excellent Attendance</span>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="glass-student-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-white extra-small fw-bold" style="color:#d4af37;">📊 Class Average GPA</span>
+                    <i class="bi bi-award-fill text-warning fs-5" style="color:#d4af37;"></i>
+                </div>
+                <h3 class="fw-bold text-white mb-0" style="color:#d4af37;">3.45 (GPA)</h3>
+                <span class="text-white extra-small" style="color:#d4af37;">92% Pass Rate</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Roster Table Card -->
+    <div class="card-custom p-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+            <div>
+                <h5 class="fw-bold text-white mb-0"><i class="bi bi-list-stars me-2" style="color:#d4af37 !important;"></i>Homeroom Student Roster - Class 12-A (<span id="table-student-count">38</span> Students)</h5>
+                <span class="text-white extra-small">Showing students in homeroom class</span>
+            </div>
+            <div class="search-box" style="width: 320px;">
+                <i class="bi bi-search text-white"></i>
+                <input type="text" id="homeroom-student-search" placeholder="Search student name or ID...">
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0 student-table" style="background: transparent;">
+                <thead>
+                    <tr class="text-white extra-small text-uppercase border-bottom border-dark">
+                        <th>Student Name</th>
+                        <th>Student ID</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Class</th>
+                        <th>GPA / Grade</th>
+                        <th>Attendance Rate</th>
+                        <th>Guardian & Phone</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="homeroom-students-tbody">
+                    <!-- Dynamic Student Rows Rendered Here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 1: Add New Student Form Modal -->
+<div class="modal fade" id="addNewStudentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
+                        <i class="bi bi-person-plus-fill fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">Class 12-A (Homeroom)</span>
+                        <h4 class="fw-bold text-white mb-0">Add New Student Form</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="add-new-student-form">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">Full Student Name</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-name" placeholder="e.g. Sok Piseth" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">Student ID</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="add-s-id" value="STD-2026-039" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">Gender</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="add-s-gender" required>
+                                <option value="Male" selected>👨 Male</option>
+                                <option value="Female">👩 Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">Age</label>
+                            <input type="number" class="form-control bg-dark text-white border-secondary" id="add-s-age" value="17" min="10" max="30" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">Class</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" value="Class 12-A" readonly>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">Guardian Name</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-g-name" placeholder="e.g. Mr. Sok Chea" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">Guardian Phone Number</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-g-phone" placeholder="e.g. 092 112 233" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">Current Address</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-address" placeholder="e.g. Phnom Penh" required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i> Save New Student</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2: Student Detail Profile Modal -->
+<div class="modal fade" id="homeroomStudentDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <img id="m-avatar" src="" class="rounded-circle border border-warning" width="60" height="60" alt="">
+                    <div>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;" id="m-id">STD-2026-001</span>
+                        <h4 class="fw-bold text-white mb-0" id="m-name">Sok Chandara</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-3 bg-black border border-secondary">
+                            <span class="text-white extra-small d-block mb-1">🚻 Gender / 🎂 Age</span>
+                            <h6 class="fw-bold text-white mb-0" id="m-gender-age">Male • 17 yrs</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-3 bg-black border border-secondary">
+                            <span class="text-white extra-small d-block mb-1">🏫 Class</span>
+                            <h6 class="fw-bold text-white mb-0" id="m-class">Class 12-A (Homeroom)</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-3 bg-black border border-secondary">
+                            <span class="text-white extra-small d-block mb-1">📊 Grade / GPA</span>
+                            <h6 class="fw-bold text-white mb-0" id="m-gpa">Grade A+ (3.92 GPA)</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-3 bg-black border border-secondary">
+                            <span class="text-white extra-small d-block mb-1">✅ Attendance</span>
+                            <h6 class="fw-bold text-white mb-0" id="m-attendance">28 / 29 days (98%)</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-3 bg-black border border-secondary">
+                            <span class="text-white extra-small d-block mb-1">📞 Guardian</span>
+                            <h6 class="fw-bold text-white mb-0" id="m-guardian">Mr. Sok Chea • 092 112 233</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-3 bg-black border border-secondary">
+                            <span class="text-white extra-small d-block mb-1">📍 Address</span>
+                            <h6 class="fw-bold text-white mb-0" id="m-address">Phnom Penh</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top border-dark p-3">
+                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn-gold-shimmer btn-sm"><i class="bi bi-telephone-fill me-1"></i> Contact Guardian</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const myHomeroomStudentsList = [
+            {
+                "id": "STD-2026-001",
+                "name": "Sok Chandara",
+                "gender": "Male",
+                "age": "17 yrs",
+                "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
+                "class_name": "Class 12-A",
+                "gpa": "Grade A+ (3.92 GPA)",
+                "attendance": "28 days (98%)",
+                "guardian": "Mr. Sok Chea • 092 112 233",
+                "address": "Phnom Penh",
+                "status": "🌟 Honors"
+            },
+            {
+                "id": "STD-2026-002",
+                "name": "Kim Seanghai",
+                "gender": "Female",
+                "age": "17 yrs",
+                "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80",
+                "class_name": "Class 12-A",
+                "gpa": "Grade A (3.75 GPA)",
+                "attendance": "29 days (99%)",
+                "guardian": "Mr. Kim Hong • 098 445 566",
+                "address": "Kandal Province",
+                "status": "✅ Active"
+            },
+            {
+                "id": "STD-2026-003",
+                "name": "Ly Sovannara",
+                "gender": "Male",
+                "age": "18 yrs",
+                "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
+                "class_name": "Class 12-A",
+                "gpa": "Grade B+ (3.40 GPA)",
+                "attendance": "26 days (93%)",
+                "guardian": "Mr. Ly Meng • 012 334 455",
+                "address": "Phnom Penh",
+                "status": "✅ Active"
+            },
+            {
+                "id": "STD-2026-004",
+                "name": "Chan Sreynet",
+                "gender": "Female",
+                "age": "17 yrs",
+                "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80",
+                "class_name": "Class 12-A",
+                "gpa": "Grade A (3.85 GPA)",
+                "attendance": "28 days (97%)",
+                "guardian": "Mrs. Chan Thy • 016 556 677",
+                "address": "Siem Reap",
+                "status": "🌟 Honors"
+            },
+            {
+                "id": "STD-2026-005",
+                "name": "Oung Vireak",
+                "gender": "Male",
+                "age": "18 yrs",
+                "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80",
+                "class_name": "Class 12-A",
+                "gpa": "Grade F (1.80 GPA)",
+                "attendance": "21 days (75%)",
+                "guardian": "Mr. Oung Chan • 077 889 900",
+                "address": "Battambang",
+                "status": "🚨 Needs Focus"
+            },
+            {
+                "id": "STD-2026-006",
+                "name": "Chea Piseth",
+                "gender": "Male",
+                "age": "17 yrs",
+                "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
+                "class_name": "Class 12-A",
+                "gpa": "Grade B (3.10 GPA)",
+                "attendance": "27 days (94%)",
+                "guardian": "Mr. Chea Van • 089 776 655",
+                "address": "Phnom Penh",
+                "status": "✅ Active"
+            }
+        ];
+
+        function renderHomeroomTable(list) {
+            const tbody = document.getElementById('homeroom-students-tbody');
+            if (!tbody) return;
+
+            document.getElementById('total-students-count').innerText = `${list.length} Students`;
+            document.getElementById('table-student-count').innerText = `${list.length}`;
+
+            tbody.innerHTML = list.map((s, index) => `
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center gap-2.5">
+                            <img src="${s.avatar}" class="rounded-circle border border-warning" width="38" height="38" alt="${s.name}">
+                            <span class="fw-semibold text-white" style="font-size: 0.96rem;">${s.name}</span>
+                        </div>
+                    </td>
+                    <td><code>${s.id}</code></td>
+                    <td>
+                        <span class="badge ${s.gender === 'Female' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'} px-2.5 py-1">
+                            ${s.gender === 'Female' ? '👩 Female' : '👨 Male'}
+                        </span>
+                    </td>
+                    <td><span class="fw-medium text-white">${s.age}</span></td>
+                    <td>
+                        <span class="badge text-warning border border-warning px-2.5 py-1 fw-bold" style="background:rgba(212,175,55,0.15); color:#ffd700 !important;">
+                            ${s.class_name}
+                        </span>
+                    </td>
+                    <td><span class="fw-bold text-success">${s.gpa}</span></td>
+                    <td><span class="text-white extra-small fw-semibold"><i class="bi bi-clock-history me-1 text-warning" style="color:#d4af37 !important;"></i>${s.attendance}</span></td>
+                    <td><span class="text-white extra-small">${s.guardian}</span></td>
+                    <td>
+                        <span class="badge ${s.status.includes('🚨') ? 'bg-danger-subtle text-danger' : s.status.includes('🌟') ? 'bg-warning-subtle text-warning' : 'bg-success-subtle text-success'} px-2.5 py-1 fw-bold">
+                            ${s.status}
+                        </span>
+                    </td>
+                    <td class="text-end">
+                        <button class="btn-card-details view-homeroom-student-btn" data-student-index="${index}">
+                            <i class="bi bi-eye-fill me-1"></i> View 👁️
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            document.querySelectorAll('.view-homeroom-student-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const idx = parseInt(this.getAttribute('data-student-index'));
+                    const studentObj = list[idx] || list[0];
+                    showHomeroomStudentModal(studentObj);
+                });
+            });
+        }
+
+        function showHomeroomStudentModal(s) {
+            document.getElementById('m-avatar').src = s.avatar;
+            document.getElementById('m-id').innerText = s.id;
+            document.getElementById('m-name').innerText = s.name;
+            document.getElementById('m-gender-age').innerText = `${s.gender} • ${s.age}`;
+            document.getElementById('m-class').innerText = s.class_name;
+            document.getElementById('m-gpa').innerText = s.gpa;
+            document.getElementById('m-attendance').innerText = s.attendance;
+            document.getElementById('m-guardian').innerText = s.guardian;
+            document.getElementById('m-address').innerText = s.address;
+
+            const modalElem = document.getElementById('homeroomStudentDetailModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(modalElem);
+                bsModal.show();
+            }
+        }
+
+        const addStudentForm = document.getElementById('add-new-student-form');
+        if (addStudentForm) {
+            addStudentForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('add-s-name').value.trim();
+                const id = document.getElementById('add-s-id').value.trim();
+                const gender = document.getElementById('add-s-gender').value;
+                const age = document.getElementById('add-s-age').value + " yrs";
+                const gName = document.getElementById('add-s-g-name').value.trim();
+                const gPhone = document.getElementById('add-s-g-phone').value.trim();
+                const address = document.getElementById('add-s-address').value.trim();
+
+                if (name && id) {
+                    myHomeroomStudentsList.unshift({
+                        id: id,
+                        name: name,
+                        gender: gender,
+                        age: age,
+                        avatar: gender === 'Female' ? "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80" : "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
+                        class_name: "Class 12-A",
+                        gpa: "Grade B (3.00 GPA)",
+                        attendance: "30 days (100%)",
+                        guardian: `${gName} • ${gPhone}`,
+                        address: address,
+                        status: "✅ Active"
+                    });
+
+                    renderHomeroomTable(myHomeroomStudentsList);
+
+                    const modalElem = document.getElementById('addNewStudentModal');
+                    if (modalElem && typeof bootstrap !== 'undefined') {
+                        const bsModal = bootstrap.Modal.getInstance(modalElem);
+                        if (bsModal) bsModal.hide();
+                    }
+                    addStudentForm.reset();
+                    document.getElementById('add-s-id').value = `STD-2026-0${myHomeroomStudentsList.length + 1}`;
+
+                    const toast = document.getElementById('student-alert-toast');
+                    if (toast) {
+                        document.getElementById('student-alert-msg').innerText = `Successfully added student "${name}" (ID: ${id}) to Class 12-A!`;
+                        toast.classList.remove('d-none');
+                    }
+                }
+            });
+        }
+
+        const searchInput = document.getElementById('homeroom-student-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', function () {
+                const q = this.value.toLowerCase().trim();
+                const filtered = myHomeroomStudentsList.filter(s =>
+                    s.name.toLowerCase().includes(q) ||
+                    s.id.toLowerCase().includes(q) ||
+                    s.guardian.toLowerCase().includes(q)
+                );
+                renderHomeroomTable(filtered);
+            });
+        }
+
+        renderHomeroomTable(myHomeroomStudentsList);
+    })();
+</script>

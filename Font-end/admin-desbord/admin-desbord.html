@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP Software - Dark & Gold Dashboard</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts (Plus Jakarta Sans & Kantumruy Pro) -->
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --bg-card: #121215;
+            --bg-card-hover: #18181c;
+            --bg-sidebar: #0d0d0f;
+            --border-color: #222228;
+            --accent-gold: #d4af37;
+            --accent-gold-glow: rgba(212, 175, 55, 0.18);
+            --accent-gold-hover: #e5be3e;
+            --text-primary: #f0f0f5;
+            --text-muted: #8a8a98;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .brand-logo {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--accent-gold);
+            border-radius: 10px;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 0 12px var(--accent-gold-glow);
+        }
+
+        .nav-section-title {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.75rem;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+            padding: 0.65rem 0.85rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background-color: var(--bg-card-hover);
+            transform: translateX(3px);
+        }
+
+        .nav-link.active {
+            color: var(--accent-gold);
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link.active i {
+            color: var(--accent-gold);
+        }
+
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        /* Profile Pill Footer */
+        .profile-pill {
+            background: linear-gradient(145deg, #141418, #0e0e11);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.75rem;
+            transition: all 0.25s ease;
+        }
+
+        .profile-pill:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-signout {
+            color: #ef4444;
+            text-decoration: none;
+            font-size: 0.72rem;
+            padding: 0;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .btn-signout:hover {
+            color: #f87171;
+            text-decoration: underline;
+        }
+
+        /* Header & Search */
+        .top-navbar {
+            background-color: rgba(10, 10, 12, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.8rem 1.8rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .search-box {
+            background-color: #141418;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            padding: 0.45rem 0.9rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            width: 280px;
+            transition: all 0.25s ease;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 12px var(--accent-gold-glow);
+            width: 320px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            outline: none;
+            width: 100%;
+        }
+
+        .badge-shortcut {
+            background-color: #22222a;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #2d2d38;
+        }
+
+        /* Buttons & Badges */
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37, #f3c649);
+            color: #000;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            padding: 0.5rem 1.1rem;
+            font-size: 0.85rem;
+            transition: all 0.25s ease;
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #e5be3e, #ffd558);
+            box-shadow: 0 0 18px var(--accent-gold-glow);
+            color: #000;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline-dark-custom {
+            background-color: #141418;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            border-radius: 10px;
+            padding: 0.5rem 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline-dark-custom:hover {
+            background-color: #1f1f26;
+            color: var(--accent-gold);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        /* Card Custom Styling */
+        .card-custom {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-custom:hover {
+            border-color: #30303a;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+        }
+
+        .card-gold-accent {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-gold-accent::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-gold-accent:hover {
+            border-color: rgba(212, 175, 55, 0.45);
+            box-shadow: 0 6px 25px var(--accent-gold-glow);
+            transform: translateY(-2px);
+        }
+
+        .card-gold-accent:hover::before {
+            opacity: 1;
+        }
+
+        .icon-box-gold {
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--accent-gold);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+        }
+
+        .card-custom:hover .icon-box-gold {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Custom Sub-item List Cards */
+        .sub-item-card {
+            background-color: #16161b;
+            border: 1px solid #22222a;
+            border-radius: 10px;
+            padding: 0.8rem 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: all 0.25s ease;
+        }
+
+        .sub-item-card:hover {
+            background-color: #1c1c24;
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            transform: translateX(3px);
+        }
+
+        .chart-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .legend-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .hover-icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .hover-icon-btn:hover {
+            color: var(--text-primary);
+            background-color: #1a1a22;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <!-- Sidebar -->
+            <aside class="col-lg-2 sidebar p-3">
+                <div class="d-flex flex-column h-100 justify-content-between">
+                    <div>
+                        <!-- Brand Header -->
+                        <div
+                            class="d-flex align-items-center justify-content-between pb-3 border-bottom border-dark-subtle mb-3">
+                            <div class="d-flex align-items-center gap-2.5">
+                                <div class="brand-logo">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 fw-bold fs-6 text-white" style="letter-spacing: -0.02em;">EduSuite
+                                        ERP</h6>
+                                    <span class="text-muted extra-small"
+                                        style="font-size: 0.68rem; letter-spacing: 0.05em;">ENTERPRISE v1.0</span>
+                                </div>
+                            </div>
+                            <button class="hover-icon-btn"><i class="bi bi-chevron-expand"></i></button>
+                        </div>
+
+                        <!-- Business Section Navigation -->
+                        <div class="nav-section-title">Main Portal</div>
+                        <nav class="nav flex-column gap-1.5" id="sidebar-menu">
+                            <a href="#" class="nav-link active" data-page="/admin-desbord-home.html" data-title="Home">
+                                <i class="fa-solid fa-house"></i> <span>Home</span>
+                            </a>
+                            <a href="#" class="nav-link" data-page="/admin-desbord-tacher.html" data-title="Teachers">
+                                <i class="fa-solid fa-chalkboard-user"></i> <span>Teachers</span>
+                            </a>
+                            <a href="#" class="nav-link" data-page="/admin-desbord-students.html" data-title="Students">
+                                <i class="fa-solid fa-graduation-cap"></i> <span>Students</span>
+                            </a>
+                            <a href="#" class="nav-link" data-page="/admin-desbord-classes.html" data-title="Classes">
+                                <i class="fa-solid fa-chalkboard"></i> <span>Classes</span>
+                            </a>
+                            <a href="#" class="nav-link" data-page="/admin-desbord-attendance.html" data-title="Attendance">
+                                <i class="fa-solid fa-clipboard-user"></i> <span>Attendance</span>
+                            </a>
+                            <a href="#" class="nav-link" data-page="/admin-desbord-exams.html" data-title="Exams">
+                                <i class="fa-solid fa-square-check"></i> <span>Exams</span>
+                            </a>
+                            <a href="#" class="nav-link" data-page="/admin-desbord-library.html" data-title="Library & Book Loans">
+                                <i class="fa-solid fa-book"></i> <span>Library Loans</span>
+                            </a>
+                            <a href="#" class="nav-link" data-page="/admin-desbord-projects.html" data-title="Projects">
+                                <i class="fa-solid fa-folder-closed"></i> <span>Projects</span>
+                            </a>
+                            <a href="#" class="nav-link" data-page="/admin-desbord-logs.html" data-title="Audit Logs">
+                                <i class="fa-solid fa-clock-rotate-left"></i> <span>Audit Logs</span>
+                            </a>
+                        </nav>
+                    </div>
+
+                    <!-- User Profile Footer -->
+                    <div class="pt-3 border-top border-dark-subtle">
+                        <div class="profile-pill d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-2.5">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
+                                    class="rounded-circle border border-dark" width="36" height="36" alt="User">
+                                <div>
+                                    <div class="fw-bold text-white" style="font-size: 0.82rem;">Wrath Neon</div>
+                                    <a href="/" class="btn-signout d-inline-block"><i
+                                            class="fa-solid fa-right-from-bracket me-1"></i> Sign out</a>
+                                </div>
+                            </div>
+                            <i class="bi bi-chevron-down text-muted" style="font-size: 0.75rem;"></i>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="col-lg-10">
+                <!-- Top Navbar -->
+                <header class="top-navbar d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-2 text-muted small">
+                        <i class="bi bi-layout-sidebar text-gold"></i>
+                        <span>Dashboard</span>
+                        <i class="bi bi-chevron-right" style="font-size: 0.7rem;"></i>
+                        <span class="text-white fw-medium" id="breadcrumb-current">Home</span>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="search-box">
+                            <i class="bi bi-search text-muted"></i>
+                            <input type="text" id="global-search" placeholder="Search resources, students...">
+                            <span class="badge-shortcut">⌘F</span>
+                        </div>
+                        <span class="badge bg-warning-subtle text-warning px-2.5 py-1.5 rounded-pill"
+                            style="font-size: 0.75rem; font-weight: 600;">
+                            <i class="bi bi-bell-fill me-1"></i> 12 New Tasks
+                        </span>
+                        <div class="d-flex gap-1">
+                            <button class="hover-icon-btn" title="Toggle Dark Theme" onclick="document.querySelector('#theme-buttons-grid .theme-option-btn').click();"><i
+                                    class="bi bi-moon fs-6"></i></button>
+                            <button class="hover-icon-btn" title="Notifications"><i
+                                    class="bi bi-bell fs-6"></i></button>
+                            <button class="hover-icon-btn" data-bs-toggle="modal" data-bs-target="#systemSettingsModal" title="ការកំណត់ប្រព័ន្ធ (Settings)"><i class="bi bi-gear fs-6"></i></button>
+                        </div>
+                        <button class="btn btn-outline-dark-custom"><i class="bi bi-download me-1.5"></i> Export
+                            Data</button>
+                        <button class="btn btn-gold"><i class="bi bi-plus-lg me-1.5"></i> New Entry</button>
+                    </div>
+                </header>
+
+                <!-- open path file admin-desbord-home.html -->
+                <div id="page-content">
+
+                </div>
+
+
+
+
+
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Chart.js Script -->
+    <script>
+        function initAnalyticsChart(mode = 'yearly') {
+            const chartCanvas = document.getElementById('analyticsChart');
+            if (!chartCanvas) return;
+
+            // Destroy existing chart instance if canvas is already in use
+            const existingChart = Chart.getChart(chartCanvas);
+            if (existingChart) {
+                existingChart.destroy();
+            }
+
+            const ctx = chartCanvas.getContext('2d');
+            
+            let labels, existingData, enrolledData, droppedData, barThicknessVal;
+
+            if (mode === 'monthly') {
+                labels = ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'];
+                existingData = [180, 195, 210, 225, 240, 250, 265, 280, 290, 300, 310, 320];
+                enrolledData = [45, 52, 38, 65, 85, 40, 58, 72, 60, 48, 55, 68];
+                droppedData = [6, 8, 4, 7, 10, 3, 5, 8, 4, 5, 3, 5];
+                barThicknessVal = 8;
+            } else {
+                // Default: Yearly Data (២០២១ - ២០២៧)
+                labels = ['ឆ្នាំ ២០២១', 'ឆ្នាំ ២០២២', 'ឆ្នាំ ២០២៣', 'ឆ្នាំ ២០២៤', 'ឆ្នាំ ២០២៥', 'ឆ្នាំ ២០២៦', 'ឆ្នាំ ២០២៧'];
+                existingData = [480, 620, 780, 920, 1080, 1240, 1450];
+                enrolledData = [150, 190, 230, 280, 320, 380, 420];
+                droppedData = [20, 25, 22, 28, 30, 24, 18];
+                barThicknessVal = 16;
+            }
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'សិស្សចាស់ (Existing)',
+                            data: existingData,
+                            backgroundColor: '#d4af37',
+                            barThickness: barThicknessVal,
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'សិស្សចូលថ្មី (Enrolled)',
+                            data: enrolledData,
+                            backgroundColor: '#10b981',
+                            barThickness: barThicknessVal,
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'សិស្សឈប់រៀន (Dropped)',
+                            data: droppedData,
+                            backgroundColor: '#ef4444',
+                            barThickness: barThicknessVal,
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#8a8a98', font: { size: 12, family: 'Kantumruy Pro, Plus Jakarta Sans' } }
+                        },
+                        y: {
+                            grid: { color: '#1a1a22' },
+                            ticks: {
+                                color: '#8a8a98',
+                                font: { size: 11, family: 'Kantumruy Pro, Plus Jakarta Sans' },
+                                callback: function (value) { return value + ' នាក់'; }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Global Search Shortcut Listener (Cmd+F / Ctrl+F)
+        document.addEventListener('keydown', function (e) {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'f') {
+                e.preventDefault();
+                document.getElementById('global-search').focus();
+            }
+        });
+
+        // Update Breadcrumb and Load Content on Sidebar Navigation Click
+        document.querySelectorAll('#sidebar-menu .nav-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Active Class Toggle
+                document.querySelectorAll('#sidebar-menu .nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                // Get page details
+                const title = this.getAttribute('data-title') || this.innerText.trim();
+                const pageUrl = this.getAttribute('data-page');
+
+                // Update Breadcrumb Header
+                const breadcrumb = document.getElementById('breadcrumb-current');
+                if (breadcrumb) breadcrumb.innerText = title;
+
+                // Load view page dynamically into #page-content container
+                if (pageUrl) {
+                    loadPageContent(pageUrl);
+                }
+            });
+        });
+
+        // Load dynamic page content into #page-content container
+        function loadPageContent(pageUrl) {
+            fetch(pageUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to fetch page: ' + response.statusText);
+                    return response.text();
+                })
+                .then(html => {
+                    const pageContainer = document.getElementById('page-content');
+                    pageContainer.innerHTML = html;
+
+                    // Parse fetched HTML string for script tags
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+
+                    // Re-execute <script> blocks inside the loaded page HTML
+                    const scriptElements = doc.querySelectorAll('script');
+                    scriptElements.forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+                        newScript.textContent = oldScript.textContent;
+                        pageContainer.appendChild(newScript);
+                    });
+
+                    // Initialize any specific page charts if canvas element exists
+                    initAnalyticsChart();
+                })
+                .catch(error => {
+                    console.error('Error loading page:', error);
+                    document.getElementById('page-content').innerHTML = `
+                        <div class="p-4 text-danger card-custom m-4">
+                            <h5><i class="bi bi-exclamation-triangle-fill me-2"></i> Error Loading View</h5>
+                            <p class="mb-0">Could not load path: <code>${pageUrl}</code></p>
+                        </div>`;
+                });
+        }
+
+        // Automatically load admin-desbord-home.html on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPageContent('/admin-desbord-home.html');
+        });
+    </script>
+
+    <!-- Modal: Settings Modal (⚙️ ការកំណត់ប្រព័ន្ធ - System Settings) -->
+    <div class="modal fade" id="systemSettingsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+                <div class="modal-header border-bottom border-dark p-4">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
+                            <i class="bi bi-gear-fill fs-4"></i>
+                        </div>
+                        <div>
+                            <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">ការកំណត់ប្រព័ន្ធ (System Settings)</span>
+                            <h4 class="fw-bold text-white mb-0">កែប្រែការកំណត់ភាសា និង ពណ៌ Background របស់ប្រព័ន្ធ</h4>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- Section 1: Background Theme Selector (ប្តូរ Background ពណ៌) -->
+                    <div class="mb-4 p-3.5 rounded-3 border border-secondary" style="background: rgba(16, 16, 26, 0.85);">
+                        <h6 class="fw-bold text-white mb-3"><i class="bi bi-palette-fill text-warning me-2" style="color:#d4af37;"></i>១. ជ្រើសរើសពណ៌ Background របស់ប្រព័ន្ធ (Background Color Themes)</h6>
+                        
+                        <div class="row g-3 mb-3" id="theme-buttons-grid">
+                            <div class="col-md-4">
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn active-theme" data-theme="dark-gold" style="background: linear-gradient(135deg, #0a0a0c, #121218); border-color: #d4af37 !important;">
+                                    <div class="fw-bold text-white mb-1"><i class="bi bi-moon-stars-fill text-warning me-1"></i> Dark Gold</div>
+                                    <span class="extra-small text-white opacity-75">ពណ៌ខ្មៅមាស (Standard)</span>
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn" data-theme="midnight-blue" style="background: linear-gradient(135deg, #0b132b, #1c2541); border-color: rgba(255,255,255,0.2) !important;">
+                                    <div class="fw-bold text-white mb-1"><i class="bi bi-water text-info me-1"></i> Midnight Blue</div>
+                                    <span class="extra-small text-white opacity-75">ពណ៌ខៀវ Midnight</span>
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn" data-theme="deep-purple" style="background: linear-gradient(135deg, #180a29, #2b1040); border-color: rgba(255,255,255,0.2) !important;">
+                                    <div class="fw-bold text-white mb-1"><i class="bi bi-gem text-danger me-1"></i> Royal Purple</div>
+                                    <span class="extra-small text-white opacity-75">ពណ៌ស្វាយ Royal</span>
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn" data-theme="emerald-green" style="background: linear-gradient(135deg, #051912, #0d3b2e); border-color: rgba(255,255,255,0.2) !important;">
+                                    <div class="fw-bold text-white mb-1"><i class="bi bi-tree-fill text-success me-1"></i> Emerald Green</div>
+                                    <span class="extra-small text-white opacity-75">ពណ៌បៃតង Emerald</span>
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn" data-theme="pitch-black" style="background: linear-gradient(135deg, #000000, #141414); border-color: rgba(255,255,255,0.2) !important;">
+                                    <div class="fw-bold text-white mb-1"><i class="bi bi-circle-fill text-secondary me-1"></i> Pitch Black</div>
+                                    <span class="extra-small text-white opacity-75">ពណ៌ខ្មៅងងឹត</span>
+                                </button>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 rounded-3 border border-secondary d-flex flex-column justify-content-center h-100" style="background: rgba(25, 25, 35, 0.9);">
+                                    <label class="form-label text-white extra-small fw-bold mb-1"><i class="bi bi-eyedropper text-warning me-1"></i> ពណ៌ផ្ទាល់ខ្លួន (Custom)</label>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="color" id="customBgColorPickerAdmin" class="form-control form-control-color bg-dark border-secondary w-100" value="#0a0a0c" title="ជ្រើសរើសពណ៌ Background">
+                                        <button type="button" class="btn btn-sm btn-outline-glass" id="applyCustomColorBtnAdmin">ប្រើ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Language Selector (ប្តូរភាសា) -->
+                    <div class="p-3.5 rounded-3 border border-secondary" style="background: rgba(16, 16, 26, 0.85);">
+                        <h6 class="fw-bold text-white mb-3"><i class="bi bi-translate text-warning me-2" style="color:#d4af37;"></i>២. ជ្រើសរើសភាសាប្រើប្រាស់ក្នុងប្រព័ន្ធ (System Language)</h6>
+                        <div class="row g-3" id="lang-buttons-grid-admin">
+                            <div class="col-md-6">
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border lang-option-btn active-lang" data-lang="km" style="background: rgba(212, 175, 55, 0.15); border-color: #d4af37 !important;">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="fw-bold text-white"><span class="fs-5 me-2">🇰🇭</span> ភាសាខ្មែរ (Khmer)</div>
+                                        <i class="bi bi-check-circle-fill text-warning" id="admin-lang-chk-km"></i>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border lang-option-btn" data-lang="en" style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2) !important;">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="fw-bold text-white"><span class="fs-5 me-2">🇬🇧</span> English (អង់គ្លេស)</div>
+                                        <i class="bi bi-circle text-muted" id="admin-lang-chk-en"></i>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-top border-dark p-3">
+                    <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បិទ</button>
+                    <button type="button" class="btn-gold-shimmer btn-sm" data-bs-dismiss="modal"><i class="bi bi-check-lg me-1"></i> រក្សាទុកការកំណត់</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        (function() {
+            const themeGradientsMap = {
+                'dark-gold': 'linear-gradient(135deg, #0a0a0c 0%, #121218 100%)',
+                'midnight-blue': 'linear-gradient(135deg, #0b132b 0%, #1c2541 100%)',
+                'deep-purple': 'linear-gradient(135deg, #180a29 0%, #2b1040 100%)',
+                'emerald-green': 'linear-gradient(135deg, #051912 0%, #0d3b2e 100%)',
+                'pitch-black': 'linear-gradient(135deg, #000000 0%, #141414 100%)'
+            };
+
+            function applySystemBackground(themeVal) {
+                const bgStyle = themeGradientsMap[themeVal] || (themeVal.startsWith('#') ? themeVal : '#0a0a0c');
+                document.body.style.background = bgStyle;
+                document.body.style.backgroundColor = themeVal.startsWith('#') ? themeVal : '#0a0a0c';
+                localStorage.setItem('antigravity_bg_theme', themeVal);
+
+                document.querySelectorAll('#theme-buttons-grid .theme-option-btn').forEach(btn => {
+                    if (btn.getAttribute('data-theme') === themeVal) {
+                        btn.style.borderColor = '#d4af37';
+                        btn.classList.add('active-theme');
+                    } else {
+                        btn.style.borderColor = 'rgba(255,255,255,0.2)';
+                        btn.classList.remove('active-theme');
+                    }
+                });
+            }
+
+            function applySystemLanguage(langCode) {
+                localStorage.setItem('antigravity_system_lang', langCode);
+                const kmChk = document.getElementById('admin-lang-chk-km');
+                const enChk = document.getElementById('admin-lang-chk-en');
+
+                if (langCode === 'en') {
+                    if (kmChk) kmChk.className = 'bi bi-circle text-muted';
+                    if (enChk) enChk.className = 'bi bi-check-circle-fill text-warning';
+                } else {
+                    if (kmChk) kmChk.className = 'bi bi-check-circle-fill text-warning';
+                    if (enChk) enChk.className = 'bi bi-circle text-muted';
+                }
+            }
+
+            document.querySelectorAll('#theme-buttons-grid .theme-option-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const theme = this.getAttribute('data-theme');
+                    if (theme) applySystemBackground(theme);
+                });
+            });
+
+            const applyCustomBtn = document.getElementById('applyCustomColorBtnAdmin');
+            const customPicker = document.getElementById('customBgColorPickerAdmin');
+            if (applyCustomBtn && customPicker) {
+                applyCustomBtn.addEventListener('click', function () {
+                    applySystemBackground(customPicker.value);
+                });
+            }
+
+            document.querySelectorAll('#lang-buttons-grid-admin .lang-option-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const lang = this.getAttribute('data-lang');
+                    if (lang) applySystemLanguage(lang);
+                });
+            });
+
+            const savedTheme = localStorage.getItem('antigravity_bg_theme') || 'dark-gold';
+            const savedLang = localStorage.getItem('antigravity_system_lang') || 'km';
+            applySystemBackground(savedTheme);
+            applySystemLanguage(savedLang);
+        })();
+    </script>
+</body>
+
+</html>

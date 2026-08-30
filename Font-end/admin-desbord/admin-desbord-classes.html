@@ -1,0 +1,923 @@
+<style>
+    /* Premium Ultra-Modern Dark & Gold Classroom Architecture */
+    * {
+        font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+        color: white;
+    }
+
+    /* Executive Hero Header Banner */
+    .classes-hero-banner {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.22) 0%, rgba(20, 20, 30, 0.96) 60%, rgba(12, 12, 18, 0.98) 100%);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 24px;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .classes-hero-banner::after {
+        content: '';
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    /* Glass KPI Cards */
+    .glass-kpi-card {
+        background: rgba(18, 18, 26, 0.85);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 20px;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .glass-kpi-card:hover {
+        border-color: rgba(212, 175, 55, 0.5);
+        transform: translateY(-5px);
+        box-shadow: 0 14px 35px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Floating Filter Capsule Bar */
+    .filter-capsule-bar {
+        background: rgba(16, 16, 24, 0.9);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 60px;
+        padding: 6px 10px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .filter-pill-btn {
+        background: transparent;
+        border: 1px solid transparent;
+        color: #a0a0be;
+        border-radius: 40px;
+        padding: 9px 22px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        position: relative;
+    }
+
+    .filter-pill-btn:hover {
+        background: rgba(255, 255, 255, 0.09);
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
+    /* Active Glowing Track Pills */
+    .filter-pill-btn.pill-all.active,
+    .filter-pill-btn[data-track="All"].active {
+        background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%) !important;
+        color: #000000 !important;
+        font-weight: 800 !important;
+        box-shadow: 0 6px 22px rgba(212, 175, 55, 0.6) !important;
+    }
+
+    .filter-pill-btn.pill-stem.active,
+    .filter-pill-btn[data-track="STEM Track"].active {
+        background: linear-gradient(135deg, #ff9800 0%, #ffc107 100%) !important;
+        color: #000000 !important;
+        font-weight: 800 !important;
+        box-shadow: 0 6px 22px rgba(255, 193, 7, 0.6) !important;
+    }
+
+    .filter-pill-btn.pill-science.active,
+    .filter-pill-btn[data-track="Science Track"].active {
+        background: linear-gradient(135deg, #10b981 0%, #34d399 100%) !important;
+        color: #000000 !important;
+        font-weight: 800 !important;
+        box-shadow: 0 6px 22px rgba(16, 185, 129, 0.6) !important;
+    }
+
+    .filter-pill-btn.pill-tech.active,
+    .filter-pill-btn[data-track="Tech Track"].active {
+        background: linear-gradient(135deg, #06b6d4 0%, #38bdf8 100%) !important;
+        color: #000000 !important;
+        font-weight: 800 !important;
+        box-shadow: 0 6px 22px rgba(6, 182, 212, 0.6) !important;
+    }
+
+    /* Class Cards Box */
+    .class-card-box {
+        background: linear-gradient(155deg, #12121a, #181826);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        border-radius: 22px;
+        transition: all 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.42);
+    }
+
+    .class-card-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, #d4af37, #f5d061, #d4af37, transparent);
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+
+    .class-card-box:hover {
+        border-color: rgba(212, 175, 55, 0.8);
+        box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
+        transform: translateY(-8px) scale(1.015);
+    }
+
+    .class-card-box:hover::before {
+        opacity: 1;
+    }
+
+    .track-badge {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(212, 175, 55, 0.08));
+        border: 1px solid rgba(212, 175, 55, 0.5);
+        color: #ffd700;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 5px 13px;
+        font-size: 0.78rem;
+    }
+
+    .teacher-pill {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 40px;
+        padding: 4px 12px;
+    }
+
+    .metrics-summary-box {
+        background: rgba(10, 10, 15, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 12px;
+    }
+
+    .progress-bar-custom {
+        height: 6px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+    }
+
+    .progress-bar-custom .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #d4af37, #f5d061);
+        border-radius: 10px;
+        transition: width 0.6s ease;
+    }
+
+    .btn-gold-shimmer {
+        background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
+        color: #050508;
+        font-weight: 800;
+        border: 1px solid rgba(255, 223, 0, 0.6);
+        border-radius: 14px;
+        padding: 11px 24px;
+        font-size: 0.9rem;
+        box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
+        transition: all 0.3s ease;
+    }
+
+    .btn-gold-shimmer:hover {
+        box-shadow: 0 10px 35px rgba(212, 175, 55, 0.75);
+        transform: translateY(-2px);
+        color: #000000;
+    }
+
+    .btn-card-score {
+        background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%);
+        color: #050508;
+        font-weight: 800;
+        border: 1px solid rgba(255, 215, 0, 0.5);
+        border-radius: 12px;
+        padding: 8px 18px;
+        font-size: 0.84rem;
+        box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+        transition: all 0.28s ease;
+    }
+
+    .btn-card-score:hover {
+        box-shadow: 0 8px 28px rgba(212, 175, 55, 0.75);
+        transform: translateY(-2px);
+        color: #000000;
+    }
+
+    .btn-outline-glass {
+        background: rgba(22, 22, 32, 0.85);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        color: #f0f0f5;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 9px 20px;
+        font-size: 0.86rem;
+        transition: all 0.28s ease;
+    }
+
+    .btn-outline-glass:hover {
+        background: rgba(212, 175, 55, 0.22);
+        color: #ffd700;
+        border-color: rgba(212, 175, 55, 0.85);
+        transform: translateY(-2px);
+    }
+
+    .btn-action-edit {
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(251, 191, 36, 0.45);
+        color: #fbbf24;
+        font-weight: 700;
+        border-radius: 10px;
+        padding: 5px 14px;
+        font-size: 0.8rem;
+        transition: all 0.25s ease;
+    }
+
+    .btn-action-edit:hover {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: #000000;
+    }
+
+    .btn-action-view {
+        background: rgba(6, 182, 212, 0.15);
+        border: 1px solid rgba(56, 189, 248, 0.45);
+        color: #38bdf8;
+        font-weight: 700;
+        border-radius: 10px;
+        padding: 5px 14px;
+        font-size: 0.8rem;
+        transition: all 0.25s ease;
+    }
+
+    .btn-action-view:hover {
+        background: linear-gradient(135deg, #06b6d4, #0284c7);
+        color: #ffffff;
+    }
+
+    /* Clean Compact Table Headers */
+    .class-student-table th {
+        padding: 10px 12px !important;
+        font-size: 0.82rem;
+        white-space: nowrap;
+        background: rgba(16, 16, 26, 0.95) !important;
+        border-bottom: 2px solid rgba(212, 175, 55, 0.4) !important;
+        color: #d4af37 !important;
+    }
+
+    .class-student-table td {
+        padding: 10px 12px !important;
+        font-size: 0.86rem;
+        white-space: nowrap;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+</style>
+
+<div class="p-4">
+    <!-- View 1: Main Active Class Boxes Grid -->
+    <div id="class-boxes-view">
+        <!-- Hero Header Banner -->
+        <div class="classes-hero-banner p-4 mb-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <div>
+                    <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;"><i class="bi bi-stars me-1"></i> ប្រព័ន្ធគ្រប់គ្រងថ្នាក់រៀន</span>
+                    <h2 class="fw-bold text-white mb-1">គ្រប់គ្រងប្រអប់ថ្នាក់រៀន (Class Boxes Grid)</h2>
+                    <p class="text-muted small mb-0">ចុចលើប្រអប់ថ្នាក់នីមួយៗ ដើម្បីមើលបញ្ជីសិស្ស ឈ្មោះ, អត្តលេខ, ភេទ, អាយុ, និទ្ទេស, និង វត្តមានអវត្តមាន។</p>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex align-items-center gap-2 bg-dark px-3 py-2 rounded-3 border border-secondary">
+                        <i class="bi bi-calendar-check text-warning fs-5" style="color:#d4af37 !important;"></i>
+                        <div>
+                            <span class="text-muted extra-small d-block">របាយការណ៍ប្រចាំខែ:</span>
+                            <select id="monthly-filter-select" class="bg-transparent text-white border-0 extra-small fw-bold" style="cursor: pointer; outline:none;">
+                                <option value="Aug" class="bg-dark" selected>ខែសីហា ២០២៦</option>
+                                <option value="Jul" class="bg-dark">ខែកក្កដា ២០២៦</option>
+                                <option value="Jun" class="bg-dark">ខែមិថុនា ២០២៦</option>
+                                <option value="May" class="bg-dark">ខែឧសភា ២០២៦</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#addNewClassModal"><i class="bi bi-plus-lg me-1"></i> ➕ បង្កើតថ្នាក់ថ្មី</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Overall Statistics Summary Bar -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-3">
+                <div class="glass-kpi-card">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="text-muted extra-small">🏫 ថ្នាក់រៀនសរុប</span>
+                        <i class="bi bi-grid-3x3-gap-fill fs-5" style="color:#d4af37;"></i>
+                    </div>
+                    <h3 class="fw-bold text-white mb-0" id="top-stat-total-classes">៦ ថ្នាក់</h3>
+                    <span class="text-success extra-small"><i class="bi bi-check-circle me-1"></i>ដំណើរការពេញលេញ</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="glass-kpi-card">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="text-muted extra-small">👥 សិស្សសរុប</span>
+                        <i class="bi bi-people-fill fs-5" style="color:#d4af37;"></i>
+                    </div>
+                    <h3 class="fw-bold text-white mb-0" id="top-stat-total-students">២១៨ នាក់</h3>
+                    <span class="text-muted extra-small">គ្រប់ថ្នាក់ទាំងអស់</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="glass-kpi-card" style="border-color: rgba(16, 185, 129, 0.4);">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="text-success extra-small fw-bold">✅ សិស្សជាប់សរុប</span>
+                        <i class="bi bi-award-fill text-success fs-5"></i>
+                    </div>
+                    <h3 class="fw-bold text-success mb-0" id="top-stat-passed">១៩៦ នាក់ (៩០%)</h3>
+                    <span class="text-success extra-small"><i class="bi bi-graph-up me-1"></i>អត្រាជាប់ខ្ពស់</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="glass-kpi-card" style="border-color: rgba(239, 68, 68, 0.4);">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="text-danger extra-small fw-bold">❌ សិស្សធ្លាក់សរុប</span>
+                        <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+                    </div>
+                    <h3 class="fw-bold text-danger mb-0" id="top-stat-failed">២២ នាក់ (១០%)</h3>
+                    <span class="text-danger extra-small">ត្រូវការការតាមដានបន្ថែម</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Track Capsule Bar & Live Search -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+            <div class="filter-capsule-bar flex-wrap" id="track-filter-pills">
+                <button class="filter-pill-btn pill-all active" data-track="All"><i class="bi bi-grid-fill me-1"></i> គ្រប់ថ្នាក់ទាំងអស់</button>
+                <button class="filter-pill-btn pill-stem" data-track="STEM Track"><i class="bi bi-calculator me-1"></i> វិទ្យាសាស្ត្រពិត (STEM)</button>
+                <button class="filter-pill-btn pill-science" data-track="Science Track"><i class="bi bi-lightning-charge me-1"></i> វិទ្យាសាស្ត្រសង្គម</button>
+                <button class="filter-pill-btn pill-tech" data-track="Tech Track"><i class="bi bi-code-slash me-1"></i> បច្ចេកវិទ្យា & AI</button>
+            </div>
+            <div class="search-box" style="width: 320px;">
+                <i class="bi bi-search text-muted"></i>
+                <input type="text" id="class-search-input" placeholder="ស្វែងរក ឈ្មោះថ្នាក់, គ្រូ, ឬ បន្ទប់...">
+            </div>
+        </div>
+
+        <!-- Active Class Boxes Container Grid -->
+        <div id="class-boxes-grid" class="row g-3.5 mb-4">
+            <!-- Dynamic Class Card Boxes Rendered Here -->
+        </div>
+    </div>
+
+    <!-- View 2: Student List Panel for Clicked Class Box (បង្ហាញតែ ឈ្មោះសិស្ស អត្តលេខ ភេទ អាយុ និទ្ទេសប្រចាំខែ អវត្តមានមានច្បាប់ អវត្តមានអត់ច្បាប់ និង វត្តមានសរុប) -->
+    <div id="class-scores-panel" style="display: none;">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <button id="back-to-classes-btn" class="btn btn-outline-glass btn-sm"><i class="bi bi-arrow-left me-1.5"></i> ត្រឡប់ទៅប្រអប់ថ្នាក់រៀន</button>
+            <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center gap-1.5 bg-dark px-3 py-1.5 rounded-3 border border-secondary">
+                    <i class="bi bi-calendar-month fs-6" style="color:#d4af37;"></i>
+                    <span class="text-muted extra-small me-1">ប្រចាំខែ:</span>
+                    <select id="scores-month-select" class="bg-transparent text-white border-0 extra-small fw-semibold outline-none" style="cursor: pointer;">
+                        <option value="Aug" class="bg-dark" selected>ខែសីហា ២០២៦</option>
+                        <option value="Jul" class="bg-dark">ខែកក្កដា ២០២៦</option>
+                        <option value="Jun" class="bg-dark">ខែមិថុនា ២០២៦</option>
+                        <option value="May" class="bg-dark">ខែឧសភា ២០២៦</option>
+                    </select>
+                </div>
+                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-download me-1"></i> ទាញយកបញ្ជីសិស្ស</button>
+                <button class="btn-gold-shimmer"><i class="bi bi-person-plus me-1"></i> បន្ថែមសិស្សក្នុងថ្នាក់</button>
+            </div>
+        </div>
+
+        <!-- Selected Class Main Header -->
+        <div class="classes-hero-banner p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                    <span id="selected-class-track" class="track-badge mb-2">ថ្នាក់ទី ១២-A</span>
+                    <div class="extra-small fw-bold mb-1" style="color:#d4af37;"><i class="bi bi-door-open me-1"></i> ឈ្មោះថ្នាក់រៀន:</div>
+                    <h2 id="selected-class-title" class="fw-bold text-white mb-1">ថ្នាក់ទី ១២-A</h2>
+                    <p id="selected-class-details" class="text-muted small mb-0"><i class="bi bi-geo-alt me-1" style="color:#d4af37;"></i>ទីតាំង: បន្ទប់លេខ ៣០២ • ច័ន្ទ / ពុធ / សុក្រ</p>
+                </div>
+                <div class="text-end">
+                    <span class="badge bg-secondary-subtle text-light mb-1 px-3 py-1.5" id="selected-month-badge">ប្រចាំខែសីហា ២០២៦</span>
+                    <div class="fw-bold text-warning fs-2 mb-0" style="color:#d4af37;" id="selected-class-pass-rate">អត្រាជាប់ ៩២%</div>
+                </div>
+            </div>
+
+            <!-- Khmer Statistics KPI Cards -->
+            <div class="row g-3 pt-3 border-top border-dark">
+                <div class="col-md-3">
+                    <div class="glass-kpi-card">
+                        <span class="extra-small d-block fw-bold" style="color:#d4af37;"><i class="bi bi-mortarboard me-1"></i> ឈ្មោះថ្នាក់</span>
+                        <div class="fw-bold text-white fs-6 mt-1" id="kpi-class-name">ថ្នាក់ទី ១២-A</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="glass-kpi-card">
+                        <span class="text-muted extra-small d-block"><i class="bi bi-person-badge me-1" style="color:#d4af37;"></i> គ្រូបន្ទុកថ្នាក់</span>
+                        <div class="fw-bold text-white fs-6 mt-1" id="kpi-homeroom-teacher">ស្រី ពេជ្រ</div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="glass-kpi-card">
+                        <span class="text-muted extra-small d-block"><i class="bi bi-people me-1"></i> សិស្សសរុប</span>
+                        <div class="fw-bold text-white fs-5 mt-1" id="kpi-total-students">៣៨ នាក់</div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="glass-kpi-card" style="border-color: rgba(16, 185, 129, 0.4);">
+                        <span class="text-success extra-small d-block fw-bold"><i class="bi bi-check-circle-fill me-1"></i> សិស្សជាប់</span>
+                        <div class="fw-bold text-success fs-5 mt-1" id="kpi-passed-students">៣៥ នាក់</div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="glass-kpi-card" style="border-color: rgba(239, 68, 68, 0.4);">
+                        <span class="text-danger extra-small d-block fw-bold"><i class="bi bi-x-circle-fill me-1"></i> សិស្សធ្លាក់</span>
+                        <div class="fw-bold text-danger fs-5 mt-1" id="kpi-failed-students">៣ នាក់</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Attendance & Grade Table for Clicked Class -->
+        <div class="card-custom p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold text-white mb-0"><i class="bi bi-person-lines-fill me-2" style="color:#d4af37;"></i>បញ្ជីឈ្មោះសិស្សក្នុងថ្នាក់ (ព័ត៌មាន និង វត្តមានសិស្ស)</h5>
+                <div class="search-box">
+                    <i class="bi bi-search text-muted"></i>
+                    <input type="text" id="scores-search-input" placeholder="ស្វែងរក ឈ្មោះសិស្ស ឬ អត្តលេខ...">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle mb-0 class-student-table" style="background: transparent;">
+                    <thead>
+                        <tr class="text-muted extra-small text-uppercase border-bottom border-dark">
+                            <th>ឈ្មោះសិស្ស</th>
+                            <th>អត្តលេខ</th>
+                            <th>ភេទ</th>
+                            <th>អាយុ</th>
+                            <th>និទ្ទេសប្រចាំខែ</th>
+                            <th>អវត្តមានមានច្បាប់</th>
+                            <th>អវត្តមានអត់ច្បាប់</th>
+                            <th>វត្តមានសរុប</th>
+                            <th class="text-end">សកម្មភាព</th>
+                        </tr>
+                    </thead>
+                    <tbody id="class-scores-table-body">
+                        <!-- Dynamic Student Rows Rendered Here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const loadedClasses = [
+            {
+                "id": "CLS-101",
+                "name": "ថ្នាក់ទី ១២-A",
+                "full_name": "ថ្នាក់ទី ១២-A",
+                "track": "STEM Track",
+                "instructor": "ស្រី ពេជ្រ",
+                "instructor_avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80",
+                "room": "បន្ទប់លេខ ៣០២",
+                "schedule": "ច័ន្ទ / ពុធ / សុក្រ (០៩:០០ ព្រឹក)",
+                "students_count": 38,
+                "passed_count": 35,
+                "failed_count": 3,
+                "pass_rate": "៩២%",
+                "icon": "bi-calculator"
+            },
+            {
+                "id": "CLS-202",
+                "name": "ថ្នាក់ទី ១២-B",
+                "full_name": "ថ្នាក់ទី ១២-B",
+                "track": "Science Track",
+                "instructor": "ឈឹម វិចិត្រ",
+                "instructor_avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80",
+                "room": "បន្ទប់ពិសោធន៍ ២",
+                "schedule": "អង្គារ / ព្រហស្បតិ៍ (១០:៣០ ព្រឹក)",
+                "students_count": 32,
+                "passed_count": 28,
+                "failed_count": 4,
+                "pass_rate": "៩៤%",
+                "icon": "bi-lightning-charge"
+            },
+            {
+                "id": "CLS-303",
+                "name": "ថ្នាក់ទី ១១-C",
+                "full_name": "ថ្នាក់ទី ១១-C",
+                "track": "Tech Track",
+                "instructor": "សុខ វិបុល",
+                "instructor_avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
+                "room": "បន្ទប់កុំព្យូទ័រ A",
+                "schedule": "ច័ន្ទ ដល់ សុក្រ (០១:០០ រសៀល)",
+                "students_count": 45,
+                "passed_count": 43,
+                "failed_count": 2,
+                "pass_rate": "៩៥%",
+                "icon": "bi-code-slash"
+            }
+        ];
+
+        // Student Data inside Class showing ONLY: ឈ្មោះសិស្ស, អត្តលេខ, ភេទ, អាយុ, និទ្ទេសប្រចាំខែ, អវត្តមានមានច្បាប់, អវត្តមានអត់ច្បាប់, និង វត្តមានសរុប
+        const loadedStudentsInClass = [
+            {
+                "id": "STD-2026-001",
+                "name": "សុខ ចាន់ដារ៉ា",
+                "gender": "ប្រុស",
+                "age": "១៧ ឆ្នាំ",
+                "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
+                "grade": "A+",
+                "score_percent": "៩៦%",
+                "excused_absent": "២ ថ្ងៃ",
+                "unexcused_absent": "០ ថ្ងៃ",
+                "total_attendance": "២៨ ថ្ងៃ (៩៨%)",
+                "status": "Passed"
+            },
+            {
+                "id": "STD-2026-002",
+                "name": "គឹម ស៊ាងហៃ",
+                "gender": "ស្រី",
+                "age": "១៧ ឆ្នាំ",
+                "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80",
+                "grade": "A",
+                "score_percent": "៩២%",
+                "excused_absent": "១ ថ្ងៃ",
+                "unexcused_absent": "០ ថ្ងៃ",
+                "total_attendance": "២៩ ថ្ងៃ (៩៩%)",
+                "status": "Passed"
+            },
+            {
+                "id": "STD-2026-003",
+                "name": "លី សុវណ្ណារ៉ា",
+                "gender": "ប្រុស",
+                "age": "១៨ ឆ្នាំ",
+                "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
+                "grade": "B+",
+                "score_percent": "៨៦%",
+                "excused_absent": "៣ ថ្ងៃ",
+                "unexcused_absent": "១ ថ្ងៃ",
+                "total_attendance": "២៦ ថ្ងៃ (៩៣%)",
+                "status": "Passed"
+            },
+            {
+                "id": "STD-2026-004",
+                "name": "ចាន់ ស្រីណេត",
+                "gender": "ស្រី",
+                "age": "១៧ ឆ្នាំ",
+                "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80",
+                "grade": "B",
+                "score_percent": "៨១%",
+                "excused_absent": "១ ថ្ងៃ",
+                "unexcused_absent": "០ ថ្ងៃ",
+                "total_attendance": "២៩ ថ្ងៃ (៩៩%)",
+                "status": "Passed"
+            },
+            {
+                "id": "STD-2026-005",
+                "name": "អ៊ុង វីរៈ",
+                "gender": "ប្រុស",
+                "age": "១៨ ឆ្នាំ",
+                "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80",
+                "grade": "F",
+                "score_percent": "៤៨%",
+                "excused_absent": "៤ ថ្ងៃ",
+                "unexcused_absent": "៥ ថ្ងៃ",
+                "total_attendance": "២១ ថ្ងៃ (៧៥%)",
+                "status": "Failed"
+            }
+        ];
+
+        function updateTopSummaryStats(classList) {
+            const totalClasses = classList.length;
+            let totalStudents = 0;
+            let totalPassed = 0;
+            let totalFailed = 0;
+
+            classList.forEach(c => {
+                const count = c.students_count || 0;
+                const passed = c.passed_count || Math.round(count * 0.9);
+                const failed = c.failed_count || (count - passed);
+
+                totalStudents += count;
+                totalPassed += passed;
+                totalFailed += failed;
+            });
+
+            const overallPassRate = totalStudents > 0 ? Math.round((totalPassed / totalStudents) * 100) : 0;
+
+            document.getElementById('top-stat-total-classes').innerText = `${totalClasses} ថ្នាក់`;
+            document.getElementById('top-stat-total-students').innerText = `${totalStudents} នាក់`;
+            document.getElementById('top-stat-passed').innerText = `${totalPassed} នាក់ (${overallPassRate}%)`;
+            document.getElementById('top-stat-failed').innerText = `${totalFailed} នាក់ (${100 - overallPassRate}%)`;
+        }
+
+        function renderClassBoxes(classList) {
+            const gridContainer = document.getElementById('class-boxes-grid');
+            if (!gridContainer || !classList) return;
+
+            updateTopSummaryStats(classList);
+
+            gridContainer.innerHTML = classList.map(c => {
+                const passed = c.passed_count || Math.round(c.students_count * 0.9);
+                const failed = c.failed_count || (c.students_count - passed);
+                const passRateVal = parseInt(c.pass_rate) || 90;
+
+                return `
+                <div class="col-md-4">
+                    <div class="class-card-box p-4 h-100 d-flex flex-column justify-content-between class-box-item" style="cursor: pointer;" data-class-id="${c.id}">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="track-badge"><i class="bi ${c.icon || 'bi-bookmark-star'} me-1.5"></i>${c.track}</span>
+                                <span class="text-muted extra-small"><code>${c.id}</code></span>
+                            </div>
+                            
+                            <div class="extra-small fw-bold mb-1 text-uppercase" style="color:#d4af37;"><i class="bi bi-door-open me-1"></i>ឈ្មោះថ្នាក់:</div>
+                            <h5 class="fw-bold text-white mb-2.5" style="font-size: 1.22rem; line-height: 1.35;">${c.full_name || c.name}</h5>
+                            
+                            <div class="teacher-pill d-flex align-items-center gap-2 mb-3">
+                                <img src="${c.instructor_avatar}" class="rounded-circle border border-warning" width="32" height="32" alt="">
+                                <div>
+                                    <span class="text-muted extra-small d-block" style="line-height: 1;">គ្រូបន្ទុកថ្នាក់:</span>
+                                    <strong class="text-white small">${c.instructor}</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="metrics-summary-box mb-3">
+                                <div class="d-flex justify-content-between align-items-center extra-small mb-1">
+                                    <span class="text-muted"><i class="bi bi-people-fill me-1" style="color:#d4af37;"></i> សិស្សសរុប:</span>
+                                    <span class="fw-bold text-white fs-6">${c.students_count} នាក់</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center extra-small mb-1">
+                                    <span class="text-success"><i class="bi bi-check-circle-fill me-1"></i> សិស្សជាប់:</span>
+                                    <span class="fw-bold text-success">${passed} នាក់ (${c.pass_rate})</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center extra-small mb-2">
+                                    <span class="text-danger"><i class="bi bi-x-circle-fill me-1"></i> សិស្សធ្លាក់:</span>
+                                    <span class="fw-bold text-danger">${failed} នាក់</span>
+                                </div>
+
+                                <div class="progress-bar-custom">
+                                    <div class="fill" style="width: ${passRateVal}%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center border-top border-dark pt-3">
+                                <div>
+                                    <span class="badge bg-success-subtle text-success px-2 py-1 fw-bold me-1">ជាប់ ${c.pass_rate}</span>
+                                    <span class="text-muted extra-small"><i class="bi bi-geo-alt me-1" style="color:#d4af37;"></i>${c.room}</span>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button class="btn-card-score open-scores-btn" data-class-id="${c.id}">
+                                        បញ្ជីសិស្ស <i class="bi bi-arrow-right-short"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            document.querySelectorAll('.class-box-item').forEach(card => {
+                card.addEventListener('click', function () {
+                    const classId = this.getAttribute('data-class-id');
+                    openClassScores(classId);
+                });
+            });
+        }
+
+        function openClassScores(classId) {
+            const selectedClass = loadedClasses.find(c => c.id === classId) || loadedClasses[0];
+            const passed = selectedClass.passed_count || Math.round(selectedClass.students_count * 0.9);
+            const failed = selectedClass.failed_count || (selectedClass.students_count - passed);
+
+            document.getElementById('selected-class-title').innerText = selectedClass.full_name || selectedClass.name;
+            document.getElementById('selected-class-track').innerText = selectedClass.track;
+            document.getElementById('selected-class-details').innerText = `ទីតាំង: ${selectedClass.room} • ${selectedClass.schedule}`;
+            document.getElementById('selected-class-pass-rate').innerText = `អត្រាជាប់ ${selectedClass.pass_rate}`;
+
+            document.getElementById('kpi-class-name').innerText = selectedClass.full_name || selectedClass.name;
+            document.getElementById('kpi-homeroom-teacher').innerText = selectedClass.instructor;
+            document.getElementById('kpi-total-students').innerText = `${selectedClass.students_count} នាក់`;
+            document.getElementById('kpi-passed-students').innerText = `${passed} នាក់ (${selectedClass.pass_rate})`;
+            document.getElementById('kpi-failed-students').innerText = `${failed} នាក់`;
+
+            renderClassStudentTableRows(loadedStudentsInClass);
+
+            document.getElementById('class-boxes-view').style.display = 'none';
+            document.getElementById('class-scores-panel').style.display = 'block';
+        }
+
+        // Render Student Table Rows displaying ONLY: ឈ្មោះសិស្ស, អត្តលេខ, ភេទ, អាយុ, និទ្ទេសប្រចាំខែ, អវត្តមានមានច្បាប់, អវត្តមានអត់ច្បាប់, វត្តមានសរុប
+        function renderClassStudentTableRows(studentsList) {
+            const tbody = document.getElementById('class-scores-table-body');
+            if (!tbody) return;
+
+            tbody.innerHTML = studentsList.map(s => `
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center gap-2.5">
+                            <img src="${s.avatar}" class="rounded-circle border border-secondary" width="34" height="34" alt="${s.name}">
+                            <span class="fw-semibold text-white" style="font-size: 0.94rem;">${s.name}</span>
+                        </div>
+                    </td>
+                    <td><code>${s.id}</code></td>
+                    <td><span class="badge ${s.gender === 'ស្រី' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'} px-2.5 py-1">${s.gender}</span></td>
+                    <td><span class="fw-medium text-white">${s.age}</span></td>
+                    <td>
+                        <span class="badge text-dark fw-bold" style="background:#d4af37; padding:4px 10px;">${s.grade} (${s.score_percent})</span>
+                    </td>
+                    <td><span class="badge bg-warning-subtle text-warning border border-warning px-2.5 py-1 fw-bold">${s.excused_absent}</span></td>
+                    <td><span class="badge ${s.unexcused_absent === '០ ថ្ងៃ' ? 'bg-dark border border-secondary text-muted' : 'bg-danger-subtle text-danger border border-danger'} px-2.5 py-1 fw-bold">${s.unexcused_absent}</span></td>
+                    <td><span class="text-success fw-bold">${s.total_attendance}</span></td>
+                    <td class="text-end">
+                        <button class="btn-action-edit me-1" title="កែប្រែ"><i class="bi bi-pencil-square me-1"></i>កែប្រែ</button>
+                        <button class="btn-action-view" title="មើលព័ត៌មាន"><i class="bi bi-eye me-1"></i>មើល</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        const backBtn = document.getElementById('back-to-classes-btn');
+        if (backBtn) {
+            backBtn.addEventListener('click', function () {
+                document.getElementById('class-scores-panel').style.display = 'none';
+                document.getElementById('class-boxes-view').style.display = 'block';
+            });
+        }
+
+        const searchInput = document.getElementById('class-search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function () {
+                const q = this.value.toLowerCase().trim();
+                const filtered = loadedClasses.filter(c =>
+                    c.name.toLowerCase().includes(q) ||
+                    (c.full_name && c.full_name.toLowerCase().includes(q)) ||
+                    c.instructor.toLowerCase().includes(q)
+                );
+                renderClassBoxes(filtered);
+            });
+        }
+
+        const scoresSearchInput = document.getElementById('scores-search-input');
+        if (scoresSearchInput) {
+            scoresSearchInput.addEventListener('input', function () {
+                const q = this.value.toLowerCase().trim();
+                const filtered = loadedStudentsInClass.filter(s =>
+                    s.name.toLowerCase().includes(q) ||
+                    s.id.toLowerCase().includes(q)
+                );
+                renderClassStudentTableRows(filtered);
+            });
+        }
+
+        document.querySelectorAll('#track-filter-pills .filter-pill-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('#track-filter-pills .filter-pill-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const track = this.getAttribute('data-track');
+                if (track === 'All') {
+                    renderClassBoxes(loadedClasses);
+                } else {
+                    const filtered = loadedClasses.filter(c => c.track.toLowerCase() === track.toLowerCase());
+                    renderClassBoxes(filtered);
+                }
+            });
+        });
+
+        // Add Class Form Submission Handler
+        const addClassForm = document.getElementById('admin-add-class-form');
+        if (addClassForm) {
+            addClassForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const cName = document.getElementById('adm-c-name').value.trim();
+                const cFullname = document.getElementById('adm-c-fullname').value.trim();
+                const cGrade = document.getElementById('adm-c-grade').value;
+                const cTrack = document.getElementById('adm-c-track').value;
+                const cRoom = document.getElementById('adm-c-room').value.trim();
+                const cInstructor = document.getElementById('adm-c-instructor').value.trim();
+                const cCap = parseInt(document.getElementById('adm-c-capacity').value) || 38;
+
+                if (cName && cInstructor) {
+                    loadedClasses.unshift({
+                        id: `class-${Date.now()}`,
+                        name: cName,
+                        full_name: cFullname || `ថ្នាក់ទី ${cName}`,
+                        grade_level: cGrade,
+                        track: cTrack,
+                        room: cRoom,
+                        instructor: cInstructor,
+                        avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80",
+                        total_students: cCap,
+                        female_count: Math.floor(cCap / 2),
+                        male_count: cCap - Math.floor(cCap / 2),
+                        gpa: "3.45 GPA",
+                        attendance: "96.2%"
+                    });
+
+                    renderClassBoxes(loadedClasses);
+
+                    const modalElem = document.getElementById('addNewClassModal');
+                    if (modalElem && typeof bootstrap !== 'undefined') {
+                        const bsModal = bootstrap.Modal.getInstance(modalElem);
+                        if (bsModal) bsModal.hide();
+                    }
+                    addClassForm.reset();
+                }
+            });
+        }
+
+        // Initial Render
+        renderClassBoxes(loadedClasses);
+    })();
+</script>
+
+<!-- Modal: Add New Class Form Modal -->
+<div class="modal fade" id="addNewClassModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
+                        <i class="bi bi-door-open-fill fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">ប្រព័ន្ធគ្រប់គ្រងថ្នាក់រៀន</span>
+                        <h4 class="fw-bold text-white mb-0">ទម្រង់បង្កើតថ្នាក់រៀនថ្មី (Create New Class Form)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-add-class-form">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះថ្នាក់រៀន (Short Class Name)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-c-name" placeholder="ឧ. ១២-A, ១១-B, ១០-C" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះថ្នាក់ពេញ (Full Class Title)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-c-fullname" placeholder="ឧ. ថ្នាក់ទី ១២-A (វិទ្យាសាស្ត្រពិត)" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កម្រិតថ្នាក់ (Grade Level)</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="adm-c-grade" required>
+                                <option value="Grade 12" selected>🏆 ថ្នាក់ទី ១២ (Grade 12)</option>
+                                <option value="Grade 11">📘 ថ្នាក់ទី ១១ (Grade 11)</option>
+                                <option value="Grade 10">📗 ថ្នាក់ទី ១០ (Grade 10)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ផ្នែកសិក្សា (Track)</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="adm-c-track" required>
+                                <option value="Science" selected>🧪 វិទ្យាសាស្ត្រពិត (Science)</option>
+                                <option value="Social">📜 វិទ្យាសាស្ត្រសង្គម (Social)</option>
+                                <option value="General">📚 ចំណេះទូទៅ (General)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">បន្ទប់រៀន (Room Number)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-c-room" placeholder="ឧ. បន្ទប់ ៣០២" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">គ្រូបន្ទុកថ្នាក់ (Homeroom Instructor)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-c-instructor" placeholder="ឧ. លោក សារ៉ា ជិនឃីន" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ចំនួនសិស្សកំណត់ (Student Capacity)</label>
+                            <input type="number" class="form-control bg-dark text-white border-secondary" id="adm-c-capacity" value="38" min="1" max="60" required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i> បង្កើតថ្នាក់រៀន</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

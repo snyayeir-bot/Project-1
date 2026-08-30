@@ -1,0 +1,603 @@
+<style>
+    /* Ultra-Modern Table Configurator with Lock & Unlock State Control */
+    * {
+        font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .builder-hero-banner {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(20, 20, 30, 0.96) 60%, rgba(12, 12, 18, 0.98) 100%);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 24px;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .builder-hero-banner::after {
+        content: '';
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .glass-config-card {
+        background: rgba(18, 18, 26, 0.88);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 20px;
+        padding: 22px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s ease;
+    }
+
+    .glass-config-card.locked-mode {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        opacity: 0.95;
+    }
+
+    .btn-gold-shimmer {
+        background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
+        color: #ffffff;
+        font-weight: 800;
+        border: 1px solid rgba(255, 223, 0, 0.6);
+        border-radius: 14px;
+        padding: 10px 22px;
+        font-size: 0.88rem;
+        box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
+        transition: all 0.3s ease;
+    }
+
+    .btn-gold-shimmer:hover {
+        box-shadow: 0 10px 35px rgba(212, 175, 55, 0.75);
+        transform: translateY(-2px);
+        color: #ffffff;
+    }
+
+    .btn-outline-glass {
+        background: rgba(22, 22, 32, 0.85);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        color: #ffffff;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 8px 16px;
+        font-size: 0.84rem;
+        transition: all 0.28s ease;
+    }
+
+    .btn-outline-glass:hover:not(:disabled) {
+        background: rgba(212, 175, 55, 0.22);
+        color: #ffd700;
+    }
+
+    .subject-check-card {
+        background: rgba(14, 14, 20, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 14px 16px;
+        transition: all 0.25s ease;
+    }
+
+    .subject-check-card:hover {
+        border-color: rgba(212, 175, 55, 0.5);
+    }
+
+    .subject-check-card.active-subject {
+        border-color: #d4af37 !important;
+        background: rgba(212, 175, 55, 0.1) !important;
+    }
+
+    .max-score-input {
+        background: #0d0d14 !important;
+        border: 1px solid rgba(212, 175, 55, 0.3) !important;
+        color: #ffd700 !important;
+        font-weight: 700 !important;
+        width: 80px;
+        text-align: center;
+        border-radius: 8px !important;
+    }
+
+    .max-score-input:disabled {
+        background: #181822 !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        color: #888899 !important;
+    }
+
+    .schema-preview-table th {
+        padding: 10px 12px !important;
+        font-size: 0.82rem;
+        background: rgba(16, 16, 26, 0.95) !important;
+        border-bottom: 2px solid rgba(212, 175, 55, 0.4) !important;
+        color: #d4af37 !important;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .btn-icon-action {
+        background: transparent;
+        border: none;
+        color: #a0a0ab;
+        padding: 2px 6px;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+    }
+
+    .btn-icon-action:hover:not(:disabled) {
+        color: #ffd700;
+        background: rgba(212, 175, 55, 0.15);
+    }
+
+    .btn-icon-action:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    /* FORCED ALL TEXT TO WHITE ACROSS ENTIRE PAGE & MODALS */
+    body, p, span, label, h1, h2, h3, h4, h5, h6, th, td, div, button, input, select {
+        color: #ffffff !important;
+    }
+
+    .text-muted, .extra-small {
+        color: #e0e0e0 !important;
+    }
+</style>
+
+<div class="p-4">
+    <!-- Hero Banner -->
+    <div class="builder-hero-banner p-4 mb-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;"><i class="bi bi-tools me-1"></i> Gradebook Table Builder & Configurator</span>
+                <h2 class="fw-bold text-white mb-1">Dynamic Gradebook & Subject Builder</h2>
+                <p class="text-white small mb-0">Click <strong>"Save & Lock Schema"</strong> to freeze modifications. To add or edit subjects again, click <strong>"Unlock & Edit Schema"</strong>.</p>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-outline-glass btn-sm" id="btn-top-add-subject" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
+                    <i class="bi bi-plus-circle-fill me-1"></i> ➕ Add New Subject
+                </button>
+                <button class="btn-gold-shimmer" onclick="document.querySelector('#teacher-sidebar-menu [data-page=\'teachers-desbord-scores.html\']').click();">
+                    <i class="bi bi-arrow-right-circle-fill me-1"></i> Go to Student Scores Page
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Toast Banner -->
+    <div id="builder-alert-toast" class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between" role="alert">
+        <div>
+            <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+            <span class="fw-bold text-white" id="builder-alert-msg">Schema saved and modification lock enabled successfully!</span>
+        </div>
+        <button type="button" class="btn-close" onclick="document.getElementById('builder-alert-toast').classList.add('d-none');"></button>
+    </div>
+
+    <!-- Step 1: Configurator Parameters -->
+    <div class="glass-config-card mb-4" id="main-builder-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center gap-3">
+                <h5 class="fw-bold text-white mb-0"><i class="bi bi-sliders me-2" style="color:#d4af37;"></i>1. Assessment Type & Class Settings</h5>
+                <span class="badge bg-warning-subtle text-warning border border-warning px-2.5 py-1" id="schema-status-badge">
+                    ✏️ Editing Mode
+                </span>
+            </div>
+            <span class="badge text-white px-3 py-1.5 fw-bold" style="background:#d4af37;">Class 12-A (Homeroom Class)</span>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label class="form-label text-white extra-small text-uppercase fw-bold">Select Assessment / Exam Type</label>
+                <select class="form-select bg-dark text-white border-secondary" id="cfg-assessment-type">
+                    <option value="February" selected>📅 February Monthly Assessment</option>
+                    <option value="January">📅 January Monthly Assessment</option>
+                    <option value="March">📅 March Monthly Assessment</option>
+                    <option value="Semester 1">🎓 Semester 1 Exam</option>
+                    <option value="Semester 2">🎓 Semester 2 Exam</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label text-white extra-small text-uppercase fw-bold">Gradebook Table Title</label>
+                <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="cfg-table-title" value="February Monthly Score Sheet (Class 12-A)">
+            </div>
+        </div>
+
+        <!-- Step 2: Dynamic Subject Checklist with ADD & EDIT Features -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h5 class="fw-bold text-white mb-0"><i class="bi bi-list-check me-2" style="color:#d4af37;"></i>2. Select, Edit, or Add New Subjects</h5>
+                <p class="text-white small mb-0">Teachers can add custom subjects, edit subject titles, and configure max score limits as needed:</p>
+            </div>
+            <button class="btn btn-outline-glass btn-sm" id="btn-sec-add-subject" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
+                <i class="bi bi-plus-lg me-1"></i> ➕ Add Subject
+            </button>
+        </div>
+
+        <div class="row g-3 mb-4" id="subjects-checklist-container">
+            <!-- Dynamic Subject Cards Rendered Here -->
+        </div>
+
+        <div class="d-flex justify-content-end align-items-center gap-2 pt-2 border-top border-dark">
+            <button class="btn btn-outline-warning btn-md fw-bold d-none" id="btn-edit-toggle">
+                <i class="bi bi-pencil-square me-1"></i> ✏️ Unlock & Edit Schema
+            </button>
+            <button class="btn-gold-shimmer" id="btn-save-toggle">
+                <i class="bi bi-lock-fill me-1"></i> 💾 Save & Lock Schema
+            </button>
+        </div>
+    </div>
+
+    <!-- Step 3: Generated Table Schema Preview Header -->
+    <div class="card-custom p-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+            <div>
+                <h5 class="fw-bold text-white mb-0" id="schema-preview-title"><i class="bi bi-eye-fill me-2" style="color:#d4af37;"></i>Generated Table Columns Preview</h5>
+                <span class="text-white extra-small" id="schema-total-points-summary">Total Max Score Across All Subjects: 625 pts</span>
+            </div>
+            <button class="btn-gold-shimmer" onclick="document.querySelector('#teacher-sidebar-menu [data-page=\'teachers-desbord-scores.html\']').click();">
+                ➡️ Go to Student Scores Page to Enter Marks
+            </button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-bordered align-middle mb-0 schema-preview-table text-center" style="background: transparent;">
+                <thead>
+                    <tr id="preview-table-header-row">
+                        <!-- Dynamic Columns Headers Rendered Here -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="15" class="p-4 text-white">
+                            <i class="bi bi-info-circle text-warning me-2" style="color:#d4af37 !important;"></i>Table schema initialized! To enter actual student scores, click the <strong>"Go to Student Scores Page"</strong> button above.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 1: Add New Custom Subject -->
+<div class="modal fade" id="addSubjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-3">
+                <h5 class="fw-bold text-white mb-0"><i class="bi bi-plus-circle-fill text-warning me-2" style="color:#d4af37;"></i>Add Custom Subject</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="add-subject-form">
+                    <div class="mb-3">
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">Subject Name</label>
+                        <input type="text" class="form-control bg-dark text-white border-secondary" id="new-subj-name" placeholder="e.g. Computer / ICT, Art, Physical Education..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">Emoji / Icon</label>
+                        <select class="form-select bg-dark text-white border-secondary" id="new-subj-icon">
+                            <option value="💻">💻 Computer / ICT</option>
+                            <option value="🎨">🎨 Art & Design</option>
+                            <option value="⚽">⚽ Physical Education & Sports</option>
+                            <option value="📐">📐 Mathematics</option>
+                            <option value="⚡">⚡ Physics</option>
+                            <option value="🧪">🧪 Chemistry</option>
+                            <option value="🧬">🧬 Biology</option>
+                            <option value="📖">📖 Khmer Literature</option>
+                            <option value="🌐">🌐 English</option>
+                            <option value="📜">📜 History</option>
+                            <option value="🗺️">🗺️ Geography</option>
+                            <option value="⚖️">⚖️ Civics & Ethics</option>
+                            <option value="📚">📚 General / Other Subject</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">Max Full Score Points</label>
+                        <input type="number" class="form-control bg-dark text-white border-secondary fw-bold" id="new-subj-max" value="50" min="1" max="500" required>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-3">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i> Add Subject</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2: Edit Subject Modal -->
+<div class="modal fade" id="editSubjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-3">
+                <h5 class="fw-bold text-white mb-0"><i class="bi bi-pencil-square text-warning me-2" style="color:#d4af37;"></i>Edit Subject</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="edit-subject-form">
+                    <input type="hidden" id="edit-subj-id">
+                    <div class="mb-3">
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">Subject Name</label>
+                        <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-subj-name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">Emoji / Icon</label>
+                        <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-subj-icon" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">Max Full Score Points</label>
+                        <input type="number" class="form-control bg-dark text-white border-secondary fw-bold" id="edit-subj-max" min="1" max="500" required>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-3">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-check-circle me-1"></i> Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        let isLockedState = false;
+
+        let subjectsList = [
+            { id: "subj-math", name: "Mathematics", icon: "📐", max: 100, checked: true },
+            { id: "subj-physics", name: "Physics", icon: "⚡", max: 75, checked: true },
+            { id: "subj-chem", name: "Chemistry", icon: "🧪", max: 75, checked: true },
+            { id: "subj-bio", name: "Biology", icon: "🧬", max: 75, checked: true },
+            { id: "subj-khmer", name: "Khmer Literature", icon: "📖", max: 100, checked: true },
+            { id: "subj-eng", name: "English", icon: "🌐", max: 50, checked: true },
+            { id: "subj-geo", name: "Geography", icon: "🗺️", max: 50, checked: true },
+            { id: "subj-hist", name: "History", icon: "📜", max: 50, checked: true },
+            { id: "subj-civics", name: "Civics & Ethics", icon: "⚖️", max: 50, checked: true }
+        ];
+
+        function renderSubjectsChecklist() {
+            const container = document.getElementById('subjects-checklist-container');
+            if (!container) return;
+
+            container.innerHTML = subjectsList.map((item, index) => `
+                <div class="col-md-4" id="card-${item.id}">
+                    <div class="subject-check-card ${item.checked ? 'active-subject' : ''} d-flex align-items-center justify-content-between">
+                        <div class="form-check d-flex align-items-center gap-2 m-0">
+                            <input class="form-check-input subj-checkbox" type="checkbox" id="chk-${item.id}" ${item.checked ? 'checked' : ''} ${isLockedState ? 'disabled' : ''} data-index="${index}">
+                            <label class="form-check-label text-white fw-bold" for="chk-${item.id}">${item.icon} ${item.name}</label>
+                        </div>
+                        <div class="d-flex align-items-center gap-1">
+                            <span class="text-white extra-small">Max:</span>
+                            <input type="number" class="form-control max-score-input subj-max-input" data-index="${index}" value="${item.max}" min="1" ${isLockedState ? 'disabled' : ''}>
+                            <button class="btn-icon-action edit-subj-btn ms-1" data-index="${index}" title="Edit Subject" ${isLockedState ? 'disabled' : ''}>
+                                <i class="bi bi-pencil-fill"></i>
+                            </button>
+                            <button class="btn-icon-action delete-subj-btn text-danger" data-index="${index}" title="Delete Subject" ${isLockedState ? 'disabled' : ''}>
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.subj-checkbox').forEach(chk => {
+                chk.addEventListener('change', function () {
+                    if (isLockedState) return;
+                    const idx = parseInt(this.getAttribute('data-index'));
+                    subjectsList[idx].checked = this.checked;
+                    renderSubjectsChecklist();
+                    renderTableSchemaPreview();
+                });
+            });
+
+            document.querySelectorAll('.subj-max-input').forEach(input => {
+                input.addEventListener('input', function () {
+                    if (isLockedState) return;
+                    const idx = parseInt(this.getAttribute('data-index'));
+                    subjectsList[idx].max = parseInt(this.value) || 1;
+                    renderTableSchemaPreview();
+                });
+            });
+
+            document.querySelectorAll('.edit-subj-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    if (isLockedState) return;
+                    const idx = parseInt(this.getAttribute('data-index'));
+                    const s = subjectsList[idx];
+                    document.getElementById('edit-subj-id').value = idx;
+                    document.getElementById('edit-subj-name').value = s.name;
+                    document.getElementById('edit-subj-icon').value = s.icon;
+                    document.getElementById('edit-subj-max').value = s.max;
+
+                    const modalElem = document.getElementById('editSubjectModal');
+                    if (modalElem && typeof bootstrap !== 'undefined') {
+                        const bsModal = new bootstrap.Modal(modalElem);
+                        bsModal.show();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.delete-subj-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    if (isLockedState) return;
+                    const idx = parseInt(this.getAttribute('data-index'));
+                    if (confirm(`Are you sure you want to delete the subject "${subjectsList[idx].name}"?`)) {
+                        subjectsList.splice(idx, 1);
+                        renderSubjectsChecklist();
+                        renderTableSchemaPreview();
+                    }
+                });
+            });
+        }
+
+        function setLockState(locked) {
+            isLockedState = locked;
+            const mainCard = document.getElementById('main-builder-card');
+            const badge = document.getElementById('schema-status-badge');
+            const btnSave = document.getElementById('btn-save-toggle');
+            const btnEdit = document.getElementById('btn-edit-toggle');
+            const btnTopAdd = document.getElementById('btn-top-add-subject');
+            const btnSecAdd = document.getElementById('btn-sec-add-subject');
+            const cfgType = document.getElementById('cfg-assessment-type');
+            const cfgTitle = document.getElementById('cfg-table-title');
+
+            if (locked) {
+                if (mainCard) mainCard.classList.add('locked-mode');
+                if (badge) {
+                    badge.className = "badge bg-success-subtle text-success border border-success px-2.5 py-1";
+                    badge.innerHTML = "🔒 Locked Mode";
+                }
+                if (btnSave) btnSave.classList.add('d-none');
+                if (btnEdit) btnEdit.classList.remove('d-none');
+                if (btnTopAdd) btnTopAdd.disabled = true;
+                if (btnSecAdd) btnSecAdd.disabled = true;
+                if (cfgType) cfgType.disabled = true;
+                if (cfgTitle) cfgTitle.disabled = true;
+            } else {
+                if (mainCard) mainCard.classList.remove('locked-mode');
+                if (badge) {
+                    badge.className = "badge bg-warning-subtle text-warning border border-warning px-2.5 py-1";
+                    badge.innerHTML = "✏️ Editing Mode";
+                }
+                if (btnSave) btnSave.classList.remove('d-none');
+                if (btnEdit) btnEdit.classList.add('d-none');
+                if (btnTopAdd) btnTopAdd.disabled = false;
+                if (btnSecAdd) btnSecAdd.disabled = false;
+                if (cfgType) cfgType.disabled = false;
+                if (cfgTitle) cfgTitle.disabled = false;
+            }
+
+            renderSubjectsChecklist();
+        }
+
+        function renderTableSchemaPreview() {
+            const typeVal = document.getElementById('cfg-assessment-type').value;
+            const titleVal = document.getElementById('cfg-table-title').value || `${typeVal} Score Sheet`;
+
+            document.getElementById('schema-preview-title').innerHTML = `<i class="bi bi-eye-fill me-2" style="color:#d4af37;"></i>Schema Preview: "${titleVal}" (Class 12-A)`;
+
+            const activeSubjects = subjectsList.filter(s => s.checked);
+            let totalPoints = 0;
+            let headerColsHtml = `<th>Rank</th><th>Student Name</th><th>Student ID</th>`;
+
+            activeSubjects.forEach(s => {
+                totalPoints += s.max;
+                headerColsHtml += `<th>${s.icon} ${s.name} (${s.max})</th>`;
+            });
+
+            headerColsHtml += `<th>Total Score (${totalPoints})</th><th>Average %</th><th>Grade</th>`;
+
+            document.getElementById('preview-table-header-row').innerHTML = headerColsHtml;
+            document.getElementById('schema-total-points-summary').innerText = `Total Max Score Across All Selected Subjects: ${totalPoints} pts`;
+        }
+
+        const addForm = document.getElementById('add-subject-form');
+        if (addForm) {
+            addForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (isLockedState) return;
+
+                const newName = document.getElementById('new-subj-name').value.trim();
+                const newIcon = document.getElementById('new-subj-icon').value;
+                const newMax = parseInt(document.getElementById('new-subj-max').value) || 50;
+
+                if (newName) {
+                    subjectsList.push({
+                        id: `subj-custom-${Date.now()}`,
+                        name: newName,
+                        icon: newIcon,
+                        max: newMax,
+                        checked: true
+                    });
+
+                    renderSubjectsChecklist();
+                    renderTableSchemaPreview();
+
+                    const modalElem = document.getElementById('addSubjectModal');
+                    if (modalElem && typeof bootstrap !== 'undefined') {
+                        const bsModal = bootstrap.Modal.getInstance(modalElem);
+                        if (bsModal) bsModal.hide();
+                    }
+                    addForm.reset();
+
+                    const toast = document.getElementById('builder-alert-toast');
+                    if (toast) {
+                        document.getElementById('builder-alert-msg').innerText = `Successfully added custom subject "${newName}"!`;
+                        toast.classList.remove('d-none');
+                    }
+                }
+            });
+        }
+
+        const editForm = document.getElementById('edit-subject-form');
+        if (editForm) {
+            editForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (isLockedState) return;
+
+                const idx = parseInt(document.getElementById('edit-subj-id').value);
+                const editedName = document.getElementById('edit-subj-name').value.trim();
+                const editedIcon = document.getElementById('edit-subj-icon').value.trim();
+                const editedMax = parseInt(document.getElementById('edit-subj-max').value) || 50;
+
+                if (subjectsList[idx]) {
+                    subjectsList[idx].name = editedName;
+                    subjectsList[idx].icon = editedIcon;
+                    subjectsList[idx].max = editedMax;
+
+                    renderSubjectsChecklist();
+                    renderTableSchemaPreview();
+
+                    const modalElem = document.getElementById('editSubjectModal');
+                    if (modalElem && typeof bootstrap !== 'undefined') {
+                        const bsModal = bootstrap.Modal.getInstance(modalElem);
+                        if (bsModal) bsModal.hide();
+                    }
+
+                    const toast = document.getElementById('builder-alert-toast');
+                    if (toast) {
+                        document.getElementById('builder-alert-msg').innerText = `Successfully updated subject "${editedName}"!`;
+                        toast.classList.remove('d-none');
+                    }
+                }
+            });
+        }
+
+        const btnSave = document.getElementById('btn-save-toggle');
+        if (btnSave) {
+            btnSave.addEventListener('click', function () {
+                setLockState(true);
+                renderTableSchemaPreview();
+                const toast = document.getElementById('builder-alert-toast');
+                if (toast) {
+                    document.getElementById('builder-alert-msg').innerText = "🔒 Schema locked successfully! (Click 'Unlock & Edit Schema' to make changes)";
+                    toast.classList.remove('d-none');
+                }
+            });
+        }
+
+        const btnEdit = document.getElementById('btn-edit-toggle');
+        if (btnEdit) {
+            btnEdit.addEventListener('click', function () {
+                setLockState(false);
+                const toast = document.getElementById('builder-alert-toast');
+                if (toast) {
+                    document.getElementById('builder-alert-msg').innerText = "✏️ Editing Mode Unlocked!";
+                    toast.classList.remove('d-none');
+                }
+            });
+        }
+
+        document.getElementById('cfg-assessment-type').addEventListener('change', renderTableSchemaPreview);
+        document.getElementById('cfg-table-title').addEventListener('input', renderTableSchemaPreview);
+
+        renderSubjectsChecklist();
+        renderTableSchemaPreview();
+    })();
+</script>
