@@ -1,5 +1,5 @@
 <style>
-    /* Ultra-Modern Dark & Gold Homeroom Class 12-A Architecture */
+    /* Ultra-Modern Dark & Gold Homeroom Students Architecture */
     * {
         font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
     }
@@ -43,7 +43,7 @@
 
     .btn-gold-shimmer {
         background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
-        color: #ffffff;
+        color: #0d0d11;
         font-weight: 800;
         border: 1px solid rgba(255, 223, 0, 0.6);
         border-radius: 14px;
@@ -56,25 +56,25 @@
     .btn-gold-shimmer:hover {
         box-shadow: 0 10px 35px rgba(212, 175, 55, 0.75);
         transform: translateY(-2px);
-        color: #ffffff;
+        color: #000000;
     }
 
     .btn-card-details {
         background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%);
-        color: #ffffff;
+        color: #000000;
         font-weight: 800;
         border: 1px solid rgba(255, 215, 0, 0.5);
-        border-radius: 12px;
-        padding: 6px 14px;
+        border-radius: 10px;
+        padding: 5px 12px;
         font-size: 0.81rem;
-        box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
-        transition: all 0.28s ease;
+        box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+        transition: all 0.25s ease;
     }
 
     .btn-card-details:hover {
-        box-shadow: 0 8px 28px rgba(212, 175, 55, 0.75);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.65);
         transform: translateY(-2px);
-        color: #ffffff;
+        color: #000000;
     }
 
     .btn-outline-glass {
@@ -82,15 +82,16 @@
         border: 1px solid rgba(212, 175, 55, 0.4);
         color: #ffffff;
         font-weight: 700;
-        border-radius: 12px;
-        padding: 6px 14px;
+        border-radius: 10px;
+        padding: 5px 12px;
         font-size: 0.81rem;
-        transition: all 0.28s ease;
+        transition: all 0.25s ease;
     }
 
     .btn-outline-glass:hover {
         background: rgba(212, 175, 55, 0.22);
         color: #ffd700;
+        border-color: rgba(212, 175, 55, 0.7);
     }
 
     .student-table th {
@@ -111,11 +112,27 @@
     }
 
     /* FORCED ALL TEXT TO WHITE ACROSS ENTIRE PAGE & MODALS */
-    body, p, span, label, h1, h2, h3, h4, h5, h6, th, td, div, button, input, select {
+    body,
+    p,
+    span,
+    label,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    th,
+    td,
+    div,
+    button,
+    input,
+    select {
         color: #ffffff !important;
     }
 
-    .text-muted, .extra-small {
+    .text-muted,
+    .extra-small {
         color: #e0e0e0 !important;
     }
 </style>
@@ -125,13 +142,35 @@
     <div class="homeroom-banner p-4 mb-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div>
-                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;"><i class="bi bi-mortarboard-fill me-1"></i> Homeroom Class Roster</span>
-                <h2 class="fw-bold text-white mb-1">Class 12-A (Teacher Homeroom Directory)</h2>
-                <p class="text-white small mb-0">Displays Class 12-A roster (38 students) including Name, ID, Gender, Age, Class, GPA, Attendance, and Guardian details.</p>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge text-white" style="background:#d4af37; font-weight:700;">
+                        <i class="bi bi-mortarboard-fill me-1"></i> បញ្ជីឈ្មោះសិស្សក្នុងថ្នាក់ (Class Students)
+                    </span>
+                    <span class="badge bg-info-subtle text-info border border-info" id="active-class-badge">
+                        <i class="bi bi-mortarboard-fill me-1"></i> កំពុងផ្ទុក...
+                    </span>
+                </div>
+                <h2 class="fw-bold text-white mb-1" id="homeroom-hero-title">បញ្ជីសិស្សតាមថ្នាក់រៀន (Class Roster)</h2>
+                <p class="text-white small mb-0">បង្ហាញព័ត៌មានលម្អិតសិស្សទាំងអស់ដែលមាននៅក្នុងថ្នាក់រៀនស្របតាម Database ជាក់ស្តែង។</p>
             </div>
-            <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-printer me-1"></i> Print Roster</button>
-                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#addNewStudentModal"><i class="bi bi-person-plus-fill me-1"></i> ➕ Add New Student</button>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <!-- Teacher Homeroom Class Badge (Bound strictly to Teacher Account) -->
+                <div class="d-flex align-items-center gap-2.5 px-3 py-2 rounded-3 border border-warning shadow-sm" style="background: rgba(212, 175, 55, 0.12);">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center bg-warning text-dark fw-bold" style="width: 32px; height: 32px;">
+                        <i class="bi bi-mortarboard-fill"></i>
+                    </div>
+                    <div>
+                        <span class="text-warning extra-small d-block fw-bold" style="font-size: 0.72rem; line-height: 1.1;">ថ្នាក់បន្ទុករបស់ខ្ញុំ (My Class)</span>
+                        <span class="text-white fw-bold" id="my-homeroom-class-display" style="font-size: 0.92rem;">កំពុងផ្ទុក...</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-outline-glass btn-sm" onclick="window.print()">
+                    <i class="bi bi-printer me-1"></i> បោះពុម្ព (Print)
+                </button>
+                <button class="btn-gold-shimmer" id="btn-open-add-student">
+                    <i class="bi bi-person-plus-fill me-1"></i> ➕ បញ្ចូលសិស្សក្នុងថ្នាក់
+                </button>
             </div>
         </div>
     </div>
@@ -140,43 +179,43 @@
     <div id="student-alert-toast" class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between" role="alert">
         <div>
             <i class="bi bi-check-circle-fill me-2 fs-5"></i>
-            <span class="fw-bold text-white" id="student-alert-msg">New student successfully added to Class 12-A!</span>
+            <span class="fw-bold text-white" id="student-alert-msg">ទិន្នន័យសិស្សត្រូវបានរក្សាទុកដោយជោគជ័យ!</span>
         </div>
-        <button type="button" class="btn-close" onclick="document.getElementById('student-alert-toast').classList.add('d-none');"></button>
+        <button type="button" class="btn-close btn-close-white" onclick="document.getElementById('student-alert-toast').classList.add('d-none');"></button>
     </div>
 
-    <!-- Homeroom Class 12-A KPI Overview Cards -->
+    <!-- KPI Overview Cards -->
     <div class="row g-3 mb-4">
         <div class="col-md-4">
             <div class="glass-student-kpi">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small">🎓 Total Class 12-A Students</span>
+                    <span class="text-white extra-small">🎓 សិស្សសរុបក្នុងថ្នាក់ (Total Students)</span>
                     <i class="bi bi-people-fill text-warning fs-5" style="color:#d4af37;"></i>
                 </div>
-                <h3 class="fw-bold text-white mb-0" id="total-students-count">38 Students</h3>
-                <span class="text-white extra-small"><i class="bi bi-gender-ambiguous me-1"></i>Male: 20 • Female: 18</span>
+                <h3 class="fw-bold text-white mb-0" id="total-students-count">0 នាក់</h3>
+                <span class="text-white extra-small" id="gender-breakdown-count"><i class="bi bi-gender-ambiguous me-1"></i>ប្រុស: 0 • ស្រី: 0</span>
             </div>
         </div>
 
         <div class="col-md-4">
             <div class="glass-student-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">✅ Average Attendance Rate</span>
+                    <span class="text-white extra-small fw-bold">✅ កំពុងសិក្សា (Active)</span>
                     <i class="bi bi-person-check-fill text-success fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-white mb-0">96.2%</h3>
-                <span class="text-white extra-small"><i class="bi bi-graph-up me-1"></i>Excellent Attendance</span>
+                <h3 class="fw-bold text-success mb-0" id="active-students-count">0 នាក់</h3>
+                <span class="text-white extra-small"><i class="bi bi-check2-circle me-1"></i>ស្ថានភាពសកម្មក្នុងថ្នាក់</span>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="glass-student-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
+            <div class="glass-student-kpi" style="border-color: rgba(239, 68, 68, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold" style="color:#d4af37;">📊 Class Average GPA</span>
-                    <i class="bi bi-award-fill text-warning fs-5" style="color:#d4af37;"></i>
+                    <span class="text-white extra-small fw-bold text-danger">⏸️ ផ្អាកការសិក្សា (Inactive)</span>
+                    <i class="bi bi-person-x-fill text-danger fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-white mb-0" style="color:#d4af37;">3.45 (GPA)</h3>
-                <span class="text-white extra-small" style="color:#d4af37;">92% Pass Rate</span>
+                <h3 class="fw-bold text-danger mb-0" id="inactive-students-count">0 នាក់</h3>
+                <span class="text-white extra-small"><i class="bi bi-pause-circle me-1"></i>សិស្សផ្អាក ឬ ដកឈ្មោះ</span>
             </div>
         </div>
     </div>
@@ -185,12 +224,19 @@
     <div class="card-custom p-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
             <div>
-                <h5 class="fw-bold text-white mb-0"><i class="bi bi-list-stars me-2" style="color:#d4af37 !important;"></i>Homeroom Student Roster - Class 12-A (<span id="table-student-count">38</span> Students)</h5>
-                <span class="text-white extra-small">Showing students in homeroom class</span>
+                <h5 class="fw-bold text-white mb-0" id="table-roster-title">
+                    <i class="bi bi-list-stars me-2" style="color:#d4af37 !important;"></i>បញ្ជីឈ្មោះសិស្សក្នុងថ្នាក់ (<span id="table-student-count">0</span> នាក់)
+                </h5>
+                <span class="text-white extra-small">បង្ហាញព័ត៌មានលម្អិតស្របតាមទិន្នន័យ Database</span>
             </div>
-            <div class="search-box" style="width: 320px;">
-                <i class="bi bi-search text-white"></i>
-                <input type="text" id="homeroom-student-search" placeholder="Search student name or ID...">
+            <div class="d-flex align-items-center gap-2">
+                <div class="search-box" style="width: 280px;">
+                    <i class="bi bi-search text-white"></i>
+                    <input type="text" id="homeroom-student-search" placeholder="ស្វែងរក ឈ្មោះ ឬ អត្តលេខ...">
+                </div>
+                <button class="btn-gold-shimmer btn-sm px-3" id="btn-table-add-student">
+                    <i class="bi bi-person-plus-fill me-1"></i> បញ្ចូលសិស្ស
+                </button>
             </div>
         </div>
 
@@ -198,16 +244,15 @@
             <table class="table table-dark table-hover align-middle mb-0 student-table" style="background: transparent;">
                 <thead>
                     <tr class="text-white extra-small text-uppercase border-bottom border-dark">
-                        <th>Student Name</th>
-                        <th>Student ID</th>
-                        <th>Gender</th>
-                        <th>Age</th>
-                        <th>Class</th>
-                        <th>GPA / Grade</th>
-                        <th>Attendance Rate</th>
-                        <th>Guardian & Phone</th>
-                        <th>Status</th>
-                        <th class="text-end">Actions</th>
+                        <th>ឈ្មោះសិស្ស (Full Name)</th>
+                        <th>អត្តលេខ (Code)</th>
+                        <th>ភេទ (Gender)</th>
+                        <th>ថ្ងៃខែឆ្នាំកំណើត (DOB)</th>
+                        <th>លេខទូរស័ព្ទ (Phone)</th>
+                        <th>ឪពុក - ម្តាយ (Parents)</th>
+                        <th>អាសយដ្ឋាន (Address)</th>
+                        <th>ស្ថានភាព (Status)</th>
+                        <th class="text-end">សកម្មភាព</th>
                     </tr>
                 </thead>
                 <tbody id="homeroom-students-tbody">
@@ -218,68 +263,142 @@
     </div>
 </div>
 
-<!-- Modal 1: Add New Student Form Modal -->
+<!-- Modal 1: Add / Edit Student Form Modal -->
 <div class="modal fade" id="addNewStudentModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
             <div class="modal-header border-bottom border-dark p-4">
                 <div class="d-flex align-items-center gap-2.5">
                     <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
-                        <i class="bi bi-person-plus-fill fs-5"></i>
+                        <i class="bi bi-person-plus-fill fs-5" id="modal-t-header-icon"></i>
                     </div>
                     <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">Class 12-A (Homeroom)</span>
-                        <h4 class="fw-bold text-white mb-0">Add New Student Form</h4>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <span class="badge text-dark fw-bold" style="background:#d4af37;" id="modal-t-form-badge">បញ្ចូលទិន្នន័យថ្មី</span>
+                            <span class="badge bg-secondary border border-secondary" id="modal-class-badge">ថ្នាក់រៀន</span>
+                        </div>
+                        <h4 class="fw-bold text-white mb-0" id="modal-t-form-title">ទម្រង់ព័ត៌មានសិស្ស (Student Registration Form)</h4>
                     </div>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
+                <!-- Quick Unassigned Student Selector -->
+                <div class="p-3 rounded-3 mb-4 border border-warning" style="background: rgba(212,175,55,0.08);" id="unassigned-selector-box">
+                    <label class="form-label text-warning extra-small fw-bold text-uppercase d-flex justify-content-between align-items-center mb-1">
+                        <span><i class="bi bi-magic me-1"></i> ជ្រើសរើសសិស្សដែលមានស្រាប់ក្នុង Database (Unassigned Students)</span>
+                        <span class="badge bg-warning text-dark extra-small">ជ្រើសរើសរហ័ស</span>
+                    </label>
+                    <select class="form-select bg-dark text-white border-warning form-select-sm" id="select-unassigned-student">
+                        <option value="">-- ជ្រើសរើសសិស្សដែលមិនទាន់មានថ្នាក់ ឬ បញ្ចូលថ្មីខាងក្រោម --</option>
+                    </select>
+                </div>
+
                 <form id="add-new-student-form">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Full Student Name</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-name" placeholder="e.g. Sok Piseth" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Student ID</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="add-s-id" value="STD-2026-039" required>
-                        </div>
+                    <input type="hidden" id="modal-t-form-mode" value="add">
+                    <input type="hidden" id="modal-t-student-id" value="">
+                    <input type="hidden" id="modal-t-form-orig-code" value="">
 
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Gender</label>
-                            <select class="form-select bg-dark text-white border-secondary" id="add-s-gender" required>
-                                <option value="Male" selected>👨 Male</option>
-                                <option value="Female">👩 Female</option>
-                            </select>
+                    <!-- Section 1: ព័ត៌មានផ្ទាល់ខ្លួន -->
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center justify-content-between mb-3 border-bottom border-dark pb-2">
+                            <h6 class="fw-bold text-warning mb-0 d-flex align-items-center gap-2" style="color:#d4af37 !important;">
+                                <i class="bi bi-person-vcard-fill fs-5"></i> ១. ព័ត៌មានផ្ទាល់ខ្លួនរបស់សិស្ស (Personal Info)
+                            </h6>
+                            <span class="badge bg-dark border border-secondary text-muted extra-small">Table: students</span>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Age</label>
-                            <input type="number" class="form-control bg-dark text-white border-secondary" id="add-s-age" value="17" min="10" max="30" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Class</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" value="Class 12-A" readonly>
-                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">អត្តលេខសិស្ស (student_code) <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="add-s-id" placeholder="ឧ. STD-2026-001" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">គោត្តនាម និង នាម (full_name) <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-name" placeholder="ឧ. សុខ ចាន់ដារ៉ា" required>
+                            </div>
 
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Guardian Name</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-g-name" placeholder="e.g. Mr. Sok Chea" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Guardian Phone Number</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-g-phone" placeholder="e.g. 092 112 233" required>
-                        </div>
+                            <div class="col-md-4">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">ភេទ (gender) <span class="text-danger">*</span></label>
+                                <select class="form-select bg-dark text-white border-secondary" id="add-s-gender" required>
+                                    <option value="Male" selected>👨 ប្រុស (Male)</option>
+                                    <option value="Female">👩 ស្រី (Female)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្ងៃខែឆ្នាំកំណើត (date_of_birth) <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control bg-dark text-white border-secondary" id="add-s-dob" value="2008-05-15" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទសិស្ស (phone)</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-phone" placeholder="ឧ. 092 112 233">
+                            </div>
 
-                        <div class="col-md-12">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Current Address</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-address" placeholder="e.g. Phnom Penh" required>
+                            <div class="col-md-4">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">ស្ថានភាពសិក្សា (status) <span class="text-danger">*</span></label>
+                                <select class="form-select bg-dark text-white border-secondary" id="add-s-status" required>
+                                    <option value="Active" selected>✅ កំពុងសិក្សា (Active)</option>
+                                    <option value="Inactive">⏸️ ផ្អាកការសិក្សា (Inactive)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្នាក់រៀន (Class)</label>
+                                <select class="form-select bg-dark text-white border-secondary" id="add-s-class-id">
+                                    <!-- Populated with classes -->
+                                </select>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
-                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i> Save New Student</button>
+                    <!-- Section 2: ព័ត៌មានឪពុកម្តាយ & អាណាព្យាបាល -->
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center justify-content-between mb-3 border-bottom border-dark pb-2">
+                            <h6 class="fw-bold text-warning mb-0 d-flex align-items-center gap-2" style="color:#d4af37 !important;">
+                                <i class="bi bi-people-fill fs-5"></i> ២. ព័ត៌មានឪពុកម្តាយ & អាណាព្យាបាល (Parents Info)
+                            </h6>
+                            <span class="badge bg-dark border border-secondary text-muted extra-small">Table: students</span>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះឪពុក (father_name)</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-father-name" placeholder="ឧ. សុខ ចាន់ថា">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទឪពុក (father_phone)</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-father-phone" placeholder="ឧ. 012 345 678">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះម្តាយ (mother_name)</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-mother-name" placeholder="ឧ. គឹម សុផល">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទម្តាយ (mother_phone)</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" id="add-s-mother-phone" placeholder="ឧ. 098 765 432">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: អាសយដ្ឋានបច្ចុប្បន្ន -->
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center justify-content-between mb-3 border-bottom border-dark pb-2">
+                            <h6 class="fw-bold text-warning mb-0 d-flex align-items-center gap-2" style="color:#d4af37 !important;">
+                                <i class="bi bi-geo-alt-fill fs-5"></i> ៣. អាសយដ្ឋានបច្ចុប្បន្ន (Current Address)
+                            </h6>
+                            <span class="badge bg-dark border border-secondary text-muted extra-small">address</span>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold">អាសយដ្ឋានលម្អិត</label>
+                                <textarea class="form-control bg-dark text-white border-secondary" id="add-s-address" rows="2" placeholder="ឧ. ផ្ទះលេខ ១២ ផ្លូវ ២០០៤ រាជធានីភ្នំពេញ"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4 d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm px-4" id="modal-t-submit-btn">
+                            <i class="bi bi-person-plus-fill me-1"></i> បញ្ចូលសិស្សថ្មី
+                        </button>
                     </div>
                 </form>
             </div>
@@ -289,61 +408,96 @@
 
 <!-- Modal 2: Student Detail Profile Modal -->
 <div class="modal fade" id="homeroomStudentDetailModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
             <div class="modal-header border-bottom border-dark p-4">
                 <div class="d-flex align-items-center gap-3">
-                    <img id="m-avatar" src="" class="rounded-circle border border-warning" width="60" height="60" alt="">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning shadow" style="width: 58px; height: 58px; background: rgba(212, 175, 55, 0.15); flex-shrink: 0;">
+                        <i class="bi bi-person-fill fs-2" style="color:#d4af37;"></i>
+                    </div>
                     <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;" id="m-id">STD-2026-001</span>
-                        <h4 class="fw-bold text-white mb-0" id="m-name">Sok Chandara</h4>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <span class="badge text-dark fw-bold" style="background:#d4af37;" id="m-id">STD-2026-001</span>
+                            <span class="badge bg-secondary border border-secondary" id="m-class">ថ្នាក់រៀន</span>
+                            <span id="m-status-badge" class="badge bg-success-subtle text-success border border-success px-2.5 py-1 fw-bold">
+                                <i class="bi bi-check-circle-fill me-1"></i> កំពុងសិក្សា (Active)
+                            </span>
+                        </div>
+                        <h4 class="fw-bold text-white mb-0" id="m-name">សុខ ចាន់ដារ៉ា</h4>
                     </div>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">🚻 Gender / 🎂 Age</span>
-                            <h6 class="fw-bold text-white mb-0" id="m-gender-age">Male • 17 yrs</h6>
+                <!-- Section 1: ព័ត៌មានផ្ទាល់ខ្លួន -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-warning mb-3 d-flex align-items-center gap-2" style="color:#d4af37 !important;">
+                        <i class="bi bi-person-vcard-fill fs-5"></i> ១. ព័ត៌មានផ្ទាល់ខ្លួន & កម្រិតសិក្សា (Personal Info)
+                    </h6>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-white extra-small d-block mb-1">🚻 ភេទ (Gender)</span>
+                                <h6 class="fw-bold text-white mb-0" id="m-gender">ប្រុស (Male)</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-white extra-small d-block mb-1">🎂 ថ្ងៃខែឆ្នាំកំណើត (DOB)</span>
+                                <h6 class="fw-bold text-white mb-0" id="m-dob">-</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-white extra-small d-block mb-1">📞 លេខទូរស័ព្ទសិស្ស (Phone)</span>
+                                <h6 class="fw-bold text-info mb-0" id="m-phone">-</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-white extra-small d-block mb-1">🏫 ថ្នាក់រៀនបន្ទុក</span>
+                                <h6 class="fw-bold text-white mb-0" id="m-class-name">ថ្នាក់រៀន</h6>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">🏫 Class</span>
-                            <h6 class="fw-bold text-white mb-0" id="m-class">Class 12-A (Homeroom)</h6>
+                </div>
+
+                <!-- Section 2: ព័ត៌មានឪពុកម្តាយ & អាណាព្យាបាល -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-warning mb-3 d-flex align-items-center gap-2" style="color:#d4af37 !important;">
+                        <i class="bi bi-people-fill fs-5"></i> ២. ព័ត៌មានឪពុកម្តាយ & អាណាព្យាបាល (Parents Info)
+                    </h6>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-white extra-small d-block mb-1">👨 ឈ្មោះឪពុក (Father Name)</span>
+                                <h6 class="fw-bold text-white mb-0" id="m-father-name">-</h6>
+                                <span class="text-info extra-small d-block mt-1" id="m-father-phone"><i class="bi bi-telephone me-1"></i>-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-white extra-small d-block mb-1">👩 ឈ្មោះម្តាយ (Mother Name)</span>
+                                <h6 class="fw-bold text-white mb-0" id="m-mother-name">-</h6>
+                                <span class="text-info extra-small d-block mt-1" id="m-mother-phone"><i class="bi bi-telephone me-1"></i>-</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">📊 Grade / GPA</span>
-                            <h6 class="fw-bold text-white mb-0" id="m-gpa">Grade A+ (3.92 GPA)</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">✅ Attendance</span>
-                            <h6 class="fw-bold text-white mb-0" id="m-attendance">28 / 29 days (98%)</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">📞 Guardian</span>
-                            <h6 class="fw-bold text-white mb-0" id="m-guardian">Mr. Sok Chea • 092 112 233</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">📍 Address</span>
-                            <h6 class="fw-bold text-white mb-0" id="m-address">Phnom Penh</h6>
-                        </div>
+                </div>
+
+                <!-- Section 3: អាសយដ្ឋានបច្ចុប្បន្ន -->
+                <div class="mb-2">
+                    <h6 class="fw-bold text-warning mb-3 d-flex align-items-center gap-2" style="color:#d4af37 !important;">
+                        <i class="bi bi-geo-alt-fill fs-5"></i> ៣. អាសយដ្ឋានបច្ចុប្បន្ន (Current Address)
+                    </h6>
+                    <div class="p-3 rounded-3 bg-black border border-secondary">
+                        <span class="text-white extra-small d-block mb-1">📍 ទីលំនៅបច្ចុប្បន្ន</span>
+                        <h6 class="fw-bold text-white mb-0" id="m-address">-</h6>
                     </div>
                 </div>
             </div>
             <div class="modal-footer border-top border-dark p-3">
-                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn-gold-shimmer btn-sm"><i class="bi bi-telephone-fill me-1"></i> Contact Guardian</button>
+                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -351,217 +505,505 @@
 
 <script>
     (function () {
-        const myHomeroomStudentsList = [
-            {
-                "id": "STD-2026-001",
-                "name": "Sok Chandara",
-                "gender": "Male",
-                "age": "17 yrs",
-                "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
-                "class_name": "Class 12-A",
-                "gpa": "Grade A+ (3.92 GPA)",
-                "attendance": "28 days (98%)",
-                "guardian": "Mr. Sok Chea • 092 112 233",
-                "address": "Phnom Penh",
-                "status": "🌟 Honors"
-            },
-            {
-                "id": "STD-2026-002",
-                "name": "Kim Seanghai",
-                "gender": "Female",
-                "age": "17 yrs",
-                "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80",
-                "class_name": "Class 12-A",
-                "gpa": "Grade A (3.75 GPA)",
-                "attendance": "29 days (99%)",
-                "guardian": "Mr. Kim Hong • 098 445 566",
-                "address": "Kandal Province",
-                "status": "✅ Active"
-            },
-            {
-                "id": "STD-2026-003",
-                "name": "Ly Sovannara",
-                "gender": "Male",
-                "age": "18 yrs",
-                "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
-                "class_name": "Class 12-A",
-                "gpa": "Grade B+ (3.40 GPA)",
-                "attendance": "26 days (93%)",
-                "guardian": "Mr. Ly Meng • 012 334 455",
-                "address": "Phnom Penh",
-                "status": "✅ Active"
-            },
-            {
-                "id": "STD-2026-004",
-                "name": "Chan Sreynet",
-                "gender": "Female",
-                "age": "17 yrs",
-                "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80",
-                "class_name": "Class 12-A",
-                "gpa": "Grade A (3.85 GPA)",
-                "attendance": "28 days (97%)",
-                "guardian": "Mrs. Chan Thy • 016 556 677",
-                "address": "Siem Reap",
-                "status": "🌟 Honors"
-            },
-            {
-                "id": "STD-2026-005",
-                "name": "Oung Vireak",
-                "gender": "Male",
-                "age": "18 yrs",
-                "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80",
-                "class_name": "Class 12-A",
-                "gpa": "Grade F (1.80 GPA)",
-                "attendance": "21 days (75%)",
-                "guardian": "Mr. Oung Chan • 077 889 900",
-                "address": "Battambang",
-                "status": "🚨 Needs Focus"
-            },
-            {
-                "id": "STD-2026-006",
-                "name": "Chea Piseth",
-                "gender": "Male",
-                "age": "17 yrs",
-                "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
-                "class_name": "Class 12-A",
-                "gpa": "Grade B (3.10 GPA)",
-                "attendance": "27 days (94%)",
-                "guardian": "Mr. Chea Van • 089 776 655",
-                "address": "Phnom Penh",
-                "status": "✅ Active"
-            }
-        ];
+        let allAvailableClasses = [];
+        let currentSelectedClassId = null;
+        let myHomeroomStudentsList = [];
+        let unassignedStudentsList = [];
 
+        let teacherHomeroomClass = null;
+
+        // 1. Fetch Teacher's Assigned Homeroom Class from Database
+        async function fetchClasses() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('token');
+            let currentUser = null;
+            try {
+                const userStr = localStorage.getItem('user');
+                if (userStr) currentUser = JSON.parse(userStr);
+            } catch (e) {}
+
+            const teacherName = currentUser ? (currentUser.full_name || currentUser.name || currentUser.username || '') : '';
+
+            // Fetch teacher's own assigned homeroom class
+            try {
+                const myClassRes = await fetch('/api/teacher/my_class', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token ? `Bearer ${token}` : ''
+                    },
+                    body: JSON.stringify({ name: teacherName })
+                });
+                const myClassData = await myClassRes.json();
+                if (myClassData.status === 'success') {
+                    if (myClassData.homeroom_class) {
+                        teacherHomeroomClass = myClassData.homeroom_class;
+                        currentSelectedClassId = teacherHomeroomClass.class_id;
+                        localStorage.setItem('teacher_class', JSON.stringify(teacherHomeroomClass));
+                    } else {
+                        teacherHomeroomClass = null;
+                        currentSelectedClassId = null;
+                        localStorage.removeItem('teacher_class');
+                    }
+                }
+            } catch (e) {
+                console.log('Error checking teacher class:', e);
+            }
+
+            // Fallback from localStorage if needed
+            if (!teacherHomeroomClass) {
+                try {
+                    const saved = localStorage.getItem('teacher_class');
+                    if (saved) {
+                        teacherHomeroomClass = JSON.parse(saved);
+                        currentSelectedClassId = teacherHomeroomClass.class_id;
+                    }
+                } catch (e) {}
+            }
+
+            if (!currentSelectedClassId && teacherHomeroomClass) {
+                currentSelectedClassId = teacherHomeroomClass.class_id;
+            }
+
+            updateClassHeaderLabels();
+        }
+
+        function updateClassHeaderLabels() {
+            const className = teacherHomeroomClass 
+                ? (teacherHomeroomClass.display_name || `${teacherHomeroomClass.class_name} (${teacherHomeroomClass.grade || 'Grade'}${teacherHomeroomClass.room ? ' - ' + teacherHomeroomClass.room : ''})`) 
+                : 'ថ្នាក់រៀនបន្ទុក';
+
+            const myClassDisplay = document.getElementById('my-homeroom-class-display');
+            if (myClassDisplay) myClassDisplay.textContent = className;
+
+            const modalClassInput = document.getElementById('add-s-class-name-display');
+            if (modalClassInput) modalClassInput.value = className;
+
+            const modalClassIdInput = document.getElementById('add-s-class-id');
+            if (modalClassIdInput && currentSelectedClassId) modalClassIdInput.value = currentSelectedClassId;
+
+            const activeBadge = document.getElementById('active-class-badge');
+            if (activeBadge) activeBadge.innerHTML = `<i class="bi bi-mortarboard-fill me-1"></i> ថ្នាក់បន្ទុក៖ ${className}`;
+
+            const heroTitle = document.getElementById('homeroom-hero-title');
+            if (heroTitle) heroTitle.textContent = `បញ្ជីឈ្មោះសិស្ស ${className}`;
+
+            const modalClassBadge = document.getElementById('modal-class-badge');
+            if (modalClassBadge) modalClassBadge.textContent = className;
+        }
+
+        // 2. Fetch Students in the Active Class from Database (/api/class/<class_id>/students)
+        async function fetchStudentsInClass(classId) {
+            if (!classId) return;
+            try {
+                const res = await fetch(`/api/class/${classId}/students`);
+                const data = await res.json();
+                if (data.status === 'success' && Array.isArray(data.students)) {
+                    myHomeroomStudentsList = data.students;
+                } else {
+                    myHomeroomStudentsList = [];
+                }
+            } catch (err) {
+                console.error(`Error fetching class ${classId} students:`, err);
+                myHomeroomStudentsList = [];
+            }
+
+            renderHomeroomTable(myHomeroomStudentsList);
+            fetchUnassignedStudents();
+        }
+
+        // 3. Fetch Unassigned Students for Quick Dropdown
+        async function fetchUnassignedStudents() {
+            try {
+                const res = await fetch('/api/available_students');
+                const data = await res.json();
+                const unassignedSelect = document.getElementById('select-unassigned-student');
+                if (!unassignedSelect) return;
+
+                if (data.status === 'success' && Array.isArray(data.students) && data.students.length > 0) {
+                    unassignedStudentsList = data.students;
+                    unassignedSelect.innerHTML = `
+                        <option value="">-- ជ្រើសរើសសិស្សដែលមិនទាន់មានថ្នាក់ (${data.students.length} នាក់) ឬ បញ្ចូលថ្មីខាងក្រោម --</option>
+                        ${data.students.map(s => `
+                            <option value="${s.student_id}" data-code="${s.student_code}" data-name="${s.full_name}" data-gender="${s.gender}" data-dob="${s.date_of_birth || ''}" data-phone="${s.phone || ''}" data-father="${s.father_name || ''}" data-father-phone="${s.father_phone || ''}" data-mother="${s.mother_name || ''}" data-mother-phone="${s.mother_phone || ''}" data-address="${s.address || ''}">
+                                👤 ${s.full_name} (${s.student_code}) [${s.gender === 'Female' ? 'ស្រី' : 'ប្រុស'}]
+                            </option>
+                        `).join('')}
+                    `;
+
+                    unassignedSelect.onchange = function () {
+                        const opt = this.options[this.selectedIndex];
+                        if (opt && opt.value) {
+                            document.getElementById('modal-t-student-id').value = opt.value;
+                            document.getElementById('add-s-id').value = opt.getAttribute('data-code') || '';
+                            document.getElementById('add-s-name').value = opt.getAttribute('data-name') || '';
+                            document.getElementById('add-s-gender').value = opt.getAttribute('data-gender') || 'Male';
+                            if (opt.getAttribute('data-dob')) document.getElementById('add-s-dob').value = opt.getAttribute('data-dob');
+                            document.getElementById('add-s-phone').value = opt.getAttribute('data-phone') || '';
+                            document.getElementById('add-s-father-name').value = opt.getAttribute('data-father') || '';
+                            document.getElementById('add-s-father-phone').value = opt.getAttribute('data-father-phone') || '';
+                            document.getElementById('add-s-mother-name').value = opt.getAttribute('data-mother') || '';
+                            document.getElementById('add-s-mother-phone').value = opt.getAttribute('data-mother-phone') || '';
+                            document.getElementById('add-s-address').value = opt.getAttribute('data-address') || '';
+                        }
+                    };
+                } else {
+                    unassignedSelect.innerHTML = `<option value="">-- គ្មានសិស្សទំនេរក្នុង Database ទេ (សូមបំពេញទិន្នន័យថ្មីខាងក្រោម) --</option>`;
+                }
+            } catch (err) {
+                console.error('Error fetching unassigned students:', err);
+            }
+        }
+
+        // 4. Render Student Roster Table
         function renderHomeroomTable(list) {
             const tbody = document.getElementById('homeroom-students-tbody');
             if (!tbody) return;
 
-            document.getElementById('total-students-count').innerText = `${list.length} Students`;
-            document.getElementById('table-student-count').innerText = `${list.length}`;
+            // Update KPI Counts
+            const total = list.length;
+            const males = list.filter(s => s.gender === 'Male' || s.gender === 'ប្រុស').length;
+            const females = list.filter(s => s.gender === 'Female' || s.gender === 'ស្រី').length;
+            const active = list.filter(s => s.status === 'Active').length;
+            const inactive = list.filter(s => s.status === 'Inactive').length;
 
-            tbody.innerHTML = list.map((s, index) => `
+            const currClass = allAvailableClasses.find(c => String(c.class_id) === String(currentSelectedClassId)) || allAvailableClasses[0];
+            const className = currClass ? `${currClass.class_name} (${currClass.grade || 'Grade'})` : 'ថ្នាក់រៀន';
+
+            document.getElementById('total-students-count').innerText = `${total} នាក់`;
+            document.getElementById('gender-breakdown-count').innerHTML = `<i class="bi bi-gender-ambiguous me-1"></i>ប្រុស: ${males} • ស្រី: ${females}`;
+            document.getElementById('active-students-count').innerText = `${active} នាក់`;
+            document.getElementById('inactive-students-count').innerText = `${inactive} នាក់`;
+            document.getElementById('table-student-count').innerText = total;
+
+            const tableTitle = document.getElementById('table-roster-title');
+            if (tableTitle) {
+                tableTitle.innerHTML = `<i class="bi bi-list-stars me-2" style="color:#d4af37 !important;"></i>បញ្ជីឈ្មោះសិស្សក្នុង${className} (<span id="table-student-count">${total}</span> នាក់)`;
+            }
+
+            if (list.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="text-center p-4 text-white">
+                            <i class="bi bi-person-x text-warning fs-3 d-block mb-2" style="color:#d4af37 !important;"></i>
+                            មិនទាន់មានសិស្សនៅក្នុងថ្នាក់នេះនៅឡើយទេ។ សូមចុច "➕ បញ្ចូលសិស្សក្នុងថ្នាក់" ដើម្បីបញ្ចូលសិស្ស!
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = list.map((s) => {
+                const genderBadge = (s.gender === 'Female' || s.gender === 'ស្រី')
+                    ? '<span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1"><i class="bi bi-gender-female me-1"></i>ស្រី</span>'
+                    : '<span class="badge bg-info-subtle text-info border border-info-subtle px-2 py-1"><i class="bi bi-gender-male me-1"></i>ប្រុស</span>';
+
+                const statusBadge = (s.status === 'Active')
+                    ? '<span class="badge bg-success-subtle text-success border border-success px-2.5 py-1 fw-bold"><i class="bi bi-check-circle-fill me-1"></i>កំពុងសិក្សា</span>'
+                    : '<span class="badge bg-secondary-subtle text-secondary border border-secondary px-2.5 py-1 fw-bold"><i class="bi bi-dash-circle me-1"></i>ផ្អាក</span>';
+
+                const parentsDisplay = `
+                    <div class="extra-small" style="line-height: 1.35;">
+                        <div><strong class="text-white">ឪពុក:</strong> ${s.father_name || '-'} <span class="text-muted">(${s.father_phone || '-'})</span></div>
+                        <div><strong class="text-white">ម្តាយ:</strong> ${s.mother_name || '-'} <span class="text-muted">(${s.mother_phone || '-'})</span></div>
+                    </div>
+                `;
+
+                return `
                 <tr>
                     <td>
                         <div class="d-flex align-items-center gap-2.5">
-                            <img src="${s.avatar}" class="rounded-circle border border-warning" width="38" height="38" alt="${s.name}">
-                            <span class="fw-semibold text-white" style="font-size: 0.96rem;">${s.name}</span>
+                            <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning" style="width: 36px; height: 36px; background: rgba(212,175,55,0.1); flex-shrink: 0;">
+                                <i class="bi bi-person-fill fs-6"></i>
+                            </div>
+                            <div>
+                                <span class="fw-semibold text-white d-block" style="font-size: 0.94rem;">${s.full_name}</span>
+                                <span class="text-muted extra-small">ID: ${s.student_id}</span>
+                            </div>
                         </div>
                     </td>
-                    <td><code>${s.id}</code></td>
-                    <td>
-                        <span class="badge ${s.gender === 'Female' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'} px-2.5 py-1">
-                            ${s.gender === 'Female' ? '👩 Female' : '👨 Male'}
-                        </span>
-                    </td>
-                    <td><span class="fw-medium text-white">${s.age}</span></td>
-                    <td>
-                        <span class="badge text-warning border border-warning px-2.5 py-1 fw-bold" style="background:rgba(212,175,55,0.15); color:#ffd700 !important;">
-                            ${s.class_name}
-                        </span>
-                    </td>
-                    <td><span class="fw-bold text-success">${s.gpa}</span></td>
-                    <td><span class="text-white extra-small fw-semibold"><i class="bi bi-clock-history me-1 text-warning" style="color:#d4af37 !important;"></i>${s.attendance}</span></td>
-                    <td><span class="text-white extra-small">${s.guardian}</span></td>
-                    <td>
-                        <span class="badge ${s.status.includes('🚨') ? 'bg-danger-subtle text-danger' : s.status.includes('🌟') ? 'bg-warning-subtle text-warning' : 'bg-success-subtle text-success'} px-2.5 py-1 fw-bold">
-                            ${s.status}
-                        </span>
-                    </td>
+                    <td><code class="fw-bold text-warning">${s.student_code}</code></td>
+                    <td>${genderBadge}</td>
+                    <td><span class="text-white small">${s.date_of_birth || '-'}</span></td>
+                    <td><span class="text-info small"><i class="bi bi-telephone me-1"></i>${s.phone || '-'}</span></td>
+                    <td>${parentsDisplay}</td>
+                    <td><span class="text-white-50 extra-small d-inline-block text-truncate" style="max-width: 170px;" title="${s.address || ''}">${s.address || '-'}</span></td>
+                    <td>${statusBadge}</td>
                     <td class="text-end">
-                        <button class="btn-card-details view-homeroom-student-btn" data-student-index="${index}">
-                            <i class="bi bi-eye-fill me-1"></i> View 👁️
+                        <button class="btn-outline-glass btn-sm me-1 edit-homeroom-student-btn" data-student-id="${s.student_id}" data-student-code="${s.student_code}" title="កែប្រែ">
+                            <i class="bi bi-pencil-square me-1"></i> កែប្រែ
+                        </button>
+                        <button class="btn-card-details btn-sm view-homeroom-student-btn" data-student-code="${s.student_code}" title="មើលព័ត៌មានលម្អិត">
+                            <i class="bi bi-eye-fill me-1"></i> មើល
                         </button>
                     </td>
                 </tr>
-            `).join('');
+                `;
+            }).join('');
 
-            document.querySelectorAll('.view-homeroom-student-btn').forEach(btn => {
+            // View button listeners
+            tbody.querySelectorAll('.view-homeroom-student-btn').forEach(btn => {
                 btn.addEventListener('click', function () {
-                    const idx = parseInt(this.getAttribute('data-student-index'));
-                    const studentObj = list[idx] || list[0];
-                    showHomeroomStudentModal(studentObj);
+                    const code = this.getAttribute('data-student-code');
+                    showHomeroomStudentModal(code);
+                });
+            });
+
+            // Edit button listeners
+            tbody.querySelectorAll('.edit-homeroom-student-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const code = this.getAttribute('data-student-code');
+                    const stId = this.getAttribute('data-student-id');
+                    openEditStudentModal(code, stId);
                 });
             });
         }
 
-        function showHomeroomStudentModal(s) {
-            document.getElementById('m-avatar').src = s.avatar;
-            document.getElementById('m-id').innerText = s.id;
-            document.getElementById('m-name').innerText = s.name;
-            document.getElementById('m-gender-age').innerText = `${s.gender} • ${s.age}`;
-            document.getElementById('m-class').innerText = s.class_name;
-            document.getElementById('m-gpa').innerText = s.gpa;
-            document.getElementById('m-attendance').innerText = s.attendance;
-            document.getElementById('m-guardian').innerText = s.guardian;
-            document.getElementById('m-address').innerText = s.address;
+        // 5. Open Add Student Modal
+        function openAddStudentModal() {
+            document.getElementById('modal-t-form-mode').value = 'add';
+            document.getElementById('modal-t-student-id').value = '';
+            document.getElementById('modal-t-form-orig-code').value = '';
+            document.getElementById('modal-t-form-title').innerText = 'ទម្រង់បញ្ចូលព័ត៌មានសិស្សក្នុងថ្នាក់ (Add Student)';
+            document.getElementById('modal-t-form-badge').innerText = 'បញ្ចូលទិន្នន័យថ្មី';
+            document.getElementById('modal-t-form-badge').style.background = '#d4af37';
+            document.getElementById('modal-t-submit-btn').innerHTML = '<i class="bi bi-person-plus-fill me-1"></i> បញ្ចូលសិស្សក្នុងថ្នាក់';
+            document.getElementById('modal-t-header-icon').className = 'bi bi-person-plus-fill fs-5';
 
-            const modalElem = document.getElementById('homeroomStudentDetailModal');
+            const unbox = document.getElementById('unassigned-selector-box');
+            if (unbox) unbox.style.display = 'block';
+
+            // Reset fields
+            document.getElementById('add-s-id').value = `STD-2026-00${myHomeroomStudentsList.length + 1}`;
+            document.getElementById('add-s-name').value = '';
+            document.getElementById('add-s-gender').value = 'Male';
+            document.getElementById('add-s-dob').value = '2008-05-15';
+            document.getElementById('add-s-phone').value = '';
+            document.getElementById('add-s-status').value = 'Active';
+            document.getElementById('add-s-father-name').value = '';
+            document.getElementById('add-s-father-phone').value = '';
+            document.getElementById('add-s-mother-name').value = '';
+            document.getElementById('add-s-mother-phone').value = '';
+            document.getElementById('add-s-address').value = 'រាជធានីភ្នំពេញ';
+
+            const classSel = document.getElementById('add-s-class-id');
+            if (classSel) classSel.value = currentSelectedClassId;
+
+            const modalElem = document.getElementById('addNewStudentModal');
             if (modalElem && typeof bootstrap !== 'undefined') {
-                const bsModal = new bootstrap.Modal(modalElem);
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
                 bsModal.show();
             }
         }
 
+        // 6. Open Edit Student Modal
+        function openEditStudentModal(studentCode, studentId) {
+            const s = myHomeroomStudentsList.find(item => item.student_code === studentCode || String(item.student_id) === String(studentId));
+            if (!s) return;
+
+            document.getElementById('modal-t-form-mode').value = 'edit';
+            document.getElementById('modal-t-student-id').value = s.student_id;
+            document.getElementById('modal-t-form-orig-code').value = s.student_code;
+            document.getElementById('modal-t-form-title').innerText = 'កែប្រែព័ត៌មានសិស្សក្នុងថ្នាក់ (Edit Student)';
+            document.getElementById('modal-t-form-badge').innerText = 'កែប្រែទិន្នន័យ';
+            document.getElementById('modal-t-form-badge').style.background = '#f59e0b';
+            document.getElementById('modal-t-submit-btn').innerHTML = '<i class="bi bi-check2-circle me-1"></i> រក្សាទុកការកែប្រែ';
+            document.getElementById('modal-t-header-icon').className = 'bi bi-pencil-square fs-5';
+
+            const unbox = document.getElementById('unassigned-selector-box');
+            if (unbox) unbox.style.display = 'none';
+
+            // Populate fields
+            document.getElementById('add-s-id').value = s.student_code;
+            document.getElementById('add-s-name').value = s.full_name;
+            document.getElementById('add-s-gender').value = s.gender || 'Male';
+            document.getElementById('add-s-dob').value = s.date_of_birth || '2008-05-15';
+            document.getElementById('add-s-phone').value = s.phone || '';
+            document.getElementById('add-s-status').value = s.status || 'Active';
+            document.getElementById('add-s-father-name').value = s.father_name || '';
+            document.getElementById('add-s-father-phone').value = s.father_phone || '';
+            document.getElementById('add-s-mother-name').value = s.mother_name || '';
+            document.getElementById('add-s-mother-phone').value = s.mother_phone || '';
+            document.getElementById('add-s-address').value = s.address || '';
+
+            const classSel = document.getElementById('add-s-class-id');
+            if (classSel) classSel.value = currentSelectedClassId;
+
+            const modalElem = document.getElementById('addNewStudentModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                bsModal.show();
+            }
+        }
+
+        // 7. Show Detail Modal
+        function showHomeroomStudentModal(studentCode) {
+            const s = myHomeroomStudentsList.find(item => item.student_code === studentCode);
+            if (!s) return;
+
+            const currClass = allAvailableClasses.find(c => String(c.class_id) === String(currentSelectedClassId)) || allAvailableClasses[0];
+            const className = currClass ? `${currClass.class_name} (${currClass.grade || 'Grade'})` : 'ថ្នាក់រៀន';
+
+            document.getElementById('m-id').innerText = s.student_code;
+            document.getElementById('m-name').innerText = s.full_name;
+            document.getElementById('m-class').innerText = className;
+            document.getElementById('m-class-name').innerText = className;
+            document.getElementById('m-gender').innerText = (s.gender === 'Female' || s.gender === 'ស្រី') ? 'ស្រី (Female)' : 'ប្រុស (Male)';
+            document.getElementById('m-dob').innerText = s.date_of_birth || '-';
+            document.getElementById('m-phone').innerText = s.phone || 'គ្មានលេខ';
+
+            const statusBadge = document.getElementById('m-status-badge');
+            if (statusBadge) {
+                if (s.status === 'Active') {
+                    statusBadge.className = 'badge bg-success-subtle text-success border border-success px-2.5 py-1 fw-bold';
+                    statusBadge.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> កំពុងសិក្សា (Active)';
+                } else {
+                    statusBadge.className = 'badge bg-secondary-subtle text-secondary border border-secondary px-2.5 py-1 fw-bold';
+                    statusBadge.innerHTML = '<i class="bi bi-dash-circle me-1"></i> ផ្អាក (Inactive)';
+                }
+            }
+
+            document.getElementById('m-father-name').innerText = s.father_name || '-';
+            document.getElementById('m-father-phone').innerText = s.father_phone || '-';
+            document.getElementById('m-mother-name').innerText = s.mother_name || '-';
+            document.getElementById('m-mother-phone').innerText = s.mother_phone || '-';
+            document.getElementById('m-address').innerText = s.address || 'មិនទាន់បញ្ជាក់';
+
+            const modalElem = document.getElementById('homeroomStudentDetailModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                bsModal.show();
+            }
+        }
+
+        // 8. Add / Edit Form Submit Handler
         const addStudentForm = document.getElementById('add-new-student-form');
         if (addStudentForm) {
-            addStudentForm.addEventListener('submit', function (e) {
+            addStudentForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
 
+                const mode = document.getElementById('modal-t-form-mode').value;
+                const studentId = document.getElementById('modal-t-student-id').value;
+                const code = document.getElementById('add-s-id').value.trim();
                 const name = document.getElementById('add-s-name').value.trim();
-                const id = document.getElementById('add-s-id').value.trim();
                 const gender = document.getElementById('add-s-gender').value;
-                const age = document.getElementById('add-s-age').value + " yrs";
-                const gName = document.getElementById('add-s-g-name').value.trim();
-                const gPhone = document.getElementById('add-s-g-phone').value.trim();
-                const address = document.getElementById('add-s-address').value.trim();
+                const dob = document.getElementById('add-s-dob').value;
+                const phone = document.getElementById('add-s-phone').value.trim();
+                const status = document.getElementById('add-s-status').value;
+                const classVal = document.getElementById('add-s-class-id').value || currentSelectedClassId;
 
-                if (name && id) {
-                    myHomeroomStudentsList.unshift({
-                        id: id,
-                        name: name,
-                        gender: gender,
-                        age: age,
-                        avatar: gender === 'Female' ? "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80" : "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
-                        class_name: "Class 12-A",
-                        gpa: "Grade B (3.00 GPA)",
-                        attendance: "30 days (100%)",
-                        guardian: `${gName} • ${gPhone}`,
-                        address: address,
-                        status: "✅ Active"
-                    });
+                const fatherName = document.getElementById('add-s-father-name').value.trim();
+                const fatherPhone = document.getElementById('add-s-father-phone').value.trim();
+                const motherName = document.getElementById('add-s-mother-name').value.trim();
+                const motherPhone = document.getElementById('add-s-mother-phone').value.trim();
+                const address = document.getElementById('add-s-address').value.trim() || 'រាជធានីភ្នំពេញ';
 
-                    renderHomeroomTable(myHomeroomStudentsList);
+                try {
+                    let res, data;
 
-                    const modalElem = document.getElementById('addNewStudentModal');
-                    if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = bootstrap.Modal.getInstance(modalElem);
-                        if (bsModal) bsModal.hide();
+                    if (mode === 'edit' && studentId) {
+                        // Edit student in database
+                        res = await fetch(`/api/editstudent/${studentId}`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                student_id: studentId,
+                                student_code: code,
+                                full_name: name,
+                                gender: gender,
+                                date_of_birth: dob,
+                                phone: phone,
+                                status: status,
+                                father_name: fatherName,
+                                father_phone: fatherPhone,
+                                mother_name: motherName,
+                                mother_phone: motherPhone,
+                                address: address
+                            })
+                        });
+                        data = await res.json();
+                    } else {
+                        // Add student to class
+                        res = await fetch('/api/add_student_to_class', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                class_id: classVal,
+                                student_id: studentId || null,
+                                student_code: code,
+                                full_name: name,
+                                gender: gender,
+                                date_of_birth: dob,
+                                phone: phone,
+                                status: status,
+                                father_name: fatherName,
+                                father_phone: fatherPhone,
+                                mother_name: motherName,
+                                mother_phone: motherPhone,
+                                address: address
+                            })
+                        });
+                        data = await res.json();
                     }
-                    addStudentForm.reset();
-                    document.getElementById('add-s-id').value = `STD-2026-0${myHomeroomStudentsList.length + 1}`;
 
-                    const toast = document.getElementById('student-alert-toast');
-                    if (toast) {
-                        document.getElementById('student-alert-msg').innerText = `Successfully added student "${name}" (ID: ${id}) to Class 12-A!`;
-                        toast.classList.remove('d-none');
+                    if (data.status === 'success') {
+                        const modalElem = document.getElementById('addNewStudentModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+
+                        const toast = document.getElementById('student-alert-toast');
+                        if (toast) {
+                            document.getElementById('student-alert-msg').innerText = data.message || `✅ បានរក្សាទុកទិន្នន័យសិស្ស "${name}" ដោយជោគជ័យ!`;
+                            toast.classList.remove('d-none');
+                            setTimeout(() => { toast.classList.add('d-none'); }, 5000);
+                        }
+
+                        // Refetch class students from database
+                        await fetchStudentsInClass(currentSelectedClassId);
+                    } else {
+                        alert(data.message || 'បរាជ័យក្នុងការរក្សាទុកទិន្នន័យសិស្ស');
                     }
+                } catch (err) {
+                    console.error('Error saving student:', err);
+                    alert('Server error saving student.');
                 }
             });
         }
 
+
+
+        // 10. Live Search Filter
         const searchInput = document.getElementById('homeroom-student-search');
         if (searchInput) {
             searchInput.addEventListener('input', function () {
                 const q = this.value.toLowerCase().trim();
                 const filtered = myHomeroomStudentsList.filter(s =>
-                    s.name.toLowerCase().includes(q) ||
-                    s.id.toLowerCase().includes(q) ||
-                    s.guardian.toLowerCase().includes(q)
+                    (s.full_name && s.full_name.toLowerCase().includes(q)) ||
+                    (s.student_code && s.student_code.toLowerCase().includes(q)) ||
+                    (s.phone && s.phone.toLowerCase().includes(q)) ||
+                    (s.father_name && s.father_name.toLowerCase().includes(q)) ||
+                    (s.mother_name && s.mother_name.toLowerCase().includes(q))
                 );
                 renderHomeroomTable(filtered);
             });
         }
 
-        renderHomeroomTable(myHomeroomStudentsList);
+        // Buttons
+        const btnOpenAdd = document.getElementById('btn-open-add-student');
+        if (btnOpenAdd) btnOpenAdd.addEventListener('click', openAddStudentModal);
+
+        const btnTableAdd = document.getElementById('btn-table-add-student');
+        if (btnTableAdd) btnTableAdd.addEventListener('click', openAddStudentModal);
+
+        // Initial Load from Database
+        async function init() {
+            await fetchClasses();
+            if (currentSelectedClassId) {
+                await fetchStudentsInClass(currentSelectedClassId);
+            }
+        }
+
+        init();
     })();
 </script>

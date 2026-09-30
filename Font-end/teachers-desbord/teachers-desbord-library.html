@@ -1,5 +1,5 @@
 <style>
-    /* Ultra-Modern Class 12-A Library Loan Architecture */
+    /* Ultra-Modern Class Library Loan Architecture */
     * {
         font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
     }
@@ -31,7 +31,7 @@
 
     .btn-gold-shimmer {
         background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
-        color: #ffffff;
+        color: #050508;
         font-weight: 800;
         border: 1px solid rgba(255, 223, 0, 0.6);
         border-radius: 14px;
@@ -39,12 +39,13 @@
         font-size: 0.86rem;
         box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
         transition: all 0.3s ease;
+        cursor: pointer;
     }
 
     .btn-gold-shimmer:hover {
         box-shadow: 0 10px 35px rgba(212, 175, 55, 0.75);
         transform: translateY(-2px);
-        color: #ffffff;
+        color: #000000;
     }
 
     .btn-outline-glass {
@@ -56,6 +57,7 @@
         padding: 6px 14px;
         font-size: 0.81rem;
         transition: all 0.28s ease;
+        cursor: pointer;
     }
 
     .btn-outline-glass:hover {
@@ -81,13 +83,51 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    /* FORCED ALL TEXT TO WHITE ACROSS ENTIRE PAGE & MODALS */
-    body, p, span, label, h1, h2, h3, h4, h5, h6, th, td, div, button, input, select {
-        color: #ffffff !important;
+    /* Category Multi-select Pills */
+    .category-pill-label {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #e0e0f0;
+        border-radius: 20px;
+        padding: 6px 14px;
+        font-size: 0.84rem;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.22s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
     }
 
-    .text-muted, .extra-small {
-        color: #e0e0e0 !important;
+    .category-pill-label:hover {
+        background: rgba(212, 175, 55, 0.15);
+        border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .category-pill-label:has(input:checked), .category-pill-label.active {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.12) 100%) !important;
+        border-color: #ffd700 !important;
+        color: #ffd700 !important;
+        font-weight: 700;
+    }
+
+    /* Custom Navigation Tabs */
+    .lib-nav-pills .nav-link {
+        color: #a0a0b8;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 8px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(18, 18, 26, 0.7);
+        transition: all 0.25s ease;
+        font-size: 0.85rem;
+    }
+
+    .lib-nav-pills .nav-link.active {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.1) 100%);
+        color: #ffd700;
+        border-color: rgba(212, 175, 55, 0.6);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
     }
 </style>
 
@@ -96,13 +136,19 @@
     <div class="library-hero-banner p-4 mb-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div>
-                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;"><i class="bi bi-book-fill me-1"></i> Library Book Loan Management</span>
-                <h2 class="fw-bold text-white mb-1">Class 12-A Library Loan Roster</h2>
-                <p class="text-white small mb-0">Track books borrowed by Class 12-A students, monitor return due dates, and send reminders for overdue books.</p>
+                <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;">
+                    <i class="bi bi-book-fill me-1"></i> ប្រព័ន្ធគ្រប់គ្រងការខ្ចីសៀវភៅបណ្ណាល័យ
+                </span>
+                <h2 class="fw-bold text-white mb-1" id="teacher-lib-class-title">បញ្ជីសិស្សខ្ចីសៀវភៅ (Class Book Loan Roster)</h2>
+                <p class="text-muted small mb-0" id="teacher-lib-class-desc">តាមដានទិន្នន័យសិស្សក្នុងថ្នាក់ដែលបានខ្ចីសៀវភៅពីបណ្ណាល័យតាមមុខវិជ្ជា និង គ្រប់គ្រងការសងសៀវភៅ។</p>
             </div>
-            <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-file-earmark-spreadsheet me-1"></i> Export Loan Report</button>
-                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#addNewLoanModal"><i class="bi bi-plus-circle-fill me-1"></i> ➕ Issue Book Loan</button>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-outline-glass btn-sm" id="btn-refresh-teacher-library">
+                    <i class="bi bi-arrow-clockwise me-1"></i> ផ្ទុកឡើងវិញ
+                </button>
+                <button class="btn-gold-shimmer" id="btn-open-issue-modal">
+                    <i class="bi bi-journal-plus me-1"></i> ➕ កត់ត្រាសិស្សខ្ចីសៀវភៅ
+                </button>
             </div>
         </div>
     </div>
@@ -111,94 +157,201 @@
     <div id="lib-alert-toast" class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between" role="alert">
         <div>
             <i class="bi bi-check-circle-fill me-2 fs-5"></i>
-            <span class="fw-bold text-white" id="lib-alert-msg">New book loan record issued successfully!</span>
+            <span class="fw-bold text-white" id="lib-alert-msg">បានកត់ត្រាកាតខ្ចីសៀវភៅដោយជោគជ័យ!</span>
         </div>
-        <button type="button" class="btn-close" onclick="document.getElementById('lib-alert-toast').classList.add('d-none');"></button>
+        <button type="button" class="btn-close btn-close-white" onclick="document.getElementById('lib-alert-toast').classList.add('d-none');"></button>
     </div>
 
-    <!-- Library KPIs -->
+    <!-- Library KPIs Row -->
     <div class="row g-3 mb-4">
         <div class="col-md-3">
             <div class="glass-library-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold" style="color:#d4af37 !important;">📚 Total Active Loans</span>
+                    <span class="text-warning extra-small fw-bold" style="color:#d4af37 !important;">📚 សៀវភៅកំពុងខ្ចីសរុប</span>
                     <i class="bi bi-journal-bookmark-fill text-warning fs-5" style="color:#d4af37;"></i>
                 </div>
-                <h3 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;" id="total-books-count">22 Books</h3>
-                <span class="text-white extra-small" style="color:#d4af37 !important;">Borrowed by 14 Students</span>
+                <h3 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;" id="total-books-count">0 ក្បាល</h3>
+                <span class="text-muted extra-small" id="total-borrowers-count">ខ្ចីដោយ 0 នាក់</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="glass-library-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">✅ Returned Books</span>
+                    <span class="text-success extra-small fw-bold">✅ បានសងរួចរាល់</span>
                     <i class="bi bi-check-circle-fill text-success fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-success mb-0">18 Books</h3>
-                <span class="text-white extra-small">This Month</span>
+                <h3 class="fw-bold text-success mb-0" id="total-returned-count">0 ក្បាល</h3>
+                <span class="text-muted extra-small">បានត្រឡប់ចូលបណ្ណាល័យ</span>
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="glass-library-kpi" style="border-color: rgba(239, 68, 68, 0.4);">
+            <div class="glass-library-kpi" style="border-color: rgba(168, 85, 247, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">🚨 Overdue Loans</span>
-                    <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+                    <span class="text-white extra-small fw-bold">👥 សិស្សខ្ចីក្នុងថ្នាក់</span>
+                    <i class="bi bi-people-fill text-light fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-danger mb-0">2 Books</h3>
-                <span class="text-white extra-small">Reminders Required</span>
+                <h3 class="fw-bold text-white mb-0" id="total-student-borrowers">0 នាក់</h3>
+                <span class="text-muted extra-small">សិស្សទាំងអស់ក្នុងថ្នាក់នេះ</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="glass-library-kpi" style="border-color: rgba(56, 189, 248, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">📖 Most Popular Subject</span>
-                    <i class="bi bi-star-fill text-info fs-5"></i>
+                    <span class="text-info extra-small fw-bold">📖 ថ្នាក់រៀនបន្ទុក</span>
+                    <i class="bi bi-door-open-fill text-info fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-info mb-0">Mathematics</h3>
-                <span class="text-white extra-small">10 Books</span>
+                <h3 class="fw-bold text-info mb-0" id="teacher-class-badge-kpi">ថ្នាក់ទី ១២-A</h3>
+                <span class="text-muted extra-small" id="teacher-class-room-kpi">បន្ទប់ ៣០២</span>
             </div>
         </div>
     </div>
 
-    <!-- Library Loans Table Card -->
-    <div class="card-custom p-4">
-        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-            <div>
-                <h5 class="fw-bold text-white mb-0"><i class="bi bi-journal-text me-2" style="color:#d4af37;"></i>Class 12-A Book Loan Registry</h5>
-                <span class="text-white extra-small">List of active book loans and scheduled return due dates</span>
-            </div>
-            <div class="search-box" style="width: 320px;">
+    <!-- View Switcher Tabs -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+        <ul class="nav nav-pills lib-nav-pills gap-2" id="teacherLibTabs" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="tab-student-cards-btn" data-bs-toggle="pill" data-bs-target="#tab-student-cards-pane" type="button">
+                    <i class="bi bi-person-lines-fill me-1.5"></i> បែងចែកតាមសិស្សម្នាក់ៗ (Student Book Bags)
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="tab-all-records-btn" data-bs-toggle="pill" data-bs-target="#tab-all-records-pane" type="button">
+                    <i class="bi bi-table me-1.5"></i> តារាងកំណត់ត្រាខ្ចីទាំងអស់ (All Loans Roster)
+                </button>
+            </li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2">
+            <select class="form-select bg-dark text-white border-secondary form-select-sm" id="lib-status-filter" style="width: 140px;">
+                <option value="all">ស្ថានភាពទាំងអស់</option>
+                <option value="borrowed">🟢 កំពុងខ្ចី</option>
+                <option value="returned">🔵 បានសងរួច</option>
+            </select>
+            <div class="search-box" style="width: 250px;">
                 <i class="bi bi-search text-white"></i>
-                <input type="text" id="lib-search-input" placeholder="Search borrower name or book title...">
+                <input type="text" id="lib-search-input" class="form-control bg-dark text-white border-secondary form-control-sm" placeholder="ស្វែងរក ឈ្មោះសិស្ស ឬ សៀវភៅ...">
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+        <!-- ========================================================================= -->
+        <!-- TAB 1: STUDENT CARDS VIEW (ដឹងច្បាស់ថាសិស្សម្នាក់ៗខ្ចីសៀវភៅអ្វីខ្លះ) -->
+        <!-- ========================================================================= -->
+        <div class="tab-pane fade show active" id="tab-student-cards-pane" role="tabpanel">
+            <div id="teacher-student-cards-grid" class="row g-3">
+                <div class="col-12 text-center py-5 text-muted">
+                    <div class="spinner-border text-warning mb-2" role="status"></div>
+                    <div>កំពុងទាញយកបញ្ជីសិស្សខ្ចីសៀវភៅ...</div>
+                </div>
             </div>
         </div>
 
-        <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle mb-0 library-table" style="background: transparent;">
-                <thead>
-                    <tr class="text-white border-bottom border-dark">
-                        <th>#</th>
-                        <th>Borrower Name</th>
-                        <th>Student ID</th>
-                        <th>Book Title</th>
-                        <th>Borrow Date</th>
-                        <th>Due Date</th>
-                        <th>Status</th>
-                        <th class="text-end">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="library-tbody">
-                    <!-- Dynamic Library Loan Rows Rendered Here -->
-                </tbody>
-            </table>
+        <!-- ========================================================================= -->
+        <!-- TAB 2: DETAILED LOANS TABLE -->
+        <!-- ========================================================================= -->
+        <div class="tab-pane fade" id="tab-all-records-pane" role="tabpanel">
+            <div class="card-custom p-4">
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0 library-table" style="background: transparent;">
+                        <thead>
+                            <tr class="text-white border-bottom border-dark">
+                                <th>#</th>
+                                <th>ឈ្មោះសិស្ស (Student Name)</th>
+                                <th>អត្តលេខ (ID)</th>
+                                <th>មុខវិជ្ជា/ប្រភេទសៀវភៅ (Category)</th>
+                                <th>ថ្ងៃខ្ចី (Borrow Date)</th>
+                                <th>ថ្ងៃសងជាក់ស្តែង (Return Date)</th>
+                                <th>ស្ថានភាព (Status)</th>
+                                <th class="text-end">សកម្មភាព (Actions)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="library-tbody">
+                            <tr>
+                                <td colspan="8" class="text-center py-4 text-muted">កំពុងទាញយកទិន្នន័យ...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Modal: Add New Book Loan Form Modal -->
+<!-- ========================================================================= -->
+<!-- MODAL: STUDENT BORROWED BOOKS DETAILS (បញ្ជីសៀវភៅលម្អិតរបស់សិស្សម្នាក់ៗ) -->
+<!-- ========================================================================= -->
+<div class="modal fade" id="studentBorrowedBooksModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning fs-4" style="width: 48px; height: 48px; background: rgba(212,175,55,0.15);">
+                        <i class="bi bi-person-badge-fill"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-dark fw-bold mb-1" style="background:#d4af37;" id="modal-st-code">STD-001</span>
+                        <h4 class="fw-bold text-white mb-0" id="modal-st-name">ឈ្មោះសិស្ស</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <!-- Summary KPI Row in Modal -->
+                <div class="row g-2 mb-3">
+                    <div class="col-4">
+                        <div class="p-2.5 rounded-3 bg-black border border-secondary text-center">
+                            <span class="text-muted extra-small d-block">សៀវភៅខ្ចីសរុប</span>
+                            <span class="fw-bold text-white fs-5" id="modal-st-total-books">0 ក្បាល</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="p-2.5 rounded-3 bg-black border border-warning text-center">
+                            <span class="text-warning extra-small d-block" style="color:#d4af37 !important;">កំពុងកាន់កាប់</span>
+                            <span class="fw-bold text-warning fs-5" style="color:#d4af37 !important;" id="modal-st-active-books">0 ក្បាល</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="p-2.5 rounded-3 bg-black border border-success text-center">
+                            <span class="text-success extra-small d-block">បានសងរួច</span>
+                            <span class="fw-bold text-success fs-5" id="modal-st-returned-books">0 ក្បាល</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h6 class="fw-bold text-white mb-2"><i class="bi bi-journal-bookmark-fill me-1.5" style="color:#d4af37;"></i>បញ្ជីសៀវភៅដែលសិស្សនេះបានខ្ចី៖</h6>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0 library-table" style="background: transparent;">
+                        <thead>
+                            <tr class="text-muted extra-small text-uppercase">
+                                <th>#</th>
+                                <th>មុខវិជ្ជា/សៀវភៅ</th>
+                                <th>ថ្ងៃខ្ចី</th>
+                                <th>ថ្ងៃសងជាក់ស្តែង</th>
+                                <th>ស្ថានភាព</th>
+                                <th class="text-end">សកម្មភាព</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-st-books-tbody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer border-top border-dark p-3">
+                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បិទ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- Modal: Add New Book Loan (➕ កត់ត្រាកាតខ្ចីសៀវភៅថ្មី) -->
+<!-- ========================================================================= -->
 <div class="modal fade" id="addNewLoanModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
@@ -208,8 +361,8 @@
                         <i class="bi bi-journal-plus fs-5"></i>
                     </div>
                     <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">Class 12-A</span>
-                        <h4 class="fw-bold text-white mb-0">Issue New Book Loan Form</h4>
+                        <span class="badge text-dark fw-bold mb-1" style="background:#d4af37;" id="modal-class-name-badge">ថ្នាក់រៀន</span>
+                        <h4 class="fw-bold text-white mb-0">ទម្រង់កត់ត្រាកាតខ្ចីសៀវភៅ (Issue Book Loan)</h4>
                     </div>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -217,33 +370,61 @@
             <div class="modal-body p-4">
                 <form id="add-loan-form">
                     <div class="row g-3 mb-3">
+                        <!-- Student Select Dropdown (ជ្រើសរើសឈ្មោះសិស្សក្នុងថ្នាក់) -->
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Student Name</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-l-name" placeholder="e.g. Sok Chandara" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Student ID</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="add-l-id" value="STD-2026-001" required>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">
+                                ជ្រើសរើសឈ្មោះសិស្ស (Student Name) <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select bg-dark text-white border-secondary fw-semibold" id="add-l-student-select" required>
+                                <option value="" disabled selected>-- កំពុងទាញយកបញ្ជីសិស្ស... --</option>
+                            </select>
                         </div>
 
+                        <!-- Student ID / Code (Auto-populated) -->
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អត្តលេខសិស្ស (Student ID / Code)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="add-l-id" placeholder="ស្វ័យប្រវត្តិ..." readonly required>
+                        </div>
+
+                        <!-- Borrow Date -->
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្ងៃខ្ចី (Borrow Date) <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control bg-dark text-white border-secondary" id="add-l-bdate" required>
+                        </div>
+
+                        <!-- Book Multi-Selector (មកពី table books ផ្ទាល់ អាចរើសលើសពី 1) -->
                         <div class="col-md-12">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Book Title</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-l-book" placeholder="e.g. Advanced Mathematics Vol. 1" required>
+                            <div class="d-flex justify-content-between align-items-center mb-1.5">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold mb-0">
+                                    ជ្រើសរើសសៀវភៅក្នុងស្តុក (Select Books from Stock) <span class="text-danger">*</span>
+                                    <span class="text-muted fw-normal font-monospace">(អាចជ្រើសរើសបានច្រើនក្បាល)</span>
+                                </label>
+                                <span class="badge bg-dark border border-warning text-warning extra-small" id="tch-selected-cat-count" style="color:#d4af37 !important;">ជ្រើសរើស 0 សៀវភៅ</span>
+                            </div>
+
+                            <!-- Multi-Select Category Badges Container loaded from DB books table -->
+                            <div id="tch-lib-categories-container" class="d-flex flex-wrap gap-2 p-3 bg-black rounded-3 border border-secondary" style="max-height: 160px; overflow-y: auto;">
+                                <span class="text-muted extra-small">កំពុងទាញយកបញ្ជីសៀវភៅពី table books...</span>
+                            </div>
+
+                            <!-- Add Custom Category Option -->
+                            <div class="input-group input-group-sm mt-2">
+                                <span class="input-group-text bg-dark text-muted border-secondary extra-small">➕ បញ្ចូលសៀវភៅផ្សេងទៀត</span>
+                                <input type="text" id="tch-lib-custom-cat" class="form-control bg-dark text-white border-secondary" placeholder="វាយបញ្ចូលឈ្មោះសៀវភៅបន្ថែមបើគ្មានក្នុងស្តុកខាងលើ...">
+                                <button class="btn btn-outline-warning btn-sm" type="button" id="tch-btn-add-custom-cat">➕ បន្ថែម</button>
+                            </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Borrow Date</label>
-                            <input type="date" class="form-control bg-dark text-white border-secondary" id="add-l-bdate" value="2026-02-12" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Due Date</label>
-                            <input type="date" class="form-control bg-dark text-white border-secondary" id="add-l-ddate" value="2026-02-26" required>
+                        <!-- Optional Notes -->
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កំណត់ចំណាំ (Notes)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="add-l-notes" placeholder="កំណត់ចំណាំផ្សេងៗ (បើមាន)...">
                         </div>
                     </div>
 
                     <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
-                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i> Issue Book Loan</button>
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm" id="btn-submit-loan"><i class="bi bi-plus-lg me-1"></i> កត់ត្រាការខ្ចី</button>
                     </div>
                 </form>
             </div>
@@ -253,97 +434,665 @@
 
 <script>
     (function () {
-        const class12ALoansList = [
-            { id: "STD-2026-001", name: "Sok Chandara", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80", book: "Advanced Mathematics Vol. 1", bdate: "01 Feb 2026", ddate: "15 Feb 2026", status: "active" },
-            { id: "STD-2026-002", name: "Kim Seanghai", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80", book: "12th Grade Physics Experiments", bdate: "05 Feb 2026", ddate: "19 Feb 2026", status: "active" },
-            { id: "STD-2026-003", name: "Ly Sovannara", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80", book: "Khmer Literature & Culture", bdate: "20 Jan 2026", ddate: "03 Feb 2026", status: "overdue" },
-            { id: "STD-2026-004", name: "Chan Sreynet", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80", book: "English Grammar Advanced", bdate: "10 Feb 2026", ddate: "24 Feb 2026", status: "active" }
-        ];
+        let currentTeacherClass = null;
+        let currentClassId = 1;
+        let classStudentsList = [];
+        let classLoansList = [];
+        let currentAcademicYearId = null;
+        let currentAcademicYearName = '២០២៤-២០២៥';
 
+        // 1. Initialize Page Data
+        async function initTeacherLibraryPage() {
+            await fetchActiveAcademicYear();
+            await fetchTeacherClassInfo();
+            await fetchClassLoans();
+            await fetchStudentsForClass(currentClassId);
+            await loadTeacherLibraryCategories();
+        }
+
+        // Fetch Active Academic Year
+        async function fetchActiveAcademicYear() {
+            try {
+                const res = await fetch('/api/academic_years/active');
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.active_year) {
+                        currentAcademicYearId = data.active_year.academic_year_id;
+                        currentAcademicYearName = data.active_year.academic_year || 'បច្ចុប្បន្ន';
+                    }
+                }
+            } catch (e) {
+                console.log('Error fetching active year:', e);
+            }
+        }
+
+        // 2. Fetch Teacher's Homeroom Class
+        async function fetchTeacherClassInfo() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('token');
+            let currentUser = null;
+            try {
+                const userStr = localStorage.getItem('user');
+                if (userStr) currentUser = JSON.parse(userStr);
+            } catch (e) {}
+
+            const teacherName = currentUser ? (currentUser.full_name || currentUser.name || currentUser.username || '') : '';
+
+            try {
+                const res = await fetch('/api/teacher/my_class', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token ? `Bearer ${token}` : ''
+                    },
+                    body: JSON.stringify({ name: teacherName })
+                });
+                const data = await res.json();
+                if (data.status === 'success' && data.homeroom_class) {
+                    currentTeacherClass = data.homeroom_class;
+                    currentClassId = currentTeacherClass.class_id || 1;
+                    if (currentTeacherClass.academic_year_id) {
+                        currentAcademicYearId = currentTeacherClass.academic_year_id;
+                    }
+                    if (currentTeacherClass.academic_year) {
+                        currentAcademicYearName = currentTeacherClass.academic_year;
+                    }
+                }
+            } catch (err) {
+                console.log('Error fetching teacher class:', err);
+            }
+
+            if (!currentTeacherClass) {
+                try {
+                    const saved = localStorage.getItem('teacher_class');
+                    if (saved) {
+                        currentTeacherClass = JSON.parse(saved);
+                        currentClassId = currentTeacherClass.class_id || 1;
+                    }
+                } catch (e) {}
+            }
+
+            // Update Class Labels
+            const cName = currentTeacherClass ? (currentTeacherClass.class_name || 'ថ្នាក់ទី ១២-A') : 'ថ្នាក់ទី ១២-A';
+            const room = currentTeacherClass ? (currentTeacherClass.room || 'បន្ទប់ ៣០២') : 'បន្ទប់ ៣០២';
+
+            document.getElementById('teacher-lib-class-title').innerText = `បញ្ជីសិស្សខ្ចីសៀវភៅ ${cName} (ឆ្នាំសិក្សា ${currentAcademicYearName})`;
+            document.getElementById('teacher-class-badge-kpi').innerText = cName;
+            document.getElementById('teacher-class-room-kpi').innerText = `បន្ទប់ ${room}`;
+            document.getElementById('modal-class-name-badge').innerText = `${cName} • ឆ្នាំសិក្សា ${currentAcademicYearName}`;
+        }
+
+        // 3. Fetch Students Belonging to Class & Populate Select Dropdown
+        async function fetchStudentsForClass(classId) {
+            const selectElem = document.getElementById('add-l-student-select');
+            if (!selectElem) return;
+
+            selectElem.innerHTML = `<option value="" disabled selected>-- កំពុងទាញយកបញ្ជីសិស្ស... --</option>`;
+
+            try {
+                let res = await fetch(`/api/class/${classId}/students`);
+                let data = await res.json();
+                if (data.status === 'success' && Array.isArray(data.students) && data.students.length > 0) {
+                    classStudentsList = data.students;
+                } else {
+                    // Fallback to all students
+                    const fallbackRes = await fetch('/api/students');
+                    const fallbackData = await fallbackRes.json();
+                    classStudentsList = fallbackData.students || [];
+                }
+            } catch (e) {
+                console.error('Error fetching students:', e);
+                try {
+                    const fallbackRes = await fetch('/api/students');
+                    const fallbackData = await fallbackRes.json();
+                    classStudentsList = fallbackData.students || [];
+                } catch (err2) {}
+            }
+
+            if (classStudentsList.length === 0) {
+                selectElem.innerHTML = `<option value="" disabled selected>-- គ្មានសិស្សក្នុងថ្នាក់នេះទេ --</option>`;
+                return;
+            }
+
+            // Check if student has active/unreturned loans in THIS academic year session
+            const alreadyBorrowedStudentIds = new Set(
+                (classLoansList || [])
+                    .filter(l => {
+                        const matchYear = (!currentAcademicYearId || !l.academic_year_id || String(l.academic_year_id) === String(currentAcademicYearId));
+                        const isActiveLoan = l.status === 'borrowed' || l.status === 'overdue';
+                        return matchYear && isActiveLoan;
+                    })
+                    .map(l => String(l.student_id))
+            );
+
+            // Populate Student Select Dropdown (ក្នុងការបើកឆ្នាំសិក្សាម្តង អាចខ្ចីសៀវភៅបានម្តង)
+            selectElem.innerHTML = `<option value="" disabled selected>-- ជ្រើសរើសឈ្មោះសិស្សក្នុងថ្នាក់ (${currentAcademicYearName}) --</option>` +
+                classStudentsList.map(s => {
+                    const code = s.student_code || ('STD-' + s.student_id);
+                    const gender = s.gender === 'Female' || s.gender === 'ស្រី' ? '(ស្រី)' : '(ប្រុស)';
+                    const alreadyBorrowed = alreadyBorrowedStudentIds.has(String(s.student_id));
+                    if (alreadyBorrowed) {
+                        return `<option value="${s.student_id}" data-code="${code}" data-name="${s.full_name}" disabled style="color: #ff6b6b; background: #1e1e2d;">🚫 ${s.full_name} ${gender} • ${code} (បានខ្ចីរួចក្នុងឆ្នាំសិក្សា ${currentAcademicYearName})</option>`;
+                    }
+                    return `<option value="${s.student_id}" data-code="${code}" data-name="${s.full_name}">👤 ${s.full_name} ${gender} • ${code}</option>`;
+                }).join('');
+        }
+
+        // 4. Auto-fill Student ID when Student is selected from dropdown
+        const studentSelect = document.getElementById('add-l-student-select');
+        if (studentSelect) {
+            studentSelect.addEventListener('change', function () {
+                const opt = this.options[this.selectedIndex];
+                const code = opt.getAttribute('data-code') || '';
+                const codeInput = document.getElementById('add-l-id');
+                if (codeInput) codeInput.value = code;
+            });
+        }
+
+        // 5. Fetch Class Loans from API
+        async function fetchClassLoans() {
+            try {
+                const res = await fetch(`/api/library/loans?class_id=${currentClassId}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    classLoansList = data.loans || [];
+                    renderStudentCards(classLoansList);
+                    renderLibraryTable(classLoansList);
+                    updateKPIs(classLoansList);
+                    fetchStudentsForClass(currentClassId);
+                }
+            } catch (err) {
+                console.error("[-] Error loading class loans:", err);
+            }
+        }
+
+        // 6. Update KPIs
+        function updateKPIs(loans) {
+            const active = loans.filter(l => l.status === 'borrowed').length;
+            const returned = loans.filter(l => l.status === 'returned').length;
+            const uniqueBorrowers = new Set(loans.filter(l => l.status !== 'returned').map(l => l.student_id)).size;
+            const totalStudents = new Set(loans.map(l => l.student_id)).size;
+
+            document.getElementById('total-books-count').innerText = `${active} ក្បាល`;
+            document.getElementById('total-borrowers-count').innerText = `ខ្ចីដោយ ${uniqueBorrowers} នាក់`;
+            document.getElementById('total-returned-count').innerText = `${returned} ក្បាល`;
+            const studentKPI = document.getElementById('total-student-borrowers');
+            if (studentKPI) studentKPI.innerText = `${totalStudents} នាក់`;
+        }
+
+        // 6.5 Render Student Book Bags Grid (ដឹងច្បាស់ថាសិស្សម្នាក់ៗខ្ចីសៀវភៅអ្វីខ្លះ)
+        function renderStudentCards(list) {
+            const grid = document.getElementById('teacher-student-cards-grid');
+            if (!grid) return;
+
+            const q = (document.getElementById('lib-search-input')?.value || '').toLowerCase().trim();
+            const statusFilter = document.getElementById('lib-status-filter')?.value || 'all';
+
+            // Group loans by student_id
+            const studentMap = {};
+            list.forEach(loan => {
+                const sId = loan.student_id;
+                if (!studentMap[sId]) {
+                    studentMap[sId] = {
+                        student_id: sId,
+                        student_name: loan.student_name || 'សិស្ស',
+                        student_code: loan.student_code || ('STD-' + sId),
+                        gender: loan.student_gender || '',
+                        loans: []
+                    };
+                }
+                studentMap[sId].loans.push(loan);
+            });
+
+            let studentsList = Object.values(studentMap);
+
+            // Filter students
+            studentsList = studentsList.filter(s => {
+                const hasMatchingStatus = s.loans.some(l => statusFilter === 'all' || l.status === statusFilter);
+                if (!hasMatchingStatus) return false;
+
+                if (!q) return true;
+                const matchName = s.student_name.toLowerCase().includes(q) || s.student_code.toLowerCase().includes(q);
+                const matchBook = s.loans.some(l => (l.category && l.category.toLowerCase().includes(q)) || (l.book_title && l.book_title.toLowerCase().includes(q)));
+                return matchName || matchBook;
+            });
+
+            if (studentsList.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-12 text-center py-5 text-muted">
+                        <i class="bi bi-journal-x fs-1 d-block mb-2" style="color:#d4af37 !important;"></i>
+                        <div>មិនទាន់មានសិស្សណាខ្ចីសៀវភៅក្នុងថ្នាក់នេះនៅឡើយទេ</div>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = studentsList.map(st => {
+                const activeLoans = st.loans.filter(l => l.status === 'borrowed');
+                const latestDate = st.loans[0]?.borrow_date_str || st.loans[0]?.borrow_date || '—';
+
+                return `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="glass-library-kpi h-100 p-3.5 d-flex flex-column justify-content-between" style="border-color: rgba(212, 175, 55, 0.35);">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-start mb-2.5">
+                                    <div class="d-flex align-items-center gap-2.5">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning" style="width: 40px; height: 40px; background: rgba(212,175,55,0.15); flex-shrink: 0;">
+                                            <i class="bi bi-person-fill fs-5"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="fw-bold text-white mb-0">${st.student_name}</h6>
+                                            <span class="badge bg-dark border border-secondary text-muted extra-small">${st.student_code}</span>
+                                        </div>
+                                    </div>
+                                    <span class="badge ${activeLoans.length > 0 ? 'bg-warning-subtle text-warning border border-warning' : 'bg-success-subtle text-success border border-success'} extra-small fw-bold">
+                                        ${activeLoans.length > 0 ? `🟢 កំពុងខ្ចី ${activeLoans.length}` : '🔵 សងរួច'}
+                                    </span>
+                                </div>
+
+                                <div class="mt-2.5">
+                                    <span class="text-muted extra-small d-block mb-1.5 fw-bold">
+                                        <i class="bi bi-book-half me-1" style="color:#d4af37;"></i>សៀវភៅដែលបានខ្ចី (${st.loans.length} ក្បាល)៖
+                                    </span>
+                                    <div class="d-flex flex-wrap gap-1.5 mb-2">
+                                        ${st.loans.map(l => {
+                                            const isRet = l.status === 'returned';
+                                            const badgeStyle = isRet
+                                                ? 'bg-secondary-subtle text-muted text-decoration-line-through border border-secondary'
+                                                : 'bg-dark border border-warning text-warning';
+                                            return `
+                                                <span class="badge ${badgeStyle} extra-small py-1 px-2.5 fw-semibold" title="${isRet ? 'បានសងរួច' : 'កំពុងកាន់កាប់'}">
+                                                    📖 ${l.category || l.book_title} ${isRet ? '✓' : ''}
+                                                </span>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-2 border-top border-dark mt-2 d-flex justify-content-between align-items-center">
+                                <span class="text-muted extra-small">ខ្ចី៖ ${latestDate}</span>
+                                <button class="btn btn-outline-glass btn-sm py-1 px-2.5 btn-view-student-loans" data-student-id="${st.student_id}">
+                                    🔍 មើលសៀវភៅលម្អិត
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Bind open student loans modal
+            grid.querySelectorAll('.btn-view-student-loans').forEach(btn => {
+                btn.onclick = function () {
+                    const studentId = this.getAttribute('data-student-id');
+                    openStudentBooksModal(studentId);
+                };
+            });
+        }
+
+        // 6.6 Open Student Borrowed Books Modal
+        function openStudentBooksModal(studentId) {
+            const studentLoans = classLoansList.filter(l => String(l.student_id) === String(studentId));
+            if (!studentLoans || studentLoans.length === 0) return;
+
+            const first = studentLoans[0];
+            const active = studentLoans.filter(l => l.status === 'borrowed').length;
+            const returned = studentLoans.filter(l => l.status === 'returned').length;
+
+            document.getElementById('modal-st-name').innerText = first.student_name || 'សិស្ស';
+            document.getElementById('modal-st-code').innerText = first.student_code || ('STD-' + studentId);
+            document.getElementById('modal-st-total-books').innerText = `${studentLoans.length} ក្បាល`;
+            document.getElementById('modal-st-active-books').innerText = `${active} ក្បាល`;
+            document.getElementById('modal-st-returned-books').innerText = `${returned} ក្បាល`;
+
+            const tbody = document.getElementById('modal-st-books-tbody');
+            if (tbody) {
+                tbody.innerHTML = studentLoans.map((l, idx) => {
+                    const returnDateStr = l.return_date ? (l.return_date_str || l.return_date) : '<span class="text-muted">--</span>';
+                    const isReturned = l.status === 'returned';
+                    const statusBadge = isReturned 
+                        ? '<span class="badge bg-success-subtle text-success border border-success px-2 py-1 fw-bold">🔵 បានសងរួច</span>'
+                        : '<span class="badge bg-warning-subtle text-warning border border-warning px-2 py-1 fw-bold" style="color:#d4af37 !important;">🟢 កំពុងខ្ចី</span>';
+
+                    return `
+                        <tr>
+                            <td><span class="text-white extra-small">${idx + 1}</span></td>
+                            <td><span class="fw-bold text-white">📖 ${l.category || l.book_title}</span></td>
+                            <td><span class="text-muted extra-small">${l.borrow_date_str || l.borrow_date}</span></td>
+                            <td><span class="extra-small">${returnDateStr}</span></td>
+                            <td>${statusBadge}</td>
+                            <td class="text-end">
+                                ${!isReturned ? `
+                                    <button class="btn btn-outline-glass btn-sm py-1 px-2.5 btn-modal-return-loan" data-loan-id="${l.loan_id}">
+                                        📥 សងសៀវភៅ
+                                    </button>
+                                ` : '<span class="text-success extra-small fw-bold">✓ សងរួច</span>'}
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+
+                // Bind return inside modal
+                tbody.querySelectorAll('.btn-modal-return-loan').forEach(btn => {
+                    btn.onclick = async function () {
+                        const loanId = this.getAttribute('data-loan-id');
+                        if (confirm('តើអ្នកពិតជាចង់ទទួលសងសៀវភៅនេះចូលបណ្ណាល័យវិញមែនទេ?')) {
+                            try {
+                                const res = await fetch(`/api/library/loans/${loanId}/return`, {
+                                    method: 'PUT',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ condition_on_return: 'ល្អ', notes: 'សងរួចរាល់' })
+                                });
+                                if (res.ok) {
+                                    showAlertToast('បានទទួលសងសៀវភៅរួចរាល់ដោយជោគជ័យ!');
+                                    await fetchClassLoans();
+                                    openStudentBooksModal(studentId); // re-render modal
+                                }
+                            } catch (err) {
+                                alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                            }
+                        }
+                    };
+                });
+            }
+
+            const modalElem = document.getElementById('studentBorrowedBooksModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                if (!modalElem.classList.contains('show')) {
+                    bsModal.show();
+                }
+            }
+        }
+
+        // 7. Render Loans Table
         function renderLibraryTable(list) {
             const tbody = document.getElementById('library-tbody');
             if (!tbody) return;
 
-            document.getElementById('total-books-count').innerText = `${list.length} Books`;
+            const q = (document.getElementById('lib-search-input')?.value || '').toLowerCase().trim();
+            const statusFilter = document.getElementById('lib-status-filter')?.value || 'all';
 
-            tbody.innerHTML = list.map((s, index) => `
-                <tr>
-                    <td><span class="text-white extra-small">${index + 1}</span></td>
-                    <td>
-                        <div class="d-flex align-items-center gap-2.5">
-                            <img src="${s.avatar}" class="rounded-circle border border-warning" width="36" height="36" alt="${s.name}">
-                            <span class="fw-semibold text-white">${s.name}</span>
-                        </div>
-                    </td>
-                    <td><code>${s.id}</code></td>
-                    <td><span class="fw-bold text-white">${s.book}</span></td>
-                    <td><span class="text-white extra-small">${s.bdate}</span></td>
-                    <td><span class="text-warning extra-small fw-bold" style="color:#d4af37 !important;">${s.ddate}</span></td>
-                    <td>
-                        <span class="badge ${s.status === 'active' ? 'bg-success-subtle text-success border border-success' : 'bg-danger-subtle text-danger border border-danger'} px-2.5 py-1 fw-bold">
-                            ${s.status === 'active' ? '🟢 Active Loan' : '🚨 Overdue'}
-                        </span>
-                    </td>
-                    <td class="text-end">
-                        <button class="btn btn-outline-glass btn-sm py-1 px-2.5 me-1">📥 Mark as Returned</button>
-                    </td>
-                </tr>
-            `).join('');
+            const filtered = list.filter(s => {
+                if (statusFilter !== 'all' && s.status !== statusFilter) return false;
+                if (!q) return true;
+                return (s.student_name && s.student_name.toLowerCase().includes(q)) ||
+                       (s.category && s.category.toLowerCase().includes(q)) ||
+                       (s.book_title && s.book_title.toLowerCase().includes(q)) ||
+                       (s.student_code && s.student_code.toLowerCase().includes(q));
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-muted">គ្មានទិន្នន័យសិស្សខ្ចីសៀវភៅទេ</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map((s, index) => {
+                const returnDateStr = s.return_date ? (s.return_date_str || s.return_date) : '<span class="text-muted">--</span>';
+                const isReturned = s.status === 'returned';
+                const statusBadge = isReturned 
+                    ? '<span class="badge bg-success-subtle text-success border border-success px-2 py-1 fw-bold">🔵 បានសងរួច</span>'
+                    : '<span class="badge bg-warning-subtle text-warning border border-warning px-2 py-1 fw-bold" style="color:#d4af37 !important;">🟢 កំពុងខ្ចី</span>';
+
+                return `
+                    <tr>
+                        <td><span class="text-white extra-small">${index + 1}</span></td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2.5">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning" style="width: 34px; height: 34px; background: rgba(212,175,55,0.1); flex-shrink: 0;">
+                                    <i class="bi bi-person-fill fs-6"></i>
+                                </div>
+                                <span class="fw-semibold text-white">${s.student_name || 'សិស្ស'}</span>
+                            </div>
+                        </td>
+                        <td><code>${s.student_code || ('STD-' + s.student_id)}</code></td>
+                        <td><span class="badge bg-secondary-subtle text-warning fw-bold" style="color:#d4af37 !important;">${s.category || s.book_title || 'ទូទៅ'}</span></td>
+                        <td><span class="text-muted extra-small">${s.borrow_date_str || s.borrow_date}</span></td>
+                        <td><span class="extra-small">${returnDateStr}</span></td>
+                        <td>${statusBadge}</td>
+                        <td class="text-end">
+                            ${!isReturned ? `
+                                <button class="btn btn-outline-glass btn-sm py-1 px-2.5 btn-return-loan" data-loan-id="${s.loan_id}">
+                                    📥 សងសៀវភៅ
+                                </button>
+                            ` : '<span class="text-muted extra-small">បានសងរួច</span>'}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Bind Return Buttons
+            document.querySelectorAll('.btn-return-loan').forEach(btn => {
+                btn.onclick = async function () {
+                    const loanId = this.getAttribute('data-loan-id');
+                    if (confirm('តើអ្នកពិតជាចង់ទទួលសងសៀវភៅនេះចូលបណ្ណាល័យវិញមែនទេ?')) {
+                        try {
+                            const res = await fetch(`/api/library/loans/${loanId}/return`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ condition_on_return: 'ល្អ', notes: 'សងរួចរាល់' })
+                            });
+                            if (res.ok) {
+                                showAlertToast('បានទទួលសងសៀវភៅរួចរាល់ដោយជោគជ័យ!');
+                                fetchClassLoans();
+                            }
+                        } catch (err) {
+                            alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                        }
+                    }
+                };
+            });
         }
 
-        const addLoanForm = document.getElementById('add-loan-form');
-        if (addLoanForm) {
-            addLoanForm.addEventListener('submit', function (e) {
-                e.preventDefault();
+        // 7.5 Load Books strictly from `books` table for Multi-Select
+        async function loadTeacherLibraryCategories() {
+            const container = document.getElementById('tch-lib-categories-container');
+            if (!container) return;
 
-                const name = document.getElementById('add-l-name').value.trim();
-                const id = document.getElementById('add-l-id').value.trim();
-                const book = document.getElementById('add-l-book').value.trim();
-                const bdate = document.getElementById('add-l-bdate').value;
-                const ddate = document.getElementById('add-l-ddate').value;
+            try {
+                const res = await fetch('/api/library/categories');
+                if (res.ok) {
+                    const data = await res.json();
+                    const booksList = data.books || [];
+                    renderTeacherCategoryPills(booksList);
+                }
+            } catch (err) {
+                console.error("[-] Error loading books categories:", err);
+            }
+        }
 
-                if (name && book) {
-                    class12ALoansList.unshift({
-                        id: id,
-                        name: name,
-                        avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
-                        book: book,
-                        bdate: bdate,
-                        ddate: ddate,
-                        status: "active"
-                    });
+        function renderTeacherCategoryPills(booksList) {
+            const container = document.getElementById('tch-lib-categories-container');
+            if (!container) return;
 
-                    renderLibraryTable(class12ALoansList);
+            if (!booksList || booksList.length === 0) {
+                container.innerHTML = `<span class="text-muted extra-small"><i class="bi bi-exclamation-circle me-1 text-warning"></i>មិនទាន់មានសៀវភៅក្នុងស្តុក (table books) នៅឡើយទេ</span>`;
+                updateTeacherSelectedCategoryCount();
+                return;
+            }
 
-                    const modalElem = document.getElementById('addNewLoanModal');
-                    if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = bootstrap.Modal.getInstance(modalElem);
-                        if (bsModal) bsModal.hide();
-                    }
-                    addLoanForm.reset();
+            container.innerHTML = booksList.map((b, idx) => {
+                const name = b.category || b.title;
+                const copies = b.available_copies !== undefined ? b.available_copies : 0;
+                return `
+                    <label class="category-pill-label ${idx === 0 ? 'active' : ''}">
+                        <input type="checkbox" name="tch_lib_cat" value="${name}" class="form-check-input mt-0 me-1" ${idx === 0 ? 'checked' : ''} style="cursor: pointer;">
+                        <span>${name}</span>
+                        <span class="badge bg-dark border border-secondary text-warning extra-small ms-1" style="font-size:0.75rem;">សល់ ${copies}</span>
+                    </label>
+                `;
+            }).join('');
 
-                    const toast = document.getElementById('lib-alert-toast');
-                    if (toast) {
-                        document.getElementById('lib-alert-msg').innerText = `Successfully issued "${book}" loan for "${name}"!`;
-                        toast.classList.remove('d-none');
-                    }
+            container.querySelectorAll('input[name="tch_lib_cat"]').forEach(cb => {
+                cb.addEventListener('change', updateTeacherSelectedCategoryCount);
+            });
+
+            updateTeacherSelectedCategoryCount();
+        }
+
+        function updateTeacherSelectedCategoryCount() {
+            const checked = document.querySelectorAll('#tch-lib-categories-container input[name="tch_lib_cat"]:checked');
+            const countBadge = document.getElementById('tch-selected-cat-count');
+            if (countBadge) {
+                countBadge.innerText = `ជ្រើសរើស ${checked.length} សៀវភៅ`;
+            }
+            document.querySelectorAll('#tch-lib-categories-container .category-pill-label').forEach(lbl => {
+                const cb = lbl.querySelector('input');
+                if (cb && cb.checked) {
+                    lbl.classList.add('active');
+                } else {
+                    lbl.classList.remove('active');
                 }
             });
         }
 
-        const searchInput = document.getElementById('lib-search-input');
-        if (searchInput) {
-            searchInput.addEventListener('input', function () {
-                const q = this.value.toLowerCase().trim();
-                const filtered = class12ALoansList.filter(s =>
-                    s.name.toLowerCase().includes(q) ||
-                    s.book.toLowerCase().includes(q) ||
-                    s.id.toLowerCase().includes(q)
-                );
-                renderLibraryTable(filtered);
+        // Add Custom Category Button Handler
+        document.getElementById('tch-btn-add-custom-cat')?.addEventListener('click', () => {
+            const customInput = document.getElementById('tch-lib-custom-cat');
+            const val = customInput?.value.trim();
+            if (!val) return;
+
+            const container = document.getElementById('tch-lib-categories-container');
+            if (!container) return;
+
+            const existing = Array.from(container.querySelectorAll('input[name="tch_lib_cat"]')).find(cb => cb.value.toLowerCase() === val.toLowerCase());
+            if (existing) {
+                existing.checked = true;
+            } else {
+                const newPill = document.createElement('label');
+                newPill.className = 'category-pill-label active';
+                newPill.innerHTML = `
+                    <input type="checkbox" name="tch_lib_cat" value="${val}" class="form-check-input mt-0 me-1" checked style="cursor: pointer;">
+                    <span>${val}</span>
+                `;
+                newPill.querySelector('input').addEventListener('change', updateTeacherSelectedCategoryCount);
+                container.appendChild(newPill);
+            }
+            customInput.value = '';
+            updateTeacherSelectedCategoryCount();
+        });
+
+        // 8. Add Loan Submission Handler (គាំទ្រការខ្ចីច្រើនមុខវិជ្ជា)
+        const addLoanForm = document.getElementById('add-loan-form');
+        if (addLoanForm) {
+            addLoanForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                // Collect checked categories
+                const checkedBoxes = document.querySelectorAll('#tch-lib-categories-container input[name="tch_lib_cat"]:checked');
+                let selectedCategories = Array.from(checkedBoxes).map(cb => cb.value.trim());
+
+                // Check custom category if entered
+                const customCat = document.getElementById('tch-lib-custom-cat')?.value.trim();
+                if (customCat && !selectedCategories.includes(customCat)) {
+                    selectedCategories.push(customCat);
+                }
+
+                if (selectedCategories.length === 0) {
+                    alert('សូមជ្រើសរើសយ៉ាងហោចណាស់ ១ មុខវិជ្ជា!');
+                    return;
+                }
+
+                const selectElem = document.getElementById('add-l-student-select');
+                const selectedOpt = selectElem.options[selectElem.selectedIndex];
+                const studentId = selectElem.value;
+                const studentName = selectedOpt?.getAttribute('data-name') || '';
+                const studentCode = document.getElementById('add-l-id').value.trim();
+                const bdate = document.getElementById('add-l-bdate').value;
+                const notes = document.getElementById('add-l-notes')?.value.trim() || '';
+
+                if (!studentId) {
+                    alert('សូមជ្រើសរើសឈ្មោះសិស្ស!');
+                    return;
+                }
+
+                const submitBtn = document.getElementById('btn-submit-loan');
+                if (submitBtn) submitBtn.disabled = true;
+
+                try {
+                    const payload = {
+                        class_id: currentClassId,
+                        academic_year_id: currentAcademicYearId,
+                        student_id: studentId,
+                        student_code: studentCode,
+                        categories: selectedCategories,
+                        borrow_date: bdate,
+                        notes: notes,
+                        condition_on_borrow: 'ល្អ',
+                        recorded_by: 'Teacher'
+                    };
+
+                    const res = await fetch('/api/library/loans', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+
+                    if (res.ok) {
+                        const modalElem = document.getElementById('addNewLoanModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+                        addLoanForm.reset();
+                        document.getElementById('tch-lib-custom-cat').value = '';
+                        loadTeacherLibraryCategories(); // refresh categories
+                        showAlertToast(`បានកត់ត្រាកាតខ្ចីសៀវភៅ [${selectedCategories.join(', ')}] សម្រាប់សិស្ស "${studentName}" ដោយជោគជ័យ!`);
+                        fetchClassLoans();
+                    } else {
+                        alert(data.message || 'មានបញ្ហាក្នុងការរក្សាទុក');
+                    }
+                } catch (err) {
+                    alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                } finally {
+                    if (submitBtn) submitBtn.disabled = false;
+                }
             });
         }
 
-        renderLibraryTable(class12ALoansList);
+        // 9. Open Modal Button & Dates Auto-fill
+        document.getElementById('btn-open-issue-modal')?.addEventListener('click', () => {
+            const today = new Date();
+            const borrowDateStr = today.toISOString().split('T')[0];
+            document.getElementById('add-l-bdate').value = borrowDateStr;
+            fetchStudentsForClass(currentClassId);
+
+            const modalElem = document.getElementById('addNewLoanModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                bsModal.show();
+            }
+        });
+
+        // 10. Search & Filter Inputs
+        const updateAllViews = () => {
+            renderStudentCards(classLoansList);
+            renderLibraryTable(classLoansList);
+        };
+        document.getElementById('lib-search-input')?.addEventListener('input', updateAllViews);
+        document.getElementById('lib-status-filter')?.addEventListener('change', updateAllViews);
+        document.getElementById('btn-refresh-teacher-library')?.addEventListener('click', () => fetchClassLoans());
+
+        // Global Modal Backdrop Cleanup Safeguard
+        document.addEventListener('hidden.bs.modal', function () {
+            if (!document.querySelector('.modal.show')) {
+                document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+                document.body.classList.remove('modal-open');
+                document.body.style.removeProperty('overflow');
+                document.body.style.removeProperty('padding-right');
+            }
+        });
+
+        function showAlertToast(msg) {
+            const toast = document.getElementById('lib-alert-toast');
+            if (toast) {
+                document.getElementById('lib-alert-msg').innerText = msg;
+                toast.classList.remove('d-none');
+                setTimeout(() => toast.classList.add('d-none'), 5000);
+            }
+        }
+
+        // Execute on load
+        initTeacherLibraryPage();
     })();
 </script>

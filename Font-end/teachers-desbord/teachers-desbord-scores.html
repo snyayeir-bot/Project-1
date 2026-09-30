@@ -1,167 +1,328 @@
 <style>
-    /* Ultra-Modern Class 12-A Student Scores Architecture */
+    /* Ultra-Modern Dark & Gold Scores Dashboard Styling */
     * {
         font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
     }
 
     .scores-hero-banner {
-        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(20, 20, 30, 0.96) 60%, rgba(12, 12, 18, 0.98) 100%);
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.22) 0%, rgba(20, 20, 30, 0.95) 60%, rgba(12, 12, 18, 0.98) 100%);
         border: 1px solid rgba(212, 175, 55, 0.4);
-        border-radius: 24px;
+        border-radius: 20px;
         position: relative;
         overflow: hidden;
         backdrop-filter: blur(20px);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
     }
 
     .scores-hero-banner::after {
         content: '';
         position: absolute;
-        top: -80px;
-        right: -80px;
-        width: 260px;
-        height: 260px;
-        background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
+        top: -60px;
+        right: -60px;
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, transparent 70%);
         pointer-events: none;
     }
 
     .glass-scores-kpi {
         background: rgba(18, 18, 26, 0.85);
         backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 18px;
-        transition: all 0.35s ease;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 18px 20px;
+        transition: all 0.3s ease;
     }
 
     .glass-scores-kpi:hover {
-        border-color: rgba(212, 175, 55, 0.5);
-        transform: translateY(-4px);
+        border-color: rgba(212, 175, 55, 0.4);
+        transform: translateY(-3px);
     }
 
     .btn-gold-shimmer {
         background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
-        color: #ffffff;
+        color: #0d0d11;
         font-weight: 800;
         border: 1px solid rgba(255, 223, 0, 0.6);
-        border-radius: 14px;
-        padding: 9px 20px;
-        font-size: 0.86rem;
-        box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
+        border-radius: 12px;
+        padding: 8px 18px;
+        font-size: 0.84rem;
+        box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
         transition: all 0.3s ease;
     }
 
     .btn-gold-shimmer:hover {
-        box-shadow: 0 10px 35px rgba(212, 175, 55, 0.75);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.65);
         transform: translateY(-2px);
-        color: #ffffff;
-    }
-
-    .btn-card-details {
-        background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%);
-        color: #ffffff;
-        font-weight: 800;
-        border: 1px solid rgba(255, 215, 0, 0.5);
-        border-radius: 12px;
-        padding: 6px 14px;
-        font-size: 0.81rem;
-        box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
-        transition: all 0.28s ease;
-    }
-
-    .btn-card-details:hover {
-        box-shadow: 0 8px 28px rgba(212, 175, 55, 0.75);
-        transform: translateY(-2px);
-        color: #ffffff;
+        color: #000000;
     }
 
     .btn-outline-glass {
-        background: rgba(22, 22, 32, 0.85);
-        border: 1px solid rgba(212, 175, 55, 0.4);
+        background: rgba(22, 22, 32, 0.8);
+        border: 1px solid rgba(212, 175, 55, 0.35);
         color: #ffffff;
         font-weight: 700;
         border-radius: 12px;
-        padding: 6px 14px;
-        font-size: 0.81rem;
+        padding: 8px 18px;
+        font-size: 0.84rem;
         transition: all 0.28s ease;
     }
 
     .btn-outline-glass:hover {
-        background: rgba(212, 175, 55, 0.22);
+        background: rgba(212, 175, 55, 0.2);
         color: #ffd700;
+        border-color: rgba(212, 175, 55, 0.6);
     }
 
-    /* Month Selector Pill Styling */
+    /* Month Selector Pill Buttons */
     .month-pill-btn {
-        background: rgba(20, 20, 30, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: #e0e0e0;
-        font-weight: 600;
+        background: rgba(24, 24, 34, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #cbd5e1;
         border-radius: 12px;
-        padding: 7px 16px;
-        font-size: 0.84rem;
+        padding: 6px 14px;
+        font-size: 0.82rem;
+        font-weight: 600;
         transition: all 0.25s ease;
         cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
     }
 
     .month-pill-btn:hover {
-        border-color: rgba(212, 175, 55, 0.6);
+        border-color: rgba(212, 175, 55, 0.5);
+        color: #ffffff;
+        background: rgba(36, 36, 48, 0.9);
+    }
+
+    .month-pill-btn.active {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(184, 134, 11, 0.35) 100%);
+        border: 1px solid rgba(212, 175, 55, 0.7);
         color: #ffd700;
+        box-shadow: 0 0 14px rgba(212, 175, 55, 0.25);
+        font-weight: 700;
     }
 
-    .month-pill-btn.active-month {
-        background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(184, 134, 11, 0.4) 100%);
-        border: 1px solid #ffd700 !important;
-        color: #ffd700 !important;
+    /* Rank Badges */
+    .rank-badge {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
         font-weight: 800;
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        font-size: 0.85rem;
     }
 
-    .grade-badge-a {
-        background: rgba(16, 185, 129, 0.2);
-        color: #10b981;
-        border: 1px solid rgba(16, 185, 129, 0.5);
-        font-weight: 800;
+    .rank-1 {
+        background: linear-gradient(135deg, #ffd700, #b8860b);
+        color: #000;
+        box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
     }
 
-    .grade-badge-b {
-        background: rgba(56, 189, 248, 0.2);
-        color: #38bdf8;
-        border: 1px solid rgba(56, 189, 248, 0.5);
-        font-weight: 800;
+    .rank-2 {
+        background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+        color: #000;
+        box-shadow: 0 0 10px rgba(226, 232, 240, 0.5);
     }
 
-    .grade-badge-c {
-        background: rgba(245, 158, 11, 0.2);
-        color: #f59e0b;
-        border: 1px solid rgba(245, 158, 11, 0.5);
-        font-weight: 800;
+    .rank-3 {
+        background: linear-gradient(135deg, #d97706, #78350f);
+        color: #fff;
+        box-shadow: 0 0 10px rgba(217, 119, 6, 0.5);
     }
 
-    .grade-badge-f {
-        background: rgba(239, 68, 68, 0.2);
-        color: #ef4444;
-        border: 1px solid rgba(239, 68, 68, 0.5);
-        font-weight: 800;
+    .rank-other {
+        background: rgba(255, 255, 255, 0.08);
+        color: #cbd5e1;
+        border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .scores-table th {
-        padding: 12px 12px !important;
+    /* Score Chips */
+    .score-chip {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-weight: 700;
         font-size: 0.82rem;
-        white-space: nowrap;
-        background: rgba(16, 16, 26, 0.95) !important;
-        border-bottom: 2px solid rgba(212, 175, 55, 0.4) !important;
-        color: #d4af37 !important;
-        letter-spacing: 0.3px;
-        text-transform: uppercase;
+        min-width: 38px;
+        text-align: center;
+        transition: transform 0.15s;
     }
 
-    .scores-table td {
-        padding: 11px 12px !important;
-        font-size: 0.88rem;
+    .score-chip:hover {
+        transform: scale(1.1);
+    }
+
+    .score-top {
+        background: rgba(16, 185, 129, 0.18) !important;
+        color: #34d399 !important;
+        border: 1px solid rgba(16, 185, 129, 0.45) !important;
+    }
+
+    .score-good {
+        background: rgba(56, 189, 248, 0.15) !important;
+        color: #38bdf8 !important;
+        border: 1px solid rgba(56, 189, 248, 0.35) !important;
+    }
+
+    .score-average {
+        background: rgba(245, 158, 11, 0.15) !important;
+        color: #fbbf24 !important;
+        border: 1px solid rgba(245, 158, 11, 0.35) !important;
+    }
+
+    .score-poor {
+        background: rgba(239, 68, 68, 0.2) !important;
+        color: #f87171 !important;
+        border: 1px solid rgba(239, 68, 68, 0.5) !important;
+    }
+
+    /* Total Score & Average Pill */
+    .total-score-pill {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 3px;
+        padding: 4px 10px;
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(184, 134, 11, 0.32) 100%) !important;
+        border: 1px solid rgba(212, 175, 55, 0.55) !important;
+        border-radius: 10px;
+        font-weight: 800;
+        color: #ffd700 !important;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    }
+
+    .total-score-pill .max-label {
+        font-size: 0.72rem;
+        color: rgba(255, 215, 0, 0.75) !important;
+        font-weight: 600;
+    }
+
+    .avg-score-pill {
+        display: inline-block;
+        padding: 4px 9px;
+        border-radius: 8px;
+        font-weight: 800;
+        font-size: 0.84rem;
+        background: rgba(56, 189, 248, 0.16) !important;
+        color: #38bdf8 !important;
+        border: 1px solid rgba(56, 189, 248, 0.45) !important;
+    }
+
+    /* Result Badges */
+    .badge-result-pass {
+        background: rgba(16, 185, 129, 0.18) !important;
+        color: #4ade80 !important;
+        border: 1px solid rgba(16, 185, 129, 0.45) !important;
+        border-radius: 8px;
+        padding: 4px 9px;
+        font-weight: 700;
+        font-size: 0.79rem;
         white-space: nowrap;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .badge-result-fail {
+        background: rgba(239, 68, 68, 0.18) !important;
+        color: #f87171 !important;
+        border: 1px solid rgba(239, 68, 68, 0.45) !important;
+        border-radius: 8px;
+        padding: 4px 9px;
+        font-weight: 700;
+        font-size: 0.79rem;
+        white-space: nowrap;
+    }
+
+    /* Table Styling */
+    .scores-table-super-header th {
+        font-size: 0.74rem !important;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        font-weight: 800;
+        padding: 9px 12px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .super-header-info {
+        background: rgba(18, 18, 28, 0.95) !important;
+        color: #cbd5e1 !important;
+    }
+
+    .super-header-subjects {
+        background: rgba(24, 22, 38, 0.95) !important;
+        color: #ffd700 !important;
+        border-left: 1px solid rgba(212, 175, 55, 0.3) !important;
+        border-right: 1px solid rgba(212, 175, 55, 0.3) !important;
+    }
+
+    .super-header-totals {
+        background: rgba(18, 26, 36, 0.95) !important;
+        color: #38bdf8 !important;
+    }
+
+    .scores-table-sub-header th {
+        background: rgba(14, 14, 22, 0.98) !important;
+        color: #d4af37 !important;
+        font-size: 0.78rem !important;
+        font-weight: 700 !important;
+        padding: 10px 10px !important;
+        border-bottom: 2px solid rgba(212, 175, 55, 0.45) !important;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .scores-table-sub-header th.text-start {
+        text-align: left !important;
+    }
+
+    .scores-table-sub-header th.text-end {
+        text-align: right !important;
+    }
+
+    .scores-table tbody tr {
+        transition: all 0.22s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .scores-table tbody tr:hover {
+        background: rgba(212, 175, 55, 0.08) !important;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .scores-table tbody td {
+        padding: 10px 10px !important;
+        font-size: 0.88rem;
+        vertical-align: middle;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .scores-table tbody td.text-start {
+        text-align: left !important;
+    }
+
+    .scores-table tbody td.text-end {
+        text-align: right !important;
+    }
+
+    /* Custom Table Scrollbar */
+    .custom-table-scroll::-webkit-scrollbar {
+        height: 7px;
+    }
+
+    .custom-table-scroll::-webkit-scrollbar-track {
+        background: rgba(12, 12, 18, 0.85);
+        border-radius: 4px;
+    }
+
+    .custom-table-scroll::-webkit-scrollbar-thumb {
+        background: rgba(212, 175, 55, 0.4);
+        border-radius: 4px;
+    }
+
+    .custom-table-scroll::-webkit-scrollbar-thumb:hover {
+        background: rgba(212, 175, 55, 0.75);
     }
 
     /* FORCED ALL TEXT TO WHITE ACROSS ENTIRE PAGE & MODALS */
@@ -195,134 +356,213 @@
     <div class="scores-hero-banner p-4 mb-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div>
-                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;"><i
-                        class="bi bi-star-fill me-1"></i> Student Score Management</span>
-                <h2 class="fw-bold text-white mb-1">Class 12-A Gradebook & Student Scores</h2>
-                <p class="text-white small mb-0">Teachers can click <strong>"➕ Add New Month"</strong> to enter new
-                    monthly scores or <strong>"View 👁️"</strong> to inspect historical score archives.</p>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge text-white" style="background:#d4af37; font-weight:700;"><i
+                            class="bi bi-star-fill me-1"></i> Student Score Management</span>
+                    <span class="badge bg-info-subtle text-info border border-info" id="active-class-badge">
+                        <i class="bi bi-mortarboard-fill me-1"></i> កំពុងមើលថ្នាក់៖ កំពុងផ្ទុក...
+                    </span>
+                </div>
+                <h2 class="fw-bold text-white mb-1" id="hero-class-title">ការគ្រប់គ្រងពិន្ទុសិស្សតាមថ្នាក់រៀន (Class
+                    Gradebook)</h2>
+                <p class="text-white small mb-0">លោកគ្រូ/អ្នកគ្រូអាចបញ្ចូលពិន្ទុតាមសិស្សម្នាក់ៗ
+                    ឬបញ្ចូលពិន្ទុទាំងថ្នាក់តែម្តងយ៉ាងងាយស្រួល សម្រាប់ថ្នាក់បន្ទុករបស់ខ្លួន។</p>
             </div>
-            <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-outline-glass btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#addNewMonthModal"><i class="bi bi-calendar-plus-fill me-1"></i> ➕ Add New
-                    Month</button>
-                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#addNewScoreModal"><i
-                        class="bi bi-plus-circle-fill me-1"></i> ➕ Add New Score</button>
+            <!-- Teacher Homeroom Class Badge (Fixed strictly to teacher account) -->
+            <div class="d-flex align-items-center gap-2.5 px-3 py-2 rounded-3 border border-warning shadow-sm"
+                style="background: rgba(212, 175, 55, 0.12);">
+                <div class="rounded-circle d-flex align-items-center justify-content-center bg-warning text-dark fw-bold"
+                    style="width: 32px; height: 32px;">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </div>
+                <div>
+                    <span class="text-warning extra-small d-block fw-bold"
+                        style="font-size: 0.72rem; line-height: 1.1;">ថ្នាក់បន្ទុករបស់ខ្ញុំ (My Class)</span>
+                    <span class="text-white fw-bold" id="my-scores-homeroom-class-name"
+                        style="font-size: 0.92rem;">កំពុងផ្ទុក...</span>
+                </div>
             </div>
+
+            <button class="btn btn-outline-glass btn-sm" data-bs-toggle="modal" data-bs-target="#batchClassScoreModal"
+                id="btnOpenBatchScore">
+                <i class="bi bi-grid-3x3-gap-fill me-1 text-warning"></i> ⚡ បញ្ចូលពិន្ទុទាំងថ្នាក់
+            </button>
+            <button class="btn btn-outline-glass btn-sm" data-bs-toggle="modal" data-bs-target="#addNewMonthModal">
+                <i class="bi bi-calendar-plus-fill me-1"></i> ➕ Add New Month
+            </button>
+            <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#addNewScoreModal"
+                id="btnOpenAddScore">
+                <i class="bi bi-plus-circle-fill me-1"></i> ➕ Add New Score
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Alert Toast Notification -->
+<div id="score-alert-toast"
+    class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between"
+    role="alert">
+    <div>
+        <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+        <span class="fw-bold text-white" id="score-alert-msg">បានបញ្ចូល និងរក្សាទុកពិន្ទុជោគជ័យ!</span>
+    </div>
+    <button type="button" class="btn-close btn-close-white"
+        onclick="document.getElementById('score-alert-toast').classList.add('d-none');"></button>
+</div>
+
+<!-- Scores KPIs -->
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="glass-scores-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="text-white extra-small fw-bold" style="color:#d4af37 !important;">📊
+                    មធ្យមភាគពិន្ទុក្នុងថ្នាក់ (Class Average)</span>
+                <i class="bi bi-award-fill text-warning fs-5" style="color:#d4af37;"></i>
+            </div>
+            <h3 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;" id="kpi-avg-score">0.0%</h3>
+            <span class="text-white extra-small" style="color:#d4af37 !important;" id="kpi-month-label">February
+                2026</span>
         </div>
     </div>
 
-    <!-- Alert Toast Notification -->
-    <div id="score-alert-toast"
-        class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between"
-        role="alert">
+    <div class="col-md-4">
+        <div class="glass-scores-kpi" style="border-color: rgba(56, 189, 248, 0.4);">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="text-white extra-small fw-bold">✅ អត្រាសិស្សជាប់ (Pass Rate)</span>
+                <i class="bi bi-check-circle-fill text-info fs-5"></i>
+            </div>
+            <h3 class="fw-bold text-info mb-0" id="kpi-pass-rate">0% (0 / 0)</h3>
+            <span class="text-white extra-small">សិស្សជាប់ក្នុងថ្នាក់ (>= 50%)</span>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="glass-scores-kpi" style="border-color: rgba(239, 68, 68, 0.4);">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="text-white extra-small fw-bold">🚨 សិស្សត្រូវពង្រឹង (Remedial Support)</span>
+                <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+            </div>
+            <h3 class="fw-bold text-danger mb-0" id="kpi-fail-count">0 នាក់</h3>
+            <span class="text-white extra-small">ពិន្ទុក្រោម 50%</span>
+        </div>
+    </div>
+</div>
+
+<!-- Monthly Score Selector Bar -->
+<div class="card-custom p-3 mb-4" style="background: rgba(18, 18, 26, 0.9); border: 1px solid rgba(212, 175, 55, 0.3);">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="d-flex align-items-center gap-2">
+            <span class="fw-bold text-white extra-small text-uppercase"><i class="bi bi-calendar-range me-1"
+                    style="color:#d4af37;"></i>កាលវិភាគប្រឡង (Exam Period):</span>
+            <span class="badge bg-warning-subtle text-warning border border-warning px-2.5 py-1"
+                id="active-month-badge">
+                🟢 Showing Scores
+            </span>
+        </div>
+
+        <!-- Month Selection Tabs -->
+        <div class="d-flex flex-wrap align-items-center gap-2" id="month-pills-container">
+            <!-- Dynamic Month Pills Rendered Here -->
+        </div>
+    </div>
+</div>
+
+<!-- Student Scores Table Card -->
+<div class="card-custom p-4 shadow-lg border border-warning" style="border-color: rgba(212,175,55,0.3) !important;">
+    <!-- Card Header & Controls Toolbar -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 pb-3 border-bottom border-dark gap-3">
         <div>
-            <i class="bi bi-check-circle-fill me-2 fs-5"></i>
-            <span class="fw-bold text-white" id="score-alert-msg">New student score entered successfully!</span>
-        </div>
-        <button type="button" class="btn-close"
-            onclick="document.getElementById('score-alert-toast').classList.add('d-none');"></button>
-    </div>
-
-    <!-- Class 12-A Scores KPIs -->
-    <div class="row g-3 mb-4">
-        <div class="col-md-4">
-            <div class="glass-scores-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold" style="color:#d4af37 !important;">📊 Class Average
-                        Score</span>
-                    <i class="bi bi-award-fill text-warning fs-5" style="color:#d4af37;"></i>
-                </div>
-                <h3 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;" id="kpi-avg-score">86.5% (3.45
-                    GPA)</h3>
-                <span class="text-white extra-small" style="color:#d4af37 !important;" id="kpi-month-label">February
-                    2026 (Latest Month)</span>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge text-white fw-bold" style="background:#d4af37;"
+                    id="table-class-badge">ថ្នាក់រៀន</span>
+                <h5 class="fw-bold text-white mb-0" id="table-title-header">
+                    <i class="bi bi-table me-2" style="color:#ffd700;"></i>តារាងពិន្ទុសិស្សប្រចាំខែ
+                </h5>
             </div>
+            <span class="text-white extra-small" id="table-max-info-label" style="color:#a0aec0 !important;">
+                <i class="bi bi-info-circle me-1" style="color:#ffd700;"></i> មុខវិជ្ជាពី Database
+            </span>
         </div>
 
-        <div class="col-md-4">
-            <div class="glass-scores-kpi" style="border-color: rgba(56, 189, 248, 0.4);">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">✅ Class Pass Rate</span>
-                    <i class="bi bi-check-circle-fill text-info fs-5"></i>
-                </div>
-                <h3 class="fw-bold text-info mb-0" id="kpi-pass-rate">92% (35 / 38)</h3>
-                <span class="text-white extra-small">Monthly Passing Students</span>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="glass-scores-kpi" style="border-color: rgba(239, 68, 68, 0.4);">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">🚨 Remedial Support Needed</span>
-                    <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
-                </div>
-                <h3 class="fw-bold text-danger mb-0" id="kpi-fail-count">3 Students</h3>
-                <span class="text-white extra-small">Score Below 50%</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Monthly Score Selector Bar -->
-    <div class="card-custom p-3 mb-4"
-        style="background: rgba(18, 18, 26, 0.9); border: 1px solid rgba(212, 175, 55, 0.3);">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-            <div class="d-flex align-items-center gap-2">
-                <span class="fw-bold text-white extra-small text-uppercase"><i class="bi bi-calendar-range me-1"
-                        style="color:#d4af37;"></i>Select Assessment Month:</span>
-                <span class="badge bg-warning-subtle text-warning border border-warning px-2.5 py-1"
-                    id="active-month-badge">
-                    🟢 Showing Scores: February 2026 (Latest)
-                </span>
-            </div>
-
-            <!-- Month Selection Tabs with Add New Month Button -->
-            <div class="d-flex flex-wrap align-items-center gap-2" id="month-pills-container">
-                <!-- Dynamic Month Pills Rendered Here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Student Scores Table Card -->
-    <div class="card-custom p-4">
-        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-            <div>
-                <h5 class="fw-bold text-white mb-0" id="table-title-header"><i class="bi bi-table me-2"
-                        style="color:#d4af37;"></i>Class 12-A Student Score Sheet (February 2026)</h5>
-                <span class="text-white extra-small">Max score per subject: 100 pts (Total max score: 600 pts)</span>
-            </div>
-            <div class="search-box" style="width: 320px;">
+        <!-- Table Action Buttons & Search Filters -->
+        <div class="d-flex flex-wrap align-items-center gap-2">
+            <div class="search-box" style="width: 240px;">
                 <i class="bi bi-search text-white"></i>
-                <input type="text" id="scores-search-input" placeholder="Search student name or ID...">
+                <input type="text" id="scores-search-input" placeholder="ស្វែងរកតាមឈ្មោះ ឬ ID...">
             </div>
-        </div>
 
-        <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle mb-0 scores-table" style="background: transparent;">
-                <thead>
-                    <tr class="text-white border-bottom border-dark">
-                        <th>Rank</th>
-                        <th>Student Name</th>
-                        <th>Student ID</th>
-                        <th>Gender</th>
-                        <th>Mathematics</th>
-                        <th>Physics</th>
-                        <th>Chemistry</th>
-                        <th>Khmer Literature</th>
-                        <th>English</th>
-                        <th>History</th>
-                        <th>Total Score</th>
-                        <th>Average %</th>
-                        <th>Grade (GPA)</th>
-                        <th>Result</th>
-                        <th class="text-end">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="scores-table-tbody">
-                    <!-- Dynamic Student Score Rows Rendered Here -->
-                </tbody>
-            </table>
+            <!-- Result Filter Select -->
+            <select class="form-select bg-dark text-white border-secondary form-select-sm" id="scores-result-filter"
+                style="width: 175px; font-size: 0.83rem;">
+                <option value="all">📋 ទាំងអស់ (All)</option>
+                <option value="unentered">⏳ មិនទាន់បញ្ចូល (Unentered)</option>
+                <option value="entered">✅ បានបញ្ចូលរួច (Entered)</option>
+                <option value="pass">🟢 ជាប់ (Passed)</option>
+                <option value="fail">🔴 ធ្លាក់ (Failed)</option>
+            </select>
+
+            <!-- Print Sheet Button -->
+            <button type="button" class="btn btn-outline-glass btn-sm" onclick="window.print()"
+                title="Print Score Sheet">
+                <i class="bi bi-printer me-1" style="color:#ffd700;"></i> បោះពុម្ព
+            </button>
         </div>
     </div>
+
+    <!-- Two-Tier Categorized Modern Table -->
+    <div class="table-responsive custom-table-scroll rounded-3 border border-dark mb-2">
+        <table class="table table-dark table-hover align-middle mb-0 scores-table" style="background: transparent;">
+            <thead>
+                <!-- Tier 1: Group Category Headers -->
+                <tr class="scores-table-super-header text-center" id="scores-super-header-tr">
+                    <th colspan="4" class="super-header-info text-start ps-3">
+                        <i class="bi bi-person-lines-fill me-1"></i> ព័ត៌មានសិស្សក្នុងថ្នាក់ (Student Details)
+                    </th>
+                    <th colspan="6" class="super-header-subjects" id="super-header-subjects-th">
+                        <i class="bi bi-journal-bookmark-fill me-1 text-warning"></i> ពិន្ទុតាមមុខវិជ្ជា
+                    </th>
+                    <th colspan="4" class="super-header-totals">
+                        <i class="bi bi-award-fill me-1 text-info"></i> ការវាយតម្លៃសរុប (Performance & Results)
+                    </th>
+                    <th class="super-header-info text-end pe-3">
+                        <i class="bi bi-gear-fill me-1"></i> សកម្មភាព
+                    </th>
+                </tr>
+                <!-- Tier 2: Specific Column Headers -->
+                <tr class="scores-table-sub-header" id="scores-sub-header-tr">
+                    <th class="ps-3 text-start" style="width: 85px;">ចំណាត់ថ្នាក់</th>
+                    <th class="text-start" style="min-width: 180px;">ឈ្មោះសិស្ស (Name)</th>
+                    <th style="width: 105px;">អត្តលេខ (ID)</th>
+                    <th style="width: 75px;">ភេទ</th>
+                    <!-- Dynamic subject th generated via JS -->
+                    <th style="min-width: 110px;"><i class="bi bi-trophy-fill me-1" style="color:#ffd700;"></i>សរុប</th>
+                    <th style="min-width: 80px;">មធ្យម %</th>
+                    <th style="min-width: 95px;">និទ្ទេស (GPA)</th>
+                    <th style="min-width: 105px;">លទ្ធផល</th>
+                    <th class="pe-3 text-end" style="width: 100px;">លម្អិត</th>
+                </tr>
+            </thead>
+            <tbody id="scores-table-tbody">
+                <!-- Dynamic Student Score Rows Rendered Here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Table Footer: Record count & summary legends -->
+    <div
+        class="d-flex flex-wrap justify-content-between align-items-center mt-3 pt-3 border-top border-dark extra-small text-white gap-2">
+        <div id="scores-summary-info">
+            <span class="text-white" style="color:#a0aec0 !important;">
+                បង្ហាញសិស្សសរុប៖ <strong class="text-warning" id="scores-display-count">0</strong> នាក់ ក្នុងថ្នាក់នេះ
+            </span>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <span class="badge badge-result-pass"><i class="bi bi-check-circle-fill me-1"></i> ជាប់ (Pass >= 50%)</span>
+            <span class="badge badge-result-fail"><i class="bi bi-exclamation-triangle-fill me-1"></i> ធ្លាក់ (Fail <
+                    50%)</span>
+        </div>
+    </div>
+</div>
 </div>
 
 <!-- Modal 1: Add New Month Modal -->
@@ -337,7 +577,8 @@
                         <i class="bi bi-calendar-plus-fill fs-5"></i>
                     </div>
                     <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">Class 12-A</span>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;"
+                            id="add-month-class-badge">Class</span>
                         <h4 class="fw-bold text-white mb-0">Add New Assessment Month</h4>
                     </div>
                 </div>
@@ -347,20 +588,69 @@
             <div class="modal-body p-4">
                 <form id="add-new-month-form">
                     <div class="mb-3">
-                        <label class="form-label text-white extra-small text-uppercase fw-bold">New Month & Year Name
-                            (e.g. March 2026, April 2026...)</label>
-                        <input type="text" class="form-control bg-dark text-white border-secondary" id="new-m-name"
-                            placeholder="e.g. March 2026" required>
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">
+                            ប្រភេទនៃការប្រឡង (Exam Assessment Type)
+                        </label>
+                        <select class="form-select bg-dark text-white border-secondary fw-semibold" id="new-m-type" required>
+                            <option value="month" selected>📅 ប្រឡងប្រចាំខែ (Monthly Exam)</option>
+                            <option value="semester">🎓 ប្រឡងឆមាស (Semester Exam)</option>
+                            <option value="year">🏆 ប្រឡងប្រចាំឆ្នាំ / បញ្ចប់ (Annual / Final Exam)</option>
+                        </select>
                     </div>
+
+                    <div class="row g-2 mb-3" id="period-sub-selects">
+                        <div class="col-md-7" id="col-sub-period">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold"
+                                id="label-sub-period">
+                                ជ្រើសរើសខែប្រឡង
+                            </label>
+                            <select class="form-select bg-dark text-white border-secondary" id="new-m-period-select">
+                                <option value="1">មករា</option>
+                                <option value="2">កុម្ភះ</option>
+                                <option value="3">មីនា</option>
+                                <option value="4">មេសា</option>
+                                <option value="5">ឧសភា</option>
+                                <option value="6">មិថុនា</option>
+                                <option value="7">កក្កដា</option>
+                                <option value="8">សីហា</option>
+                                <option value="9">កញ្ញា</option>
+                                <option value="10">តុលា</option>
+                                <option value="11">វិច្ឆិកា</option>
+                                <option value="12">ធ្នូ</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">
+                                ឆ្នាំសិក្សា (Year)
+                            </label>
+                            <select class="form-select bg-dark text-white border-secondary" id="new-m-year-select">
+                                <option value="2026" selected>2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="mb-3">
-                        <label class="form-label text-white extra-small text-uppercase fw-bold">Month Code</label>
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">
+                            ឈ្មោះកាលវិភាគ / បណ្តុំពិន្ទុ (Assessment / Period Title)
+                        </label>
+                        <input type="text" class="form-control bg-dark text-white border-secondary" id="new-m-name"
+                            placeholder="ឧទាហរណ៍៖ ប្រឡងប្រចាំខែមីនា ២០២៦" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">
+                            កូដសម្គាល់ (Assessment Code)
+                        </label>
                         <input type="text" class="form-control bg-dark text-warning border-secondary fw-bold"
                             id="new-m-code" value="2026-03" style="color:#d4af37 !important;" required>
                     </div>
+
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" id="set-as-latest-chk" checked>
                         <label class="form-check-label text-white extra-small" for="set-as-latest-chk">
-                            🔥 Set as Current Latest Month
+                            🔥 កំណត់ជាកាលវិភាគប្រឡងសកម្មចុងក្រោយ (Set as Current Latest)
                         </label>
                     </div>
 
@@ -368,7 +658,7 @@
                         <button type="button" class="btn btn-outline-glass btn-sm"
                             data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-calendar-check me-1"></i>
-                            Create New Month</button>
+                            បង្កើតកាលវិភាគនេះ</button>
                     </div>
                 </form>
             </div>
@@ -376,7 +666,7 @@
     </div>
 </div>
 
-<!-- Modal 2: Add New Score Entry Form Modal -->
+<!-- Modal 2: Add New Score Entry Form Modal (Per Student) -->
 <div class="modal fade" id="addNewScoreModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
@@ -388,78 +678,77 @@
                         <i class="bi bi-star-fill fs-5"></i>
                     </div>
                     <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">Class 12-A</span>
-                        <h4 class="fw-bold text-white mb-0">Add Monthly Student Score Form</h4>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;"
+                            id="add-score-class-badge">ថ្នាក់រៀន</span>
+                        <h4 class="fw-bold text-white mb-0">បញ្ចូលពិន្ទុសិស្សក្នុងថ្នាក់ (Add Student Score)</h4>
                     </div>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
+                <!-- In-Modal Success Notification (Allows Continuous Entry) -->
+                <div id="modal-score-alert"
+                    class="alert alert-success bg-success-subtle text-success border border-success rounded-3 mb-3 d-none d-flex align-items-center justify-content-between py-2 px-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill fs-5 text-success"></i>
+                        <div>
+                            <span class="fw-bold text-white small d-block"
+                                id="modal-score-alert-msg">រក្សាទុកពិន្ទុបានជោគជ័យ!</span>
+                            <span
+                                class="text-white-50 extra-small">លោកគ្រូ/អ្នកគ្រូអាចបន្តបញ្ចូលពិន្ទុសិស្សបន្ទាប់ក្នុងថ្នាក់បាន</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white btn-sm"
+                        onclick="document.getElementById('modal-score-alert').classList.add('d-none');"></button>
+                </div>
+
                 <form id="add-score-form">
                     <div class="row g-3 mb-3">
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Select Exam
-                                Month</label>
+                        <div class="col-md-3">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្នាក់រៀន
+                                (Class)</label>
+                            <input type="hidden" id="add-sc-class" value="">
+                            <input type="text" class="form-control bg-dark text-warning border-secondary fw-bold"
+                                id="add-sc-class-display" value="ថ្នាក់បន្ទុករបស់ខ្ញុំ" readonly>
+                        </div>
+                        <div class="col-md-3">
+                            <label
+                                class="form-label text-white extra-small text-uppercase fw-bold">កាលវិភាគប្រឡង</label>
                             <select class="form-select bg-dark text-white border-secondary" id="add-sc-month" required>
                                 <!-- Dynamic Options Populated via JS -->
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Select Student
-                                Name</label>
-                            <select class="form-select bg-dark text-white border-secondary fw-semibold" id="add-sc-name"
+                        <div class="col-md-3">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">
+                                ជ្រើសរើសឈ្មោះសិស្សក្នុងថ្នាក់
+                            </label>
+                            <select class="form-select bg-dark text-white border-warning fw-semibold" id="add-sc-name"
                                 required>
-                                <!-- Dynamic Student Name List Options Populated via JS -->
+                                <!-- Dynamic Student Name List for the Selected Class -->
                             </select>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Student ID</label>
+                        <div class="col-md-3">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អត្តលេខសិស្ស
+                                (ID)</label>
                             <input type="text" class="form-control bg-dark text-white border-secondary fw-bold"
-                                id="add-sc-id" value="STD-2026-007" required>
+                                id="add-sc-id" placeholder="STD-2026-..." readonly required>
                         </div>
                     </div>
 
                     <h6 class="fw-bold text-white mb-2"><i class="bi bi-pencil-square text-warning me-2"
-                            style="color:#d4af37;"></i>Enter Subject Scores (Max Score: 100):</h6>
-                    <div class="row g-3">
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small">📐 Mathematics (Math)</label>
-                            <input type="number" class="form-control bg-dark text-white border-secondary"
-                                id="add-sc-math" value="90" min="0" max="100" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small">⚡ Physics</label>
-                            <input type="number" class="form-control bg-dark text-white border-secondary"
-                                id="add-sc-physics" value="85" min="0" max="100" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small">🧪 Chemistry</label>
-                            <input type="number" class="form-control bg-dark text-white border-secondary"
-                                id="add-sc-chem" value="80" min="0" max="100" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small">📖 Khmer Literature</label>
-                            <input type="number" class="form-control bg-dark text-white border-secondary"
-                                id="add-sc-khmer" value="88" min="0" max="100" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small">🌐 English</label>
-                            <input type="number" class="form-control bg-dark text-white border-secondary"
-                                id="add-sc-eng" value="82" min="0" max="100" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small">📜 History</label>
-                            <input type="number" class="form-control bg-dark text-white border-secondary"
-                                id="add-sc-history" value="80" min="0" max="100" required>
-                        </div>
+                            style="color:#d4af37;"></i>បញ្ចូលពិន្ទុតាមមុខវិជ្ជា (Subject Scores):</h6>
+                    <div class="row g-3" id="add-score-subjects-container">
+                        <!-- Dynamic subject inputs rendered here -->
                     </div>
 
-                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
-                        <button type="button" class="btn btn-outline-glass btn-sm"
-                            data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i> Save
-                            Student Scores</button>
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4 d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle me-1 text-danger"></i> Cancel (បិទ Form)
+                        </button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm">
+                            <i class="bi bi-save2 me-1"></i> Save & Continue (រក្សាទុក & បន្តបញ្ចូល)
+                        </button>
                     </div>
                 </form>
             </div>
@@ -467,15 +756,93 @@
     </div>
 </div>
 
-<!-- Modal 3: Student Score Card & Monthly History Modal -->
+<!-- Modal 3: Batch Class Scores Entry Modal (All Students in One Screen) -->
+<div class="modal fade" id="batchClassScoreModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-grid-3x3-gap-fill fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;"
+                            id="batch-class-badge">Class</span>
+                        <h4 class="fw-bold text-white mb-0">បញ្ចូលពិន្ទុទាំងថ្នាក់តែម្តង (Batch Class Score Entry)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div
+                    class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 border-bottom border-dark">
+                    <div class="d-flex align-items-center gap-3">
+                        <div>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold mb-1">ថ្នាក់រៀន
+                                (Class):</label>
+                            <input type="hidden" id="batch-sc-class" value="">
+                            <div class="badge bg-dark border border-warning text-warning p-2 d-block fw-bold text-start"
+                                id="batch-sc-class-display" style="font-size: 0.85rem; min-width: 170px;">
+                                <i class="bi bi-mortarboard-fill me-1"></i> ថ្នាក់បន្ទុករបស់ខ្ញុំ
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="form-label text-white extra-small text-uppercase fw-bold mb-1">កាលវិភាគប្រឡង:</label>
+                            <select class="form-select bg-dark text-white border-secondary form-select-sm fw-bold"
+                                id="batch-sc-month">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="extra-small text-white-50">
+                        <i class="bi bi-info-circle text-warning me-1"></i> បំពេញពិន្ទុសិស្សក្នុងតារាងខាងក្រោម រួចចុច
+                        "រក្សាទុកទាំងអស់"
+                    </div>
+                </div>
+
+                <div class="table-responsive custom-table-scroll rounded-3 border border-dark"
+                    style="max-height: 460px;">
+                    <table class="table table-dark table-hover align-middle mb-0 text-center"
+                        style="font-size: 0.86rem;" id="batch-scores-table">
+                        <thead class="sticky-top bg-dark border-bottom border-warning">
+                            <tr id="batch-table-header-tr">
+                                <th style="width: 50px;">#</th>
+                                <th class="text-start" style="min-width: 160px;">ឈ្មោះសិស្ស</th>
+                                <th style="width: 110px;">អត្តលេខ</th>
+                                <th style="width: 70px;">ភេទ</th>
+                                <!-- Dynamic subject headers -->
+                            </tr>
+                        </thead>
+                        <tbody id="batch-scores-tbody">
+                            <!-- Populated with all students of the class -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer border-top border-dark p-3 d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn-gold-shimmer btn-sm" id="btnSaveBatchScores">
+                    <i class="bi bi-cloud-arrow-up-fill me-1"></i> 💾 រក្សាទុកពិន្ទុសិស្សទាំងអស់ក្នុងថ្នាក់ (Save All)
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 4: Student Score Card & Monthly History Modal -->
 <div class="modal fade" id="studentScoreCardModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
             style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
             <div class="modal-header border-bottom border-dark p-4">
                 <div class="d-flex align-items-center gap-3">
-                    <img id="sc-avatar" src="" class="rounded-circle border border-warning" width="60" height="60"
-                        alt="">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning"
+                        style="width: 50px; height: 50px; background: rgba(212,175,55,0.15);">
+                        <i class="bi bi-person-fill fs-3"></i>
+                    </div>
                     <div>
                         <span class="badge text-white fw-bold mb-1" style="background:#d4af37;"
                             id="sc-id">STD-2026-001</span>
@@ -486,49 +853,30 @@
                     aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <!-- Selected Month Summary Header -->
                 <div
                     class="p-3 rounded-3 bg-black border border-secondary mb-3 d-flex justify-content-between align-items-center">
                     <div>
                         <span class="text-white extra-small d-block mb-1">🏫 Class / Month / Rank</span>
-                        <h6 class="fw-bold text-white mb-0" id="sc-class-rank">Class 12-A • February 2026 • Rank 1</h6>
+                        <h6 class="fw-bold text-white mb-0" id="sc-class-rank">Class • Month • Rank</h6>
                     </div>
                     <div class="text-end">
                         <span class="text-white extra-small d-block mb-1">📊 Total Score / Grade</span>
-                        <h6 class="fw-bold text-white mb-0" id="sc-total-gpa">545 / 600 (90.8% - Grade A+)</h6>
+                        <h6 class="fw-bold text-white mb-0" id="sc-total-gpa">0 / 100</h6>
                     </div>
                 </div>
 
-                <!-- Scores Breakdown for Selected Month -->
                 <h6 class="fw-bold text-white mb-2"><i class="bi bi-list-check text-warning me-2"
                         style="color:#d4af37;"></i>Subject Score Breakdown:</h6>
                 <div class="table-responsive mb-4">
                     <table class="table table-dark table-bordered align-middle mb-0 text-center"
                         style="font-size: 0.86rem;">
-                        <thead>
-                            <tr style="background: rgba(40,40,60,0.9) !important;">
-                                <th class="text-white">Mathematics</th>
-                                <th class="text-white">Physics</th>
-                                <th class="text-white">Chemistry</th>
-                                <th class="text-white">Khmer Literature</th>
-                                <th class="text-white">English</th>
-                                <th class="text-white">History</th>
-                            </tr>
+                        <thead id="sc-modal-breakdown-thead">
                         </thead>
-                        <tbody>
-                            <tr class="fw-bold text-white">
-                                <td id="sc-math">98</td>
-                                <td id="sc-physics">95</td>
-                                <td id="sc-chem">90</td>
-                                <td id="sc-khmer">92</td>
-                                <td id="sc-eng">88</td>
-                                <td id="sc-history">82</td>
-                            </tr>
+                        <tbody id="sc-modal-breakdown-tbody">
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Monthly History Comparison Archive Section -->
                 <div class="p-3 rounded-3 border border-secondary" style="background: rgba(14, 14, 22, 0.95);">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h6 class="fw-bold text-white mb-0"><i class="bi bi-clock-history me-2"
@@ -539,7 +887,7 @@
                         <table class="table table-dark table-hover align-middle mb-0 text-center extra-small">
                             <thead>
                                 <tr class="text-warning" style="border-bottom: 1px solid rgba(212,175,55,0.3);">
-                                    <th>Exam Month</th>
+                                    <th>Exam Period</th>
                                     <th>Total Score</th>
                                     <th>Average %</th>
                                     <th>Grade</th>
@@ -548,16 +896,13 @@
                                 </tr>
                             </thead>
                             <tbody id="sc-history-tbody">
-                                <!-- Dynamic Monthly History Rows Rendered Here -->
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
             <div class="modal-footer border-top border-dark p-3">
-                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn-gold-shimmer btn-sm"><i class="bi bi-printer me-1"></i> Print Grade
-                    Report</button>
+                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -565,209 +910,481 @@
 
 <script>
     (function () {
-        let latestMonthKey = "2026-02";
-        let currentSelectedMonth = "2026-02";
+        // App State
+        let allAvailableClasses = [];
+        let currentSelectedClassId = null;
+        let currentClassStudents = [];
+        let latestMonthKey = "EXAM-1";
+        let currentSelectedMonth = "EXAM-1";
+        let databaseTotalMaxPoints = 100;
+        let databaseSubjectsList = [];
 
-        const monthsOrderList = [
-            { code: "2026-02", name: "February 2026" },
-            { code: "2026-01", name: "January 2026" },
-            { code: "2025-12", name: "December 2025" },
-            { code: "2025-11", name: "November 2025" }
-        ];
+        let monthsOrderList = [];
+        let monthTitlesMap = {};
+        const monthlyScoresDatabase = {};
 
-        const monthTitlesMap = {
-            "2026-02": "February 2026",
-            "2026-01": "January 2026",
-            "2025-12": "December 2025",
-            "2025-11": "November 2025"
-        };
+        let currentSearchQuery = '';
+        let currentResultFilter = 'all';
 
-        // Multi-Month Student Scores Database
-        const monthlyScoresDatabase = {
-            "2026-02": [
-                { rank: "1", id: "STD-2026-001", name: "Sok Chandara", gender: "Male", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80", math: 98, physics: 95, chem: 90, khmer: 92, eng: 88, history: 82, total: 545, avg: "90.8%", gpa: "Grade A+", result: "pass" },
-                { rank: "2", id: "STD-2026-004", name: "Chan Sreynet", gender: "Female", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80", math: 96, physics: 92, chem: 88, khmer: 94, eng: 90, history: 85, total: 545, avg: "90.8%", gpa: "Grade A+", result: "pass" },
-                { rank: "3", id: "STD-2026-002", name: "Kim Seanghai", gender: "Female", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80", math: 92, physics: 90, chem: 86, khmer: 88, eng: 85, history: 84, total: 525, avg: "87.5%", gpa: "Grade A", result: "pass" },
-                { rank: "4", id: "STD-2026-003", name: "Ly Sovannara", gender: "Male", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80", math: 85, physics: 82, chem: 80, khmer: 80, eng: 78, history: 75, total: 480, avg: "80.0%", gpa: "Grade B+", result: "pass" },
-                { rank: "5", id: "STD-2026-006", name: "Chea Piseth", gender: "Male", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80", math: 78, physics: 75, chem: 72, khmer: 76, eng: 74, history: 70, total: 445, avg: "74.1%", gpa: "Grade B", result: "pass" },
-                { rank: "38", id: "STD-2026-005", name: "Oung Vireak", gender: "Male", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80", math: 45, physics: 42, chem: 40, khmer: 48, eng: 46, history: 44, total: 265, avg: "44.1%", gpa: "Grade F", result: "fail" }
-            ],
-            "2026-01": [
-                { rank: "1", id: "STD-2026-001", name: "Sok Chandara", gender: "Male", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80", math: 95, physics: 92, chem: 88, khmer: 90, eng: 86, history: 80, total: 531, avg: "88.5%", gpa: "Grade A", result: "pass" },
-                { rank: "2", id: "STD-2026-002", name: "Kim Seanghai", gender: "Female", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80", math: 90, physics: 88, chem: 85, khmer: 87, eng: 84, history: 82, total: 516, avg: "86.0%", gpa: "Grade A", result: "pass" },
-                { rank: "3", id: "STD-2026-004", name: "Chan Sreynet", gender: "Female", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80", math: 92, physics: 90, chem: 84, khmer: 91, eng: 85, history: 80, total: 522, avg: "87.0%", gpa: "Grade A", result: "pass" },
-                { rank: "4", id: "STD-2026-003", name: "Ly Sovannara", gender: "Male", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80", math: 80, physics: 78, chem: 75, khmer: 76, eng: 74, history: 72, total: 455, avg: "75.8%", gpa: "Grade B", result: "pass" }
-            ],
-            "2025-12": [
-                { rank: "1", id: "STD-2026-001", name: "Sok Chandara", gender: "Male", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80", math: 92, physics: 90, chem: 85, khmer: 88, eng: 85, history: 80, total: 520, avg: "86.6%", gpa: "Grade A", result: "pass" }
-            ],
-            "2025-11": [
-                { rank: "1", id: "STD-2026-001", name: "Sok Chandara", gender: "Male", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80", math: 90, physics: 88, chem: 84, khmer: 86, eng: 82, history: 78, total: 508, avg: "84.6%", gpa: "Grade B+", result: "pass" }
-            ]
-        };
+        // Helper for score chips
+        function getScoreChip(val, maxVal) {
+            const num = parseFloat(val) || 0;
+            const max = parseFloat(maxVal) || 100;
+            const pct = max > 0 ? (num / max) * 100 : 0;
+            let cls = 'score-average';
+            if (pct >= 85) cls = 'score-top';
+            else if (pct >= 70) cls = 'score-good';
+            else if (pct < 50) cls = 'score-poor';
+            return `<span class="score-chip ${cls}" title="${num} / ${max} ពិន្ទុ">${num}</span>`;
+        }
 
-        // Master Class 12-A Student Roster for Score Entry Dropdown
-        const class12AStudentsRoster = [
-            { id: "STD-2026-001", name: "Sok Chandara", gender: "Male", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80" },
-            { id: "STD-2026-004", name: "Chan Sreynet", gender: "Female", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80" },
-            { id: "STD-2026-002", name: "Kim Seanghai", gender: "Female", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80" },
-            { id: "STD-2026-003", name: "Ly Sovannara", gender: "Male", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" },
-            { id: "STD-2026-006", name: "Chea Piseth", gender: "Male", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80" },
-            { id: "STD-2026-005", name: "Oung Vireak", gender: "Male", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80" },
-            { id: "STD-2026-007", name: "Sorn Vandarith", gender: "Male", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80" },
-            { id: "STD-2026-008", name: "Heng Sreypov", gender: "Female", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80" }
-        ];
+        function getRankBadge(rank) {
+            const r = rank !== undefined && rank !== null ? String(rank).trim() : '';
+            if (r === "1") return `<span class="rank-badge rank-1">🥇 1</span>`;
+            if (r === "2") return `<span class="rank-badge rank-2">🥈 2</span>`;
+            if (r === "3") return `<span class="rank-badge rank-3">🥉 3</span>`;
+            if (r && r !== '-') return `<span class="rank-badge rank-other">${r}</span>`;
+            return `<span class="rank-badge rank-other">-</span>`;
+        }
 
-        function populateStudentNameSelectOptions() {
+        function getGpaBadge(gpa) {
+            if (!gpa) return `<span class="badge bg-secondary">-</span>`;
+            if (gpa.includes('A')) return `<span class="badge bg-success-subtle text-success fw-bold border border-success">${gpa}</span>`;
+            if (gpa.includes('B')) return `<span class="badge bg-info-subtle text-info fw-bold border border-info">${gpa}</span>`;
+            if (gpa.includes('C')) return `<span class="badge bg-warning-subtle text-warning fw-bold border border-warning">${gpa}</span>`;
+            return `<span class="badge bg-danger-subtle text-danger fw-bold border border-danger">${gpa}</span>`;
+        }
+
+        let teacherHomeroomClass = null;
+
+        // 1. Fetch Teacher's Assigned Homeroom Class from Database
+        async function fetchClassesList() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('token');
+            let currentUser = null;
+            try {
+                const userStr = localStorage.getItem('user');
+                if (userStr) currentUser = JSON.parse(userStr);
+            } catch (e) { }
+
+            const teacherName = currentUser ? (currentUser.full_name || currentUser.name || currentUser.username || '') : '';
+
+            // Fetch teacher's own assigned homeroom class
+            try {
+                const myClassRes = await fetch('/api/teacher/my_class', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token ? `Bearer ${token}` : ''
+                    },
+                    body: JSON.stringify({ name: teacherName })
+                });
+                const myClassData = await myClassRes.json();
+                if (myClassData.status === 'success') {
+                    if (myClassData.homeroom_class) {
+                        teacherHomeroomClass = myClassData.homeroom_class;
+                        currentSelectedClassId = teacherHomeroomClass.class_id;
+                        localStorage.setItem('teacher_class', JSON.stringify(teacherHomeroomClass));
+                    } else {
+                        teacherHomeroomClass = null;
+                        currentSelectedClassId = null;
+                        localStorage.removeItem('teacher_class');
+                    }
+                }
+            } catch (e) {
+                console.log('Error checking teacher class in scores:', e);
+            }
+
+            // Fallback from localStorage
+            if (!teacherHomeroomClass) {
+                try {
+                    const saved = localStorage.getItem('teacher_class');
+                    if (saved) {
+                        teacherHomeroomClass = JSON.parse(saved);
+                        currentSelectedClassId = teacherHomeroomClass.class_id;
+                    }
+                } catch (e) { }
+            }
+
+            if (!currentSelectedClassId && teacherHomeroomClass) {
+                currentSelectedClassId = teacherHomeroomClass.class_id;
+            }
+
+            updateClassHeaderLabels();
+        }
+
+        function updateClassHeaderLabels() {
+            const className = teacherHomeroomClass
+                ? (teacherHomeroomClass.display_name || `${teacherHomeroomClass.class_name} (${teacherHomeroomClass.grade || 'Grade'}${teacherHomeroomClass.room ? ' - ' + teacherHomeroomClass.room : ''})`)
+                : 'ថ្នាក់រៀនបន្ទុក';
+
+            const heroClassBadge = document.getElementById('my-scores-homeroom-class-name');
+            if (heroClassBadge) heroClassBadge.textContent = className;
+
+            const activeBadge = document.getElementById('active-class-badge');
+            if (activeBadge) activeBadge.innerHTML = `<i class="bi bi-mortarboard-fill me-1"></i> ថ្នាក់បន្ទុក៖ ${className}`;
+
+            const tableBadge = document.getElementById('table-class-badge');
+            if (tableBadge) tableBadge.textContent = className;
+
+            const addBadge = document.getElementById('add-score-class-badge');
+            if (addBadge) addBadge.textContent = className;
+
+            const addClassDisplay = document.getElementById('add-sc-class-display');
+            if (addClassDisplay) addClassDisplay.value = className;
+
+            const addClassInput = document.getElementById('add-sc-class');
+            if (addClassInput && currentSelectedClassId) addClassInput.value = currentSelectedClassId;
+
+            const batchBadge = document.getElementById('batch-class-badge');
+            if (batchBadge) batchBadge.textContent = className;
+
+            const batchClassDisplay = document.getElementById('batch-sc-class-display');
+            if (batchClassDisplay) batchClassDisplay.innerHTML = `<i class="bi bi-mortarboard-fill me-1"></i> ${className}`;
+
+            const batchClassInput = document.getElementById('batch-sc-class');
+            if (batchClassInput && currentSelectedClassId) batchClassInput.value = currentSelectedClassId;
+
+            const addMonthBadge = document.getElementById('add-month-class-badge');
+            if (addMonthBadge) addMonthBadge.textContent = className;
+        }
+
+        // 2. Fetch Students of Selected Class (/api/class/<class_id>/students)
+        async function fetchStudentsForClass(classId) {
+            if (!classId) return;
+            try {
+                const res = await fetch(`/api/class/${classId}/students`);
+                const data = await res.json();
+                if (data.status === 'success' && Array.isArray(data.students)) {
+                    currentClassStudents = data.students.map(st => ({
+                        student_id: st.student_id,
+                        id: st.student_code || `STD-${st.student_id}`,
+                        name: st.full_name,
+                        gender: st.gender || 'Male',
+                        avatar: ''
+                    }));
+                } else {
+                    currentClassStudents = [];
+                }
+            } catch (err) {
+                console.error(`Error fetching students for class ${classId}:`, err);
+                currentClassStudents = [];
+            }
+
+            populateStudentSelectOptions();
+            renderBatchModalTable();
+            renderStudentScoresTable(currentSelectedMonth);
+        }
+
+        function populateStudentSelectOptions(targetMonthKey) {
             const studentSelect = document.getElementById('add-sc-name');
             const studentIdInput = document.getElementById('add-sc-id');
+            const submitBtn = document.querySelector('#add-score-form button[type="submit"]');
             if (!studentSelect) return;
 
-            studentSelect.innerHTML = class12AStudentsRoster.map(s => `
-                <option value="${s.name}" data-id="${s.id}">${s.name} (${s.id})</option>
+            const monthKey = targetMonthKey || document.getElementById('add-sc-month')?.value || currentSelectedMonth;
+            const activeMonthScores = monthlyScoresDatabase[monthKey] || [];
+
+            // Filter out students who already have scores entered (hide already entered students)
+            const unenteredStudents = currentClassStudents.filter(st => {
+                const hasScore = activeMonthScores.some(s => {
+                    const matchId = (s.student_id && st.student_id && String(s.student_id) === String(st.student_id)) || (s.id && st.id && s.id === st.id);
+                    const matchName = s.name && st.name && s.name.trim() === st.name.trim();
+                    const hasValidScore = (s.total > 0) || (Array.isArray(s.scores_raw) && s.scores_raw.length > 0) || (s.result && s.result !== 'pending');
+                    return (matchId || matchName) && hasValidScore;
+                });
+                return !hasScore;
+            });
+
+            if (currentClassStudents.length === 0) {
+                studentSelect.innerHTML = `<option value="">-- គ្មានសិស្សក្នុងថ្នាក់នេះនៅឡើយទេ --</option>`;
+                if (studentIdInput) studentIdInput.value = '';
+                if (submitBtn) submitBtn.disabled = true;
+                return;
+            }
+
+            if (unenteredStudents.length === 0) {
+                studentSelect.innerHTML = `<option value="">🎉 សិស្សទាំងអស់ក្នុងថ្នាក់បានបញ្ចូលពិន្ទុរួចរាល់ហើយ (${currentClassStudents.length}/${currentClassStudents.length})</option>`;
+                if (studentIdInput) studentIdInput.value = '';
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = `<i class="bi bi-check-all me-1"></i> បានបញ្ចូលពិន្ទុគ្រប់ចំនួនហើយ`;
+                }
+                return;
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="bi bi-save2 me-1"></i> Save & Continue (រក្សាទុក & បន្តបញ្ចូល)`;
+            }
+
+            studentSelect.innerHTML = unenteredStudents.map((st, idx) => `
+                <option value="${st.name}" data-id="${st.id}" data-student-id="${st.student_id}" ${idx === 0 ? 'selected' : ''}>
+                    ${st.name} (${st.id}) [${st.gender === 'Female' ? 'ស្រី' : 'ប្រុស'}]
+                </option>
             `).join('');
 
-            // Auto-set initial student ID
-            if (studentIdInput && class12AStudentsRoster.length > 0) {
-                studentIdInput.value = class12AStudentsRoster[0].id;
+            if (studentIdInput && unenteredStudents.length > 0) {
+                studentIdInput.value = unenteredStudents[0].id;
             }
 
-            // On change listener to auto-fill student ID
-            studentSelect.removeEventListener('change', handleStudentSelectChange);
-            studentSelect.addEventListener('change', handleStudentSelectChange);
+            studentSelect.onchange = function () {
+                const opt = studentSelect.options[studentSelect.selectedIndex];
+                if (opt && studentIdInput) {
+                    studentIdInput.value = opt.getAttribute('data-id') || '';
+                }
+            };
         }
 
-        function handleStudentSelectChange() {
-            const studentSelect = document.getElementById('add-sc-name');
-            const studentIdInput = document.getElementById('add-sc-id');
-            if (!studentSelect || !studentIdInput) return;
-
-            const selectedOpt = studentSelect.options[studentSelect.selectedIndex];
-            if (selectedOpt) {
-                const sId = selectedOpt.getAttribute('data-id');
-                if (sId) studentIdInput.value = sId;
+        // 3. Render Dynamic Table Header for Database Subjects
+        function renderDynamicTableHeaders(subjs) {
+            const superTh = document.getElementById('super-header-subjects-th');
+            if (superTh) {
+                superTh.setAttribute('colspan', subjs && subjs.length > 0 ? subjs.length : 1);
             }
+            const subTr = document.getElementById('scores-sub-header-tr');
+            if (!subTr) return;
+
+            const icons = ['bi-calculator', 'bi-lightning-charge', 'bi-virus', 'bi-book', 'bi-translate', 'bi-hourglass-split', 'bi-globe', 'bi-cpu'];
+            const colors = ['#38bdf8', '#fbbf24', '#34d399', '#f472b6', '#60a5fa', '#c084fc', '#f59e0b', '#a78bfa'];
+
+            let subjectsThHtml = '';
+            if (!subjs || subjs.length === 0) {
+                subjectsThHtml = `<th>មុខវិជ្ជា</th>`;
+            } else {
+                subjectsThHtml = subjs.map((s, idx) => {
+                    const icon = icons[idx % icons.length];
+                    const color = colors[idx % colors.length];
+                    return `<th title="${s.name} (Max: ${s.max})"><i class="bi ${icon} me-1" style="color:${color};"></i>${s.name}</th>`;
+                }).join('');
+            }
+
+            subTr.innerHTML = `
+                <th class="ps-3 text-start" style="width: 85px;">ចំណាត់ថ្នាក់</th>
+                <th class="text-start" style="min-width: 170px;">ឈ្មោះសិស្ស (Name)</th>
+                <th style="width: 105px;">អត្តលេខ (ID)</th>
+                <th style="width: 75px;">ភេទ</th>
+                ${subjectsThHtml}
+                <th style="min-width: 110px;"><i class="bi bi-trophy-fill me-1" style="color:#ffd700;"></i>សរុប</th>
+                <th style="min-width: 80px;">មធ្យម %</th>
+                <th style="min-width: 95px;">និទ្ទេស (GPA)</th>
+                <th style="min-width: 105px;">លទ្ធផល</th>
+                <th class="pe-3 text-end" style="width: 90px;">លម្អិត</th>
+            `;
         }
 
+        // 4. Render Month Pills Bar
         function renderMonthPills() {
             const container = document.getElementById('month-pills-container');
             const selectElem = document.getElementById('add-sc-month');
+            const batchMonthSel = document.getElementById('batch-sc-month');
             if (!container) return;
 
-            // Render Pills
-            let html = monthsOrderList.map(m => {
-                const isLatest = m.code === latestMonthKey;
-                const isActive = m.code === currentSelectedMonth;
+            container.innerHTML = monthsOrderList.map(m => {
+                const isAct = m.code === currentSelectedMonth;
+                const isLat = m.code === latestMonthKey;
                 return `
-                    <button class="month-pill-btn ${isActive ? 'active-month' : ''}" data-month="${m.code}">
-                        ${isLatest ? '🔥 ' : '📁 '}${m.name}
-                        ${isLatest ? '<span class="badge bg-warning text-dark extra-small ms-1" style="font-size:0.68rem;">Latest</span>' : ''}
+                    <button type="button" class="month-pill-btn ${isAct ? 'active' : ''}" data-month="${m.code}">
+                        ${isLat ? '<i class="bi bi-fire text-warning"></i>' : '<i class="bi bi-folder2-open"></i>'}
+                        <span>${m.name}</span>
+                        ${isLat ? '<span class="badge bg-warning text-dark extra-small py-0 px-1">New</span>' : ''}
                     </button>
                 `;
             }).join('');
 
-            // Add "➕ Add New Month" Button at end of pills
-            html += `
-                <button class="btn btn-outline-warning btn-sm py-1 px-2.5 ms-1 fw-bold" data-bs-toggle="modal" data-bs-target="#addNewMonthModal">
-                    <i class="bi bi-plus-circle me-1"></i> ➕ Add New Month
-                </button>
-            `;
-            container.innerHTML = html;
-
-            // Re-bind Pill Click Listeners
             container.querySelectorAll('.month-pill-btn').forEach(btn => {
                 btn.addEventListener('click', function () {
                     const mCode = this.getAttribute('data-month');
                     if (mCode) {
                         currentSelectedMonth = mCode;
                         renderMonthPills();
+                        loadSubjectsForCurrentExam(currentSelectedMonth);
                         renderStudentScoresTable(currentSelectedMonth);
+                        renderBatchModalTable();
                     }
                 });
             });
 
-            // Render Select Options for Add Score Form Modal
-            if (selectElem) {
-                selectElem.innerHTML = monthsOrderList.map(m => `
-                    <option value="${m.code}" ${m.code === currentSelectedMonth ? 'selected' : ''}>
-                        ${m.code === latestMonthKey ? '🔥 ' : '📁 '}${m.name} ${m.code === latestMonthKey ? '(Latest Month)' : ''}
-                    </option>
-                `).join('');
-            }
+            const monthOptsHtml = monthsOrderList.map(m => `
+                <option value="${m.code}" ${m.code === currentSelectedMonth ? 'selected' : ''}>
+                    ${m.code === latestMonthKey ? '🔥 ' : '📁 '}${m.name} ${m.code === latestMonthKey ? '(Latest)' : ''}
+                </option>
+            `).join('');
 
-            populateStudentNameSelectOptions();
+            if (selectElem) {
+                selectElem.innerHTML = monthOptsHtml;
+                selectElem.onchange = function () {
+                    loadSubjectsForCurrentExam(this.value);
+                    populateStudentSelectOptions(this.value);
+                };
+            }
+            if (batchMonthSel) {
+                batchMonthSel.innerHTML = monthOptsHtml;
+                batchMonthSel.onchange = function () {
+                    loadSubjectsForCurrentExam(this.value);
+                    renderBatchModalTable();
+                };
+            }
         }
 
+        // 5. Render Student Scores Table for Active Class & Month
         function renderStudentScoresTable(monthKey) {
-            const list = monthlyScoresDatabase[monthKey] || [];
             const tbody = document.getElementById('scores-table-tbody');
             if (!tbody) return;
 
+            const currClass = allAvailableClasses.find(c => String(c.class_id) === String(currentSelectedClassId)) || allAvailableClasses[0];
+            const className = currClass ? `${currClass.class_name} (${currClass.grade || 'Grade'})` : 'Class';
             const monthName = monthTitlesMap[monthKey] || monthKey;
-            const isLatest = monthKey === latestMonthKey;
 
-            // Update Header & Badge Labels
-            document.getElementById('table-title-header').innerHTML = `<i class="bi bi-table me-2" style="color:#d4af37;"></i>Class 12-A Student Score Sheet (${monthName})`;
-            document.getElementById('active-month-badge').innerHTML = isLatest ?
-                `🟢 Showing Scores: ${monthName} (Latest)` :
-                `📂 Viewing Historical Archive: ${monthName}`;
-            document.getElementById('kpi-month-label').innerText = `${monthName} ${isLatest ? '(Latest Month)' : ''}`;
+            const titleElem = document.getElementById('table-title-header');
+            if (titleElem) {
+                titleElem.innerHTML = `<i class="bi bi-table me-2" style="color:#ffd700;"></i>តារាងពិន្ទុ ${className} • ${monthName}`;
+            }
 
-            if (list.length === 0) {
+            const monthList = monthlyScoresDatabase[monthKey] || [];
+
+            // Combine class students with their scores
+            const displayList = currentClassStudents.map(st => {
+                const scoreRec = monthList.find(s => s.id === st.id || s.name === st.name || String(s.student_id) === String(st.student_id));
+                if (scoreRec) {
+                    return { ...st, ...scoreRec };
+                }
+                return {
+                    ...st,
+                    rank: "-",
+                    scores_map: {},
+                    scores_raw: [],
+                    total: 0,
+                    avg: "0.0%",
+                    gpa: "-",
+                    result: "pending",
+                    has_score: false
+                };
+            });
+
+            // Sort by total descending if scores exist
+            displayList.sort((a, b) => (b.total || 0) - (a.total || 0));
+            displayList.forEach((item, idx) => {
+                if (item.total > 0) item.rank = (idx + 1).toString();
+            });
+
+            // Filter search & status
+            const filtered = displayList.filter(s => {
+                const matchQuery = !currentSearchQuery ||
+                    s.name.toLowerCase().includes(currentSearchQuery) ||
+                    s.id.toLowerCase().includes(currentSearchQuery);
+
+                let matchResult = true;
+                if (currentResultFilter === 'all') {
+                    matchResult = true;
+                } else if (currentResultFilter === 'unentered') {
+                    matchResult = (!s.total || s.total === 0) && (!s.scores_raw || s.scores_raw.length === 0);
+                } else if (currentResultFilter === 'entered') {
+                    matchResult = (s.total > 0) || (Array.isArray(s.scores_raw) && s.scores_raw.length > 0);
+                } else {
+                    matchResult = s.result === currentResultFilter;
+                }
+                return matchQuery && matchResult;
+            });
+
+            const countElem = document.getElementById('scores-display-count');
+            if (countElem) countElem.innerText = filtered.length;
+
+            // Update KPIs
+            const scoredStudents = displayList.filter(s => s.total > 0);
+            if (scoredStudents.length > 0) {
+                const totalScoreSum = scoredStudents.reduce((acc, s) => acc + (s.total || 0), 0);
+                const avgPct = ((totalScoreSum / (scoredStudents.length * databaseTotalMaxPoints)) * 100).toFixed(1);
+                const passCount = scoredStudents.filter(s => s.result === 'pass').length;
+                const failCount = scoredStudents.filter(s => s.result === 'fail').length;
+                const passRatePct = Math.round((passCount / scoredStudents.length) * 100);
+
+                const kpiAvgElem = document.getElementById('kpi-avg-score');
+                if (kpiAvgElem) kpiAvgElem.innerText = `${avgPct}%`;
+                const kpiMonthElem = document.getElementById('kpi-month-label');
+                if (kpiMonthElem) kpiMonthElem.innerText = `${monthName}`;
+                const kpiPassElem = document.getElementById('kpi-pass-rate');
+                if (kpiPassElem) kpiPassElem.innerText = `${passRatePct}% (${passCount} / ${scoredStudents.length})`;
+                const kpiFailElem = document.getElementById('kpi-fail-count');
+                if (kpiFailElem) kpiFailElem.innerText = `${failCount} នាក់`;
+            } else {
+                const kpiAvgElem = document.getElementById('kpi-avg-score');
+                if (kpiAvgElem) kpiAvgElem.innerText = `0.0%`;
+                const kpiPassElem = document.getElementById('kpi-pass-rate');
+                if (kpiPassElem) kpiPassElem.innerText = `0% (0 / ${currentClassStudents.length})`;
+                const kpiFailElem = document.getElementById('kpi-fail-count');
+                if (kpiFailElem) kpiFailElem.innerText = `0 នាក់`;
+            }
+
+            if (filtered.length === 0) {
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="15" class="p-4 text-center text-white">
-                            <i class="bi bi-journal-x text-warning fs-3 d-block mb-2" style="color:#d4af37 !important;"></i>
-                            No score records found for "${monthName}". Click <strong>"➕ Add New Score"</strong> to enter student scores!
+                            <i class="bi bi-people text-warning fs-3 d-block mb-2" style="color:#d4af37 !important;"></i>
+                            មិនទាន់មានសិស្សក្នុងថ្នាក់នេះ ឬមិនត្រូវនឹងលក្ខខណ្ឌស្វែងរកឡើយ។
                         </td>
                     </tr>
                 `;
                 return;
             }
 
-            tbody.innerHTML = list.map((s, index) => `
-                <tr>
-                    <td>
-                        <span class="badge ${s.rank === '1' ? 'bg-warning text-white fw-bold' : s.rank === '2' ? 'bg-info text-white fw-bold' : 'bg-dark border border-secondary text-white'} px-2.5 py-1">
-                            No. ${s.rank}
-                        </span>
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-center gap-2.5">
-                            <img src="${s.avatar}" class="rounded-circle border border-warning" width="36" height="36" alt="${s.name}">
-                            <span class="fw-semibold text-white">${s.name}</span>
-                        </div>
-                    </td>
-                    <td><code>${s.id}</code></td>
-                    <td><span class="badge ${s.gender === 'Female' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'}">${s.gender}</span></td>
-                    <td><span class="fw-semibold text-white">${s.math}</span></td>
-                    <td><span class="fw-semibold text-white">${s.physics}</span></td>
-                    <td><span class="fw-semibold text-white">${s.chem}</span></td>
-                    <td><span class="fw-semibold text-white">${s.khmer}</span></td>
-                    <td><span class="fw-semibold text-white">${s.eng}</span></td>
-                    <td><span class="fw-semibold text-white">${s.history}</span></td>
-                    <td><span class="fw-bold text-warning" style="color:#d4af37 !important;">${s.total} / 600</span></td>
-                    <td><span class="fw-bold text-info">${s.avg}</span></td>
-                    <td>
-                        <span class="badge ${s.gpa.includes('A') ? 'grade-badge-a' : s.gpa.includes('B') ? 'grade-badge-b' : 'grade-badge-f'} px-2.5 py-1">
-                            ${s.gpa}
-                        </span>
-                    </td>
-                    <td>
-                        <span class="badge ${s.result === 'pass' ? 'bg-success-subtle text-success border border-success' : 'bg-danger-subtle text-danger border border-danger'} px-2.5 py-1">
-                            ${s.result === 'pass' ? '✅ Passed' : '🚨 Failed / Remedial'}
-                        </span>
-                    </td>
-                    <td class="text-end">
-                        <button class="btn-card-details view-score-card-btn" data-student-id="${s.id}">
-                            <i class="bi bi-eye-fill me-1"></i> View 👁️
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
+            tbody.innerHTML = filtered.map(s => {
+                const subjectCells = (databaseSubjectsList && databaseSubjectsList.length > 0 ? databaseSubjectsList : [
+                    { id: 'math', code: 'math', name: 'គណិត', max: 100 }
+                ]).map(subj => {
+                    let scoreVal = 0;
+                    if (s.scores_map) {
+                        if (s.scores_map[subj.name] !== undefined) scoreVal = s.scores_map[subj.name];
+                        else if (s.scores_map[subj.id] !== undefined) scoreVal = s.scores_map[subj.id];
+                        else if (s.scores_map[subj.code] !== undefined) scoreVal = s.scores_map[subj.code];
+                    } else if (Array.isArray(s.scores_raw)) {
+                        const found = s.scores_raw.find(sr => sr.subject_name === subj.name || sr.subject_code === subj.id);
+                        if (found) scoreVal = found.score;
+                    }
+                    return `<td>${getScoreChip(scoreVal, subj.max)}</td>`;
+                }).join('');
 
-            // Click listener for Student Score Modal
-            document.querySelectorAll('.view-score-card-btn').forEach(btn => {
+                const resultBadge = s.result === 'pass' ? `<span class="badge badge-result-pass">✅ ជាប់</span>` :
+                    s.result === 'fail' ? `<span class="badge badge-result-fail">🚨 ធ្លាក់</span>` :
+                        `<span class="badge bg-secondary">⏳ មិនទាន់បញ្ចូល</span>`;
+
+                return `
+                    <tr>
+                        <td class="ps-3 text-start">${getRankBadge(s.rank)}</td>
+                        <td class="text-start">
+                            <div class="d-flex align-items-center gap-2.5">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning" style="width: 32px; height: 32px; background: rgba(212,175,55,0.1); flex-shrink: 0;">
+                                    <i class="bi bi-person-fill fs-6"></i>
+                                </div>
+                                <span class="fw-semibold text-white">${s.name}</span>
+                            </div>
+                        </td>
+                        <td><code style="color: #cbd5e1; background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px; font-size: 0.8rem;">${s.id}</code></td>
+                        <td>
+                            <span class="badge ${s.gender === 'Female' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'} px-2 py-1">
+                                ${s.gender === 'Female' ? '👩 ស្រី' : '👨 ប្រុស'}
+                            </span>
+                        </td>
+                        ${subjectCells}
+                        <td>
+                            <div class="total-score-pill">
+                                <span>${s.total}</span>
+                                <span class="max-label">/${databaseTotalMaxPoints}</span>
+                            </div>
+                        </td>
+                        <td><span class="avg-score-pill">${s.avg}</span></td>
+                        <td>${getGpaBadge(s.gpa)}</td>
+                        <td>${resultBadge}</td>
+                        <td class="pe-3 text-end">
+                            <button class="btn btn-outline-glass btn-sm py-1 px-2 view-score-card-btn" data-student-id="${s.id}" title="មើលលម្អិត">
+                                <i class="bi bi-eye-fill"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Bind click for score card modal
+            tbody.querySelectorAll('.view-score-card-btn').forEach(btn => {
                 btn.addEventListener('click', function () {
                     const studentId = this.getAttribute('data-student-id');
                     showStudentScoreModal(studentId, monthKey);
@@ -775,237 +1392,1009 @@
             });
         }
 
-        function showStudentScoreModal(studentId, currentMonth) {
-            const currentList = monthlyScoresDatabase[currentMonth] || monthlyScoresDatabase[latestMonthKey] || [];
-            let s = currentList.find(item => item.id === studentId);
-            if (!s && monthlyScoresDatabase[latestMonthKey]) {
-                s = monthlyScoresDatabase[latestMonthKey][0];
+        // 6. Render Modal 2: Dynamic Subject Inputs
+        function renderScoreModalSubjects(subjs) {
+            const container = document.getElementById('add-score-subjects-container');
+            if (!container) return;
+
+            if (!Array.isArray(subjs) || subjs.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center p-3 text-warning">
+                        <i class="bi bi-exclamation-triangle me-1"></i> មិនទាន់មានមុខវិជ្ជាក្នុង Database ឡើយ។
+                    </div>
+                `;
+                return;
             }
-            if (!s) return;
 
-            document.getElementById('sc-avatar').src = s.avatar;
-            document.getElementById('sc-id').innerText = s.id;
-            document.getElementById('sc-name').innerText = s.name;
-            document.getElementById('sc-class-rank').innerText = `Class 12-A • ${monthTitlesMap[currentMonth] || currentMonth} • Rank No. ${s.rank}`;
-            document.getElementById('sc-total-gpa').innerText = `${s.total} / 600 (${s.avg} - ${s.gpa})`;
+            container.innerHTML = subjs.map((s, idx) => {
+                const sName = s.name || s.subject_name || `មុខវិជ្ជា ${idx + 1}`;
+                const sMax = Number(s.max !== undefined ? s.max : 100);
+                const sCode = s.code || s.id || `subj-${idx + 1}`;
+                const parentId = s.parent_id || s.subject_id || 1;
 
-            document.getElementById('sc-math').innerText = s.math;
-            document.getElementById('sc-physics').innerText = s.physics;
-            document.getElementById('sc-chem').innerText = s.chem;
-            document.getElementById('sc-khmer').innerText = s.khmer;
-            document.getElementById('sc-eng').innerText = s.eng;
-            document.getElementById('sc-history').innerText = s.history;
+                return `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="p-2.5 rounded-3 border border-secondary" style="background: rgba(255,255,255,0.03);">
+                            <label class="form-label text-white extra-small fw-bold d-flex justify-content-between align-items-center mb-1">
+                                <span class="text-truncate" title="${sName}">
+                                    <i class="bi bi-journal-bookmark-fill text-warning me-1"></i>${sName}
+                                </span>
+                                <span class="badge bg-secondary extra-small">Max: ${sMax}</span>
+                            </label>
+                            <div class="input-group input-group-sm">
+                                <input type="number" 
+                                    class="form-control bg-dark text-white border-secondary fw-semibold score-subject-input"
+                                    data-parent-id="${parentId}"
+                                    data-subject-id="${sCode}"
+                                    data-code="${sCode}"
+                                    data-name="${sName}"
+                                    placeholder="0 - ${sMax}"
+                                    min="0"
+                                    max="${sMax}"
+                                    step="any"
+                                    required>
+                                <span class="input-group-text bg-secondary text-white border-secondary extra-small">/${sMax}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
 
-            // Render Monthly History Archive Rows for this Student
-            const historyTbody = document.getElementById('sc-history-tbody');
-            if (historyTbody) {
-                const historyHtml = monthsOrderList.map(m => {
-                    const mKey = m.code;
-                    const mList = monthlyScoresDatabase[mKey] || [];
-                    const mRecord = mList.find(rec => rec.id === studentId);
-                    if (!mRecord) return '';
-                    const isLatest = mKey === latestMonthKey;
+        // 7. Render Modal 3: Batch Class Scores Table
+        function renderBatchModalTable() {
+            const tbody = document.getElementById('batch-scores-tbody');
+            const theadTr = document.getElementById('batch-table-header-tr');
+            if (!tbody || !theadTr) return;
+
+            // Headers
+            let subjHeaderHtml = (databaseSubjectsList || []).map(subj => `
+                <th style="min-width: 110px;">${subj.name} (${subj.max})</th>
+            `).join('');
+
+            theadTr.innerHTML = `
+                <th style="width: 45px;">#</th>
+                <th class="text-start" style="min-width: 160px;">ឈ្មោះសិស្ស</th>
+                <th style="width: 110px;">អត្តលេខ</th>
+                <th style="width: 70px;">ភេទ</th>
+                ${subjHeaderHtml}
+            `;
+
+            if (currentClassStudents.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="10" class="p-3 text-warning">មិនទាន់មានសិស្សក្នុងថ្នាក់នេះឡើយ។</td></tr>`;
+                return;
+            }
+
+            const activeMonthScores = monthlyScoresDatabase[currentSelectedMonth] || [];
+
+            tbody.innerHTML = currentClassStudents.map((st, idx) => {
+                const existingScore = activeMonthScores.find(s => s.id === st.id || s.name === st.name);
+                const scoresMap = existingScore ? (existingScore.scores_map || {}) : {};
+
+                const inputsHtml = (databaseSubjectsList || []).map(subj => {
+                    let val = '';
+                    if (scoresMap[subj.name] !== undefined) val = scoresMap[subj.name];
+                    else if (scoresMap[subj.id] !== undefined) val = scoresMap[subj.id];
+                    else if (scoresMap[subj.code] !== undefined) val = scoresMap[subj.code];
+
                     return `
-                        <tr class="${mKey === currentMonth ? 'table-active border border-warning' : ''}">
-                            <td class="fw-bold">${monthTitlesMap[mKey]} ${isLatest ? '<span class="badge bg-warning text-dark ms-1">Latest</span>' : ''}</td>
-                            <td class="text-warning fw-bold">${mRecord.total} / 600</td>
-                            <td class="text-info fw-bold">${mRecord.avg}</td>
-                            <td><span class="badge ${mRecord.gpa.includes('A') ? 'grade-badge-a' : 'grade-badge-b'} px-2 py-0.5">${mRecord.gpa}</span></td>
-                            <td><span class="badge bg-secondary">No. ${mRecord.rank}</span></td>
-                            <td><span class="badge ${mRecord.result === 'pass' ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'}">${mRecord.result === 'pass' ? '✅ Passed' : '🚨 Failed'}</span></td>
-                        </tr>
+                        <td>
+                            <input type="number" 
+                                class="form-control form-control-sm bg-dark text-white border-secondary text-center fw-bold batch-subj-input" 
+                                data-student-id="${st.student_id || ''}"
+                                data-student-code="${st.id}"
+                                data-subject-id="${subj.id}"
+                                data-subject-name="${subj.name}"
+                                data-max="${subj.max}"
+                                value="${val !== undefined && val !== null ? val : ''}"
+                                min="0" max="${subj.max}" placeholder="0 - ${subj.max}">
+                        </td>
                     `;
                 }).join('');
 
-                historyTbody.innerHTML = historyHtml || `<tr><td colspan="6" class="text-muted">No historical data available</td></tr>`;
+                return `
+                    <tr data-student-code="${st.id}">
+                        <td>${idx + 1}</td>
+                        <td class="text-start fw-bold text-white">${st.name}</td>
+                        <td><code>${st.id}</code></td>
+                        <td><span class="badge ${st.gender === 'Female' ? 'bg-info-subtle text-info' : 'bg-secondary'}">${st.gender === 'Female' ? 'ស្រី' : 'ប្រុស'}</span></td>
+                        ${inputsHtml}
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // 8. Save Batch Scores
+        const btnSaveBatch = document.getElementById('btnSaveBatchScores');
+        if (btnSaveBatch) {
+            btnSaveBatch.addEventListener('click', async function () {
+                if (window.isAcademicYearLocked) {
+                    alert('⚠️ មិនអាចបញ្ចូល ឬរក្សាទុកពិន្ទុបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                    return;
+                }
+                const batchMonthVal = document.getElementById('batch-sc-month').value;
+                let examIdNum = 1;
+                if (batchMonthVal && batchMonthVal.startsWith('EXAM-')) {
+                    examIdNum = parseInt(batchMonthVal.replace('EXAM-', ''));
+                }
+
+                const studentScoresPayload = [];
+
+                currentClassStudents.forEach(st => {
+                    const rowInputs = document.querySelectorAll(`#batch-scores-tbody tr[data-student-code="${st.id}"] .batch-subj-input`);
+                    const scoresArray = [];
+                    let hasAnyInput = false;
+
+                    rowInputs.forEach(inp => {
+                        const scoreVal = inp.value.trim() !== '' ? parseFloat(inp.value) : 0;
+                        if (inp.value.trim() !== '') hasAnyInput = true;
+                        scoresArray.push({
+                            subject_id: inp.getAttribute('data-subject-id') || 1,
+                            subject_name: inp.getAttribute('data-subject-name') || 'Subject',
+                            score: scoreVal,
+                            max: parseFloat(inp.getAttribute('data-max')) || 100
+                        });
+                    });
+
+                    if (hasAnyInput) {
+                        studentScoresPayload.push({
+                            student_id: st.student_id,
+                            student_code: st.id,
+                            scores: scoresArray
+                        });
+                    }
+                });
+
+                if (studentScoresPayload.length === 0) {
+                    alert('សូមបញ្ចូលពិន្ទុយ៉ាងហោចណាស់សិស្សម្នាក់!');
+                    return;
+                }
+
+                btnSaveBatch.disabled = true;
+                btnSaveBatch.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> កំពុងរក្សាទុក...`;
+
+                try {
+                    const res = await fetch('/api/scores/batch', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            exam_id: examIdNum,
+                            class_id: currentSelectedClassId,
+                            student_scores: studentScoresPayload
+                        })
+                    });
+
+                    const data = await res.json();
+                    if (data.status === 'success') {
+                        const modalElem = document.getElementById('batchClassScoreModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+
+                        const toast = document.getElementById('score-alert-toast');
+                        if (toast) {
+                            document.getElementById('score-alert-msg').innerText = data.message || `✅ បានរក្សាទុកពិន្ទុសិស្ស ${data.saved_count || studentScoresPayload.length} នាក់ក្នុងថ្នាក់ជោគជ័យ!`;
+                            toast.classList.remove('d-none');
+                            setTimeout(() => { toast.classList.add('d-none'); }, 5000);
+                        }
+
+                        // Refetch scores
+                        await fetchScoresData();
+                    } else {
+                        alert(data.message || 'បរាជ័យក្នុងការរក្សាទុកពិន្ទុ');
+                    }
+                } catch (err) {
+                    console.error('Error batch saving scores:', err);
+                    alert('Server error saving batch scores');
+                } finally {
+                    btnSaveBatch.disabled = false;
+                    btnSaveBatch.innerHTML = `<i class="bi bi-cloud-arrow-up-fill me-1"></i> 💾 រក្សាទុកពិន្ទុសិស្សទាំងអស់ក្នុងថ្នាក់ (Save All)`;
+                }
+            });
+        }
+
+        // 9. Single Student Score Form Submit Handler
+        // 9. Single Student Score Form Submit Handler
+        const addScoreForm = document.getElementById('add-score-form');
+        if (addScoreForm) {
+            addScoreForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                if (window.isAcademicYearLocked) {
+                    alert('⚠️ មិនអាចបញ្ចូល ឬកែប្រែពិន្ទុបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                    return;
+                }
+
+                const monthVal = document.getElementById('add-sc-month').value;
+                const studentSelect = document.getElementById('add-sc-name');
+                const selectedOpt = studentSelect ? studentSelect.options[studentSelect.selectedIndex] : null;
+                const name = selectedOpt ? selectedOpt.value : (studentSelect ? studentSelect.value.trim() : '');
+                const studentId = selectedOpt ? selectedOpt.getAttribute('data-student-id') : null;
+                const id = document.getElementById('add-sc-id').value.trim();
+                const classVal = document.getElementById('add-sc-class').value;
+
+                let examIdNum = null;
+                if (monthVal && monthVal.startsWith('EXAM-')) {
+                    examIdNum = parseInt(monthVal.replace('EXAM-', ''));
+                }
+
+                const scoreInputs = document.querySelectorAll('.score-subject-input');
+                const scoresPayload = [];
+                const scoresMap = {};
+                let totalScore = 0;
+
+                scoreInputs.forEach(inp => {
+                    const val = parseFloat(inp.value) || 0;
+                    const parentId = parseInt(inp.getAttribute('data-parent-id')) || 1;
+                    const sId = inp.getAttribute('data-subject-id') || 'subj';
+                    const sName = inp.getAttribute('data-name') || 'Subject';
+                    const maxS = parseFloat(inp.getAttribute('max')) || 100;
+
+                    scoresPayload.push({
+                        subject_id: parentId,
+                        subject_code: sId,
+                        subject_name: sName,
+                        score: val,
+                        max: maxS
+                    });
+                    scoresMap[sName] = val;
+                    scoresMap[sId] = val;
+                    totalScore += val;
+                });
+
+                // 1. OPTIMISTIC INSTANT UI UPDATE (បង្ហាញភ្លាមៗ)
+                const targetMonthKey = monthVal || currentSelectedMonth;
+                if (!monthlyScoresDatabase[targetMonthKey]) {
+                    monthlyScoresDatabase[targetMonthKey] = [];
+                }
+
+                const avgPctNum = databaseTotalMaxPoints > 0 ? ((totalScore / databaseTotalMaxPoints) * 100).toFixed(1) : '0.0';
+                const gpaGrade = avgPctNum >= 90 ? "Grade A+" : avgPctNum >= 80 ? "Grade A" : avgPctNum >= 70 ? "Grade B" : avgPctNum >= 60 ? "Grade C" : avgPctNum >= 50 ? "Grade D" : "Grade F";
+                const resStatus = avgPctNum >= 50 ? "pass" : "fail";
+
+                const existingIdx = monthlyScoresDatabase[targetMonthKey].findIndex(s => s.id === id || String(s.student_id) === String(studentId));
+                const optimisticEntry = {
+                    student_id: studentId,
+                    id: id,
+                    name: name,
+                    gender: selectedOpt ? (selectedOpt.getAttribute('data-gender') || 'Male') : 'Male',
+                    scores_map: scoresMap,
+                    scores_raw: scoresPayload,
+                    total: totalScore,
+                    avg: `${avgPctNum}%`,
+                    gpa: gpaGrade,
+                    result: resStatus
+                };
+
+                if (existingIdx !== -1) {
+                    monthlyScoresDatabase[targetMonthKey][existingIdx] = optimisticEntry;
+                } else {
+                    monthlyScoresDatabase[targetMonthKey].push(optimisticEntry);
+                }
+
+                renderStudentScoresTable(currentSelectedMonth);
+
+                // Show in-modal alert notification
+                const modalAlert = document.getElementById('modal-score-alert');
+                const modalAlertMsg = document.getElementById('modal-score-alert-msg');
+                if (modalAlert && modalAlertMsg) {
+                    modalAlertMsg.innerText = `✅ បានរក្សាទុកពិន្ទុសិស្ស "${name}" (${id}) ជោគជ័យ!`;
+                    modalAlert.classList.remove('d-none');
+                    setTimeout(() => { modalAlert.classList.add('d-none'); }, 5000);
+                }
+
+                // Clear score inputs for entering next student's scores
+                scoreInputs.forEach(inp => { inp.value = ''; });
+                populateStudentSelectOptions(monthVal);
+                if (scoreInputs[0]) scoreInputs[0].focus();
+
+                // 2. BACKEND DATABASE SYNC
+                try {
+                    const scoreRes = await fetch('/api/scores', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            student_id: studentId,
+                            student_code: id,
+                            exam_id: examIdNum,
+                            class_id: classVal || currentSelectedClassId,
+                            scores: scoresPayload
+                        })
+                    });
+                    const scoreData = await scoreRes.json();
+                    if (scoreData.status !== 'success') {
+                        console.warn('Sync score notice:', scoreData.message);
+                    }
+                } catch (err) {
+                    console.error('Error saving score to DB in background:', err);
+                }
+            });
+        }
+
+        // 10. Student Score Card Details Modal
+        function showStudentScoreModal(studentId, currentMonth) {
+            const currentList = monthlyScoresDatabase[currentMonth] || [];
+            let s = currentList.find(item => item.id === studentId || String(item.student_id) === String(studentId));
+            const rosterStudent = currentClassStudents.find(st => st.id === studentId || String(st.student_id) === String(studentId));
+            const name = s ? s.name : (rosterStudent ? rosterStudent.name : 'Student');
+            const currentRank = (s && s.rank && s.rank !== '-') ? s.rank : '-';
+
+            document.getElementById('sc-id').innerText = studentId;
+            document.getElementById('sc-name').innerText = name;
+            document.getElementById('sc-class-rank').innerText = `${monthTitlesMap[currentMonth] || currentMonth} • លំដាប់ថ្នាក់ (Rank): ${currentRank !== '-' ? 'No. ' + currentRank : '-'}`;
+            document.getElementById('sc-total-gpa').innerText = `${s ? s.total : 0} / ${databaseTotalMaxPoints} (${s ? s.avg : '0%'} - ${s ? s.gpa : '-'})`;
+
+            const mThead = document.getElementById('sc-modal-breakdown-thead');
+            const mTbody = document.getElementById('sc-modal-breakdown-tbody');
+            if (mThead && mTbody) {
+                let breakdownSubjects = [];
+                if (s && Array.isArray(s.scores_raw) && s.scores_raw.length > 0) {
+                    breakdownSubjects = s.scores_raw.map(sr => ({
+                        name: sr.subject_name || sr.subject_code || 'មុខវិជ្ជា',
+                        max: sr.max || 100,
+                        score: sr.score || 0
+                    }));
+                } else if (databaseSubjectsList && databaseSubjectsList.length > 0) {
+                    breakdownSubjects = databaseSubjectsList.map(subj => {
+                        let val = 0;
+                        if (s && s.scores_map) {
+                            if (s.scores_map[subj.name] !== undefined) val = s.scores_map[subj.name];
+                            else if (s.scores_map[subj.id] !== undefined) val = s.scores_map[subj.id];
+                            else if (s.scores_map[subj.code] !== undefined) val = s.scores_map[subj.code];
+                        }
+                        return {
+                            name: subj.name,
+                            max: subj.max,
+                            score: val
+                        };
+                    });
+                }
+
+                if (breakdownSubjects.length > 0) {
+                    mThead.innerHTML = `
+                        <tr style="background: rgba(40,40,60,0.9) !important;">
+                            ${breakdownSubjects.map(subj => `<th class="text-white">${subj.name} (${subj.max})</th>`).join('')}
+                        </tr>
+                    `;
+                    mTbody.innerHTML = `
+                        <tr class="fw-bold text-white">
+                            ${breakdownSubjects.map(subj => `<td>${getScoreChip(subj.score, subj.max)}</td>`).join('')}
+                        </tr>
+                    `;
+                } else {
+                    mThead.innerHTML = `<tr><th class="text-white">មុខវិជ្ជា</th></tr>`;
+                    mTbody.innerHTML = `<tr><td class="text-warning">មិនទាន់មានទិន្នន័យពិន្ទុសម្រាប់វគ្គប្រឡងនេះឡើយ</td></tr>`;
+                }
+            }
+
+            // Historical Records for this student across ALL examination periods
+            const historyTbody = document.getElementById('sc-history-tbody');
+            if (historyTbody) {
+                const historyRecords = [];
+                monthsOrderList.forEach(m => {
+                    const mKey = m.code;
+                    const mList = monthlyScoresDatabase[mKey] || [];
+                    const mRecord = mList.find(rec => rec.id === studentId || String(rec.student_id) === String(studentId));
+                    if (mRecord) {
+                        historyRecords.push({ mKey, mName: m.name, record: mRecord });
+                    }
+                });
+
+                if (historyRecords.length > 0) {
+                    historyTbody.innerHTML = historyRecords.map(item => {
+                        const mKey = item.mKey;
+                        const mRecord = item.record;
+                        const isCurrent = (mKey === currentMonth);
+                        const rankHtml = getRankBadge(mRecord.rank);
+                        const resultBadge = mRecord.result === 'pass' ? `<span class="badge badge-result-pass">✅ ជាប់</span>` : `<span class="badge badge-result-fail">🚨 ធ្លាក់</span>`;
+
+                        return `
+                            <tr class="${isCurrent ? 'table-active border border-warning' : ''}">
+                                <td class="fw-bold text-start ps-3"><i class="bi bi-calendar3 text-warning me-1.5"></i>${item.mName}</td>
+                                <td class="text-warning fw-bold">${mRecord.total} pts</td>
+                                <td class="text-info fw-bold">${mRecord.avg}</td>
+                                <td>${getGpaBadge(mRecord.gpa)}</td>
+                                <td>${rankHtml}</td>
+                                <td>${resultBadge}</td>
+                            </tr>
+                        `;
+                    }).join('');
+                } else {
+                    historyTbody.innerHTML = `<tr><td colspan="6" class="p-3 text-warning"><i class="bi bi-info-circle me-1"></i> មិនទាន់មានប្រវត្តិពិន្ទុប្រឡងសម្រាប់សិស្សនេះនៅឡើយទេ។</td></tr>`;
+                }
             }
 
             const modalElem = document.getElementById('studentScoreCardModal');
             if (modalElem && typeof bootstrap !== 'undefined') {
-                const bsModal = new bootstrap.Modal(modalElem);
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
                 bsModal.show();
             }
         }
 
-        // Add New Month Form Submit Handler
-        const addMonthForm = document.getElementById('add-new-month-form');
-        if (addMonthForm) {
-            addMonthForm.addEventListener('submit', function (e) {
-                e.preventDefault();
+        // Helper to retrieve current teacher and class IDs
+        function getTeacherAndClassIds() {
+            let teacherId = null;
+            let classId = currentSelectedClassId;
 
-                const mName = document.getElementById('new-m-name').value.trim();
-                const mCode = document.getElementById('new-m-code').value.trim();
-                const isSetLatest = document.getElementById('set-as-latest-chk').checked;
-
-                if (mName && mCode) {
-                    if (!monthlyScoresDatabase[mCode]) {
-                        monthlyScoresDatabase[mCode] = [];
-                    }
-                    monthTitlesMap[mCode] = mName;
-
-                    // Unshift to months order list
-                    if (!monthsOrderList.some(m => m.code === mCode)) {
-                        monthsOrderList.unshift({ code: mCode, name: mName });
-                    }
-
-                    if (isSetLatest) {
-                        latestMonthKey = mCode;
-                    }
-                    currentSelectedMonth = mCode;
-
-                    renderMonthPills();
-                    renderStudentScoresTable(currentSelectedMonth);
-
-                    const modalElem = document.getElementById('addNewMonthModal');
-                    if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = bootstrap.Modal.getInstance(modalElem);
-                        if (bsModal) bsModal.hide();
-                    }
-                    addMonthForm.reset();
-                    document.getElementById('new-m-code').value = `2026-0${monthsOrderList.length + 1}`;
-
-                    const toast = document.getElementById('score-alert-toast');
-                    if (toast) {
-                        document.getElementById('score-alert-msg').innerText = `Successfully created new assessment month "${mName}"!`;
-                        toast.classList.remove('d-none');
-                    }
+            try {
+                const userStr = localStorage.getItem('user');
+                if (userStr) {
+                    const u = JSON.parse(userStr);
+                    teacherId = u.teacher_id || u.id || u.teacherId || null;
                 }
-            });
+            } catch (e) { }
+
+            if (!teacherId && teacherHomeroomClass && teacherHomeroomClass.teacher_id) {
+                teacherId = teacherHomeroomClass.teacher_id;
+            }
+            if (!classId && teacherHomeroomClass && teacherHomeroomClass.class_id) {
+                classId = teacherHomeroomClass.class_id;
+            }
+
+            return { teacherId, classId };
         }
 
-        // Add Score Form Submit Handler
-        const addScoreForm = document.getElementById('add-score-form');
-        if (addScoreForm) {
-            addScoreForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const monthVal = document.getElementById('add-sc-month').value;
-                const name = document.getElementById('add-sc-name').value.trim();
-                const id = document.getElementById('add-sc-id').value.trim();
-                const math = parseInt(document.getElementById('add-sc-math').value) || 0;
-                const physics = parseInt(document.getElementById('add-sc-physics').value) || 0;
-                const chem = parseInt(document.getElementById('add-sc-chem').value) || 0;
-                const khmer = parseInt(document.getElementById('add-sc-khmer').value) || 0;
-                const eng = parseInt(document.getElementById('add-sc-eng').value) || 0;
-                const history = parseInt(document.getElementById('add-sc-history').value) || 0;
-
-                const total = math + physics + chem + khmer + eng + history;
-                const avgPct = ((total / 600) * 100).toFixed(1) + "%";
-                const gpa = total >= 540 ? "Grade A+" : total >= 480 ? "Grade A" : total >= 420 ? "Grade B" : "Grade F";
-                const result = total >= 300 ? "pass" : "fail";
-
-                if (!monthlyScoresDatabase[monthVal]) {
-                    monthlyScoresDatabase[monthVal] = [];
+        // 11. Fetch Scores Data from API
+        async function fetchScoresData() {
+            try {
+                const { classId } = getTeacherAndClassIds();
+                let url = '/api/scores';
+                if (classId) {
+                    url += `?class_id=${encodeURIComponent(classId)}`;
                 }
+                const scoresRes = await fetch(url);
+                const scoresData = await scoresRes.json();
+                if (scoresData.status === 'success' && Array.isArray(scoresData.scores)) {
+                    // Clear existing
+                    Object.keys(monthlyScoresDatabase).forEach(k => { monthlyScoresDatabase[k] = []; });
 
-                if (name && id) {
-                    monthlyScoresDatabase[monthVal].unshift({
-                        rank: (monthlyScoresDatabase[monthVal].length + 1).toString(),
-                        id: id,
-                        name: name,
-                        gender: "Male",
-                        avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
-                        math: math,
-                        physics: physics,
-                        chem: chem,
-                        khmer: khmer,
-                        eng: eng,
-                        history: history,
-                        total: total,
-                        avg: avgPct,
-                        gpa: gpa,
-                        result: result
+                    scoresData.scores.forEach(rec => {
+                        const mKey = `EXAM-${rec.exam_id}`;
+                        if (!monthlyScoresDatabase[mKey]) {
+                            monthlyScoresDatabase[mKey] = [];
+                        }
+
+                        const scoresObj = {};
+                        if (Array.isArray(rec.scores)) {
+                            rec.scores.forEach(s => {
+                                if (s.subject_name) scoresObj[s.subject_name] = s.score;
+                                if (s.subject_code) scoresObj[s.subject_code] = s.score;
+                                if (s.id) scoresObj[s.id] = s.score;
+                            });
+                        }
+
+                        const studentScoreItem = {
+                            student_id: rec.student_id,
+                            id: rec.student_code,
+                            name: rec.student_name || 'សិស្ស',
+                            gender: rec.gender || 'Male',
+                            scores_map: scoresObj,
+                            scores_raw: rec.scores || [],
+                            total: rec.total_score,
+                            avg: rec.average_pct,
+                            gpa: rec.gpa,
+                            result: rec.result
+                        };
+
+                        monthlyScoresDatabase[mKey].push(studentScoreItem);
                     });
 
-                    currentSelectedMonth = monthVal;
-                    renderMonthPills();
-                    renderStudentScoresTable(currentSelectedMonth);
-
-                    const modalElem = document.getElementById('addNewScoreModal');
-                    if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = bootstrap.Modal.getInstance(modalElem);
-                        if (bsModal) bsModal.hide();
-                    }
-                    addScoreForm.reset();
-
-                    const toast = document.getElementById('score-alert-toast');
-                    if (toast) {
-                        document.getElementById('score-alert-msg').innerText = `Successfully entered scores for "${name}" in ${monthTitlesMap[monthVal]}!`;
-                        toast.classList.remove('d-none');
-                    }
-                }
-            });
-        }
-
-        // Search Input Filter
-        const searchInput = document.getElementById('scores-search-input');
-        if (searchInput) {
-            searchInput.addEventListener('input', function () {
-                const q = this.value.toLowerCase().trim();
-                const currentList = monthlyScoresDatabase[currentSelectedMonth] || [];
-                const filtered = currentList.filter(s =>
-                    s.name.toLowerCase().includes(q) ||
-                    s.id.toLowerCase().includes(q)
-                );
-
-                const tbody = document.getElementById('scores-table-tbody');
-                if (tbody) {
-                    tbody.innerHTML = filtered.map((s, index) => `
-                        <tr>
-                            <td>
-                                <span class="badge ${s.rank === '1' ? 'bg-warning text-white fw-bold' : s.rank === '2' ? 'bg-info text-white fw-bold' : 'bg-dark border border-secondary text-white'} px-2.5 py-1">
-                                    No. ${s.rank}
-                                </span>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center gap-2.5">
-                                    <img src="${s.avatar}" class="rounded-circle border border-warning" width="36" height="36" alt="${s.name}">
-                                    <span class="fw-semibold text-white">${s.name}</span>
-                                </div>
-                            </td>
-                            <td><code>${s.id}</code></td>
-                            <td><span class="badge ${s.gender === 'Female' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'}">${s.gender}</span></td>
-                            <td><span class="fw-semibold text-white">${s.math}</span></td>
-                            <td><span class="fw-semibold text-white">${s.physics}</span></td>
-                            <td><span class="fw-semibold text-white">${s.chem}</span></td>
-                            <td><span class="fw-semibold text-white">${s.khmer}</span></td>
-                            <td><span class="fw-semibold text-white">${s.eng}</span></td>
-                            <td><span class="fw-semibold text-white">${s.history}</span></td>
-                            <td><span class="fw-bold text-warning" style="color:#d4af37 !important;">${s.total} / 600</span></td>
-                            <td><span class="fw-bold text-info">${s.avg}</span></td>
-                            <td>
-                                <span class="badge ${s.gpa.includes('A') ? 'grade-badge-a' : s.gpa.includes('B') ? 'grade-badge-b' : 'grade-badge-f'} px-2.5 py-1">
-                                    ${s.gpa}
-                                </span>
-                            </td>
-                            <td>
-                                <span class="badge ${s.result === 'pass' ? 'bg-success-subtle text-success border border-success' : 'bg-danger-subtle text-danger border border-danger'} px-2.5 py-1">
-                                    ${s.result === 'pass' ? '✅ Passed' : '🚨 Failed / Remedial'}
-                                </span>
-                            </td>
-                            <td class="text-end">
-                                <button class="btn-card-details view-score-card-btn" data-student-id="${s.id}">
-                                    <i class="bi bi-eye-fill me-1"></i> View 👁️
-                                </button>
-                            </td>
-                        </tr>
-                    `).join('');
-
-                    document.querySelectorAll('.view-score-card-btn').forEach(btn => {
-                        btn.addEventListener('click', function () {
-                            const studentId = this.getAttribute('data-student-id');
-                            showStudentScoreModal(studentId, currentSelectedMonth);
+                    // Calculate and assign ranks for each examination period
+                    Object.keys(monthlyScoresDatabase).forEach(mKey => {
+                        const list = monthlyScoresDatabase[mKey];
+                        list.sort((a, b) => (parseFloat(b.total) || 0) - (parseFloat(a.total) || 0));
+                        list.forEach((st, idx) => {
+                            if ((parseFloat(st.total) || 0) > 0 || (Array.isArray(st.scores_raw) && st.scores_raw.length > 0)) {
+                                st.rank = (idx + 1).toString();
+                            } else {
+                                st.rank = "-";
+                            }
                         });
                     });
                 }
+
+                loadSubjectsForCurrentExam(currentSelectedMonth);
+                renderStudentScoresTable(currentSelectedMonth);
+                renderBatchModalTable();
+                populateStudentSelectOptions(document.getElementById('add-sc-month')?.value || currentSelectedMonth);
+            } catch (err) {
+                console.error('Error fetching scores:', err);
+            }
+        }
+
+        // 11.1 Fetch Examinations List from API (Filtered specifically for this teacher's class)
+        async function fetchExaminationsList(targetCode) {
+            try {
+                const { teacherId, classId } = getTeacherAndClassIds();
+                let url = '/api/examinations';
+                const queryParams = [];
+                if (teacherId) queryParams.push(`teacher_id=${encodeURIComponent(teacherId)}`);
+                if (classId) queryParams.push(`class_id=${encodeURIComponent(classId)}`);
+                if (queryParams.length > 0) {
+                    url += '?' + queryParams.join('&');
+                }
+
+                const examRes = await fetch(url);
+                const examData = await examRes.json();
+                if (examData.status === 'success' && Array.isArray(examData.examinations) && examData.examinations.length > 0) {
+                    monthsOrderList = [];
+                    examData.examinations.forEach(exam => {
+                        const code = `EXAM-${exam.exam_id}`;
+                        const displayName = exam.week ? `${exam.week} [${exam.exam_name}]` : exam.exam_name;
+                        monthTitlesMap[code] = displayName;
+                        if (!monthlyScoresDatabase[code]) monthlyScoresDatabase[code] = [];
+                        monthsOrderList.unshift({ code: code, name: displayName });
+                    });
+                    const latestExam = examData.examinations[0];
+                    if (latestExam) {
+                        latestMonthKey = `EXAM-${latestExam.exam_id}`;
+                    }
+                    if (targetCode) {
+                        currentSelectedMonth = targetCode;
+                    } else if (!currentSelectedMonth || !monthTitlesMap[currentSelectedMonth]) {
+                        currentSelectedMonth = latestMonthKey;
+                    }
+                } else {
+                    monthsOrderList = [{ code: "EXAM-1", name: "ប្រឡងប្រចាំខែ (Monthly Exam)" }];
+                    monthTitlesMap["EXAM-1"] = "ប្រឡងប្រចាំខែ (Monthly Exam)";
+                    currentSelectedMonth = "EXAM-1";
+                }
+                renderMonthPills();
+            } catch (err) {
+                console.error('Error fetching examinations:', err);
+            }
+        }
+
+        // Standard predefined bundles corresponding to Exam Types
+        const standardExamBundles = {
+            monthly: {
+                title: "ប្រឡងប្រចាំខែ (Monthly Exam)",
+                category: "monthly",
+                subjects: [
+                    { id: "subj-math", name: "គណិតវិទ្យា (Mathematics)", max: 100, checked: true },
+                    { id: "subj-phys", name: "រូបវិទ្យា (Physics)", max: 100, checked: true },
+                    { id: "subj-chem", name: "គីមីវិទ្យា (Chemistry)", max: 100, checked: true },
+                    { id: "subj-khmer", name: "អក្សរសាស្ត្រខ្មែរ (Khmer Literature)", max: 100, checked: true },
+                    { id: "subj-eng", name: "ភាសាអង់គ្លេស (English)", max: 100, checked: true },
+                    { id: "subj-hist", name: "ប្រវត្តិវិទ្យា (History)", max: 100, checked: true }
+                ]
+            },
+            semester: {
+                title: "ប្រឡងឆមាស (Semester Exam)",
+                category: "semester",
+                subjects: [
+                    { id: "subj-math", name: "គណិតវិទ្យា (Mathematics)", max: 100, checked: true },
+                    { id: "subj-phys", name: "រូបវិទ្យា (Physics)", max: 75, checked: true },
+                    { id: "subj-chem", name: "គីមីវិទ្យា (Chemistry)", max: 75, checked: true },
+                    { id: "subj-bio", name: "ជីវវិទ្យា (Biology)", max: 75, checked: true },
+                    { id: "subj-khmer", name: "អក្សរសាស្ត្រខ្មែរ (Khmer Literature)", max: 100, checked: true },
+                    { id: "subj-eng", name: "ភាសាអង់គ្លេស (English)", max: 75, checked: true },
+                    { id: "subj-hist", name: "ប្រវត្តិវិទ្យា (History)", max: 50, checked: true },
+                    { id: "subj-geo", name: "ភូមិវិទ្យា (Geography)", max: 50, checked: true }
+                ]
+            },
+            year: {
+                title: "ប្រឡងប្រចាំឆ្នាំ / បញ្ចប់ (Annual / Final Exam)",
+                category: "final",
+                subjects: [
+                    { id: "subj-math", name: "គណិតវិទ្យា (Mathematics)", max: 125, checked: true },
+                    { id: "subj-phys", name: "រូបវិទ្យា (Physics)", max: 75, checked: true },
+                    { id: "subj-chem", name: "គីមីវិទ្យា (Chemistry)", max: 75, checked: true },
+                    { id: "subj-bio", name: "ជីវវិទ្យា (Biology)", max: 75, checked: true },
+                    { id: "subj-khmer", name: "អក្សរសាស្ត្រខ្មែរ (Khmer Literature)", max: 75, checked: true },
+                    { id: "subj-eng", name: "ភាសាអង់គ្លេស (English)", max: 50, checked: true },
+                    { id: "subj-hist", name: "ប្រវត្តិវិទ្យា (History)", max: 50, checked: true }
+                ]
+            }
+        };
+
+        let apiSubjectsBundleList = null;
+
+        async function fetchSubjectsFromApi() {
+            try {
+                const res = await fetch('/api/subjects/get_bundle');
+                const data = await res.json();
+                if (data.status === 'success' && Array.isArray(data.subjects) && data.subjects.length > 0) {
+                    apiSubjectsBundleList = data.subjects;
+                } else {
+                    const allRes = await fetch('/api/subjects');
+                    const allData = await allRes.json();
+                    if (allData.status === 'success' && Array.isArray(allData.subjects) && allData.subjects.length > 0) {
+                        const lastSubj = allData.subjects[allData.subjects.length - 1];
+                        if (lastSubj && Array.isArray(lastSubj.subject_name) && lastSubj.subject_name.length > 0) {
+                            apiSubjectsBundleList = lastSubj.subject_name;
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error('Error fetching subjects from API:', e);
+            }
+        }
+
+        function getSubjectsForActiveExam(monthKey) {
+            const examTitle = (monthTitlesMap[monthKey] || '').toLowerCase();
+
+            if (examTitle.includes('ឆមាស') || examTitle.includes('semester') || examTitle.includes('s1') || examTitle.includes('s2')) {
+                const saved = localStorage.getItem('teacher_subjects_bundle_semester');
+                if (saved) {
+                    try { return JSON.parse(saved); } catch (e) { }
+                }
+                return standardExamBundles.semester.subjects;
+            }
+
+            if (examTitle.includes('បញ្ចប់') || examTitle.includes('បាក់ឌុប') || examTitle.includes('final') || examTitle.includes('ឆ្នាំ')) {
+                const saved = localStorage.getItem('teacher_subjects_bundle_final');
+                if (saved) {
+                    try { return JSON.parse(saved); } catch (e) { }
+                }
+                return standardExamBundles.year.subjects;
+            }
+
+            // Monthly or general default:
+            // 1. If API subjects bundle is loaded and has items
+            if (apiSubjectsBundleList && Array.isArray(apiSubjectsBundleList) && apiSubjectsBundleList.length > 0) {
+                return apiSubjectsBundleList;
+            }
+            // 2. localStorage
+            const saved = localStorage.getItem('teacher_subjects_bundle_monthly') || localStorage.getItem('teacher_subjects_list');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                } catch (e) { }
+            }
+            // 3. standard fallback
+            return standardExamBundles.monthly.subjects;
+        }
+
+        function loadSubjectsForCurrentExam(monthKey) {
+            const baseExamSubjs = getSubjectsForActiveExam(monthKey) || [];
+            
+            // Map of all subjects keyed by subject name (normalized)
+            const subjectsMap = new Map();
+
+            // 1. Add base subjects from template / API / localStorage
+            baseExamSubjs.filter(s => s && s.checked !== false).forEach((s, idx) => {
+                const sName = (s.name || s.subject_name || `មុខវិជ្ជា ${idx + 1}`).trim();
+                const sMax = Number(s.max !== undefined ? s.max : (s.max_score !== undefined ? s.max_score : 100));
+                const sId = s.id || s.code || `subj-${idx + 1}`;
+                subjectsMap.set(sName.toLowerCase(), {
+                    parent_id: s.parent_id || 1,
+                    id: sId,
+                    code: sId,
+                    name: sName,
+                    max: sMax
+                });
+            });
+
+            // 2. Dynamically inspect student scores recorded for this exam and include all recorded subjects
+            const examScores = monthlyScoresDatabase[monthKey] || [];
+            examScores.forEach(st => {
+                if (Array.isArray(st.scores_raw)) {
+                    st.scores_raw.forEach((sr, sIdx) => {
+                        const srName = (sr.subject_name || sr.name || '').trim();
+                        if (srName && !subjectsMap.has(srName.toLowerCase())) {
+                            const srMax = Number(sr.max !== undefined ? sr.max : 100);
+                            const srId = sr.subject_id || sr.id || `subj-auto-${sIdx + 1}`;
+                            subjectsMap.set(srName.toLowerCase(), {
+                                parent_id: 1,
+                                id: String(srId),
+                                code: String(srId),
+                                name: srName,
+                                max: srMax
+                            });
+                        }
+                    });
+                }
+            });
+
+            databaseSubjectsList = Array.from(subjectsMap.values());
+            if (databaseSubjectsList.length === 0) {
+                databaseSubjectsList = standardExamBundles.monthly.subjects.map((s, idx) => ({
+                    parent_id: 1,
+                    id: s.id,
+                    code: s.id,
+                    name: s.name,
+                    max: s.max || 100
+                }));
+            }
+
+            databaseTotalMaxPoints = databaseSubjectsList.reduce((sum, s) => sum + (s.max || 0), 0) || 100;
+            const maxInfoElem = document.getElementById('table-max-info-label');
+            if (maxInfoElem) {
+                maxInfoElem.innerHTML = `<i class="bi bi-info-circle me-1" style="color:#ffd700;"></i> បណ្តុំមុខវិជ្ជា៖ ${databaseSubjectsList.length} មុខវិជ្ជា (ពិន្ទុសរុបអតិបរមា ${databaseTotalMaxPoints}) • Max: ${databaseTotalMaxPoints} pts`;
+            }
+
+            renderDynamicTableHeaders(databaseSubjectsList);
+            renderScoreModalSubjects(databaseSubjectsList);
+        }
+
+        // 11.2 Add New Examination Month Form Handler & Dynamic Generation
+        function initNewMonthModalLogic() {
+            const addMonthForm = document.getElementById('add-new-month-form');
+            const typeSelect = document.getElementById('new-m-type');
+            const periodSelect = document.getElementById('new-m-period-select');
+            const yearSelect = document.getElementById('new-m-year-select');
+            const nameInput = document.getElementById('new-m-name');
+            const codeInput = document.getElementById('new-m-code');
+            const labelPeriod = document.getElementById('label-sub-period');
+
+            const khmerMonths = [
+                { val: "1", code: "01", name: "មករា" },
+                { val: "2", code: "02", name: "កុម្ភៈ" },
+                { val: "3", code: "03", name: "មីនា" },
+                { val: "4", code: "04", name: "មេសា" },
+                { val: "5", code: "05", name: "ឧសភា" },
+                { val: "6", code: "06", name: "មិថុនា" },
+                { val: "7", code: "07", name: "កក្កដា" },
+                { val: "8", code: "08", name: "សីហា" },
+                { val: "9", code: "09", name: "កញ្ញា" },
+                { val: "10", code: "10", name: "តុលា" },
+                { val: "11", code: "11", name: "វិច្ឆិកា" },
+                { val: "12", code: "12", name: "ធ្នូ" }
+            ];
+
+            function updateFields() {
+                if (!typeSelect || !periodSelect || !yearSelect || !nameInput || !codeInput) return;
+                const type = typeSelect.value;
+                const year = yearSelect.value;
+
+                if (type === 'month') {
+                    if (labelPeriod) labelPeriod.innerText = 'ជ្រើសរើសខែប្រឡង';
+                    if (periodSelect.getAttribute('data-mode') !== 'month') {
+                        periodSelect.setAttribute('data-mode', 'month');
+                        periodSelect.innerHTML = khmerMonths.map(m => `<option value="${m.val}" data-code="${m.code}" ${m.val === '3' ? 'selected' : ''}>${m.name}</option>`).join('');
+                    }
+                    const selectedOpt = periodSelect.options[periodSelect.selectedIndex] || periodSelect.options[0];
+                    const mName = selectedOpt ? selectedOpt.text : 'មីនា';
+                    const mCode = selectedOpt ? (selectedOpt.getAttribute('data-code') || '03') : '03';
+
+                    nameInput.value = `ប្រឡងប្រចាំខែ${mName} ${year}`;
+                    codeInput.value = `${year}-${mCode}`;
+                } else if (type === 'semester') {
+                    if (labelPeriod) labelPeriod.innerText = 'ជ្រើសរើសឆមាស';
+                    if (periodSelect.getAttribute('data-mode') !== 'semester') {
+                        periodSelect.setAttribute('data-mode', 'semester');
+                        periodSelect.innerHTML = `
+                            <option value="S1" data-code="S1" selected>ឆមាសទី ១</option>
+                            <option value="S2" data-code="S2">ឆមាសទី ២</option>
+                        `;
+                    }
+                    const selectedOpt = periodSelect.options[periodSelect.selectedIndex] || periodSelect.options[0];
+                    const sName = selectedOpt ? selectedOpt.text : 'ឆមាសទី ១';
+                    const sCode = selectedOpt ? (selectedOpt.getAttribute('data-code') || 'S1') : 'S1';
+
+                    nameInput.value = `ប្រឡង${sName} ${year}`;
+                    codeInput.value = `${year}-${sCode}`;
+                } else if (type === 'year') {
+                    if (labelPeriod) labelPeriod.innerText = 'ការប្រឡងបញ្ចប់';
+                    if (periodSelect.getAttribute('data-mode') !== 'year') {
+                        periodSelect.setAttribute('data-mode', 'year');
+                        periodSelect.innerHTML = `
+                            <option value="FINAL" data-code="FINAL" selected>បញ្ចប់ឆ្នាំសិក្សា (Final Exam)</option>
+                        `;
+                    }
+                    nameInput.value = `ប្រឡងបញ្ចប់ឆ្នាំសិក្សា ${year}`;
+                    codeInput.value = `${year}-FINAL`;
+                }
+            }
+
+            if (typeSelect) typeSelect.addEventListener('change', updateFields);
+            if (periodSelect) periodSelect.addEventListener('change', updateFields);
+            if (yearSelect) yearSelect.addEventListener('change', updateFields);
+
+            const addNewMonthModalElem = document.getElementById('addNewMonthModal');
+            if (addNewMonthModalElem) {
+                addNewMonthModalElem.addEventListener('show.bs.modal', function () {
+                    updateFields();
+                });
+            }
+
+            if (addMonthForm) {
+                addMonthForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    if (window.isAcademicYearLocked) {
+                        alert('⚠️ មិនអាចបង្កើតកាលវិភាគប្រឡងបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                        return;
+                    }
+
+                    const examName = nameInput.value.trim();
+                    const examCode = codeInput.value.trim();
+                    const yearVal = yearSelect.value;
+                    const setAsLatest = document.getElementById('set-as-latest-chk') ? document.getElementById('set-as-latest-chk').checked : true;
+
+                    if (!examName) {
+                        alert('សូមបញ្ចូលឈ្មោះកាលវិភាគប្រឡង!');
+                        return;
+                    }
+
+                    const submitBtn = addMonthForm.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> កំពុងបង្កើត...`;
+                    }
+
+                    try {
+                        const { teacherId, classId } = getTeacherAndClassIds();
+                        const res = await fetch('/api/examinations', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                exam_name: examName,
+                                week: examCode,
+                                academic_year: yearVal,
+                                teacher_id: teacherId,
+                                class_id: classId
+                            })
+                        });
+
+                        const data = await res.json();
+                        if (data.status === 'success' && data.examination) {
+                            const newExam = data.examination;
+                            const newCode = `EXAM-${newExam.exam_id}`;
+
+                            // Close modal
+                            const modalElem = document.getElementById('addNewMonthModal');
+                            if (modalElem && typeof bootstrap !== 'undefined') {
+                                const bsModal = bootstrap.Modal.getInstance(modalElem);
+                                if (bsModal) bsModal.hide();
+                            }
+
+                            // Show toast notification
+                            const toast = document.getElementById('score-alert-toast');
+                            if (toast) {
+                                document.getElementById('score-alert-msg').innerText = `✅ បានបង្កើតកាលវិភាគ "${examName}" (${examCode}) ជោគជ័យ!`;
+                                toast.classList.remove('d-none');
+                                setTimeout(() => { toast.classList.add('d-none'); }, 5000);
+                            }
+
+                            // Refresh examinations and select newly created month
+                            await fetchExaminationsList(setAsLatest ? newCode : currentSelectedMonth);
+                            loadSubjectsForCurrentExam(currentSelectedMonth);
+                            await fetchScoresData();
+
+                        } else {
+                            alert(data.message || 'បរាជ័យក្នុងការបង្កើតកាលវិភាគប្រឡង');
+                        }
+                    } catch (err) {
+                        console.error('Error creating examination:', err);
+                        alert('Server error creating examination month');
+                    } finally {
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = `<i class="bi bi-calendar-check me-1"></i> បង្កើតកាលវិភាគនេះ`;
+                        }
+                    }
+                });
+            }
+        }
+
+        async function checkAcademicYearStatus() {
+            try {
+                const res = await fetch('/api/academic_years/active');
+                const data = await res.json();
+                if (data.status === 'success') {
+                    if (!data.has_active_year || (data.active_year && (data.active_year.status === 'Closed' || data.active_year.status === 'Archived'))) {
+                        window.isAcademicYearLocked = true;
+                        applyLockUI();
+                    } else {
+                        window.isAcademicYearLocked = false;
+                    }
+                }
+            } catch (e) {
+                console.log('Error checking year status:', e);
+            }
+        }
+
+        function applyLockUI() {
+            const btnBatch = document.getElementById('btnOpenBatchScore');
+            const btnAddMonth = document.querySelector('button[data-bs-target="#addNewMonthModal"]');
+            const btnAddScore = document.getElementById('btnOpenAddScore');
+
+            [btnBatch, btnAddMonth, btnAddScore].forEach(btn => {
+                if (btn) {
+                    btn.classList.add('opacity-50');
+                    btn.setAttribute('title', '🔒 មិនទាន់មានឆ្នាំសិក្សាបើកដំណើរការ (View Only)');
+                    btn.addEventListener('click', function (e) {
+                        if (window.isAcademicYearLocked) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            alert('⚠️ មិនអាចធ្វើប្រតិបត្តិការនេះបានទេ! បច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)។ ផ្ទាំងនេះស្ថិតក្នុងទម្រង់ "មើលតែប៉ុណ្ណោះ (View Only)"');
+                        }
+                    }, true);
+                }
             });
         }
 
-        // Render Default View
-        renderMonthPills();
-        renderStudentScoresTable(currentSelectedMonth);
-        // Render Default View
-        renderMonthPills();
-        renderStudentScoresTable(currentSelectedMonth);
+        // 12. Main Init Function
+        async function initPage() {
+            try {
+                // Check year lock status
+                await checkAcademicYearStatus();
+
+                // 1. Fetch Classes
+                await fetchClassesList();
+
+                // 2. Fetch Students for the active class
+                if (currentSelectedClassId) {
+                    await fetchStudentsForClass(currentSelectedClassId);
+                }
+
+                // 3. Fetch Examinations
+                await fetchExaminationsList();
+
+                // 4. Fetch Subjects Bundle from API
+                await fetchSubjectsFromApi();
+
+                // 5. Load Subjects for Current Selected Exam
+                loadSubjectsForCurrentExam(currentSelectedMonth);
+
+                // Initialize Add New Month Modal handler
+                initNewMonthModalLogic();
+
+                // 6. Fetch Scores
+                await fetchScoresData();
+
+            } catch (err) {
+                console.error('Error during initPage:', err);
+            }
+        }
+
+        // Search & Filter listeners
+        const searchInput = document.getElementById('scores-search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function () {
+                currentSearchQuery = this.value.toLowerCase().trim();
+                renderStudentScoresTable(currentSelectedMonth);
+            });
+        }
+
+        const resultFilter = document.getElementById('scores-result-filter');
+        if (resultFilter) {
+            resultFilter.addEventListener('change', function () {
+                currentResultFilter = this.value;
+                renderStudentScoresTable(currentSelectedMonth);
+            });
+        }
+
+        const addNewScoreModalElem = document.getElementById('addNewScoreModal');
+        if (addNewScoreModalElem) {
+            addNewScoreModalElem.addEventListener('show.bs.modal', function (e) {
+                if (window.isAcademicYearLocked) {
+                    e.preventDefault();
+                    alert('⚠️ មិនអាចបញ្ចូលពិន្ទុបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                    return false;
+                }
+                const monthVal = document.getElementById('add-sc-month')?.value || currentSelectedMonth;
+                populateStudentSelectOptions(monthVal);
+            });
+        }
+
+        const batchModalElem = document.getElementById('batchClassScoreModal');
+        if (batchModalElem) {
+            batchModalElem.addEventListener('show.bs.modal', function (e) {
+                if (window.isAcademicYearLocked) {
+                    e.preventDefault();
+                    alert('⚠️ មិនអាចបញ្ចូលពិន្ទុបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                    return false;
+                }
+            });
+        }
+
+        const addMonthModalElem = document.getElementById('addNewMonthModal');
+        if (addMonthModalElem) {
+            addMonthModalElem.addEventListener('show.bs.modal', function (e) {
+                if (window.isAcademicYearLocked) {
+                    e.preventDefault();
+                    alert('⚠️ មិនអាចបង្កើតខែប្រឡងបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                    return false;
+                }
+            });
+        }
+
+        // Run Init
+        initPage();
     })();
 </script>

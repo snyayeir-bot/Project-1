@@ -131,17 +131,53 @@
         background: rgba(212, 175, 55, 0.15);
     }
 
-    .btn-icon-action:disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
+    .btn-outline-glass.active-bundle-btn {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.35), rgba(255, 215, 0, 0.2)) !important;
+        border-color: #ffd700 !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.4) !important;
+        font-weight: 700 !important;
+    }
+
+    .bundle-opt-card {
+        background: rgba(22, 22, 34, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        padding: 8px 12px;
+        transition: all 0.2s ease;
+    }
+
+    .bundle-opt-card:hover {
+        border-color: rgba(212, 175, 55, 0.5);
+    }
+
+    .bundle-opt-card.checked {
+        border-color: #d4af37;
+        background: rgba(212, 175, 55, 0.12);
     }
 
     /* FORCED ALL TEXT TO WHITE ACROSS ENTIRE PAGE & MODALS */
-    body, p, span, label, h1, h2, h3, h4, h5, h6, th, td, div, button, input, select {
+    body,
+    p,
+    span,
+    label,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    th,
+    td,
+    div,
+    button,
+    input,
+    select {
         color: #ffffff !important;
     }
 
-    .text-muted, .extra-small {
+    .text-muted,
+    .extra-small {
         color: #e0e0e0 !important;
     }
 </style>
@@ -151,80 +187,114 @@
     <div class="builder-hero-banner p-4 mb-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div>
-                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;"><i class="bi bi-tools me-1"></i> Gradebook Table Builder & Configurator</span>
-                <h2 class="fw-bold text-white mb-1">Dynamic Gradebook & Subject Builder</h2>
-                <p class="text-white small mb-0">Click <strong>"Save & Lock Schema"</strong> to freeze modifications. To add or edit subjects again, click <strong>"Unlock & Edit Schema"</strong>.</p>
+                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;"><i
+                        class="bi bi-collection-fill me-1"></i> ប្រព័ន្ធកំណត់ និងគ្រប់គ្រងបណ្តុំមុខវិជ្ជាប្រឡង</span>
+                <h2 class="fw-bold text-white mb-1">បង្កើត និងកំណត់បណ្តុំមុខវិជ្ជាប្រឡង (Exam Subject Bundles)</h2>
+                <p class="text-white small mb-0">ជ្រើសរើស ឬបង្កើតបណ្តុំមុខវិជ្ជាសម្រាប់ <strong>ប្រឡងប្រចាំខែ</strong>,
+                    <strong>ប្រឡងឆមាស</strong> និង <strong>ប្រឡងបញ្ចប់</strong>។ ចុច <strong>"✏️ បើកសិទ្ធិកែសម្រួល
+                        (Unlock)"</strong> ដើម្បីកែប្រែ ឬបង្កើតបណ្តុំថ្មី។
+                </p>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-outline-glass btn-sm" id="btn-top-add-subject" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
-                    <i class="bi bi-plus-circle-fill me-1"></i> ➕ Add New Subject
+                <button class="btn btn-outline-glass btn-sm" id="btn-top-add-subject" data-bs-toggle="modal"
+                    data-bs-target="#addNewSubjectModal">
+                    <i class="bi bi-plus-circle-fill me-1"></i> ➕ បន្ថែមមុខវិជ្ជាថ្មី
                 </button>
-                <button class="btn-gold-shimmer" onclick="document.querySelector('#teacher-sidebar-menu [data-page=\'teachers-desbord-scores.html\']').click();">
-                    <i class="bi bi-arrow-right-circle-fill me-1"></i> Go to Student Scores Page
+                <button class="btn btn-outline-glass btn-sm" id="btn-top-create-bundle" data-bs-toggle="modal"
+                    data-bs-target="#createBundleModal">
+                    <i class="bi bi-collection-fill me-1"></i> 📚 បង្កើតបណ្តុំមុខវិជ្ជាប្រឡង
+                </button>
+                <button class="btn-gold-shimmer"
+                    onclick="document.querySelector('#teacher-sidebar-menu [data-page=\'teachers-desbord-scores.html\']').click();">
+                    <i class="bi bi-arrow-right-circle-fill me-1"></i> ទៅកាន់ទំព័របញ្ចូលពិន្ទុសិស្ស
                 </button>
             </div>
         </div>
     </div>
 
     <!-- Alert Toast Banner -->
-    <div id="builder-alert-toast" class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between" role="alert">
+    <div id="builder-alert-toast"
+        class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between"
+        role="alert">
         <div>
             <i class="bi bi-check-circle-fill me-2 fs-5"></i>
-            <span class="fw-bold text-white" id="builder-alert-msg">Schema saved and modification lock enabled successfully!</span>
+            <span class="fw-bold text-white" id="builder-alert-msg">បានរក្សាទុក និងចាក់សោរៀបចំជោគជ័យ!</span>
         </div>
-        <button type="button" class="btn-close" onclick="document.getElementById('builder-alert-toast').classList.add('d-none');"></button>
+        <button type="button" class="btn-close"
+            onclick="document.getElementById('builder-alert-toast').classList.add('d-none');"></button>
     </div>
 
     <!-- Step 1: Configurator Parameters -->
-    <div class="glass-config-card mb-4" id="main-builder-card">
-        <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="glass-config-card locked-mode mb-4" id="main-builder-card">
+        <!-- Quick Exam Bundle Tabs -->
+        <div
+            class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3 pb-3 border-bottom border-secondary">
+            <div>
+                <span class="text-white small fw-bold d-block mb-1"><i
+                        class="bi bi-bookmark-star-fill text-warning me-1"></i> ជ្រើសរើសប្រភេទការប្រឡង (Active Exam
+                    Bundle):</span>
+                <div class="btn-group flex-wrap" role="group" id="bundle-quick-tabs">
+                    <button type="button" class="btn btn-outline-glass btn-sm active-bundle-btn" data-bundle="monthly"
+                        id="tab-bundle-monthly">
+                        📅 ប្រឡងប្រចាំខែ (Monthly)
+                    </button>
+                    <button type="button" class="btn btn-outline-glass btn-sm" data-bundle="semester"
+                        id="tab-bundle-semester">
+                        🎓 ប្រឡងឆមាស (Semester)
+                    </button>
+                    <button type="button" class="btn btn-outline-glass btn-sm" data-bundle="final"
+                        id="tab-bundle-final">
+                        🏆 ប្រឡងបញ្ចប់ (Final Exam)
+                    </button>
+                    <button type="button" class="btn btn-outline-glass btn-sm d-none" data-bundle="custom"
+                        id="tab-bundle-custom">
+                        ✨ បណ្តុំផ្ទាល់ខ្លួន (Custom)
+                    </button>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-outline-glass btn-sm" id="btn-sec-add-new-subject" data-bs-toggle="modal"
+                    data-bs-target="#addNewSubjectModal">
+                    <i class="bi bi-plus-circle me-1"></i> ➕ បន្ថែមមុខវិជ្ជាថ្មី
+                </button>
+                <button class="btn btn-outline-glass btn-sm" id="btn-sec-add-subject" data-bs-toggle="modal"
+                    data-bs-target="#createBundleModal">
+                    <i class="bi bi-collection-fill me-1"></i> 📚 បង្កើតបណ្តុំថ្មី
+                </button>
+                <span class="badge text-white px-3 py-1.5 fw-bold ms-1" style="background:#d4af37;">ថ្នាក់ទី 12-A</span>
+            </div>
+        </div>
+
+        <!-- Dynamic Subject Checklist with ADD & EDIT Features -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
             <div class="d-flex align-items-center gap-3">
-                <h5 class="fw-bold text-white mb-0"><i class="bi bi-sliders me-2" style="color:#d4af37;"></i>1. Assessment Type & Class Settings</h5>
-                <span class="badge bg-warning-subtle text-warning border border-warning px-2.5 py-1" id="schema-status-badge">
-                    ✏️ Editing Mode
+                <h5 class="fw-bold text-white mb-0" id="current-bundle-title">
+                    <i class="bi bi-list-check me-2" style="color:#d4af37;"></i>មុខវិជ្ជាក្នុងបណ្តុំ៖ ប្រឡងប្រចាំខែ
+                </h5>
+                <span class="badge bg-success-subtle text-success border border-success px-2.5 py-1"
+                    id="schema-status-badge">
+                    🔒 Locked Mode
                 </span>
             </div>
-            <span class="badge text-white px-3 py-1.5 fw-bold" style="background:#d4af37;">Class 12-A (Homeroom Class)</span>
-        </div>
-
-        <div class="row g-3 mb-4">
-            <div class="col-md-6">
-                <label class="form-label text-white extra-small text-uppercase fw-bold">Select Assessment / Exam Type</label>
-                <select class="form-select bg-dark text-white border-secondary" id="cfg-assessment-type">
-                    <option value="February" selected>📅 February Monthly Assessment</option>
-                    <option value="January">📅 January Monthly Assessment</option>
-                    <option value="March">📅 March Monthly Assessment</option>
-                    <option value="Semester 1">🎓 Semester 1 Exam</option>
-                    <option value="Semester 2">🎓 Semester 2 Exam</option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label class="form-label text-white extra-small text-uppercase fw-bold">Gradebook Table Title</label>
-                <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="cfg-table-title" value="February Monthly Score Sheet (Class 12-A)">
+            <div class="text-white extra-small" id="bundle-info-badge">
+                <span class="badge bg-secondary">៦ មុខវិជ្ជា | ពិន្ទុសរុប: 600</span>
             </div>
         </div>
-
-        <!-- Step 2: Dynamic Subject Checklist with ADD & EDIT Features -->
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <h5 class="fw-bold text-white mb-0"><i class="bi bi-list-check me-2" style="color:#d4af37;"></i>2. Select, Edit, or Add New Subjects</h5>
-                <p class="text-white small mb-0">Teachers can add custom subjects, edit subject titles, and configure max score limits as needed:</p>
-            </div>
-            <button class="btn btn-outline-glass btn-sm" id="btn-sec-add-subject" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
-                <i class="bi bi-plus-lg me-1"></i> ➕ Add Subject
-            </button>
-        </div>
+        <p class="text-white small mb-3">បច្ចុប្បន្នកំពុងស្ថិតក្នុង <strong>Locked Mode (ចាក់សោ)</strong>។ សូមចុច
+            <strong>"✏️ បើកសិទ្ធិកែសម្រួល (Unlock)"</strong> ដើម្បីបន្ថែមមុខវិជ្ជាថ្មីដែលមិនទាន់មាន កែប្រែពិន្ទុពេញ
+            ឬបង្កើតបណ្តុំមុខវិជ្ជា។
+        </p>
 
         <div class="row g-3 mb-4" id="subjects-checklist-container">
             <!-- Dynamic Subject Cards Rendered Here -->
         </div>
 
         <div class="d-flex justify-content-end align-items-center gap-2 pt-2 border-top border-dark">
-            <button class="btn btn-outline-warning btn-md fw-bold d-none" id="btn-edit-toggle">
-                <i class="bi bi-pencil-square me-1"></i> ✏️ Unlock & Edit Schema
+            <button class="btn btn-gold-shimmer fw-bold" id="btn-edit-toggle">
+                <i class="bi bi-pencil-square me-1"></i> ✏️ បើកសិទ្ធិកែសម្រួល (Unlock & Edit)
             </button>
-            <button class="btn-gold-shimmer" id="btn-save-toggle">
-                <i class="bi bi-lock-fill me-1"></i> 💾 Save & Lock Schema
+            <button class="btn-gold-shimmer d-none" id="btn-save-toggle">
+                <i class="bi bi-lock-fill me-1"></i> 💾 រក្សាទុក និងចាក់សោ (Save & Lock)
             </button>
         </div>
     </div>
@@ -233,16 +303,20 @@
     <div class="card-custom p-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
             <div>
-                <h5 class="fw-bold text-white mb-0" id="schema-preview-title"><i class="bi bi-eye-fill me-2" style="color:#d4af37;"></i>Generated Table Columns Preview</h5>
-                <span class="text-white extra-small" id="schema-total-points-summary">Total Max Score Across All Subjects: 625 pts</span>
+                <h5 class="fw-bold text-white mb-0" id="schema-preview-title"><i class="bi bi-eye-fill me-2"
+                        style="color:#d4af37;"></i>គំរូតារាងពិន្ទុតាមបណ្តុំមុខវិជ្ជា (Gradebook Schema Preview)</h5>
+                <span class="text-white extra-small" id="schema-total-points-summary">Total Max Score Across All
+                    Subjects: 600 pts</span>
             </div>
-            <button class="btn-gold-shimmer" onclick="document.querySelector('#teacher-sidebar-menu [data-page=\'teachers-desbord-scores.html\']').click();">
-                ➡️ Go to Student Scores Page to Enter Marks
+            <button class="btn-gold-shimmer"
+                onclick="document.querySelector('#teacher-sidebar-menu [data-page=\'teachers-desbord-scores.html\']').click();">
+                ➡️ ទៅកាន់ទំព័របញ្ចូលពិន្ទុសិស្ស (Student Scores)
             </button>
         </div>
 
         <div class="table-responsive">
-            <table class="table table-dark table-bordered align-middle mb-0 schema-preview-table text-center" style="background: transparent;">
+            <table class="table table-dark table-bordered align-middle mb-0 schema-preview-table text-center"
+                style="background: transparent;">
                 <thead>
                     <tr id="preview-table-header-row">
                         <!-- Dynamic Columns Headers Rendered Here -->
@@ -251,7 +325,10 @@
                 <tbody>
                     <tr>
                         <td colspan="15" class="p-4 text-white">
-                            <i class="bi bi-info-circle text-warning me-2" style="color:#d4af37 !important;"></i>Table schema initialized! To enter actual student scores, click the <strong>"Go to Student Scores Page"</strong> button above.
+                            <i class="bi bi-info-circle text-warning me-2"
+                                style="color:#d4af37 !important;"></i>តារាងពិន្ទុត្រូវបានកំណត់រួចរាល់!
+                            ដើម្បីចាប់ផ្តើមបញ្ចូលពិន្ទុសិស្សជាក់ស្តែង សូមចុចប៊ូតុង
+                            <strong>"ទៅកាន់ទំព័របញ្ចូលពិន្ទុសិស្ស"</strong> ខាងលើ។
                         </td>
                     </tr>
                 </tbody>
@@ -260,48 +337,44 @@
     </div>
 </div>
 
-<!-- Modal 1: Add New Custom Subject -->
-<div class="modal fade" id="addSubjectModal" tabindex="-1" aria-hidden="true">
+<!-- Modal 1: Add New Subject (មិនទាន់មាន) -->
+<div class="modal fade" id="addNewSubjectModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
             <div class="modal-header border-bottom border-dark p-3">
-                <h5 class="fw-bold text-white mb-0"><i class="bi bi-plus-circle-fill text-warning me-2" style="color:#d4af37;"></i>Add Custom Subject</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="fw-bold text-white mb-0"><i class="bi bi-plus-circle-fill text-warning me-2"
+                        style="color:#d4af37;"></i>បន្ថែមមុខវិជ្ជាថ្មីដែលមិនទាន់មាន (Add New Subject)</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <form id="add-subject-form">
+                <form id="add-new-subject-form">
                     <div class="mb-3">
-                        <label class="form-label text-white extra-small text-uppercase fw-bold">Subject Name</label>
-                        <input type="text" class="form-control bg-dark text-white border-secondary" id="new-subj-name" placeholder="e.g. Computer / ICT, Art, Physical Education..." required>
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះមុខវិជ្ជា (Subject
+                            Name)</label>
+                        <input type="text" class="form-control bg-dark text-white border-secondary"
+                            id="create-subj-name" placeholder="ឧទាហរណ៍៖ ព័ត៌មានវិទ្យា, សីលធម៌ពលរដ្ឋ, គំនូរ..." required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label text-white extra-small text-uppercase fw-bold">Emoji / Icon</label>
-                        <select class="form-select bg-dark text-white border-secondary" id="new-subj-icon">
-                            <option value="💻">💻 Computer / ICT</option>
-                            <option value="🎨">🎨 Art & Design</option>
-                            <option value="⚽">⚽ Physical Education & Sports</option>
-                            <option value="📐">📐 Mathematics</option>
-                            <option value="⚡">⚡ Physics</option>
-                            <option value="🧪">🧪 Chemistry</option>
-                            <option value="🧬">🧬 Biology</option>
-                            <option value="📖">📖 Khmer Literature</option>
-                            <option value="🌐">🌐 English</option>
-                            <option value="📜">📜 History</option>
-                            <option value="🗺️">🗺️ Geography</option>
-                            <option value="⚖️">⚖️ Civics & Ethics</option>
-                            <option value="📚">📚 General / Other Subject</option>
-                        </select>
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">ពិន្ទុពេញអតិបរមា (Max
+                            Full Score)</label>
+                        <input type="number" class="form-control bg-dark text-white border-secondary fw-bold"
+                            id="create-subj-max" value="100" min="1" max="500" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label text-white extra-small text-uppercase fw-bold">Max Full Score Points</label>
-                        <input type="number" class="form-control bg-dark text-white border-secondary fw-bold" id="new-subj-max" value="50" min="1" max="500" required>
+                    <div class="p-3 mb-3 rounded-3 border border-secondary" style="background: rgba(14, 14, 22, 0.7);">
+                        <span class="text-white extra-small"><i class="bi bi-info-circle text-warning me-1"></i>
+                            មុខវិជ្ជាថ្មីនេះ នឹងត្រូវបានបញ្ចូលទៅក្នុងបណ្តុំមុខវិជ្ជាសកម្មភ្លាមៗ
+                            ហើយអាចប្រើប្រាស់ក្នុងតារាងពិន្ទុបានភ្លាម។</span>
                     </div>
 
                     <div class="modal-footer border-top border-dark p-0 pt-3 mt-3">
-                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i> Add Subject</button>
+                        <button type="button" class="btn btn-outline-glass btn-sm"
+                            data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i>
+                            បន្ថែមមុខវិជ្ជានេះ</button>
                     </div>
                 </form>
             </div>
@@ -309,37 +382,152 @@
     </div>
 </div>
 
-<!-- Modal 2: Edit Subject Modal -->
+<!-- Modal 2: Create Exam Subject Bundle Modal -->
+<div class="modal fade" id="createBundleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-3">
+                <h5 class="fw-bold text-white mb-0"><i class="bi bi-collection-fill text-warning me-2"
+                        style="color:#d4af37;"></i>បង្កើតបណ្តុំមុខវិជ្ជាប្រឡង (Create Exam Subject Bundle)</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="create-bundle-form">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ផ្នែកនៃការប្រឡង
+                                (Exam Category)</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="bundle-exam-category"
+                                required>
+                                <option value="monthly">📅 ប្រឡងប្រចាំខែ (Monthly Exam)</option>
+                                <option value="semester">🎓 ប្រឡងឆមាស (Semester Exam)</option>
+                                <option value="final">🏆 ប្រឡងបញ្ចប់ / បាក់ឌុប (Final/BacII Exam)</option>
+                                <option value="custom">✨ បណ្តុំផ្ទាល់ខ្លួន (Custom Bundle)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះបណ្តុំមុខវិជ្ជា
+                                (Bundle Title)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="bundle-custom-name" placeholder="ឧទាហរណ៍៖ ប្រឡងប្រចាំខែកុម្ភៈ, ឆមាសលើកទី១..."
+                                required value="បណ្តុំប្រឡងប្រចាំខែថ្មី">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label
+                            class="form-label text-white extra-small text-uppercase fw-bold d-flex justify-content-between align-items-center">
+                            <span>ជ្រើសរើសមុខវិជ្ជាបញ្ចូលក្នុងបណ្តុំ និងកំណត់ពិន្ទុពេញ (Max Score)</span>
+                            <span class="text-warning small" id="bundle-calc-total">ពិន្ទុសរុប: 0 pts</span>
+                        </label>
+                        <div class="p-3 rounded-3 border border-secondary"
+                            style="background: rgba(14, 14, 22, 0.7); max-height: 280px; overflow-y: auto;">
+                            <div class="row g-2" id="bundle-subject-options">
+                                <!-- Predefined checkboxes populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-3 mb-3 rounded-3 border border-warning-subtle"
+                        style="background: rgba(212, 175, 55, 0.08);">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-lightning-charge-fill text-warning fs-5"></i>
+                            <span class="text-white small"><strong>គន្លឹះ៖</strong> អ្នកអាចជ្រើសរើសទម្រង់គំរូ (Preset)
+                                ខាងលើ ប្រព័ន្ធនឹងកំណត់មុខវិជ្ជា និងពិន្ទុស្តង់ដារតាមក្រសួងអប់រំដោយស្វ័យប្រវត្តិ!</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-3">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់
+                            (Cancel)</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-check2-circle me-1"></i>
+                            បង្កើត និងអនុវត្តបណ្តុំនេះ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3: Edit Subject Modal -->
 <div class="modal fade" id="editSubjectModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
             <div class="modal-header border-bottom border-dark p-3">
-                <h5 class="fw-bold text-white mb-0"><i class="bi bi-pencil-square text-warning me-2" style="color:#d4af37;"></i>Edit Subject</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="fw-bold text-white mb-0"><i class="bi bi-pencil-square text-warning me-2"
+                        style="color:#d4af37;"></i>កែប្រែមុខវិជ្ជា (Edit Subject)</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
                 <form id="edit-subject-form">
                     <input type="hidden" id="edit-subj-id">
                     <div class="mb-3">
-                        <label class="form-label text-white extra-small text-uppercase fw-bold">Subject Name</label>
-                        <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-subj-name" required>
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះមុខវិជ្ជា (Subject
+                            Name)</label>
+                        <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-subj-name"
+                            required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label text-white extra-small text-uppercase fw-bold">Emoji / Icon</label>
-                        <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-subj-icon" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label text-white extra-small text-uppercase fw-bold">Max Full Score Points</label>
-                        <input type="number" class="form-control bg-dark text-white border-secondary fw-bold" id="edit-subj-max" min="1" max="500" required>
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">ពិន្ទុពេញអតិបរមា (Max
+                            Full Score)</label>
+                        <input type="number" class="form-control bg-dark text-white border-secondary fw-bold"
+                            id="edit-subj-max" min="1" max="500" required>
                     </div>
 
                     <div class="modal-footer border-top border-dark p-0 pt-3 mt-3">
-                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-check-circle me-1"></i> Save Changes</button>
+                        <button type="button" class="btn btn-outline-glass btn-sm"
+                            data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-check-circle me-1"></i>
+                            រក្សាទុកការកែប្រែ</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 4: Confirm Delete Subject Modal -->
+<div class="modal fade" id="deleteSubjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border border-danger shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #181116, #20141b) !important; border-color: rgba(220, 53, 69, 0.6) !important;">
+            <div class="modal-header border-bottom border-dark p-3">
+                <h5 class="fw-bold text-danger mb-0">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>បញ្ជាក់ការលុបមុខវិជ្ជា (Confirm Delete)
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4 text-center ">
+                <div class="mb-3">
+                    <div class="d-inline-flex align-items-center justify-content-center rounded-circle p-3"
+                        style="background: rgba(220, 53, 69, 0.15); width: 68px; height: 68px;">
+                        <i class="bi bi-trash3-fill text-danger fs-2"></i>
+                    </div>
+                </div>
+                <h5 class="fw-bold mb-2">តើអ្នកពិតជាចង់លុបមុខវិជ្ជានេះមែនទេ?</h5>
+                <p class="text-white-50 small mb-3">មុខវិជ្ជា៖ <strong class="text-warning fs-6"
+                        id="delete-subj-target-name">...</strong></p>
+                <div class="alert alert-danger bg-danger-subtle border border-danger p-2.5 rounded-3 extra-small text-start mb-0"
+                    style="color: #ffffff !important;">
+                    <i class="bi bi-info-circle-fill me-1" style="color: #ff4d4f !important;"></i>
+                    <span style="color: #ff4d4f !important; font-weight: bold;">សម្គាល់៖</span>
+                    ការលុបនេះនឹងដកមុខវិជ្ជានេះចេញពីបណ្តុំសកម្មបច្ចុប្បន្ន និងក្បាលតារាងពិន្ទុ។
+                </div>
+
+            </div>
+            <div class="modal-footer border-top border-dark p-3 pt-2 d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">
+                    បោះបង់ (Cancel)
+                </button>
+                <button type="button" class="btn btn-danger btn-sm fw-bold px-3 shadow" id="btn-confirm-delete-subj">
+                    <i class="bi bi-trash-fill me-1"></i> បញ្ជាក់ការលុប (Delete)
+                </button>
             </div>
         </div>
     </div>
@@ -347,19 +535,210 @@
 
 <script>
     (function () {
-        let isLockedState = false;
+        let isLockedState = true;
+        let currentBundleKey = 'monthly';
+        let pendingDeleteIndex = null;
 
-        let subjectsList = [
-            { id: "subj-math", name: "Mathematics", icon: "📐", max: 100, checked: true },
-            { id: "subj-physics", name: "Physics", icon: "⚡", max: 75, checked: true },
-            { id: "subj-chem", name: "Chemistry", icon: "🧪", max: 75, checked: true },
-            { id: "subj-bio", name: "Biology", icon: "🧬", max: 75, checked: true },
-            { id: "subj-khmer", name: "Khmer Literature", icon: "📖", max: 100, checked: true },
-            { id: "subj-eng", name: "English", icon: "🌐", max: 50, checked: true },
-            { id: "subj-geo", name: "Geography", icon: "🗺️", max: 50, checked: true },
-            { id: "subj-hist", name: "History", icon: "📜", max: 50, checked: true },
-            { id: "subj-civics", name: "Civics & Ethics", icon: "⚖️", max: 50, checked: true }
+        // Predefined Exam Bundles for different exam categories (Cleaned of emoji icons):
+        // 1. ប្រឡងប្រចាំខែ (Monthly Exam)
+        // 2. ប្រឡងឆមាស (Semester Exam)
+        // 3. ប្រឡងបញ្ចប់ / បាក់ឌុប (Final/BacII Exam)
+        const standardExamBundles = {
+            monthly: {
+                title: "មុខវិជ្ជាក្នុងបណ្តុំ៖ ប្រឡងប្រចាំខែ",
+                category: "monthly",
+                subjects: [
+                    { id: "subj-math", name: "គណិតវិទ្យា (Mathematics)", max: 100, checked: true },
+                    { id: "subj-phys", name: "រូបវិទ្យា (Physics)", max: 100, checked: true },
+                    { id: "subj-chem", name: "គីមីវិទ្យា (Chemistry)", max: 100, checked: true },
+                    { id: "subj-khmer", name: "អក្សរសាស្ត្រខ្មែរ (Khmer Literature)", max: 100, checked: true },
+                    { id: "subj-eng", name: "ភាសាអង់គ្លេស (English)", max: 100, checked: true },
+                    { id: "subj-hist", name: "ប្រវត្តិវិទ្យា (History)", max: 100, checked: true }
+                ]
+            },
+            semester: {
+                title: "មុខវិជ្ជាក្នុងបណ្តុំ៖ ប្រឡងឆមាស",
+                category: "semester",
+                subjects: [
+                    { id: "subj-math", name: "គណិតវិទ្យា (Mathematics)", max: 100, checked: true },
+                    { id: "subj-phys", name: "រូបវិទ្យា (Physics)", max: 75, checked: true },
+                    { id: "subj-chem", name: "គីមីវិទ្យា (Chemistry)", max: 75, checked: true },
+                    { id: "subj-bio", name: "ជីវវិទ្យា (Biology)", max: 75, checked: true },
+                    { id: "subj-khmer", name: "អក្សរសាស្ត្រខ្មែរ (Khmer Literature)", max: 100, checked: true },
+                    { id: "subj-eng", name: "ភាសាអង់គ្លេស (English)", max: 75, checked: true },
+                    { id: "subj-hist", name: "ប្រវត្តិវិទ្យា (History)", max: 50, checked: true },
+                    { id: "subj-geo", name: "ភូមិវិទ្យា (Geography)", max: 50, checked: true }
+                ]
+            },
+            final: {
+                title: "មុខវិជ្ជាក្នុងបណ្តុំ៖ ប្រឡងបញ្ចប់ / បាក់ឌុប",
+                category: "final",
+                subjects: [
+                    { id: "subj-math", name: "គណិតវិទ្យា (Mathematics)", max: 125, checked: true },
+                    { id: "subj-phys", name: "រូបវិទ្យា (Physics)", max: 75, checked: true },
+                    { id: "subj-chem", name: "គីមីវិទ្យា (Chemistry)", max: 75, checked: true },
+                    { id: "subj-bio", name: "ជីវវិទ្យា (Biology)", max: 75, checked: true },
+                    { id: "subj-khmer", name: "អក្សរសាស្ត្រខ្មែរ (Khmer Literature)", max: 75, checked: true },
+                    { id: "subj-eng", name: "ភាសាអង់គ្លេស (English)", max: 50, checked: true },
+                    { id: "subj-hist", name: "ប្រវត្តិវិទ្យា (History)", max: 50, checked: true }
+                ]
+            }
+        };
+
+        // Standard subject catalog for bundle creation
+        let subjectCatalog = [
+            { id: "subj-math", name: "គណិតវិទ្យា (Mathematics)", defaultMax: 100 },
+            { id: "subj-phys", name: "រូបវិទ្យា (Physics)", defaultMax: 100 },
+            { id: "subj-chem", name: "គីមីវិទ្យា (Chemistry)", defaultMax: 100 },
+            { id: "subj-bio", name: "ជីវវិទ្យា (Biology)", defaultMax: 75 },
+            { id: "subj-khmer", name: "អក្សរសាស្ត្រខ្មែរ (Khmer Literature)", defaultMax: 100 },
+            { id: "subj-eng", name: "ភាសាអង់គ្លេស (English)", defaultMax: 100 },
+            { id: "subj-hist", name: "ប្រវត្តិវិទ្យា (History)", defaultMax: 100 },
+            { id: "subj-geo", name: "ភូមិវិទ្យា (Geography)", defaultMax: 75 },
+            { id: "subj-civics", name: "ពលរដ្ឋវិទ្យា (Civics & Morals)", defaultMax: 75 },
+            { id: "subj-ict", name: "ព័ត៌មានវិទ្យា (ICT / Computer)", defaultMax: 50 },
+            { id: "subj-sport", name: "អប់រំកាយ និងកីឡា (Physical Education)", defaultMax: 50 }
         ];
+
+        // Clean any existing emoji icons from a subject list
+        function cleanSubjectIcons(list) {
+            if (!Array.isArray(list)) return [];
+            return list.map(item => {
+                let cleanName = item.name || '';
+                // Remove leading emoji characters if present
+                cleanName = cleanName.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, '').trim();
+                return {
+                    id: item.id || `subj-${Date.now()}`,
+                    name: cleanName,
+                    max: parseInt(item.max) || 100,
+                    checked: item.checked !== false
+
+                };
+            });
+        }
+
+        let subjectsList = JSON.parse(JSON.stringify(standardExamBundles.monthly.subjects));
+        let currentSubjectRecordId = null;
+
+        // Load active bundle or custom list from localStorage
+        try {
+            const savedBundleKey = localStorage.getItem('teacher_active_bundle_key');
+            if (savedBundleKey) currentBundleKey = savedBundleKey;
+
+            const saved = localStorage.getItem(`teacher_subjects_bundle_${currentBundleKey}`);
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    subjectsList = cleanSubjectIcons(parsed);
+                }
+            } else if (standardExamBundles[currentBundleKey]) {
+                subjectsList = JSON.parse(JSON.stringify(standardExamBundles[currentBundleKey].subjects));
+            }
+        } catch (e) {
+            console.error('Error loading saved subjects bundle:', e);
+        }
+
+        async function saveSubjectsToStorage() {
+            try {
+                localStorage.setItem(`teacher_subjects_bundle_${currentBundleKey}`, JSON.stringify(subjectsList));
+                localStorage.setItem('teacher_active_bundle_key', currentBundleKey);
+                localStorage.setItem('teacher_subjects_list', JSON.stringify(subjectsList));
+
+                // Save Array of Subjects directly into subject_name in Database API
+                const payload = {
+                    subject_id: currentSubjectRecordId,
+                    subject_name: subjectsList,
+                    credit: subjectsList.length
+                };
+
+                const res = await fetch('/api/subjects', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.status === 'success' && data.subject) {
+                    currentSubjectRecordId = data.subject.subject_id;
+                    console.log('Saved subjects bundle array to DB with ID:', currentSubjectRecordId, data);
+                }
+                return data;
+            } catch (e) {
+                console.error('Error saving subjects to DB:', e);
+                return { status: 'error', message: e.message };
+            }
+        }
+
+        function closeBootstrapModal(modalId) {
+            const modalElem = document.getElementById(modalId);
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = bootstrap.Modal.getInstance(modalElem) || bootstrap.Modal.getOrCreateInstance(modalElem);
+                if (bsModal) bsModal.hide();
+            }
+        }
+
+        let toastTimeout = null;
+        function showBuilderToast(msgText) {
+            const toast = document.getElementById('builder-alert-toast');
+            if (toast) {
+                const msg = document.getElementById('builder-alert-msg');
+                if (msg) msg.innerText = msgText;
+                toast.classList.remove('d-none');
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.add('d-none');
+                }, 5000);
+            }
+        }
+
+        function updateBundleUI() {
+            // Update Tab Active styles
+            document.querySelectorAll('#bundle-quick-tabs button').forEach(btn => {
+                if (btn.getAttribute('data-bundle') === currentBundleKey) {
+                    btn.classList.add('active-bundle-btn');
+                } else {
+                    btn.classList.remove('active-bundle-btn');
+                }
+            });
+
+            // Update Header Title
+            const titleEl = document.getElementById('current-bundle-title');
+            if (titleEl) {
+                if (standardExamBundles[currentBundleKey]) {
+                    titleEl.innerHTML = `<i class="bi bi-list-check me-2" style="color:#d4af37;"></i>${standardExamBundles[currentBundleKey].title}`;
+                } else {
+                    titleEl.innerHTML = `<i class="bi bi-list-check me-2" style="color:#d4af37;"></i>មុខវិជ្ជាក្នុងបណ្តុំ៖ បណ្តុំផ្ទាល់ខ្លួន (Custom)`;
+                }
+            }
+
+            // Update Badge Info
+            const badgeEl = document.getElementById('bundle-info-badge');
+            if (badgeEl) {
+                const activeCount = subjectsList.filter(s => s.checked).length;
+                const totalScore = subjectsList.filter(s => s.checked).reduce((sum, s) => sum + (s.max || 0), 0);
+                badgeEl.innerHTML = `<span class="badge" style="background:#d4af37; font-size:0.8rem;">${activeCount} មុខវិជ្ជាសកម្ម | ពិន្ទុសរុប: ${totalScore}</span>`;
+            }
+        }
+
+        function switchBundle(bundleKey) {
+            currentBundleKey = bundleKey;
+            const saved = localStorage.getItem(`teacher_subjects_bundle_${bundleKey}`);
+            if (saved) {
+                try {
+                    subjectsList = cleanSubjectIcons(JSON.parse(saved));
+                } catch (e) {
+                    if (standardExamBundles[bundleKey]) {
+                        subjectsList = JSON.parse(JSON.stringify(standardExamBundles[bundleKey].subjects));
+                    }
+                }
+            } else if (standardExamBundles[bundleKey]) {
+                subjectsList = JSON.parse(JSON.stringify(standardExamBundles[bundleKey].subjects));
+            }
+
+            saveSubjectsToStorage();
+            updateBundleUI();
+            renderSubjectsChecklist();
+            renderTableSchemaPreview();
+        }
 
         function renderSubjectsChecklist() {
             const container = document.getElementById('subjects-checklist-container');
@@ -367,18 +746,18 @@
 
             container.innerHTML = subjectsList.map((item, index) => `
                 <div class="col-md-4" id="card-${item.id}">
-                    <div class="subject-check-card ${item.checked ? 'active-subject' : ''} d-flex align-items-center justify-content-between">
-                        <div class="form-check d-flex align-items-center gap-2 m-0">
+                    <div class="subject-check-card ${item.checked ? 'active-subject' : ''} ${isLockedState ? 'opacity-75' : ''} d-flex align-items-center justify-content-between">
+                        <div class="form-check d-flex align-items-center gap-2 m-0 text-truncate me-2">
                             <input class="form-check-input subj-checkbox" type="checkbox" id="chk-${item.id}" ${item.checked ? 'checked' : ''} ${isLockedState ? 'disabled' : ''} data-index="${index}">
-                            <label class="form-check-label text-white fw-bold" for="chk-${item.id}">${item.icon} ${item.name}</label>
+                            <label class="form-check-label text-white fw-bold text-truncate" for="chk-${item.id}">${item.name}</label>
                         </div>
-                        <div class="d-flex align-items-center gap-1">
+                        <div class="d-flex align-items-center gap-1 flex-shrink-0">
                             <span class="text-white extra-small">Max:</span>
                             <input type="number" class="form-control max-score-input subj-max-input" data-index="${index}" value="${item.max}" min="1" ${isLockedState ? 'disabled' : ''}>
-                            <button class="btn-icon-action edit-subj-btn ms-1" data-index="${index}" title="Edit Subject" ${isLockedState ? 'disabled' : ''}>
+                            <button class="btn-icon-action edit-subj-btn ms-1" data-index="${index}" title="កែប្រែមុខវិជ្ជា" ${isLockedState ? 'disabled' : ''}>
                                 <i class="bi bi-pencil-fill"></i>
                             </button>
-                            <button class="btn-icon-action delete-subj-btn text-danger" data-index="${index}" title="Delete Subject" ${isLockedState ? 'disabled' : ''}>
+                            <button class="btn-icon-action delete-subj-btn text-danger" data-index="${index}" title="លុបមុខវិជ្ជា" ${isLockedState ? 'disabled' : ''}>
                                 <i class="bi bi-trash-fill"></i>
                             </button>
                         </div>
@@ -386,51 +765,70 @@
                 </div>
             `).join('');
 
+            // Event Listeners for checkboxes
             document.querySelectorAll('.subj-checkbox').forEach(chk => {
                 chk.addEventListener('change', function () {
                     if (isLockedState) return;
                     const idx = parseInt(this.getAttribute('data-index'));
-                    subjectsList[idx].checked = this.checked;
-                    renderSubjectsChecklist();
-                    renderTableSchemaPreview();
+                    if (subjectsList[idx]) {
+                        subjectsList[idx].checked = this.checked;
+                        saveSubjectsToStorage();
+                        renderSubjectsChecklist();
+                        renderTableSchemaPreview();
+                        updateBundleUI();
+                    }
                 });
             });
 
+            // Event Listeners for score inputs
             document.querySelectorAll('.subj-max-input').forEach(input => {
                 input.addEventListener('input', function () {
                     if (isLockedState) return;
                     const idx = parseInt(this.getAttribute('data-index'));
-                    subjectsList[idx].max = parseInt(this.value) || 1;
-                    renderTableSchemaPreview();
+                    if (subjectsList[idx]) {
+                        subjectsList[idx].max = parseInt(this.value) || 1;
+                        saveSubjectsToStorage();
+                        renderTableSchemaPreview();
+                        updateBundleUI();
+                    }
                 });
             });
 
+            // Event Listeners for Edit modal
             document.querySelectorAll('.edit-subj-btn').forEach(btn => {
                 btn.addEventListener('click', function () {
                     if (isLockedState) return;
                     const idx = parseInt(this.getAttribute('data-index'));
                     const s = subjectsList[idx];
+                    if (!s) return;
                     document.getElementById('edit-subj-id').value = idx;
                     document.getElementById('edit-subj-name').value = s.name;
-                    document.getElementById('edit-subj-icon').value = s.icon;
                     document.getElementById('edit-subj-max').value = s.max;
 
                     const modalElem = document.getElementById('editSubjectModal');
                     if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = new bootstrap.Modal(modalElem);
+                        const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
                         bsModal.show();
                     }
                 });
             });
 
+            // Event Listeners for Delete (Using Bootstrap Modal)
             document.querySelectorAll('.delete-subj-btn').forEach(btn => {
                 btn.addEventListener('click', function () {
                     if (isLockedState) return;
                     const idx = parseInt(this.getAttribute('data-index'));
-                    if (confirm(`Are you sure you want to delete the subject "${subjectsList[idx].name}"?`)) {
-                        subjectsList.splice(idx, 1);
-                        renderSubjectsChecklist();
-                        renderTableSchemaPreview();
+                    const targetSubj = subjectsList[idx];
+                    if (!targetSubj) return;
+
+                    pendingDeleteIndex = idx;
+                    const nameEl = document.getElementById('delete-subj-target-name');
+                    if (nameEl) nameEl.innerText = targetSubj.name;
+
+                    const modalElem = document.getElementById('deleteSubjectModal');
+                    if (modalElem && typeof bootstrap !== 'undefined') {
+                        const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                        bsModal.show();
                     }
                 });
             });
@@ -443,98 +841,271 @@
             const btnSave = document.getElementById('btn-save-toggle');
             const btnEdit = document.getElementById('btn-edit-toggle');
             const btnTopAdd = document.getElementById('btn-top-add-subject');
+            const btnTopCreateBundle = document.getElementById('btn-top-create-bundle');
+            const btnSecAddNew = document.getElementById('btn-sec-add-new-subject');
             const btnSecAdd = document.getElementById('btn-sec-add-subject');
-            const cfgType = document.getElementById('cfg-assessment-type');
-            const cfgTitle = document.getElementById('cfg-table-title');
 
             if (locked) {
                 if (mainCard) mainCard.classList.add('locked-mode');
                 if (badge) {
                     badge.className = "badge bg-success-subtle text-success border border-success px-2.5 py-1";
-                    badge.innerHTML = "🔒 Locked Mode";
+                    badge.innerHTML = "🔒 Locked Mode (ចាក់សោ)";
                 }
                 if (btnSave) btnSave.classList.add('d-none');
                 if (btnEdit) btnEdit.classList.remove('d-none');
                 if (btnTopAdd) btnTopAdd.disabled = true;
+                if (btnTopCreateBundle) btnTopCreateBundle.disabled = true;
+                if (btnSecAddNew) btnSecAddNew.disabled = true;
                 if (btnSecAdd) btnSecAdd.disabled = true;
-                if (cfgType) cfgType.disabled = true;
-                if (cfgTitle) cfgTitle.disabled = true;
             } else {
                 if (mainCard) mainCard.classList.remove('locked-mode');
                 if (badge) {
                     badge.className = "badge bg-warning-subtle text-warning border border-warning px-2.5 py-1";
-                    badge.innerHTML = "✏️ Editing Mode";
+                    badge.innerHTML = "✏️ Editing Mode (កំពុងកែសម្រួល)";
                 }
                 if (btnSave) btnSave.classList.remove('d-none');
                 if (btnEdit) btnEdit.classList.add('d-none');
                 if (btnTopAdd) btnTopAdd.disabled = false;
+                if (btnTopCreateBundle) btnTopCreateBundle.disabled = false;
+                if (btnSecAddNew) btnSecAddNew.disabled = false;
                 if (btnSecAdd) btnSecAdd.disabled = false;
-                if (cfgType) cfgType.disabled = false;
-                if (cfgTitle) cfgTitle.disabled = false;
             }
 
             renderSubjectsChecklist();
         }
 
         function renderTableSchemaPreview() {
-            const typeVal = document.getElementById('cfg-assessment-type').value;
-            const titleVal = document.getElementById('cfg-table-title').value || `${typeVal} Score Sheet`;
-
-            document.getElementById('schema-preview-title').innerHTML = `<i class="bi bi-eye-fill me-2" style="color:#d4af37;"></i>Schema Preview: "${titleVal}" (Class 12-A)`;
-
             const activeSubjects = subjectsList.filter(s => s.checked);
             let totalPoints = 0;
             let headerColsHtml = `<th>Rank</th><th>Student Name</th><th>Student ID</th>`;
 
             activeSubjects.forEach(s => {
                 totalPoints += s.max;
-                headerColsHtml += `<th>${s.icon} ${s.name} (${s.max})</th>`;
+                headerColsHtml += `<th>${s.name} (${s.max})</th>`;
             });
 
-            headerColsHtml += `<th>Total Score (${totalPoints})</th><th>Average %</th><th>Grade</th>`;
+            headerColsHtml += `<th>Total Score (${totalPoints})</th><th>Average %</th><th>Result</th>`;
 
-            document.getElementById('preview-table-header-row').innerHTML = headerColsHtml;
-            document.getElementById('schema-total-points-summary').innerText = `Total Max Score Across All Selected Subjects: ${totalPoints} pts`;
+            const previewRow = document.getElementById('preview-table-header-row');
+            if (previewRow) previewRow.innerHTML = headerColsHtml;
+
+            const totalPointsSummary = document.getElementById('schema-total-points-summary');
+            if (totalPointsSummary) {
+                totalPointsSummary.innerText = `Total Max Score Across All Selected Subjects: ${totalPoints} pts`;
+            }
         }
 
-        const addForm = document.getElementById('add-subject-form');
-        if (addForm) {
-            addForm.addEventListener('submit', function (e) {
+        // Handler: Add New Subject (មុខវិជ្ជាដែលមិនទាន់មាន)
+        const addNewSubjectForm = document.getElementById('add-new-subject-form');
+        if (addNewSubjectForm) {
+            addNewSubjectForm.addEventListener('submit', function (e) {
                 e.preventDefault();
-                if (isLockedState) return;
+                if (isLockedState) {
+                    alert('សូមចុច "✏️ បើកសិទ្ធិកែសម្រួល (Unlock & Edit)" ជាមុនសិន ដើម្បីអាចបន្ថែមមុខវិជ្ជាថ្មីបាន!');
+                    return;
+                }
 
-                const newName = document.getElementById('new-subj-name').value.trim();
-                const newIcon = document.getElementById('new-subj-icon').value;
-                const newMax = parseInt(document.getElementById('new-subj-max').value) || 50;
+                const nameInput = document.getElementById('create-subj-name');
+                const maxInput = document.getElementById('create-subj-max');
+                const newName = nameInput ? nameInput.value.trim() : '';
+                const newMax = maxInput ? parseInt(maxInput.value) || 100 : 100;
 
-                if (newName) {
-                    subjectsList.push({
-                        id: `subj-custom-${Date.now()}`,
-                        name: newName,
-                        icon: newIcon,
-                        max: newMax,
-                        checked: true
-                    });
+                if (!newName) {
+                    alert('សូមបញ្ចូលឈ្មោះមុខវិជ្ជា!');
+                    return;
+                }
 
-                    renderSubjectsChecklist();
-                    renderTableSchemaPreview();
+                // Check for duplicate in current list
+                const exists = subjectsList.some(s => s.name.toLowerCase() === newName.toLowerCase());
+                if (exists) {
+                    alert(`មុខវិជ្ជា "${newName}" មានរួចហើយនៅក្នុងបញ្ជី!`);
+                    return;
+                }
 
-                    const modalElem = document.getElementById('addSubjectModal');
-                    if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = bootstrap.Modal.getInstance(modalElem);
-                        if (bsModal) bsModal.hide();
+                const newId = `subj-custom-${Date.now()}`;
+                subjectsList.push({
+                    id: newId,
+                    name: newName,
+                    max: newMax,
+                    checked: true
+                });
+
+                // Also add to subjectCatalog so it appears in bundle modal
+                subjectCatalog.push({
+                    id: newId,
+                    name: newName,
+                    defaultMax: newMax
+                });
+
+                saveSubjectsToStorage();
+                updateBundleUI();
+                renderSubjectsChecklist();
+                renderTableSchemaPreview();
+
+                closeBootstrapModal('addNewSubjectModal');
+                addNewSubjectForm.reset();
+
+                showBuilderToast(`បានបន្ថែមមុខវិជ្ជាថ្មី "${newName}" (ពិន្ទុពេញ: ${newMax}) ទៅក្នុងបណ្តុំដោយជោគជ័យ!`);
+            });
+        }
+
+        // Populate Bundle Creation Modal Subject List
+        function populateBundleModalSubjects(selectedCategory) {
+            const container = document.getElementById('bundle-subject-options');
+            if (!container) return;
+
+            let preset = standardExamBundles[selectedCategory];
+            let activeSubjIds = {};
+            let scoreMap = {};
+
+            if (preset) {
+                preset.subjects.forEach(s => {
+                    activeSubjIds[s.id] = true;
+                    scoreMap[s.id] = s.max;
+                });
+            } else {
+                subjectCatalog.forEach(c => {
+                    activeSubjIds[c.id] = true;
+                    scoreMap[c.id] = c.defaultMax;
+                });
+            }
+
+            container.innerHTML = subjectCatalog.map(item => {
+                const isChecked = !!activeSubjIds[item.id];
+                const maxVal = scoreMap[item.id] !== undefined ? scoreMap[item.id] : item.defaultMax;
+                return `
+                    <div class="col-md-6">
+                        <div class="bundle-opt-card ${isChecked ? 'checked' : ''} d-flex align-items-center justify-content-between">
+                            <div class="form-check d-flex align-items-center gap-2 m-0 text-truncate me-1">
+                                <input class="form-check-input modal-bundle-chk" type="checkbox" id="modal-chk-${item.id}" value="${item.id}" ${isChecked ? 'checked' : ''}>
+                                <label class="form-check-label text-white small text-truncate" for="modal-chk-${item.id}">
+                                    ${item.name}
+                                </label>
+                            </div>
+                            <div class="d-flex align-items-center gap-1 flex-shrink-0">
+                                <span class="text-white extra-small">Max:</span>
+                                <input type="number" class="form-control max-score-input modal-bundle-max" data-id="${item.id}" value="${maxVal}" min="1" max="500" style="width:65px; height:30px; font-size:0.8rem;">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            calculateBundleModalTotal();
+
+            document.querySelectorAll('.modal-bundle-chk').forEach(chk => {
+                chk.addEventListener('change', function () {
+                    const card = this.closest('.bundle-opt-card');
+                    if (card) {
+                        if (this.checked) card.classList.add('checked');
+                        else card.classList.remove('checked');
                     }
-                    addForm.reset();
+                    calculateBundleModalTotal();
+                });
+            });
 
-                    const toast = document.getElementById('builder-alert-toast');
-                    if (toast) {
-                        document.getElementById('builder-alert-msg').innerText = `Successfully added custom subject "${newName}"!`;
-                        toast.classList.remove('d-none');
-                    }
+            document.querySelectorAll('.modal-bundle-max').forEach(inp => {
+                inp.addEventListener('input', calculateBundleModalTotal);
+            });
+        }
+
+        function calculateBundleModalTotal() {
+            let sum = 0;
+            document.querySelectorAll('.modal-bundle-chk').forEach(chk => {
+                if (chk.checked) {
+                    const id = chk.value;
+                    const maxInp = document.querySelector(`.modal-bundle-max[data-id="${id}"]`);
+                    const val = maxInp ? parseInt(maxInp.value) || 0 : 0;
+                    sum += val;
                 }
             });
+            const calcEl = document.getElementById('bundle-calc-total');
+            if (calcEl) calcEl.innerText = `ពិន្ទុសរុប: ${sum} pts`;
         }
 
+        // Category change inside modal
+        const catSelect = document.getElementById('bundle-exam-category');
+        const nameInput = document.getElementById('bundle-custom-name');
+        if (catSelect) {
+            catSelect.addEventListener('change', function () {
+                const val = this.value;
+                if (nameInput) {
+                    if (val === 'monthly') nameInput.value = 'បណ្តុំមុខវិជ្ជាប្រឡងប្រចាំខែ';
+                    else if (val === 'semester') nameInput.value = 'បណ្តុំមុខវិជ្ជាប្រឡងឆមាស';
+                    else if (val === 'final') nameInput.value = 'បណ្តុំមុខវិជ្ជាប្រឡងបញ្ចប់ / បាក់ឌុប';
+                    else nameInput.value = 'បណ្តុំមុខវិជ្ជាផ្ទាល់ខ្លួន';
+                }
+                populateBundleModalSubjects(val);
+            });
+        }
+
+        // Form Submit: Create & Apply Exam Subject Bundle
+        const createBundleForm = document.getElementById('create-bundle-form');
+        if (createBundleForm) {
+            createBundleForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (isLockedState) {
+                    alert('សូមចុច "✏️ បើកសិទ្ធិកែសម្រួល (Unlock & Edit)" ជាមុនសិន ដើម្បីអាចបង្កើត និងអនុវត្តបណ្តុំថ្មីបាន!');
+                    return;
+                }
+
+                const cat = document.getElementById('bundle-exam-category').value;
+                const bundleName = document.getElementById('bundle-custom-name').value.trim() || 'បណ្តុំមុខវិជ្ជាថ្មី';
+
+                const newSubjects = [];
+                document.querySelectorAll('.modal-bundle-chk').forEach(chk => {
+                    if (chk.checked) {
+                        const id = chk.value;
+                        const catItem = subjectCatalog.find(c => c.id === id);
+                        const maxInp = document.querySelector(`.modal-bundle-max[data-id="${id}"]`);
+                        const maxVal = maxInp ? parseInt(maxInp.value) || 50 : 50;
+
+                        if (catItem) {
+                            newSubjects.push({
+                                id: catItem.id,
+                                name: catItem.name,
+                                max: maxVal,
+                                checked: true
+                            });
+                        }
+                    }
+                });
+
+                if (newSubjects.length === 0) {
+                    alert('សូមជ្រើសរើសមុខវិជ្ជាយ៉ាងហោចណាស់ ១ មុខវិជ្ជាដើម្បីបង្កើតបណ្តុំ!');
+                    return;
+                }
+
+                currentBundleKey = cat;
+                subjectsList = newSubjects;
+
+                const customTab = document.getElementById('tab-bundle-custom');
+                if (cat === 'custom' && customTab) {
+                    customTab.classList.remove('d-none');
+                    customTab.innerText = `✨ ${bundleName}`;
+                }
+
+                saveSubjectsToStorage();
+                updateBundleUI();
+                renderSubjectsChecklist();
+                renderTableSchemaPreview();
+
+                closeBootstrapModal('createBundleModal');
+
+                showBuilderToast(`បានបង្កើត និងអនុវត្ត "${bundleName}" (សរុប ${newSubjects.length} មុខវិជ្ជា) ជោគជ័យ!`);
+            });
+        }
+
+        // Quick Tabs Click Handling (Monthly, Semester, Final, Custom)
+        document.querySelectorAll('#bundle-quick-tabs button').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const bundleKey = this.getAttribute('data-bundle');
+                switchBundle(bundleKey);
+                showBuilderToast(`បានប្តូរទៅកាន់ "${this.innerText.trim()}" រួចរាល់!`);
+            });
+        });
+
+        // Edit Subject modal submit
         const editForm = document.getElementById('edit-subject-form');
         if (editForm) {
             editForm.addEventListener('submit', function (e) {
@@ -543,41 +1114,66 @@
 
                 const idx = parseInt(document.getElementById('edit-subj-id').value);
                 const editedName = document.getElementById('edit-subj-name').value.trim();
-                const editedIcon = document.getElementById('edit-subj-icon').value.trim();
                 const editedMax = parseInt(document.getElementById('edit-subj-max').value) || 50;
 
                 if (subjectsList[idx]) {
                     subjectsList[idx].name = editedName;
-                    subjectsList[idx].icon = editedIcon;
                     subjectsList[idx].max = editedMax;
 
+                    saveSubjectsToStorage();
                     renderSubjectsChecklist();
                     renderTableSchemaPreview();
+                    updateBundleUI();
 
-                    const modalElem = document.getElementById('editSubjectModal');
-                    if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = bootstrap.Modal.getInstance(modalElem);
-                        if (bsModal) bsModal.hide();
-                    }
+                    closeBootstrapModal('editSubjectModal');
 
-                    const toast = document.getElementById('builder-alert-toast');
-                    if (toast) {
-                        document.getElementById('builder-alert-msg').innerText = `Successfully updated subject "${editedName}"!`;
-                        toast.classList.remove('d-none');
-                    }
+                    showBuilderToast(`បានកែប្រែមុខវិជ្ជា "${editedName}" ជោគជ័យ!`);
                 }
             });
         }
 
+        // Confirm Delete Button Click Handler in Modal
+        const btnConfirmDelete = document.getElementById('btn-confirm-delete-subj');
+        if (btnConfirmDelete) {
+            btnConfirmDelete.addEventListener('click', function () {
+                if (isLockedState || pendingDeleteIndex === null) return;
+
+                const deletedSubj = subjectsList[pendingDeleteIndex];
+                const deletedName = deletedSubj ? deletedSubj.name : '';
+
+                subjectsList.splice(pendingDeleteIndex, 1);
+                pendingDeleteIndex = null;
+
+                saveSubjectsToStorage();
+                renderSubjectsChecklist();
+                renderTableSchemaPreview();
+                updateBundleUI();
+
+                closeBootstrapModal('deleteSubjectModal');
+
+                showBuilderToast(`បានលុបមុខវិជ្ជា "${deletedName}" ចេញពីបណ្តុំដោយជោគជ័យ!`);
+            });
+        }
+
+        // Lock & Unlock Toggles
         const btnSave = document.getElementById('btn-save-toggle');
         if (btnSave) {
-            btnSave.addEventListener('click', function () {
+            btnSave.addEventListener('click', async function () {
+                btnSave.disabled = true;
+                btnSave.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> កំពុងរក្សាទុក...';
+                
+                const res = await saveSubjectsToStorage();
+                
+                btnSave.disabled = false;
+                btnSave.innerHTML = '<i class="bi bi-lock-fill me-1"></i> រក្សាទុក & ចាក់សោ (Save & Lock)';
+                
                 setLockState(true);
                 renderTableSchemaPreview();
-                const toast = document.getElementById('builder-alert-toast');
-                if (toast) {
-                    document.getElementById('builder-alert-msg').innerText = "🔒 Schema locked successfully! (Click 'Unlock & Edit Schema' to make changes)";
-                    toast.classList.remove('d-none');
+                
+                if (res && res.status === 'success') {
+                    showBuilderToast(`✅ បានរក្សាទុកទិន្នន័យ (${subjectsList.length} មុខវិជ្ជា) ក្នុង Database ជោគជ័យ!`);
+                } else {
+                    showBuilderToast("✅ បានរក្សាទុក និងចាក់សោបណ្តុំមុខវិជ្ជាជោគជ័យ!");
                 }
             });
         }
@@ -586,18 +1182,58 @@
         if (btnEdit) {
             btnEdit.addEventListener('click', function () {
                 setLockState(false);
-                const toast = document.getElementById('builder-alert-toast');
-                if (toast) {
-                    document.getElementById('builder-alert-msg').innerText = "✏️ Editing Mode Unlocked!";
-                    toast.classList.remove('d-none');
-                }
+                showBuilderToast("បានបើកសិទ្ធិកែសម្រួល! លោកអ្នកអាចបន្ថែមមុខវិជ្ជាថ្មី បង្កើតបណ្តុំ ឬកែប្រែពិន្ទុបាន។");
             });
         }
 
-        document.getElementById('cfg-assessment-type').addEventListener('change', renderTableSchemaPreview);
-        document.getElementById('cfg-table-title').addEventListener('input', renderTableSchemaPreview);
+        // Fetch Subjects and Saved Bundle from Database API
+        async function fetchSubjectsFromAPI() {
+            try {
+                const res = await fetch('/api/subjects');
+                const data = await res.json();
+                if (data.status === 'success' && Array.isArray(data.subjects) && data.subjects.length > 0) {
+                    // Find subject bundle record
+                    const targetBundle = data.subjects[0];
+                    if (targetBundle) {
+                        currentSubjectRecordId = targetBundle.subject_id;
+                        if (Array.isArray(targetBundle.subject_name) && targetBundle.subject_name.length > 0) {
+                            subjectsList = cleanSubjectIcons(targetBundle.subject_name);
+                            updateBundleUI();
+                            renderSubjectsChecklist();
+                            renderTableSchemaPreview();
+                        }
+                    }
 
+                    // Build catalog for modal from all available subjects
+                    const uniqueCatalogMap = {};
+                    subjectCatalog.forEach(c => { uniqueCatalogMap[c.name] = c; });
+                    data.subjects.forEach(s => {
+                        if (Array.isArray(s.subject_name)) {
+                            s.subject_name.forEach(item => {
+                                if (item.name && !uniqueCatalogMap[item.name]) {
+                                    uniqueCatalogMap[item.name] = {
+                                        id: item.id || `subj-db-${s.subject_id}`,
+                                        name: item.name,
+                                        defaultMax: item.max || 100
+                                    };
+                                }
+                            });
+                        }
+                    });
+                    subjectCatalog = Object.values(uniqueCatalogMap);
+                    populateBundleModalSubjects(currentBundleKey || 'monthly');
+                }
+            } catch (err) {
+                console.error('Fetch subjects error:', err);
+            }
+        }
+
+        // Initialize modal options and active view
+        populateBundleModalSubjects('monthly');
+        updateBundleUI();
         renderSubjectsChecklist();
         renderTableSchemaPreview();
+        setLockState(true);
+        fetchSubjectsFromAPI();
     })();
 </script>

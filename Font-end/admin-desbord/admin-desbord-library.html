@@ -1,5 +1,5 @@
 <style>
-    /* Premium Ultra-Modern Dark & Gold Library & Book Loans Architecture */
+    /* Premium Ultra-Modern Dark & Gold Library & Book Stock Architecture */
     * {
         font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
     }
@@ -83,16 +83,36 @@
         font-weight: 800;
         border: 1px solid rgba(255, 223, 0, 0.6);
         border-radius: 14px;
-        padding: 10px 22px;
-        font-size: 0.88rem;
+        padding: 10px 20px;
+        font-size: 0.86rem;
         box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
         transition: all 0.3s ease;
+        cursor: pointer;
     }
 
     .btn-gold-shimmer:hover {
         box-shadow: 0 10px 35px rgba(212, 175, 55, 0.75);
         transform: translateY(-2px);
         color: #000000;
+    }
+
+    .btn-emerald-shimmer {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: #ffffff;
+        font-weight: 800;
+        border: 1px solid rgba(16, 185, 129, 0.6);
+        border-radius: 14px;
+        padding: 10px 20px;
+        font-size: 0.86rem;
+        box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btn-emerald-shimmer:hover {
+        box-shadow: 0 10px 35px rgba(16, 185, 129, 0.7);
+        transform: translateY(-2px);
+        color: #ffffff;
     }
 
     .btn-card-details {
@@ -105,6 +125,7 @@
         font-size: 0.84rem;
         box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
         transition: all 0.28s ease;
+        cursor: pointer;
     }
 
     .btn-card-details:hover {
@@ -122,6 +143,7 @@
         padding: 7px 14px;
         font-size: 0.82rem;
         transition: all 0.28s ease;
+        cursor: pointer;
     }
 
     .btn-outline-glass:hover {
@@ -147,265 +169,759 @@
         white-space: nowrap;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
+
+    /* Custom Navigation Tabs */
+    .lib-nav-pills .nav-link {
+        color: #a0a0b8;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 9px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(18, 18, 26, 0.7);
+        transition: all 0.25s ease;
+    }
+
+    .lib-nav-pills .nav-link.active {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.1) 100%);
+        color: #ffd700;
+        border-color: rgba(212, 175, 55, 0.6);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+    }
+
+    .status-filter-btn {
+        background: rgba(20, 20, 30, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #c0c0d0;
+        border-radius: 10px;
+        padding: 6px 14px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        transition: all 0.2s ease;
+    }
+
+    .status-filter-btn.active {
+        background: rgba(212, 175, 55, 0.25);
+        color: #ffd700;
+        border-color: #d4af37;
+    }
+
+    /* Category Multi-select Pills */
+    .category-pill-label {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #e0e0f0;
+        border-radius: 20px;
+        padding: 6px 14px;
+        font-size: 0.84rem;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.22s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .category-pill-label:hover {
+        background: rgba(212, 175, 55, 0.15);
+        border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .category-pill-label:has(input:checked), .category-pill-label.active {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.3) 0%, rgba(212, 175, 55, 0.12) 100%) !important;
+        border-color: #ffd700 !important;
+        color: #ffd700 !important;
+        font-weight: 700;
+        box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+    }
+
+    /* Printable Slip Styling */
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #printable-loan-slip-content, #printable-loan-slip-content * {
+            visibility: visible;
+        }
+        #printable-loan-slip-content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background: white !important;
+            color: black !important;
+        }
+    }
 </style>
 
 <div class="p-4">
-    <!-- LEVEL 1: CLASS-BASED BOOK LOANS GRID (បង្ហាញជាថ្នាក់ៗ និង ចំនួនសៀវភៅខ្ចីក្នុងថ្នាក់នីមួយៗ) -->
-    <div id="class-library-boxes-view">
-        <!-- Executive Hero Header Banner -->
-        <div class="library-hero-banner p-4 mb-4">
-            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
-                <div>
-                    <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;"><i
-                            class="bi bi-book-half me-1"></i> ប្រព័ន្ធគ្រប់គ្រងការខ្ចីសៀវភៅបណ្ណាល័យ</span>
-                    <h2 class="fw-bold text-white mb-1">គ្រប់គ្រងសិស្សខ្ចីសៀវភៅតាមថ្នាក់រៀន (Class Book Loans)</h2>
-                    <p class="text-muted small mb-0">បង្ហាញតាមថ្នាក់នីមួយៗ អំពីចំនួនសៀវភៅដែលបានខ្ចីសរុប និង
-                        ចំនួនសិស្សដែលបានខ្ចីសៀវភៅពីបណ្ណាល័យសាលា។</p>
-                </div>
-                <div class="d-flex align-items-center gap-3">
-                    <button class="btn btn-outline-glass btn-sm"><i class="bi bi-download me-1"></i>
-                        ទាញយករបាយការណ៍</button>
-                    <button class="btn-gold-shimmer" data-bs-toggle="modal"
-                        data-bs-target="#adminAddNewBookLoanModal"><i class="bi bi-journal-plus me-1"></i> ➕
-                        កត់ត្រាកាតខ្ចីសៀវភៅថ្មី</button>
-                </div>
+    <!-- Executive Hero Header Banner -->
+    <div class="library-hero-banner p-4 mb-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+                <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;">
+                    <i class="bi bi-book-half me-1"></i> ប្រព័ន្ធគ្រប់គ្រងបណ្ណាល័យ & ស្តុកសៀវភៅ (Library Management)
+                </span>
+                <h2 class="fw-bold text-white mb-1">គ្រប់គ្រងស្តុកសៀវភៅ & សិស្សខ្ចីសៀវភៅតាមថ្នាក់</h2>
+                <p class="text-muted small mb-0">កត់ត្រាកាតខ្ចីសៀវភៅតាមមុខវិជ្ជា គ្រប់គ្រងស្តុកសៀវភៅ និង តាមដានការសងសៀវភៅរបស់សិស្ស។</p>
             </div>
-        </div>
-
-        <!-- Top Statistics KPI Row showing School Book Inventory & Stock Remaining -->
-        <div class="row g-3 mb-4">
-            <div class="col-md-3">
-                <div class="glass-library-kpi">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="text-muted extra-small">📚 សៀវភៅសរុបក្នុងស្តុក</span>
-                        <i class="bi bi-journal-bookmark-fill text-warning fs-5" style="color:#d4af37;"></i>
-                    </div>
-                    <h3 class="fw-bold text-white mb-0" id="kpi-total-inventory-books">២,៥០០ ក្បាល</h3>
-                    <span class="text-muted extra-small"><i class="bi bi-building me-1"></i>ស្តុកបណ្ណាល័យសាលា</span>
-                </div>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <button class="btn btn-outline-glass btn-sm" id="btn-refresh-library-data">
+                    <i class="bi bi-arrow-clockwise me-1"></i> ផ្ទុកឡើងវិញ
+                </button>
+                <button class="btn-emerald-shimmer" id="btn-open-add-book-stock-modal">
+                    <i class="bi bi-box-arrow-in-down me-1"></i> ➕ បន្ថែមសៀវភៅក្នុងស្តុក
+                </button>
+                <button class="btn-gold-shimmer" id="btn-open-add-loan-modal">
+                    <i class="bi bi-journal-plus me-1"></i> ➕ កត់ត្រាកាតខ្ចីថ្មី
+                </button>
             </div>
-            <div class="col-md-3">
-                <div class="glass-library-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="text-warning extra-small fw-bold" style="color:#d4af37;">📤 សៀវភៅកំពុងខ្ចី</span>
-                        <i class="bi bi-book text-warning fs-5" style="color:#d4af37;"></i>
-                    </div>
-                    <h3 class="fw-bold text-warning mb-0" style="color:#d4af37;" id="kpi-total-borrowed-books">២១៥ ក្បាល
-                    </h3>
-                    <span class="text-warning extra-small" style="color:#d4af37;">សិស្សកំពុងកាន់កាប់ (៨.៦%)</span>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="glass-library-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="text-success extra-small fw-bold">📦 សៀវភៅសល់ក្នុងស្តុក</span>
-                        <i class="bi bi-box-seam-fill text-success fs-5"></i>
-                    </div>
-                    <h3 class="fw-bold text-success mb-0" id="kpi-total-stock-remaining">២,២៨៥ ក្បាល</h3>
-                    <span class="text-success extra-small"><i class="bi bi-check-circle me-1"></i>អាទិភាពអាចខ្ចីបាន
-                        (៩១.៤%)</span>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="glass-library-kpi" style="border-color: rgba(239, 68, 68, 0.4);">
-                    <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="text-danger extra-small fw-bold">⏰ ហួសកាលកំណត់សង</span>
-                        <i class="bi bi-exclamation-octagon-fill text-danger fs-5"></i>
-                    </div>
-                    <h3 class="fw-bold text-danger mb-0" id="kpi-total-overdue-books">១៥ ក្បាល</h3>
-                    <span class="text-danger extra-small">ត្រូវផ្ញើសាររំលឹកសិស្ស</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- School Inventory Stock Breakdown by Subject -->
-        <div class="card-custom p-4 mb-4" style="border-color: rgba(16, 185, 129, 0.3) !important;">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                    <h5 class="fw-bold text-white mb-0"><i
-                            class="bi bi-boxes text-success me-2"></i>របាយការណ៍ស្តុកសៀវភៅសាលាសរុបតាមមុខវិជ្ជា (School
-                        Library Book Inventory Stock)</h5>
-                    <span class="text-muted extra-small">បង្ហាញចំនួនសៀវភៅសរុប, កំពុងខ្ចី, និង
-                        ចំនួនសៀវភៅដែលនៅសល់ក្នុងស្តុកបណ្ណាល័យ</span>
-                </div>
-                <span class="badge bg-success-subtle text-success px-3 py-1.5 fw-bold fs-6">សរុបសល់ស្តុក <b>២,២៨៥
-                        ក្បាល</b> (៩១.៤%)</span>
-            </div>
-
-            <div class="table-responsive">
-                <table class="table table-dark table-hover align-middle mb-0 compact-score-table"
-                    style="background: transparent;">
-                    <thead>
-                        <tr class="text-muted extra-small text-uppercase border-bottom border-dark">
-                            <th>មុខវិជ្ជាសិក្សា (Subject)</th>
-                            <th>សៀវភៅសរុប (Total)</th>
-                            <th>កំពុងខ្ចី (Borrowed)</th>
-                            <th>សល់ក្នុងស្តុក (Stock Remaining)</th>
-                            <th>ស្ថានភាពស្តុក (Status)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="fw-semibold text-white">📐 គណិតវិទ្យា (Mathematics)</td>
-                            <td><span class="text-white">៥០០ ក្បាល</span></td>
-                            <td><span class="text-warning fw-bold" style="color:#d4af37 !important;">៤៥ ក្បាល</span>
-                            </td>
-                            <td><span class="badge bg-success-subtle text-success px-2.5 py-1 fs-6 fw-bold">៤៥៥ ក្បាល
-                                    (៩១.០%)</span></td>
-                            <td><span class="text-success extra-small fw-semibold">🟢 ស្តុកគ្រប់គ្រាន់</span></td>
-                        </tr>
-                        <tr>
-                            <td class="fw-semibold text-white">⚡ រូបវិទ្យា (Physics)</td>
-                            <td><span class="text-white">៤០០ ក្បាល</span></td>
-                            <td><span class="text-warning fw-bold" style="color:#d4af37 !important;">៣៨ ក្បាល</span>
-                            </td>
-                            <td><span class="badge bg-success-subtle text-success px-2.5 py-1 fs-6 fw-bold">៣៦២ ក្បាល
-                                    (៩០.៥%)</span></td>
-                            <td><span class="text-success extra-small fw-semibold">🟢 ស្តុកគ្រប់គ្រាន់</span></td>
-                        </tr>
-                        <tr>
-                            <td class="fw-semibold text-white">🧪 គីមីវិទ្យា (Chemistry)</td>
-                            <td><span class="text-white">៤០០ ក្បាល</span></td>
-                            <td><span class="text-warning fw-bold" style="color:#d4af37 !important;">៣៥ ក្បាល</span>
-                            </td>
-                            <td><span class="badge bg-success-subtle text-success px-2.5 py-1 fs-6 fw-bold">៣៦៥ ក្បាល
-                                    (៩១.៣%)</span></td>
-                            <td><span class="text-success extra-small fw-semibold">🟢 ស្តុកគ្រប់គ្រាន់</span></td>
-                        </tr>
-                        <tr>
-                            <td class="fw-semibold text-white">🇰🇭 ភាសាខ្មែរ (Khmer Literature)</td>
-                            <td><span class="text-white">៦០០ ក្បាល</span></td>
-                            <td><span class="text-warning fw-bold" style="color:#d4af37 !important;">៥២ ក្បាល</span>
-                            </td>
-                            <td><span class="badge bg-success-subtle text-success px-2.5 py-1 fs-6 fw-bold">៥៤៨ ក្បាល
-                                    (៩១.៣%)</span></td>
-                            <td><span class="text-success extra-small fw-semibold">🟢 ស្តុកគ្រប់គ្រាន់</span></td>
-                        </tr>
-                        <tr>
-                            <td class="fw-semibold text-white">🇬🇧 ភាសាអង់គ្លេស (English Language)</td>
-                            <td><span class="text-white">៦០០ ក្បាល</span></td>
-                            <td><span class="text-warning fw-bold" style="color:#d4af37 !important;">៤៥ ក្បាល</span>
-                            </td>
-                            <td><span class="badge bg-success-subtle text-success px-2.5 py-1 fs-6 fw-bold">៥៥៥ ក្បាល
-                                    (៩២.៥%)</span></td>
-                            <td><span class="text-success extra-small fw-semibold">🟢 ស្តុកគ្រប់គ្រាន់</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Filter & Search Bar for Classes -->
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-            <h5 class="fw-bold text-white mb-0"><i class="bi bi-grid-3x3-gap-fill text-warning me-2"
-                    style="color:#d4af37 !important;"></i>បញ្ជីថ្នាក់រៀន និង ចំនួនសៀវភៅខ្ចីសរុបតាមថ្នាក់</h5>
-            <div class="search-box" style="width: 320px;">
-                <i class="bi bi-search text-muted"></i>
-                <input type="text" id="library-class-search-input" placeholder="ស្វែងរក ឈ្មោះថ្នាក់ ឬ គ្រូបន្ទុក...">
-            </div>
-        </div>
-
-        <!-- Class Cards Grid showing total borrowed books per class -->
-        <div id="library-class-cards-grid" class="row g-3.5 mb-4">
-            <!-- Dynamic Class Cards Rendered Here -->
         </div>
     </div>
 
-    <!-- LEVEL 2: STUDENT BORROWED BOOKS LIST PANEL INSIDE CLICKED CLASS (បង្ហាញថាសិស្សម្នាក់ណាខ្ចីសៀវភៅប៉ុន្មានក្បាល) -->
-    <div id="class-library-students-panel" style="display: none;">
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
-            <button id="back-to-library-classes-btn" class="btn btn-outline-glass btn-sm"><i
-                    class="bi bi-arrow-left me-1.5"></i> ត្រឡប់ទៅបញ្ជីថ្នាក់រៀន</button>
-            <div class="d-flex align-items-center gap-2">
-                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-printer me-1"></i>
-                    បោះពុម្ពបញ្ជីខ្ចី</button>
-                <button class="btn-gold-shimmer"><i class="bi bi-plus-lg me-1"></i> កត់ត្រាសិស្សខ្ចីថ្មី</button>
+    <!-- Top Statistics KPI Row -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-2dot4 col-sm-6 col-12" style="width: 20%; min-width: 200px;">
+            <div class="glass-library-kpi">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-muted extra-small">📚 សៀវភៅសរុបក្នុងស្តុក</span>
+                    <i class="bi bi-journal-bookmark-fill fs-5" style="color:#d4af37;"></i>
+                </div>
+                <h3 class="fw-bold text-white mb-0" id="kpi-total-inventory-books">0 ក្បាល</h3>
+                <span class="text-muted extra-small"><i class="bi bi-building me-1"></i>ស្តុកបណ្ណាល័យសាលា</span>
+            </div>
+        </div>
+        <div class="col-md-2dot4 col-sm-6 col-12" style="width: 20%; min-width: 200px;">
+            <div class="glass-library-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-warning extra-small fw-bold" style="color:#d4af37;">📤 សៀវភៅកំពុងខ្ចី</span>
+                    <i class="bi bi-book text-warning fs-5" style="color:#d4af37;"></i>
+                </div>
+                <h3 class="fw-bold text-warning mb-0" style="color:#d4af37;" id="kpi-total-borrowed-books">0 ក្បាល</h3>
+                <span class="text-warning extra-small" style="color:#d4af37;" id="kpi-borrowed-percent">សិស្សកំពុងកាន់កាប់</span>
+            </div>
+        </div>
+        <div class="col-md-2dot4 col-sm-6 col-12" style="width: 20%; min-width: 200px;">
+            <div class="glass-library-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-success extra-small fw-bold">📦 សៀវភៅសល់ក្នុងស្តុក</span>
+                    <i class="bi bi-box-seam-fill text-success fs-5"></i>
+                </div>
+                <h3 class="fw-bold text-success mb-0" id="kpi-total-stock-remaining">0 ក្បាល</h3>
+                <span class="text-success extra-small" id="kpi-stock-percent"><i class="bi bi-check-circle me-1"></i>អាចខ្ចីបាន</span>
+            </div>
+        </div>
+        <div class="col-md-2dot4 col-sm-6 col-12" style="width: 20%; min-width: 200px;">
+            <div class="glass-library-kpi" style="border-color: rgba(59, 130, 246, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-info extra-small fw-bold">✅ បានសងរួចរាល់</span>
+                    <i class="bi bi-check2-circle text-info fs-5"></i>
+                </div>
+                <h3 class="fw-bold text-info mb-0" id="kpi-total-returned-books">0 ក្បាល</h3>
+                <span class="text-info extra-small">បានត្រឡប់ចូលបណ្ណាល័យ</span>
+            </div>
+        </div>
+        <div class="col-md-2dot4 col-sm-6 col-12" style="width: 20%; min-width: 200px;">
+            <div class="glass-library-kpi" style="border-color: rgba(168, 85, 247, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-white extra-small fw-bold">👥 សិស្សខ្ចីសរុប</span>
+                    <i class="bi bi-people-fill text-light fs-5"></i>
+                </div>
+                <h3 class="fw-bold text-white mb-0" id="kpi-total-borrowers">0 នាក់</h3>
+                <span class="text-muted extra-small"><i class="bi bi-person-check me-1"></i>សិស្សទាំងអស់ក្នុងប្រព័ន្ធ</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Navigation Tabs -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <ul class="nav nav-pills lib-nav-pills gap-2" id="libraryMainTabs" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="tab-classes-btn" data-bs-toggle="pill" data-bs-target="#tab-classes-content" type="button">
+                    <i class="bi bi-grid-3x3-gap-fill me-1.5"></i> បែងចែកតាមថ្នាក់រៀន (Class Boxes)
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="tab-all-loans-btn" data-bs-toggle="pill" data-bs-target="#tab-all-loans-content" type="button">
+                    <i class="bi bi-table me-1.5"></i> បញ្ជីខ្ចីសៀវភៅទាំងអស់ (Master Loans Table)
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="tab-inventory-btn" data-bs-toggle="pill" data-bs-target="#tab-inventory-content" type="button">
+                    <i class="bi bi-boxes me-1.5"></i> គ្រប់គ្រងស្តុកសៀវភៅបណ្ណាល័យ (Book Inventory Stock)
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-content">
+        <!-- ========================================================================= -->
+        <!-- TAB 1: CLASS BOXES & LEVEL 2 DRILL-DOWN -->
+        <!-- ========================================================================= -->
+        <div class="tab-pane fade show active" id="tab-classes-content" role="tabpanel">
+            <!-- LEVEL 1: CLASS GRID VIEW -->
+            <div id="class-library-boxes-view">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+                    <h5 class="fw-bold text-white mb-0">
+                        <i class="bi bi-grid-3x3-gap-fill text-warning me-2" style="color:#d4af37 !important;"></i>បញ្ជីថ្នាក់រៀន និង ចំនួនសៀវភៅខ្ចីសរុបតាមថ្នាក់
+                    </h5>
+                    <div class="search-box" style="width: 320px;">
+                        <i class="bi bi-search text-muted"></i>
+                        <input type="text" id="library-class-search-input" class="form-control bg-dark text-white border-secondary" placeholder="ស្វែងរក ឈ្មោះថ្នាក់ ឬ គ្រូបន្ទុក...">
+                    </div>
+                </div>
+
+                <!-- Class Cards Grid -->
+                <div id="library-class-cards-grid" class="row g-3.5 mb-4">
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-warning" role="status"></div>
+                        <p class="text-muted mt-2">កំពុងទាញយកទិន្នន័យថ្នាក់រៀនពីបណ្ណាល័យ...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEVEL 2: STUDENT BORROWED BOOKS LIST PANEL INSIDE CLICKED CLASS -->
+            <div id="class-library-students-panel" style="display: none;">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+                    <button id="back-to-library-classes-btn" class="btn btn-outline-glass btn-sm">
+                        <i class="bi bi-arrow-left me-1.5"></i> ត្រឡប់ទៅបញ្ជីថ្នាក់រៀន
+                    </button>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-outline-glass btn-sm" id="btn-print-class-loans">
+                            <i class="bi bi-printer me-1"></i> បោះពុម្ពបញ្ជីខ្ចីក្នុងថ្នាក់នេះ
+                        </button>
+                        <button class="btn-gold-shimmer btn-sm" id="btn-add-loan-for-this-class">
+                            <i class="bi bi-plus-lg me-1"></i> កត់ត្រាសិស្សខ្ចីក្នុងថ្នាក់នេះ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Selected Class Main Banner -->
+                <div class="library-hero-banner p-4 mb-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <span id="selected-lib-class-track" class="badge text-dark fw-bold mb-2" style="background:#d4af37;">ថ្នាក់រៀន</span>
+                            <div class="extra-small fw-bold mb-1" style="color:#d4af37;">
+                                <i class="bi bi-door-open me-1"></i> ឈ្មោះថ្នាក់រៀន:
+                            </div>
+                            <h2 id="selected-lib-class-title" class="fw-bold text-white mb-1">--</h2>
+                            <p id="selected-lib-class-details" class="text-muted small mb-0">
+                                <i class="bi bi-person-badge me-1" style="color:#d4af37;"></i>គ្រូបន្ទុកថ្នាក់: -- • បន្ទប់លេខ --
+                            </p>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-secondary-subtle text-light mb-1 px-3 py-1.5">សៀវភៅខ្ចីក្នុងថ្នាក់</span>
+                            <div class="fw-bold text-warning fs-2 mb-0" style="color:#d4af37;" id="selected-lib-class-total-books">0 ក្បាល</div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Cards inside Class -->
+                    <div class="row g-3 pt-3 border-top border-dark">
+                        <div class="col-md-4 col-6">
+                            <div class="glass-library-kpi">
+                                <span class="extra-small d-block text-muted fw-bold"><i class="bi bi-person-badge me-1" style="color:#d4af37;"></i> គ្រូបន្ទុកថ្នាក់</span>
+                                <div class="fw-bold text-white fs-6 mt-1" id="lib-kpi-teacher">--</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="glass-library-kpi">
+                                <span class="text-muted extra-small d-block"><i class="bi bi-people me-1"></i> ចំនួនសិស្សខ្ចីសៀវភៅ</span>
+                                <div class="fw-bold text-white fs-5 mt-1" id="lib-kpi-borrowers-count">0 នាក់</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-12">
+                            <div class="glass-library-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
+                                <span class="text-warning extra-small d-block fw-bold" style="color:#d4af37;"><i class="bi bi-book me-1"></i> សៀវភៅកំពុងខ្ចីសរុប</span>
+                                <div class="fw-bold fs-5 mt-1" style="color:#d4af37;" id="lib-kpi-total-books">0 ក្បាល</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student Borrowed Books Table inside Class -->
+                <div class="card-custom p-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+                        <h5 class="fw-bold text-white mb-0">
+                            <i class="bi bi-journal-bookmark-fill me-2" style="color:#d4af37 !important;"></i>បញ្ជីសិស្ស និង មុខវិជ្ជាសៀវភៅដែលបានខ្ចីក្នុងថ្នាក់នេះ
+                        </h5>
+                        <div class="d-flex align-items-center gap-2">
+                            <input type="text" id="lib-student-search-input" class="form-control bg-dark text-white border-secondary" style="width: 250px;" placeholder="ស្វែងរក ឈ្មោះសិស្ស ឬ មុខវិជ្ជា...">
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0 library-table" style="background: transparent;">
+                            <thead>
+                                <tr class="text-muted extra-small text-uppercase">
+                                    <th>ឈ្មោះសិស្ស</th>
+                                    <th>អត្តលេខ</th>
+                                    <th>មុខវិជ្ជា/ប្រភេទសៀវភៅ</th>
+                                    <th>ថ្ងៃខ្ចី</th>
+                                    <th>ថ្ងៃសងជាក់ស្តែង</th>
+                                    <th>ស្ថានភាព</th>
+                                    <th class="text-end">សកម្មភាព</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lib-student-borrow-table-body">
+                                <tr>
+                                    <td colspan="7" class="text-center py-4 text-muted">គ្មានទិន្នន័យសិស្សខ្ចីសៀវភៅក្នុងថ្នាក់នេះទេ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Selected Class Main Banner -->
-        <div class="library-hero-banner p-4 mb-4">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-                <div>
-                    <span id="selected-lib-class-track" class="badge text-dark fw-bold mb-2"
-                        style="background:#d4af37;">ថ្នាក់ទី ១២-A</span>
-                    <div class="extra-small fw-bold mb-1" style="color:#d4af37;"><i class="bi bi-door-open me-1"></i>
-                        ឈ្មោះថ្នាក់រៀន:</div>
-                    <h2 id="selected-lib-class-title" class="fw-bold text-white mb-1">ថ្នាក់ទី ១២-A</h2>
-                    <p id="selected-lib-class-details" class="text-muted small mb-0"><i class="bi bi-person-badge me-1"
-                            style="color:#d4af37;"></i>គ្រូបន្ទុកថ្នាក់: ស្រី ពេជ្រ • បន្ទប់លេខ ៣០២</p>
-                </div>
-                <div class="text-end">
-                    <span
-                        class="badge bg-secondary-subtle text-light mb-1 px-3 py-1.5">ទិន្នន័យខ្ចីសៀវភៅក្នុងថ្នាក់</span>
-                    <div class="fw-bold text-warning fs-2 mb-0" style="color:#d4af37;"
-                        id="selected-lib-class-total-books">៤៥ ក្បាល</div>
-                </div>
-            </div>
+        <!-- ========================================================================= -->
+        <!-- TAB 2: MASTER LOANS TABLE -->
+        <!-- ========================================================================= -->
+        <div class="tab-pane fade" id="tab-all-loans-content" role="tabpanel">
+            <div class="card-custom p-4">
+                <!-- Filters & Search Toolbar -->
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                        <button class="status-filter-btn active" data-status="all">ទាំងអស់ (All)</button>
+                        <button class="status-filter-btn" data-status="borrowed">🟢 កំពុងខ្ចី</button>
+                        <button class="status-filter-btn" data-status="returned">🔵 បានសងរួច</button>
+                    </div>
 
-            <!-- Khmer Statistics Cards inside Class -->
-            <div class="row g-3 pt-3 border-top border-dark">
-                <div class="col-md-3">
-                    <div class="glass-library-kpi">
-                        <span class="extra-small d-block text-muted fw-bold"><i class="bi bi-person-badge me-1"
-                                style="color:#d4af37;"></i> គ្រូបន្ទុកថ្នាក់</span>
-                        <div class="fw-bold text-white fs-6 mt-1" id="lib-kpi-teacher">ស្រី ពេជ្រ</div>
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                        <select class="form-select bg-dark text-white border-secondary form-select-sm" id="master-filter-class" style="width: 150px;">
+                            <option value="">គ្រប់ថ្នាក់ (All)</option>
+                        </select>
+                        <select class="form-select bg-dark text-white border-secondary form-select-sm" id="master-filter-category" style="width: 150px;">
+                            <option value="">គ្រប់មុខវិជ្ជា</option>
+                            <option value="គណិតវិទ្យា">គណិតវិទ្យា</option>
+                            <option value="រូបវិទ្យា">រូបវិទ្យា</option>
+                            <option value="គីមីវិទ្យា">គីមីវិទ្យា</option>
+                            <option value="ភាសាខ្មែរ">ភាសាខ្មែរ</option>
+                            <option value="ភាសាអង់គ្លេស">ភាសាអង់គ្លេស</option>
+                            <option value="ប្រវត្តិវិទ្យា">ប្រវត្តិវិទ្យា</option>
+                            <option value="ជីវវិទ្យា">ជីវវិទ្យា</option>
+                            <option value="ព័ត៌មានវិទ្យា">ព័ត៌មានវិទ្យា</option>
+                            <option value="ចំណេះដឹងទូទៅ">ចំណេះដឹងទូទៅ</option>
+                        </select>
+                        <input type="text" id="master-loan-search-input" class="form-control bg-dark text-white border-secondary form-select-sm" style="width: 220px;" placeholder="ស្វែងរក ឈ្មោះ, អត្តលេខ, មុខវិជ្ជា...">
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="glass-library-kpi">
-                        <span class="text-muted extra-small d-block"><i class="bi bi-people me-1"></i>
-                            ចំនួនសិស្សខ្ចីសៀវភៅ</span>
-                        <div class="fw-bold text-white fs-5 mt-1" id="lib-kpi-borrowers-count">១៨ នាក់</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="glass-library-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
-                        <span class="text-warning extra-small d-block fw-bold" style="color:#d4af37;"><i
-                                class="bi bi-book me-1"></i> សៀវភៅខ្ចីសរុបក្នុងថ្នាក់</span>
-                        <div class="fw-bold fs-5 mt-1" style="color:#d4af37;" id="lib-kpi-total-books">៤៥ ក្បាល</div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="glass-library-kpi" style="border-color: rgba(239, 68, 68, 0.4);">
-                        <span class="text-danger extra-small d-block fw-bold"><i
-                                class="bi bi-exclamation-triangle me-1"></i> ហួសកាលកំណត់</span>
-                        <div class="fw-bold text-danger fs-5 mt-1" id="lib-kpi-overdue-books">៣ ក្បាល</div>
-                    </div>
+
+                <!-- Master Loans Table -->
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0 library-table" style="background: transparent;">
+                        <thead>
+                            <tr class="text-muted extra-small text-uppercase">
+                                <th>#កូដ</th>
+                                <th>ឈ្មោះសិស្ស</th>
+                                <th>អត្តលេខ</th>
+                                <th>ថ្នាក់រៀន</th>
+                                <th>មុខវិជ្ជា/ប្រភេទសៀវភៅ</th>
+                                <th>ថ្ងៃខ្ចី</th>
+                                <th>ថ្ងៃសងជាក់ស្តែង</th>
+                                <th>ស្ថានភាព</th>
+                                <th class="text-end">សកម្មភាព</th>
+                            </tr>
+                        </thead>
+                        <tbody id="master-loans-table-body">
+                            <tr>
+                                <td colspan="9" class="text-center py-4 text-muted">កំពុងទាញយកទិន្នន័យ...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <!-- Student Borrowed Books Table inside Class -->
-        <div class="card-custom p-4">
-            <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-                <h5 class="fw-bold text-white mb-0"><i class="bi bi-journal-bookmark-fill me-2"
-                        style="color:#d4af37 !important;"></i>បញ្ជីសិស្ស និង ចំនួនសៀវភៅដែលបានខ្ចីក្នុងថ្នាក់នេះ</h5>
-                <div class="search-box" style="width: 280px;">
-                    <i class="bi bi-search text-muted"></i>
-                    <input type="text" id="lib-student-search-input" placeholder="ស្វែងរក ឈ្មោះសិស្ស ឬ សៀវភៅ...">
+        <!-- ========================================================================= -->
+        <!-- TAB 3: BOOK INVENTORY STOCK & RESTOCK MANAGEMENT -->
+        <!-- ========================================================================= -->
+        <div class="tab-pane fade" id="tab-inventory-content" role="tabpanel">
+            <div class="card-custom p-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+                    <div>
+                        <h5 class="fw-bold text-white mb-0">
+                            <i class="bi bi-boxes text-success me-2"></i>បញ្ជីកាតាឡុក & ស្តុកសៀវភៅបណ្ណាល័យសាលា (School Book Inventory)
+                        </h5>
+                        <span class="text-muted extra-small">គ្រប់គ្រងចំនួនសៀវភៅសរុបក្នុងស្តុក សៀវភៅកំពុងខ្ចី និង បន្ថែមចំនួនស្តុកសៀវភៅថ្មី</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn-emerald-shimmer btn-sm" id="btn-add-book-stock-tab3">
+                            <i class="bi bi-plus-circle-fill me-1"></i> ➕ បន្ថែមសៀវភៅថ្មីចូលស្តុក
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0 library-table" style="background: transparent;">
+                        <thead>
+                            <tr class="text-muted extra-small text-uppercase">
+                                <th>កូដសៀវភៅ</th>
+                                <th>មុខវិជ្ជា/ចំណងជើងសៀវភៅ</th>
+                                <th>អ្នកនិពន្ធ/បោះពុម្ព</th>
+                                <th>សៀវភៅសរុប (Total)</th>
+                                <th>កំពុងខ្ចី (Borrowed)</th>
+                                <th>សល់ក្នុងស្តុក (Available)</th>
+                                <th>ទីតាំងធ្នើរ</th>
+                                <th>ស្ថានភាពស្តុក</th>
+                                <th class="text-end">សកម្មភាពស្តុក</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subject-inventory-table-body">
+                            <tr>
+                                <td colspan="9" class="text-center py-4 text-muted">កំពុងទាញយករបាយការណ៍ស្តុក...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
 
-            <div class="table-responsive">
-                <table class="table table-dark table-hover align-middle mb-0 library-table"
-                    style="background: transparent;">
-                    <thead>
-                        <tr class="text-muted extra-small text-uppercase border-bottom border-dark">
-                            <th>ឈ្មោះសិស្ស</th>
-                            <th>អត្តលេខ</th>
-                            <th>ឈ្មោះសៀវភៅខ្ចី</th>
-                            <th>ចំនួនខ្ចី</th>
-                            <th>ថ្ងៃខ្ចី</th>
-                            <th>ថ្ងៃសងវិញ</th>
-                            <th>ស្ថានភាព</th>
-                            <th class="text-end">សកម្មភាព</th>
-                        </tr>
-                    </thead>
-                    <tbody id="lib-student-borrow-table-body">
-                        <!-- Dynamic Student Borrow Rows Rendered Here -->
-                    </tbody>
-                </table>
+<!-- ========================================================================= -->
+<!-- MODAL 1: ADD NEW BOOK TO INVENTORY STOCK (➕ បន្ថែមសៀវភៅថ្មីក្នុងស្តុក) -->
+<!-- ========================================================================= -->
+<div class="modal fade" id="adminAddNewBookToStockModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-success shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(16, 185, 129, 0.6) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-success-subtle rounded-circle text-success border border-success">
+                        <i class="bi bi-box-arrow-in-down fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge bg-success text-white fw-bold mb-1">ស្តុកបណ្ណាល័យ</span>
+                        <h4 class="fw-bold text-white mb-0">ទម្រង់បន្ថែមសៀវភៅថ្មីចូលស្តុក (Add Book to Stock)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-add-stock-form">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">មុខវិជ្ជា/ប្រភេទសៀវភៅ (Category) <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="stock-book-category" placeholder="ឧ. គណិតវិទ្យា, រូបវិទ្យា, ប្រវត្តិវិទ្យា..." required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កូដសៀវភៅ (Code / ISBN)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="stock-book-code" placeholder="ឧ. BK-MATH-12">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អ្នកនិពន្ធ/ស្ថាប័នបោះពុម្ព (Author/Publisher)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="stock-book-author" value="ក្រសួងអប់រំ យុវជន និងកីឡា">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ចំនួនសៀវភៅបញ្ចូលស្តុក (Total Copies) <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control bg-dark text-white border-secondary fw-bold" id="stock-book-copies" value="50" min="1" max="5000" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ទីតាំងទូ/ធ្នើរសៀវភៅ (Shelf Location)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="stock-book-shelf" value="ជួរ A-01" placeholder="ឧ. ជួរ A-01, ទូទី ៣...">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn btn-success btn-sm fw-bold px-4" id="btn-save-stock-submit">
+                            <i class="bi bi-box-arrow-in-down me-1"></i> រក្សាទុកចូលស្តុក
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- MODAL 2: RESTOCK EXISTING BOOK (📦 បន្ថែមចំនួនស្តុកសៀវភៅបន្ថែម) -->
+<!-- ========================================================================= -->
+<div class="modal fade" id="adminRestockBookModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.6) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
+                        <i class="bi bi-plus-circle-fill fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-dark fw-bold mb-1" style="background:#d4af37;">បន្ថែមស្តុក</span>
+                        <h5 class="fw-bold text-white mb-0">បន្ថែមចំនួនសៀវភៅក្នុងស្តុក (Restock)</h5>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-restock-book-form">
+                    <input type="hidden" id="restock-book-id" value="">
+                    
+                    <div class="p-3 bg-black rounded-3 border border-secondary mb-3">
+                        <div class="d-flex justify-content-between mb-1.5 extra-small">
+                            <span class="text-muted">មុខវិជ្ជា/កូដ:</span>
+                            <strong class="text-warning" id="restock-book-code-display">--</strong>
+                        </div>
+                        <div class="d-flex justify-content-between extra-small">
+                            <span class="text-muted">ស្តុកបច្ចុប្បន្ន:</span>
+                            <span class="badge bg-dark border border-warning text-warning" id="restock-current-stock-display">--</span>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ចំនួនសៀវភៅត្រូវបន្ថែម (Additional Copies) <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control bg-dark text-white border-secondary fw-bold fs-5" id="restock-add-copies" value="20" min="1" max="2000" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កែប្រែទីតាំងធ្នើរ (Optional Shelf Location)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="restock-shelf-location" placeholder="ឧ. ជួរ A-01">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm px-4" id="btn-save-restock-submit">
+                            <i class="bi bi-plus-lg me-1"></i> បញ្ជាក់បន្ថែមស្តុក
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- MODAL 3: ADD NEW BOOK LOAN (➕ កត់ត្រាកាតខ្ចីសៀវភៅថ្មី - សាមញ្ញ & រហ័ស) -->
+<!-- ========================================================================= -->
+<div class="modal fade" id="adminAddNewBookLoanModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
+                        <i class="bi bi-journal-plus fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-dark fw-bold mb-1" style="background:#d4af37;">បណ្ណាល័យសាលា</span>
+                        <h4 class="fw-bold text-white mb-0">ទម្រង់កត់ត្រាកាតខ្ចីសៀវភៅថ្មី (New Book Loan)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-add-book-loan-form">
+                    <div class="row g-3">
+                        <!-- Class Selector -->
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ជ្រើសរើសថ្នាក់រៀន (Class) <span class="text-danger">*</span></label>
+                            <select class="form-select bg-dark text-white border-secondary" id="adm-lib-class-select" required>
+                                <option value="" disabled selected>-- ជ្រើសរើសថ្នាក់រៀន --</option>
+                            </select>
+                        </div>
+
+                        <!-- Student Selector (Filtered by Class) -->
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ជ្រើសរើសសិស្សខ្ចី (Student) <span class="text-danger">*</span></label>
+                            <select class="form-select bg-dark text-white border-secondary" id="adm-lib-student-select" required>
+                                <option value="" disabled selected>-- សូមជ្រើសរើសថ្នាក់រៀនជាមុន --</option>
+                            </select>
+                        </div>
+
+                        <!-- Student Code Auto-fill -->
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អត្តលេខសិស្ស (Student Code)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="adm-lib-student-code" readonly placeholder="ស្វ័យប្រវត្តិ...">
+                        </div>
+
+                        <!-- Borrow Date -->
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្ងៃខ្ចី (Borrow Date) <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control bg-dark text-white border-secondary" id="adm-lib-borrow-date" required>
+                        </div>
+
+                        <!-- Book Multi-Selector (មកពី table books ផ្ទាល់ អាចរើសលើសពី 1) -->
+                        <div class="col-md-12">
+                            <div class="d-flex justify-content-between align-items-center mb-1.5">
+                                <label class="form-label text-white extra-small text-uppercase fw-bold mb-0">
+                                    ជ្រើសរើសសៀវភៅក្នុងស្តុក (Select Books from Stock) <span class="text-danger">*</span>
+                                    <span class="text-muted fw-normal font-monospace">(អាចជ្រើសរើសបានច្រើនក្បាល)</span>
+                                </label>
+                                <span class="badge bg-dark border border-warning text-warning extra-small" id="adm-selected-cat-count" style="color:#d4af37 !important;">ជ្រើសរើស 0 សៀវភៅ</span>
+                            </div>
+
+                            <!-- Multi-Select Category Badges Container loaded from DB books table -->
+                            <div id="adm-lib-categories-container" class="d-flex flex-wrap gap-2 p-3 bg-black rounded-3 border border-secondary" style="max-height: 160px; overflow-y: auto;">
+                                <span class="text-muted extra-small">កំពុងទាញយកបញ្ជីសៀវភៅពី table books...</span>
+                            </div>
+
+                            <!-- Add Custom Category Option -->
+                            <div class="input-group input-group-sm mt-2">
+                                <span class="input-group-text bg-dark text-muted border-secondary extra-small">➕ បញ្ចូលសៀវភៅផ្សេងទៀត</span>
+                                <input type="text" id="adm-lib-custom-cat" class="form-control bg-dark text-white border-secondary" placeholder="វាយបញ្ចូលឈ្មោះសៀវភៅបន្ថែមបើគ្មានក្នុងស្តុកខាងលើ...">
+                                <button class="btn btn-outline-warning btn-sm" type="button" id="adm-btn-add-custom-cat">➕ បន្ថែម</button>
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កំណត់ចំណាំបន្ថែម (Notes)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-lib-notes" placeholder="កំណត់ចំណាំផ្សេងៗ...">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm" id="btn-save-loan-submit">
+                            <i class="bi bi-journal-check me-1"></i> រក្សាទុកការខ្ចីសៀវភៅ
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- MODAL 4: RETURN BOOK (📥 សងសៀវភៅចូលបណ្ណាល័យ) -->
+<!-- ========================================================================= -->
+<div class="modal fade" id="adminReturnBookModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border border-success shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(16, 185, 129, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-success-subtle rounded-circle text-success border border-success">
+                        <i class="bi bi-journal-arrow-down fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge bg-success text-white fw-bold mb-1">ទទួលសងសៀវភៅ</span>
+                        <h5 class="fw-bold text-white mb-0">ទម្រង់ទទួលសងសៀវភៅវិញ (Return Book)</h5>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-return-book-form">
+                    <input type="hidden" id="ret-loan-id" value="">
+                    
+                    <div class="p-3 bg-black rounded-3 border border-secondary mb-3">
+                        <div class="d-flex justify-content-between mb-1.5 extra-small">
+                            <span class="text-muted">សិស្សខ្ចី:</span>
+                            <strong class="text-white" id="ret-student-name">--</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1.5 extra-small">
+                            <span class="text-muted">មុខវិជ្ជាសៀវភៅ:</span>
+                            <strong class="text-warning" id="ret-book-title">--</strong>
+                        </div>
+                        <div class="d-flex justify-content-between extra-small">
+                            <span class="text-muted">ថ្ងៃខ្ចី:</span>
+                            <span class="text-white" id="ret-borrow-dates">--</span>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្ងៃសងជាក់ស្តែង (Return Date)</label>
+                            <input type="date" class="form-control bg-dark text-white border-secondary" id="ret-return-date" required>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កំណត់ចំណាំការសង</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="ret-notes" placeholder="ឧ. បានសងរួចរាល់...">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn btn-success btn-sm fw-bold px-4" id="btn-save-return-submit">
+                            <i class="bi bi-check2-circle me-1"></i> បញ្ជាក់ការទទួលសង
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- MODAL 5: PRINTABLE LOAN SLIP (🖨️ ប័ណ្ណខ្ចីសៀវភៅបណ្ណាល័យ) -->
+<!-- ========================================================================= -->
+<div class="modal fade" id="printLoanSlipModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-secondary shadow-lg rounded-4">
+            <div class="modal-header border-bottom border-dark p-3">
+                <h5 class="modal-title fw-bold text-warning"><i class="bi bi-printer me-2"></i>ប័ណ្ណខ្ចីសៀវភៅបណ្ណាល័យ (Library Loan Slip)</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4" id="printable-loan-slip-content">
+                <div class="p-4 rounded border border-secondary" style="background: #101018; color: #f0f0f5;">
+                    <div class="text-center pb-3 border-bottom border-secondary mb-3">
+                        <h4 class="fw-bold text-warning mb-1">វិទ្យាល័យចំណេះដឹងទូទៅ និង បណ្ណាល័យសាលា</h4>
+                        <p class="text-muted small mb-0">ប័ណ្ណខ្ចីសៀវភៅសិក្សា (STUDENT BOOK BORROWING SLIP)</p>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-6">
+                            <div class="extra-small text-muted">កូដប័ណ្ណខ្ចី:</div>
+                            <strong class="text-warning fs-6" id="slip-loan-id">#LOAN-000</strong>
+                        </div>
+                        <div class="col-6 text-end">
+                            <div class="extra-small text-muted">កាលបរិច្ឆេទចេញប័ណ្ណ:</div>
+                            <strong class="text-white" id="slip-issue-date">--</strong>
+                        </div>
+                        <div class="col-6">
+                            <div class="extra-small text-muted">ឈ្មោះសិស្ស:</div>
+                            <strong class="text-white fs-5" id="slip-student-name">--</strong>
+                        </div>
+                        <div class="col-6 text-end">
+                            <div class="extra-small text-muted">អត្តលេខ & ថ្នាក់រៀន:</div>
+                            <strong class="text-white" id="slip-student-info">--</strong>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered border-secondary text-white small mb-3">
+                        <thead style="background: rgba(212,175,55,0.15);">
+                            <tr>
+                                <th>មុខវិជ្ជា/ប្រភេទសៀវភៅ (Category)</th>
+                                <th>ថ្ងៃខ្ចី (Borrow Date)</th>
+                                <th>ស្ថានភាព</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="slip-category" class="fw-bold text-warning">--</td>
+                                <td id="slip-borrow-date">--</td>
+                                <td class="text-success fw-bold">🟢 កំពុងខ្ចី</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="p-2.5 rounded bg-black border border-secondary mb-3 extra-small text-muted">
+                        <i class="bi bi-info-circle me-1 text-warning"></i>
+                        <strong>លក្ខខណ្ឌនៃការខ្ចី៖</strong> សិស្សត្រូវរក្សាសៀវភៅឱ្យបានល្អស្អាត និង សងត្រឡប់មកបណ្ណាល័យវិញនៅពេលបញ្ចប់ការសិក្សា។
+                    </div>
+
+                    <div class="d-flex justify-content-between pt-4 mt-3 border-top border-secondary text-center">
+                        <div style="width: 40%;">
+                            <div class="small fw-bold text-white mb-5">ហត្ថលេខាសិស្សខ្ចី</div>
+                            <div class="text-muted extra-small">..................................</div>
+                        </div>
+                        <div style="width: 40%;">
+                            <div class="small fw-bold text-white mb-5">ហត្ថលេខាអ្នកគ្រប់គ្រងបណ្ណាល័យ</div>
+                            <div class="text-muted extra-small">..................................</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top border-dark p-3">
+                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បិទ</button>
+                <button type="button" class="btn-gold-shimmer btn-sm" onclick="window.print();">
+                    <i class="bi bi-printer me-1"></i> បោះពុម្ពប័ណ្ណ (Print Slip)
+                </button>
             </div>
         </div>
     </div>
@@ -413,146 +929,302 @@
 
 <script>
     (function () {
-        // Dataset of Classes with Total Borrowed Books Count
-        const libraryClassesDataset = [
-            {
-                "id": "CLS-101",
-                "class_name": "ថ្នាក់ទី ១២-A",
-                "teacher": "ស្រី ពេជ្រ",
-                "teacher_avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់លេខ ៣០២",
-                "total_borrowers": 18,
-                "total_borrowed_books": 45,
-                "returned_books": 30,
-                "overdue_books": 3,
-                "icon": "bi-calculator"
-            },
-            {
-                "id": "CLS-202",
-                "class_name": "ថ្នាក់ទី ១២-B",
-                "teacher": "ឈឹម វិចិត្រ",
-                "teacher_avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់ពិសោធន៍ ២",
-                "total_borrowers": 15,
-                "total_borrowed_books": 38,
-                "returned_books": 25,
-                "overdue_books": 2,
-                "icon": "bi-lightning-charge"
-            },
-            {
-                "id": "CLS-303",
-                "class_name": "ថ្នាក់ទី ១២-C",
-                "teacher": "លី ម៉េងហុង",
-                "teacher_avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&auto=format&fit=crop&q=80",
-                "room": "សាលប្រជុំ ២០១",
-                "total_borrowers": 22,
-                "total_borrowed_books": 52,
-                "returned_books": 35,
-                "overdue_books": 5,
-                "icon": "bi-globe"
-            },
-            {
-                "id": "CLS-404",
-                "class_name": "ថ្នាក់ទី ១១-A",
-                "teacher": "ម៉េង សុភ័ក្ត្រ",
-                "teacher_avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់លេខ ៣០១",
-                "total_borrowers": 14,
-                "total_borrowed_books": 32,
-                "returned_books": 22,
-                "overdue_books": 2,
-                "icon": "bi-flask"
-            },
-            {
-                "id": "CLS-505",
-                "class_name": "ថ្នាក់ទី ១០-A",
-                "teacher": "ចាន់ សុភារម្យ",
-                "teacher_avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់លេខ ១០៥",
-                "total_borrowers": 16,
-                "total_borrowed_books": 36,
-                "returned_books": 26,
-                "overdue_books": 3,
-                "icon": "bi-book"
+        // Global variables & state
+        let allLibraryClasses = [];
+        let allBookLoans = [];
+        let allBooksCatalog = [];
+        let allStudents = [];
+        let selectedClassId = null;
+        let activeStatusFilter = 'all';
+
+        // 1. Fetch & Initialize All Library Data
+        async function loadLibraryData() {
+            try {
+                // A. Fetch Library Summary KPIs
+                const resSummary = await fetch('/api/library/summary');
+                if (resSummary.ok) {
+                    const dataSummary = await resSummary.json();
+                    renderSummaryKPIs(dataSummary.kpi || {});
+                }
+
+                // B. Fetch Full Books Catalog
+                await loadBooksCatalog();
+
+                // C. Fetch Classes with loan metrics
+                const resClasses = await fetch('/api/library/classes');
+                if (resClasses.ok) {
+                    const dataClasses = await resClasses.json();
+                    allLibraryClasses = dataClasses.classes || [];
+                    renderClassLibraryCards(allLibraryClasses);
+                    populateClassDropdowns(allLibraryClasses);
+                }
+
+                // D. Fetch All Book Loans
+                await loadAllBookLoans();
+
+                // E. Fetch Students for new loan modal
+                const resStudents = await fetch('/api/students');
+                if (resStudents.ok) {
+                    const dataStudents = await resStudents.json();
+                    allStudents = dataStudents.students || [];
+                }
+
+                // F. Fetch Categories from DB for Multi-Select
+                await loadLibraryCategories();
+
+            } catch (err) {
+                console.error("[-] Error loading library data:", err);
             }
-        ];
+        }
 
-        // Detailed Students Borrowed Books List inside Each Class
-        const classStudentBorrowMap = {
-            "CLS-101": [
-                {
-                    "student_id": "STD-2026-001",
-                    "student_name": "សុខ ចាន់ដារ៉ា",
-                    "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
-                    "book_titles": "គណិតវិទ្យា ថ្នាក់ទី១២ (កម្រិតខ្ពស់) • រូបវិទ្យា ភាគ១",
-                    "quantity": "២ ក្បាល",
-                    "borrow_date": "០១ សីហា ២០២៦",
-                    "due_date": "១៥ សីហា ២០២៦",
-                    "status": "🟢 កំពុងខ្ចី",
-                    "badge_class": "bg-success-subtle text-success"
-                },
-                {
-                    "student_id": "STD-2026-002",
-                    "student_name": "គឹម ស៊ាងហៃ",
-                    "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80",
-                    "book_titles": "គីមីវិទ្យា អរគានិក • ជីវវិទ្យា ថ្នាក់ទី១២",
-                    "quantity": "២ ក្បាល",
-                    "borrow_date": "២៥ កក្កដា ២០២៦",
-                    "due_date": "០៨ សីហា ២០២៦",
-                    "status": "🔴 ហួសកំណត់",
-                    "badge_class": "bg-danger-subtle text-danger"
-                },
-                {
-                    "student_id": "STD-2026-005",
-                    "student_name": "អ៊ុង វីរៈ",
-                    "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80",
-                    "book_titles": "ប្រវត្តិវិទ្យាពិភពលោក • អក្សរសាស្ត្រខ្មែរ ភាគ២",
-                    "quantity": "២ ក្បាល",
-                    "borrow_date": "២០ កក្កដា ២០២៦",
-                    "due_date": "០៣ សីហា ២០២៦",
-                    "status": "🔴 ហួសកំណត់",
-                    "badge_class": "bg-danger-subtle text-danger"
-                },
-                {
-                    "student_id": "STD-2026-008",
-                    "student_name": "មាស ស្រីលក្ខណ៍",
-                    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80",
-                    "book_titles": "ភាសាអង់គ្លេស Oxford Advanced Grammar",
-                    "quantity": "១ ក្បាល",
-                    "borrow_date": "០២ សីហា ២០២៦",
-                    "due_date": "១៦ សីហា ២០២៦",
-                    "status": "🟢 កំពុងខ្ចី",
-                    "badge_class": "bg-success-subtle text-success"
+        // 2. Fetch Books Catalog
+        async function loadBooksCatalog() {
+            try {
+                const res = await fetch('/api/library/books');
+                if (res.ok) {
+                    const data = await res.json();
+                    allBooksCatalog = data.books || [];
+                    renderBooksInventoryTable(allBooksCatalog);
                 }
-            ],
-            "CLS-303": [
-                {
-                    "student_id": "STD-2026-003",
-                    "student_name": "លី សុវណ្ណារ៉ា",
-                    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
-                    "book_titles": "ភូមិវិទ្យាកម្ពុជា • ពលរដ្ឋវិទ្យា ថ្នាក់ទី១២",
-                    "quantity": "២ ក្បាល",
-                    "borrow_date": "២៨ កក្កដា ២០២៦",
-                    "due_date": "១១ សីហា ២០២៦",
-                    "status": "🟢 កំពុងខ្ចី",
-                    "badge_class": "bg-success-subtle text-success"
+            } catch (err) {
+                console.error("[-] Error loading books catalog:", err);
+            }
+        }
+
+        // 2.5 Fetch Books strictly from `books` table for Multi-Select
+        async function loadLibraryCategories() {
+            const container = document.getElementById('adm-lib-categories-container');
+            if (!container) return;
+
+            try {
+                const res = await fetch('/api/library/categories');
+                if (res.ok) {
+                    const data = await res.json();
+                    const booksList = data.books || [];
+                    renderCategoryPills(booksList);
                 }
-            ]
-        };
+            } catch (err) {
+                console.error("[-] Error loading books categories:", err);
+            }
+        }
 
-        let selectedClassId = "CLS-101";
+        function renderCategoryPills(booksList) {
+            const container = document.getElementById('adm-lib-categories-container');
+            if (!container) return;
 
-        // LEVEL 1: Render Class Library Cards Grid (បង្ហាញជាថ្នាក់ៗ)
+            if (!booksList || booksList.length === 0) {
+                container.innerHTML = `<span class="text-muted extra-small"><i class="bi bi-exclamation-circle me-1 text-warning"></i>មិនទាន់មានសៀវភៅក្នុងស្តុក (table books) នៅឡើយទេ សូមបន្ថែមសៀវភៅចូលស្តុកជាមុន</span>`;
+                updateSelectedCategoryCount();
+                return;
+            }
+
+            container.innerHTML = booksList.map((b, idx) => {
+                const name = b.category || b.title;
+                const copies = b.available_copies !== undefined ? b.available_copies : 0;
+                return `
+                    <label class="category-pill-label ${idx === 0 ? 'active' : ''}">
+                        <input type="checkbox" name="adm_lib_cat" value="${name}" class="form-check-input mt-0 me-1" ${idx === 0 ? 'checked' : ''} style="cursor: pointer;">
+                        <span>${name}</span>
+                        <span class="badge bg-dark border border-secondary text-warning extra-small ms-1" style="font-size:0.75rem;">សល់ ${copies}</span>
+                    </label>
+                `;
+            }).join('');
+
+            container.querySelectorAll('input[name="adm_lib_cat"]').forEach(cb => {
+                cb.addEventListener('change', updateSelectedCategoryCount);
+            });
+
+            updateSelectedCategoryCount();
+        }
+
+        function updateSelectedCategoryCount() {
+            const checked = document.querySelectorAll('#adm-lib-categories-container input[name="adm_lib_cat"]:checked');
+            const countBadge = document.getElementById('adm-selected-cat-count');
+            if (countBadge) {
+                countBadge.innerText = `ជ្រើសរើស ${checked.length} សៀវភៅ`;
+            }
+            document.querySelectorAll('#adm-lib-categories-container .category-pill-label').forEach(lbl => {
+                const cb = lbl.querySelector('input');
+                if (cb && cb.checked) {
+                    lbl.classList.add('active');
+                } else {
+                    lbl.classList.remove('active');
+                }
+            });
+        }
+
+        // 3. Fetch Loans list
+        async function loadAllBookLoans() {
+            try {
+                const resLoans = await fetch('/api/library/loans');
+                if (resLoans.ok) {
+                    const dataLoans = await resLoans.json();
+                    allBookLoans = dataLoans.loans || [];
+                    renderMasterLoansTable();
+                    if (selectedClassId) {
+                        filterAndRenderClassStudents(selectedClassId);
+                    }
+                }
+            } catch (err) {
+                console.error("[-] Error loading book loans:", err);
+            }
+        }
+
+        // 4. Render Top KPI Summaries
+        function renderSummaryKPIs(kpi) {
+            const elTotalInv = document.getElementById('kpi-total-inventory-books');
+            const elTotalBorrowed = document.getElementById('kpi-total-borrowed-books');
+            const elStockRemain = document.getElementById('kpi-total-stock-remaining');
+            const elReturned = document.getElementById('kpi-total-returned-books');
+            const elBorrowers = document.getElementById('kpi-total-borrowers');
+
+            const totalInv = (kpi.total_inventory !== undefined && kpi.total_inventory !== null) ? Number(kpi.total_inventory) : 0;
+            const borrowed = (kpi.active_borrowed !== undefined && kpi.active_borrowed !== null) ? Number(kpi.active_borrowed) : (Number(kpi.total_borrowed) || 0);
+            const stock = (kpi.stock_remaining !== undefined && kpi.stock_remaining !== null) ? Number(kpi.stock_remaining) : 0;
+            const returned = (kpi.returned_count !== undefined && kpi.returned_count !== null) ? Number(kpi.returned_count) : 0;
+            const borrowers = (kpi.total_borrowers !== undefined && kpi.total_borrowers !== null) ? Number(kpi.total_borrowers) : 0;
+
+            if (elTotalInv) elTotalInv.innerText = `${totalInv.toLocaleString()} ក្បាល`;
+            if (elTotalBorrowed) elTotalBorrowed.innerText = `${borrowed.toLocaleString()} ក្បាល`;
+            if (elStockRemain) elStockRemain.innerText = `${stock.toLocaleString()} ក្បាល`;
+            if (elReturned) elReturned.innerText = `${returned.toLocaleString()} ក្បាល`;
+            if (elBorrowers) elBorrowers.innerText = `${borrowers.toLocaleString()} នាក់`;
+
+            const elBorrowedPct = document.getElementById('kpi-borrowed-percent');
+            if (elBorrowedPct) {
+                if (totalInv > 0) {
+                    const pct = ((borrowed / totalInv) * 100).toFixed(1);
+                    elBorrowedPct.innerText = `សិស្សកំពុងកាន់កាប់ (${pct}%)`;
+                } else {
+                    elBorrowedPct.innerText = `សិស្សកំពុងកាន់កាប់ (0%)`;
+                }
+            }
+
+            const elStockPct = document.getElementById('kpi-stock-percent');
+            if (elStockPct) {
+                if (totalInv > 0) {
+                    const pct = ((stock / totalInv) * 100).toFixed(1);
+                    elStockPct.innerText = `អាចខ្ចីបាន (${pct}%)`;
+                } else {
+                    elStockPct.innerText = `អាចខ្ចីបាន (0%)`;
+                }
+            }
+        }
+
+        // 5. Render Books Inventory Table (Tab 3)
+        function renderBooksInventoryTable(list) {
+            const tbody = document.getElementById('subject-inventory-table-body');
+            if (!tbody) return;
+
+            if (!list || list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-muted">មិនទាន់មានសៀវភៅក្នុងស្តុកទេ សូមចុចប៊ូតុង "បន្ថែមសៀវភៅថ្មីក្នុងស្តុក"</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = list.map(item => {
+                const total = item.total_copies || 0;
+                const available = item.available_copies !== undefined ? item.available_copies : total;
+                const borrowed = item.current_borrowed || Math.max(0, total - available);
+                const pct = total > 0 ? Math.min(100, Math.round((available / total) * 100)) : 0;
+                const badgeColor = pct > 40 ? 'text-success' : (pct > 15 ? 'text-warning' : 'text-danger');
+                const statusKhmer = pct > 40 ? '🟢 ស្តុកគ្រប់គ្រាន់' : (pct > 15 ? '🟡 ស្តុកមធ្យម' : '🔴 ជិតអស់ពីស្តុក');
+
+                return `
+                    <tr>
+                        <td><code>${item.book_code || ('BK-' + item.book_id)}</code></td>
+                        <td>
+                            <span class="fw-bold text-white">${item.category || item.title}</span>
+                        </td>
+                        <td><span class="text-muted extra-small">${item.author || 'ក្រសួងអប់រំ'}</span></td>
+                        <td><span class="text-white fw-semibold">${total.toLocaleString()} ក្បាល</span></td>
+                        <td><span class="text-warning fw-bold" style="color:#d4af37 !important;">${borrowed} ក្បាល</span></td>
+                        <td><span class="badge bg-dark border border-secondary text-white px-2.5 py-1 fw-bold">${available} ក្បាល</span></td>
+                        <td><span class="text-muted extra-small"><i class="bi bi-geo-alt me-1 text-warning"></i>${item.shelf_location || 'ជួរ A-01'}</span></td>
+                        <td><span class="${badgeColor} extra-small fw-semibold">${statusKhmer}</span></td>
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-glass btn-sm me-1 btn-restock-book" data-book-id="${item.book_id}" title="បន្ថែមស្តុកសៀវភៅនេះ">
+                                    <i class="bi bi-plus-circle me-1 text-warning"></i>+ស្តុក
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm btn-delete-book" data-book-id="${item.book_id}" title="លុបចេញពីស្តុក">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Bind Restock Button Events
+            document.querySelectorAll('.btn-restock-book').forEach(btn => {
+                btn.onclick = function (e) {
+                    e.stopPropagation();
+                    const bId = this.getAttribute('data-book-id');
+                    openRestockModal(bId);
+                };
+            });
+
+            // Bind Delete Book Button Events
+            document.querySelectorAll('.btn-delete-book').forEach(btn => {
+                btn.onclick = async function (e) {
+                    e.stopPropagation();
+                    const bId = this.getAttribute('data-book-id');
+                    const bObj = allBooksCatalog.find(b => String(b.book_id) === String(bId));
+                    const bCat = bObj ? (bObj.category || bObj.title) : '';
+                    if (confirm(`តើអ្នកពិតជាចង់លុបសៀវភៅមុខវិជ្ជា "${bCat}" ចេញពីស្តុកមែនទេ?`)) {
+                        try {
+                            const res = await fetch(`/api/library/books/${bId}`, { method: 'DELETE' });
+                            const data = await res.json();
+                            if (res.ok) {
+                                alert(data.message || 'បានលុបដោយជោគជ័យ!');
+                                loadLibraryData();
+                            } else {
+                                alert(data.message || 'មានបញ្ហាក្នុងការលុប');
+                            }
+                        } catch (err) {
+                            alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                        }
+                    }
+                };
+            });
+        }
+
+        // 6. Open Restock Modal
+        function openRestockModal(bookId) {
+            const book = allBooksCatalog.find(b => String(b.book_id) === String(bookId));
+            if (!book) return;
+
+            document.getElementById('restock-book-id').value = book.book_id;
+            document.getElementById('restock-book-code-display').innerText = `${book.category || book.title} (${book.book_code || ''})`;
+            document.getElementById('restock-current-stock-display').innerText = `សរុប៖ ${book.total_copies} | សល់៖ ${book.available_copies}`;
+            document.getElementById('restock-add-copies').value = '20';
+            document.getElementById('restock-shelf-location').value = book.shelf_location || '';
+
+            const modalElem = document.getElementById('adminRestockBookModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(modalElem);
+                bsModal.show();
+            }
+        }
+
+        // 7. Render Class Library Cards Grid
         function renderClassLibraryCards(classList) {
             const gridContainer = document.getElementById('library-class-cards-grid');
             if (!gridContainer) return;
 
+            if (!classList || classList.length === 0) {
+                gridContainer.innerHTML = `<div class="col-12 text-center py-5 text-muted">គ្មានថ្នាក់រៀនត្រូវបានរកឃើញទេ</div>`;
+                return;
+            }
+
             gridContainer.innerHTML = classList.map(c => `
                 <div class="col-md-4">
-                    <div class="library-class-card open-class-students-btn" data-class-id="${c.id}">
+                    <div class="library-class-card open-class-students-btn" data-class-id="${c.class_id}">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="badge text-dark fw-bold" style="background:#d4af37;"><i class="bi ${c.icon || 'bi-book'} me-1"></i>${c.class_name}</span>
-                            <code>${c.id}</code>
+                            <span class="badge text-dark fw-bold" style="background:#d4af37;">
+                                <i class="bi ${c.icon || 'bi-book'} me-1"></i>${c.class_name}
+                            </span>
+                            <code>CLS-${c.class_id}</code>
                         </div>
 
                         <div class="extra-small text-muted mb-1"><i class="bi bi-person-badge me-1" style="color:#d4af37;"></i>គ្រូបន្ទុកថ្នាក់:</div>
@@ -564,15 +1236,11 @@
                         <div class="p-3 bg-black rounded-3 border border-secondary mb-3">
                             <div class="d-flex justify-content-between align-items-center extra-small mb-1.5">
                                 <span class="text-muted"><i class="bi bi-people me-1" style="color:#d4af37;"></i> សិស្សខ្ចីសៀវភៅ:</span>
-                                <strong class="text-white fs-6">${c.total_borrowers} នាក់</strong>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center extra-small mb-1.5">
-                                <span class="text-warning" style="color:#d4af37 !important;"><i class="bi bi-book-fill me-1"></i> ចំនួនសៀវភៅខ្ចីសរុប:</span>
-                                <strong class="text-warning fs-5" style="color:#d4af37 !important;">${c.total_borrowed_books} ក្បាល</strong>
+                                <strong class="text-white fs-6">${c.total_borrowers || 0} នាក់</strong>
                             </div>
                             <div class="d-flex justify-content-between align-items-center extra-small">
-                                <span class="text-danger"><i class="bi bi-exclamation-triangle-fill me-1"></i> ហួសកាលកំណត់សង:</span>
-                                <strong class="text-danger">${c.overdue_books} ក្បាល</strong>
+                                <span class="text-warning" style="color:#d4af37 !important;"><i class="bi bi-book-fill me-1"></i> សៀវភៅកំពុងខ្ចីសរុប:</span>
+                                <strong class="text-warning fs-5" style="color:#d4af37 !important;">${c.total_borrowed_books || 0} ក្បាល</strong>
                             </div>
                         </div>
 
@@ -586,7 +1254,7 @@
                 </div>
             `).join('');
 
-            // Click listener to open Level 2 Student List
+            // Card Click Listeners
             document.querySelectorAll('.open-class-students-btn').forEach(card => {
                 card.addEventListener('click', function () {
                     const classId = this.getAttribute('data-class-id');
@@ -595,204 +1263,623 @@
             });
         }
 
-        // LEVEL 2: Open Student Borrowed Books Panel for Clicked Class
+        // 8. Open Level 2 Student Loans inside Class
         function openClassStudentBorrowPanel(classId) {
             selectedClassId = classId;
-            const targetClass = libraryClassesDataset.find(c => c.id === classId) || libraryClassesDataset[0];
+            const targetClass = allLibraryClasses.find(c => String(c.class_id) === String(classId)) || allLibraryClasses[0];
+            if (!targetClass) return;
 
-            // Set Banner details
+            // Set Banner Details
             document.getElementById('selected-lib-class-title').innerText = targetClass.class_name;
             document.getElementById('selected-lib-class-track').innerText = targetClass.class_name;
             document.getElementById('selected-lib-class-details').innerText = `គ្រូបន្ទុកថ្នាក់: ${targetClass.teacher} • ${targetClass.room}`;
-            document.getElementById('selected-lib-class-total-books').innerText = `${targetClass.total_borrowed_books} ក្បាល`;
+            document.getElementById('selected-lib-class-total-books').innerText = `${targetClass.total_borrowed_books || 0} ក្បាល`;
 
             // Set KPI Cards
             document.getElementById('lib-kpi-teacher').innerText = targetClass.teacher;
-            document.getElementById('lib-kpi-borrowers-count').innerText = `${targetClass.total_borrowers} នាក់`;
-            document.getElementById('lib-kpi-total-books').innerText = `${targetClass.total_borrowed_books} ក្បាល`;
-            document.getElementById('lib-kpi-overdue-books').innerText = `${targetClass.overdue_books} ក្បាល`;
+            document.getElementById('lib-kpi-borrowers-count').innerText = `${targetClass.total_borrowers || 0} នាក់`;
+            document.getElementById('lib-kpi-total-books').innerText = `${targetClass.total_borrowed_books || 0} ក្បាល`;
 
-            // Render Student Table Rows
-            const studentsList = classStudentBorrowMap[classId] || classStudentBorrowMap["CLS-101"];
-            renderStudentBorrowRows(studentsList);
+            // Render loans for this class
+            filterAndRenderClassStudents(classId);
 
             // Toggle Panels
             document.getElementById('class-library-boxes-view').style.display = 'none';
             document.getElementById('class-library-students-panel').style.display = 'block';
         }
 
-        // Render Student Borrow Rows inside Selected Class (បង្ហាញសិស្សម្នាក់ណាខ្ចីប៉ុន្មានក្បាល)
-        function renderStudentBorrowRows(list) {
+        // 9. Filter & Render Loans for Selected Class
+        function filterAndRenderClassStudents(classId) {
             const tbody = document.getElementById('lib-student-borrow-table-body');
             if (!tbody) return;
 
-            tbody.innerHTML = list.map(s => `
+            const q = (document.getElementById('lib-student-search-input')?.value || '').toLowerCase().trim();
+            const classLoans = allBookLoans.filter(l => {
+                const matchClass = String(l.class_id) === String(classId);
+                if (!matchClass) return false;
+                if (!q) return true;
+                return (l.student_name && l.student_name.toLowerCase().includes(q)) ||
+                       (l.student_code && l.student_code.toLowerCase().includes(q)) ||
+                       (l.category && l.category.toLowerCase().includes(q));
+            });
+
+            if (classLoans.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted">គ្មានទិន្នន័យសិស្សខ្ចីសៀវភៅក្នុងថ្នាក់នេះទេ</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = classLoans.map(loan => `
                 <tr>
                     <td>
                         <div class="d-flex align-items-center gap-2.5">
-                            <img src="${s.avatar}" class="rounded-circle border border-warning" width="36" height="36" alt="${s.student_name}">
-                            <span class="fw-semibold text-white" style="font-size:0.95rem;">${s.student_name}</span>
+                            <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning" style="width: 36px; height: 36px; background: rgba(212,175,55,0.1); flex-shrink: 0;">
+                                <i class="bi bi-person-fill fs-6"></i>
+                            </div>
+                            <span class="fw-semibold text-white" style="font-size:0.95rem;">${loan.student_name || 'សិស្ស'}</span>
                         </div>
                     </td>
-                    <td><code>${s.student_id}</code></td>
-                    <td><span class="fw-medium text-warning" style="color:#d4af37 !important;"><i class="bi bi-book me-1"></i>${s.book_titles}</span></td>
-                    <td><span class="badge bg-dark border border-warning text-white px-2.5 py-1 fw-bold" style="color:#ffd700 !important;">${s.quantity}</span></td>
-                    <td><span class="text-muted extra-small">${s.borrow_date}</span></td>
-                    <td><span class="text-white extra-small fw-semibold"><i class="bi bi-clock-history me-1 text-warning" style="color:#d4af37 !important;"></i>${s.due_date}</span></td>
+                    <td><code>${loan.student_code || ('STD-' + loan.student_id)}</code></td>
                     <td>
-                        <span class="badge ${s.badge_class} px-2.5 py-1 fw-bold">
-                            ${s.status}
+                        <span class="badge bg-warning-subtle text-warning border border-warning px-2.5 py-1 fw-bold fs-6">
+                            <i class="bi bi-book me-1"></i>${loan.category || 'ចំណេះដឹងទូទៅ'}
+                        </span>
+                    </td>
+                    <td><span class="text-muted extra-small">${loan.borrow_date_str || loan.borrow_date}</span></td>
+                    <td><span class="text-light extra-small">${loan.return_date_str || '—'}</span></td>
+                    <td>
+                        <span class="badge ${loan.badge_class} px-2.5 py-1 fw-bold">
+                            ${loan.status === 'returned' ? '🔵 បានសងរួច' : '🟢 កំពុងខ្ចី'}
                         </span>
                     </td>
                     <td class="text-end">
-                        <button class="btn btn-outline-glass btn-sm me-1" title="សងសៀវភៅ"><i class="bi bi-journal-arrow-down me-1"></i>សងសៀវភៅ</button>
-                        <button class="btn-card-details btn-sm" title="រំលឹកសិស្ស"><i class="bi bi-bell-fill me-1"></i>រំលឹក</button>
+                        <div class="btn-group btn-group-sm">
+                            ${loan.status !== 'returned' ? `
+                                <button class="btn btn-outline-glass btn-sm me-1 btn-action-return" data-loan-id="${loan.loan_id}" title="សងសៀវភៅ">
+                                    <i class="bi bi-journal-arrow-down me-1"></i>សង
+                                </button>
+                            ` : ''}
+                            <button class="btn btn-outline-glass btn-sm me-1 btn-action-slip" data-loan-id="${loan.loan_id}" title="បោះពុម្ពប័ណ្ណ">
+                                <i class="bi bi-printer"></i>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm btn-action-delete" data-loan-id="${loan.loan_id}" title="លុប">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
                     </td>
                 </tr>
             `).join('');
+
+            bindLoanActionEvents();
         }
 
-        // Back Button Listener
-        const backBtn = document.getElementById('back-to-library-classes-btn');
-        if (backBtn) {
-            backBtn.addEventListener('click', function () {
-                document.getElementById('class-library-students-panel').style.display = 'none';
-                document.getElementById('class-library-boxes-view').style.display = 'block';
+        // 10. Render Master Loans Table
+        function renderMasterLoansTable() {
+            const tbody = document.getElementById('master-loans-table-body');
+            if (!tbody) return;
+
+            const selectedClass = document.getElementById('master-filter-class')?.value || '';
+            const selectedCat = document.getElementById('master-filter-category')?.value || '';
+            const q = (document.getElementById('master-loan-search-input')?.value || '').toLowerCase().trim();
+
+            const filteredLoans = allBookLoans.filter(l => {
+                if (activeStatusFilter !== 'all' && l.status !== activeStatusFilter) return false;
+                if (selectedClass && String(l.class_id) !== String(selectedClass)) return false;
+                if (selectedCat && l.category !== selectedCat) return false;
+                if (q) {
+                    const matchText = (l.student_name && l.student_name.toLowerCase().includes(q)) ||
+                                      (l.student_code && l.student_code.toLowerCase().includes(q)) ||
+                                      (l.category && l.category.toLowerCase().includes(q)) ||
+                                      (l.class_name && l.class_name.toLowerCase().includes(q));
+                    if (!matchText) return false;
+                }
+                return true;
             });
+
+            if (filteredLoans.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" class="text-center py-4 text-muted">គ្មានទិន្នន័យកាតខ្ចីសៀវភៅដែលត្រូវនឹងលក្ខខណ្ឌស្វែងរកទេ</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filteredLoans.map(loan => `
+                <tr>
+                    <td><code>#${loan.loan_id}</code></td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning" style="width: 32px; height: 32px; background: rgba(212,175,55,0.1);">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            <span class="fw-bold text-white">${loan.student_name || 'សិស្ស'}</span>
+                        </div>
+                    </td>
+                    <td><code>${loan.student_code || ('STD-' + loan.student_id)}</code></td>
+                    <td><span class="badge bg-dark border border-warning text-warning">${loan.class_name || 'ថ្នាក់រៀន'}</span></td>
+                    <td><span class="badge bg-secondary-subtle text-light fw-bold fs-6">${loan.category || 'ចំណេះដឹងទូទៅ'}</span></td>
+                    <td><span class="text-muted extra-small">${loan.borrow_date_str || loan.borrow_date}</span></td>
+                    <td><span class="text-light extra-small">${loan.return_date_str || '—'}</span></td>
+                    <td><span class="badge ${loan.badge_class}">${loan.status === 'returned' ? '🔵 បានសងរួច' : '🟢 កំពុងខ្ចី'}</span></td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            ${loan.status !== 'returned' ? `
+                                <button class="btn btn-outline-glass btn-sm me-1 btn-action-return" data-loan-id="${loan.loan_id}" title="សងសៀវភៅ">
+                                    <i class="bi bi-journal-arrow-down me-1"></i>សង
+                                </button>
+                            ` : ''}
+                            <button class="btn btn-outline-glass btn-sm me-1 btn-action-slip" data-loan-id="${loan.loan_id}" title="បោះពុម្ពប័ណ្ណ">
+                                <i class="bi bi-printer"></i>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm btn-action-delete" data-loan-id="${loan.loan_id}" title="លុប">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            bindLoanActionEvents();
         }
 
-        // Class Live Search
-        const classSearchInput = document.getElementById('library-class-search-input');
-        if (classSearchInput) {
-            classSearchInput.addEventListener('input', function () {
-                const q = this.value.toLowerCase().trim();
-                const filtered = libraryClassesDataset.filter(c =>
-                    c.class_name.toLowerCase().includes(q) ||
-                    c.teacher.toLowerCase().includes(q) ||
-                    c.id.toLowerCase().includes(q)
-                );
-                renderClassLibraryCards(filtered);
+        // 11. Bind Loan Action Buttons (Return, Slip, Delete)
+        function bindLoanActionEvents() {
+            // Return Button
+            document.querySelectorAll('.btn-action-return').forEach(btn => {
+                btn.onclick = function (e) {
+                    e.stopPropagation();
+                    const loanId = this.getAttribute('data-loan-id');
+                    openReturnModal(loanId);
+                };
             });
-        }
 
-        // Student Live Search inside class
-        const studentSearchInput = document.getElementById('lib-student-search-input');
-        if (studentSearchInput) {
-            studentSearchInput.addEventListener('input', function () {
-                const q = this.value.toLowerCase().trim();
-                const list = classStudentBorrowMap[selectedClassId] || classStudentBorrowMap["CLS-101"];
-                const filtered = list.filter(s =>
-                    s.student_name.toLowerCase().includes(q) ||
-                    s.student_id.toLowerCase().includes(q) ||
-                    s.book_titles.toLowerCase().includes(q)
-                );
-                renderStudentBorrowRows(filtered);
+            // Slip Button
+            document.querySelectorAll('.btn-action-slip').forEach(btn => {
+                btn.onclick = function (e) {
+                    e.stopPropagation();
+                    const loanId = this.getAttribute('data-loan-id');
+                    openPrintSlipModal(loanId);
+                };
             });
-        }
 
-        // Add Book Loan Submission Handler
-        const addBookLoanForm = document.getElementById('admin-add-book-loan-form');
-        if (addBookLoanForm) {
-            addBookLoanForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const cName = document.getElementById('adm-lib-class').value;
-                const sName = document.getElementById('adm-lib-student').value.trim();
-                const sId = document.getElementById('adm-lib-id').value.trim();
-                const bTitle = document.getElementById('adm-lib-book').value.trim();
-
-                if (sName && bTitle) {
-                    alert(`បានកត់ត្រាកាតខ្ចីសៀវភៅ "${bTitle}" សម្រាប់សិស្ស "${sName}" (${cName}) ដោយជោគជ័យ!`);
-
-                    const modalElem = document.getElementById('adminAddNewBookLoanModal');
-                    if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = bootstrap.Modal.getInstance(modalElem);
-                        if (bsModal) bsModal.hide();
+            // Delete Button
+            document.querySelectorAll('.btn-action-delete').forEach(btn => {
+                btn.onclick = async function (e) {
+                    e.stopPropagation();
+                    const loanId = this.getAttribute('data-loan-id');
+                    if (confirm(`តើអ្នកពិតជាចង់លុបកត់ត្រាកាតខ្ចីសៀវភៅ #${loanId} មែនទេ?`)) {
+                        try {
+                            const res = await fetch(`/api/library/loans/${loanId}`, { method: 'DELETE' });
+                            const data = await res.json();
+                            if (res.ok) {
+                                alert(data.message || 'បានលុបដោយជោគជ័យ!');
+                                loadLibraryData();
+                            } else {
+                                alert(data.message || 'មានបញ្ហាក្នុងការលុប');
+                            }
+                        } catch (err) {
+                            alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                        }
                     }
-                    addBookLoanForm.reset();
+                };
+            });
+        }
+
+        // 12. Open Return Modal
+        function openReturnModal(loanId) {
+            const loan = allBookLoans.find(l => String(l.loan_id) === String(loanId));
+            if (!loan) return;
+
+            document.getElementById('ret-loan-id').value = loan.loan_id;
+            document.getElementById('ret-student-name').innerText = `${loan.student_name} (${loan.student_code || ''})`;
+            document.getElementById('ret-book-title').innerText = `${loan.category || 'សៀវភៅ'}`;
+            document.getElementById('ret-borrow-dates').innerText = `ខ្ចីថ្ងៃ៖ ${loan.borrow_date_str || loan.borrow_date}`;
+
+            // Default return date = today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('ret-return-date').value = today;
+            document.getElementById('ret-notes').value = '';
+
+            const modalElem = document.getElementById('adminReturnBookModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(modalElem);
+                bsModal.show();
+            }
+        }
+
+        // 13. Open Print Slip Modal
+        function openPrintSlipModal(loanId) {
+            const loan = allBookLoans.find(l => String(l.loan_id) === String(loanId));
+            if (!loan) return;
+
+            document.getElementById('slip-loan-id').innerText = `#LOAN-${String(loan.loan_id).padStart(4, '0')}`;
+            document.getElementById('slip-issue-date').innerText = loan.borrow_date_str || loan.borrow_date;
+            document.getElementById('slip-student-name').innerText = loan.student_name || 'សិស្ស';
+            document.getElementById('slip-student-info').innerText = `${loan.student_code || ''} • ${loan.class_name || ''}`;
+            document.getElementById('slip-category').innerText = loan.category || 'ទូទៅ';
+            document.getElementById('slip-borrow-date').innerText = loan.borrow_date_str || loan.borrow_date;
+
+            const modalElem = document.getElementById('printLoanSlipModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(modalElem);
+                bsModal.show();
+            }
+        }
+
+        // 14. Populate Class Dropdowns
+        function populateClassDropdowns(classes) {
+            const classSelect = document.getElementById('adm-lib-class-select');
+            const filterClassSelect = document.getElementById('master-filter-class');
+
+            if (classSelect) {
+                classSelect.innerHTML = `<option value="" disabled selected>-- ជ្រើសរើសថ្នាក់រៀន --</option>` +
+                    classes.map(c => `<option value="${c.class_id}">${c.class_name} (${c.teacher})</option>`).join('');
+            }
+
+            if (filterClassSelect) {
+                filterClassSelect.innerHTML = `<option value="">គ្រប់ថ្នាក់ (All Classes)</option>` +
+                    classes.map(c => `<option value="${c.class_id}">${c.class_name}</option>`).join('');
+            }
+        }
+
+        // 15. Dynamic Students Dropdown when Class is Selected
+        const classSelectElem = document.getElementById('adm-lib-class-select');
+        if (classSelectElem) {
+            classSelectElem.addEventListener('change', async function () {
+                const classId = this.value;
+                const studentSelect = document.getElementById('adm-lib-student-select');
+                if (!studentSelect) return;
+
+                studentSelect.innerHTML = `<option value="" disabled selected>កំពុងទាញយកបញ្ជីសិស្ស...</option>`;
+
+                try {
+                    const res = await fetch(`/api/class/${classId}/students`);
+                    let studentsInClass = [];
+                    if (res.ok) {
+                        const data = await res.json();
+                        studentsInClass = data.students || [];
+                    }
+
+                    if (studentsInClass.length === 0) {
+                        studentsInClass = allStudents;
+                    }
+
+                    studentSelect.innerHTML = `<option value="" disabled selected>-- ជ្រើសរើសសិស្ស --</option>` +
+                        studentsInClass.map(s => `<option value="${s.student_id}" data-code="${s.student_code || ('STD-' + s.student_id)}">${s.full_name} (${s.student_code || s.student_id})</option>`).join('');
+
+                } catch (err) {
+                    console.error("[-] Error fetching students for class:", err);
+                    studentSelect.innerHTML = `<option value="" disabled selected>-- ជ្រើសរើសសិស្ស --</option>` +
+                        allStudents.map(s => `<option value="${s.student_id}" data-code="${s.student_code || ('STD-' + s.student_id)}">${s.full_name}</option>`).join('');
                 }
             });
         }
 
-        // Initial Render
-        renderClassLibraryCards(libraryClassesDataset);
+        // Auto-fill Student Code
+        const studentSelectElem = document.getElementById('adm-lib-student-select');
+        if (studentSelectElem) {
+            studentSelectElem.addEventListener('change', function () {
+                const selectedOpt = this.options[this.selectedIndex];
+                const code = selectedOpt.getAttribute('data-code') || '';
+                const codeInput = document.getElementById('adm-lib-student-code');
+                if (codeInput) codeInput.value = code;
+            });
+        }
+
+        // 16. Form Submissions
+        // A. Add New Book to Stock Form Submit
+        const addStockForm = document.getElementById('admin-add-stock-form');
+        if (addStockForm) {
+            addStockForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const category = document.getElementById('stock-book-category').value;
+                const payload = {
+                    title: `សៀវភៅ ${category}`,
+                    category: category,
+                    book_code: document.getElementById('stock-book-code').value.trim(),
+                    author: document.getElementById('stock-book-author').value.trim(),
+                    total_copies: parseInt(document.getElementById('stock-book-copies').value) || 10,
+                    shelf_location: document.getElementById('stock-book-shelf').value.trim()
+                };
+
+                const saveBtn = document.getElementById('btn-save-stock-submit');
+                if (saveBtn) saveBtn.disabled = true;
+
+                try {
+                    const res = await fetch('/api/library/books', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+
+                    if (res.ok) {
+                        alert(data.message || 'បានបញ្ចូលសៀវភៅទៅក្នុងស្តុកដោយជោគជ័យ!');
+                        const modalElem = document.getElementById('adminAddNewBookToStockModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+                        addStockForm.reset();
+                        loadLibraryData();
+                    } else {
+                        alert(data.message || 'មានបញ្ហាក្នុងការរក្សាទុក');
+                    }
+                } catch (err) {
+                    alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                } finally {
+                    if (saveBtn) saveBtn.disabled = false;
+                }
+            });
+        }
+
+        // B. Restock Existing Book Form Submit
+        const restockForm = document.getElementById('admin-restock-book-form');
+        if (restockForm) {
+            restockForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const bookId = document.getElementById('restock-book-id').value;
+                const payload = {
+                    additional_copies: parseInt(document.getElementById('restock-add-copies').value) || 10,
+                    shelf_location: document.getElementById('restock-shelf-location').value.trim()
+                };
+
+                const saveBtn = document.getElementById('btn-save-restock-submit');
+                if (saveBtn) saveBtn.disabled = true;
+
+                try {
+                    const res = await fetch(`/api/library/books/${bookId}/add_stock`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+
+                    if (res.ok) {
+                        alert(data.message || 'បានបន្ថែមចំនួនស្តុកដោយជោគជ័យ!');
+                        const modalElem = document.getElementById('adminRestockBookModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+                        restockForm.reset();
+                        loadLibraryData();
+                    } else {
+                        alert(data.message || 'មានបញ្ហាក្នុងការបន្ថែមស្តុក');
+                    }
+                } catch (err) {
+                    alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                } finally {
+                    if (saveBtn) saveBtn.disabled = false;
+                }
+            });
+        }
+
+        // C. Add New Book Loan Submit (សាមញ្ញ & រហ័ស - អាចជ្រើសរើសបានច្រើនមុខវិជ្ជា)
+        const addLoanForm = document.getElementById('admin-add-book-loan-form');
+        if (addLoanForm) {
+            addLoanForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                // Collect checked categories
+                const checkedBoxes = document.querySelectorAll('#adm-lib-categories-container input[name="adm_lib_cat"]:checked');
+                let selectedCategories = Array.from(checkedBoxes).map(cb => cb.value.trim());
+
+                // Check custom category if entered
+                const customCat = document.getElementById('adm-lib-custom-cat')?.value.trim();
+                if (customCat && !selectedCategories.includes(customCat)) {
+                    selectedCategories.push(customCat);
+                }
+
+                if (selectedCategories.length === 0) {
+                    alert('សូមជ្រើសរើសយ៉ាងហោចណាស់ ១ មុខវិជ្ជា!');
+                    return;
+                }
+
+                const classId = document.getElementById('adm-lib-class-select').value;
+                const studentId = document.getElementById('adm-lib-student-select').value;
+                const studentCode = document.getElementById('adm-lib-student-code').value;
+                const borrowDate = document.getElementById('adm-lib-borrow-date').value;
+                const notes = document.getElementById('adm-lib-notes').value.trim();
+
+                if (!studentId) {
+                    alert('សូមជ្រើសរើសសិស្សដែលត្រូវខ្ចី!');
+                    return;
+                }
+
+                const payload = {
+                    class_id: classId,
+                    student_id: studentId,
+                    student_code: studentCode,
+                    categories: selectedCategories,
+                    borrow_date: borrowDate,
+                    notes: notes
+                };
+
+                const saveBtn = document.getElementById('btn-save-loan-submit');
+                if (saveBtn) saveBtn.disabled = true;
+
+                try {
+                    const res = await fetch('/api/library/loans', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+
+                    if (res.ok) {
+                        alert(data.message || 'បានកត់ត្រាកាតខ្ចីសៀវភៅដោយជោគជ័យ!');
+                        const modalElem = document.getElementById('adminAddNewBookLoanModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+                        addLoanForm.reset();
+                        document.getElementById('adm-lib-custom-cat').value = '';
+                        loadLibraryCategories(); // Refresh categories
+                        loadLibraryData();
+                    } else {
+                        alert(data.message || 'មានបញ្ហាក្នុងការរក្សាទុក');
+                    }
+                } catch (err) {
+                    alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                } finally {
+                    if (saveBtn) saveBtn.disabled = false;
+                }
+            });
+        }
+
+        // D. Return Book Loan Submit
+        const returnForm = document.getElementById('admin-return-book-form');
+        if (returnForm) {
+            returnForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const loanId = document.getElementById('ret-loan-id').value;
+                const payload = {
+                    return_date: document.getElementById('ret-return-date').value,
+                    notes: document.getElementById('ret-notes').value.trim()
+                };
+
+                const saveBtn = document.getElementById('btn-save-return-submit');
+                if (saveBtn) saveBtn.disabled = true;
+
+                try {
+                    const res = await fetch(`/api/library/loans/${loanId}/return`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+
+                    if (res.ok) {
+                        alert(data.message || 'បានទទួលសងសៀវភៅដោយជោគជ័យ!');
+                        const modalElem = document.getElementById('adminReturnBookModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+                        loadLibraryData();
+                    } else {
+                        alert(data.message || 'មានបញ្ហាក្នុងការទទួលសងសៀវភៅ');
+                    }
+                } catch (err) {
+                    alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                } finally {
+                    if (saveBtn) saveBtn.disabled = false;
+                }
+            });
+        }
+
+        // 17. Buttons & Listeners
+        // Refresh Button
+        document.getElementById('btn-refresh-library-data')?.addEventListener('click', () => {
+            loadLibraryData();
+        });
+
+        // Open Add Book to Stock Modal
+        const openStockModalHandler = () => {
+            const modalElem = document.getElementById('adminAddNewBookToStockModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(modalElem);
+                bsModal.show();
+            }
+        };
+        document.getElementById('btn-open-add-book-stock-modal')?.addEventListener('click', openStockModalHandler);
+        document.getElementById('btn-add-book-stock-tab3')?.addEventListener('click', openStockModalHandler);
+
+        // Open Add Loan Modal Button
+        document.getElementById('btn-open-add-loan-modal')?.addEventListener('click', () => {
+            const today = new Date();
+            const borrowDateStr = today.toISOString().split('T')[0];
+            const bDateInput = document.getElementById('adm-lib-borrow-date');
+            if (bDateInput) bDateInput.value = borrowDateStr;
+
+            const modalElem = document.getElementById('adminAddNewBookLoanModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(modalElem);
+                bsModal.show();
+            }
+        });
+
+        // Add Custom Category Button
+        document.getElementById('adm-btn-add-custom-cat')?.addEventListener('click', () => {
+            const customInput = document.getElementById('adm-lib-custom-cat');
+            const val = customInput?.value.trim();
+            if (!val) return;
+
+            const container = document.getElementById('adm-lib-categories-container');
+            if (!container) return;
+
+            const existing = Array.from(container.querySelectorAll('input[name="adm_lib_cat"]')).find(cb => cb.value.toLowerCase() === val.toLowerCase());
+            if (existing) {
+                existing.checked = true;
+            } else {
+                const newPill = document.createElement('label');
+                newPill.className = 'category-pill-label active';
+                newPill.innerHTML = `
+                    <input type="checkbox" name="adm_lib_cat" value="${val}" class="form-check-input mt-0 me-1" checked style="cursor: pointer;">
+                    <span>${val}</span>
+                `;
+                newPill.querySelector('input').addEventListener('change', updateSelectedCategoryCount);
+                container.appendChild(newPill);
+            }
+            customInput.value = '';
+            updateSelectedCategoryCount();
+        });
+
+        // Add Loan inside Class button
+        document.getElementById('btn-add-loan-for-this-class')?.addEventListener('click', () => {
+            const classSelect = document.getElementById('adm-lib-class-select');
+            if (classSelect && selectedClassId) {
+                classSelect.value = selectedClassId;
+                classSelect.dispatchEvent(new Event('change'));
+            }
+            document.getElementById('btn-open-add-loan-modal')?.click();
+        });
+
+        // Back to classes button
+        document.getElementById('back-to-library-classes-btn')?.addEventListener('click', () => {
+            document.getElementById('class-library-students-panel').style.display = 'none';
+            document.getElementById('class-library-boxes-view').style.display = 'block';
+            selectedClassId = null;
+        });
+
+        // Class search live input
+        document.getElementById('library-class-search-input')?.addEventListener('input', function () {
+            const q = this.value.toLowerCase().trim();
+            const filtered = allLibraryClasses.filter(c =>
+                c.class_name.toLowerCase().includes(q) ||
+                (c.teacher && c.teacher.toLowerCase().includes(q)) ||
+                (c.id && c.id.toLowerCase().includes(q))
+            );
+            renderClassLibraryCards(filtered);
+        });
+
+        // Student search inside class live input
+        document.getElementById('lib-student-search-input')?.addEventListener('input', function () {
+            if (selectedClassId) {
+                filterAndRenderClassStudents(selectedClassId);
+            }
+        });
+
+        // Master Loans Search & Filters
+        document.getElementById('master-loan-search-input')?.addEventListener('input', renderMasterLoansTable);
+        document.getElementById('master-filter-class')?.addEventListener('change', renderMasterLoansTable);
+        document.getElementById('master-filter-category')?.addEventListener('change', renderMasterLoansTable);
+
+        document.querySelectorAll('.status-filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.status-filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                activeStatusFilter = this.getAttribute('data-status') || 'all';
+                renderMasterLoansTable();
+            });
+        });
+
+        // Print Class Loans Button
+        document.getElementById('btn-print-class-loans')?.addEventListener('click', () => {
+            window.print();
+        });
+
+        // Initial Execution
+        loadLibraryData();
     })();
 </script>
-
-<!-- Modal: Admin Add New Book Loan Form Modal -->
-<div class="modal fade" id="adminAddNewBookLoanModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
-            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
-            <div class="modal-header border-bottom border-dark p-4">
-                <div class="d-flex align-items-center gap-2.5">
-                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning"
-                        style="color:#d4af37 !important;">
-                        <i class="bi bi-journal-plus fs-5"></i>
-                    </div>
-                    <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">បណ្ណាល័យសាលា</span>
-                        <h4 class="fw-bold text-white mb-0">ទម្រង់កត់ត្រាកាតខ្ចីសៀវភៅថ្មី (New Book Loan Entry Form)
-                        </h4>
-                    </div>
-                </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4">
-                <form id="admin-add-book-loan-form">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ជ្រើសរើសថ្នាក់រៀន
-                                (Class)</label>
-                            <select class="form-select bg-dark text-white border-secondary" id="adm-lib-class" required>
-                                <option value="ថ្នាក់ទី ១២-A" selected>ថ្នាក់ទី ១២-A</option>
-                                <option value="ថ្នាក់ទី ១២-B">ថ្នាក់ទី ១២-B</option>
-                                <option value="ថ្នាក់ទី ១១-A">ថ្នាក់ទី ១១-A</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះសិស្សខ្ចី
-                                (Student Name)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary"
-                                id="adm-lib-student" placeholder="ឧ. សុខ ចាន់ដារ៉ា" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">អត្តលេខសិស្ស
-                                (Student ID)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold"
-                                id="adm-lib-id" value="STD-2026-001" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ចំណងជើងសៀវភៅ (Book
-                                Title)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary"
-                                id="adm-lib-book" placeholder="ឧ. គណិតវិទ្យា ថ្នាក់ទី ១២, រូបវិទ្យា..." required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្ងៃខ្ចី (Borrow
-                                Date)</label>
-                            <input type="date" class="form-control bg-dark text-white border-secondary"
-                                id="adm-lib-bdate" value="2026-08-12" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្ងៃកំណត់សង (Return
-                                Due Date)</label>
-                            <input type="date" class="form-control bg-dark text-white border-secondary"
-                                id="adm-lib-rdate" value="2026-08-26" required>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
-                        <button type="button" class="btn btn-outline-glass btn-sm"
-                            data-bs-dismiss="modal">បោះបង់</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-journal-check me-1"></i>
-                            រក្សាទុកការខ្ចីសៀវភៅ</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>

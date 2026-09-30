@@ -1,66 +1,1754 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+    /* Premium Ultra-Modern Dark & Gold Clean Khmer Archive Architecture */
+    * {
+        font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .extra-small {
+        font-size: 0.8rem !important;
+        line-height: 1.4;
+    }
+
+    .text-muted {
+        color: #a8a8b8 !important;
+    }
+
+    /* Executive Hero Header Banner */
+    .archive-hero-banner {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.22) 0%, rgba(20, 20, 30, 0.96) 60%, rgba(12, 12, 18, 0.98) 100%);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 24px;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    .archive-hero-banner::after {
+        content: '';
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    /* Glass KPI Cards */
+    .glass-archive-kpi {
+        background: rgba(18, 18, 26, 0.85);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        padding: 18px;
+        transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .glass-archive-kpi:hover {
+        border-color: rgba(212, 175, 55, 0.5);
+        transform: translateY(-5px);
+        box-shadow: 0 14px 35px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Filter Capsule Bar */
+    .filter-capsule-bar {
+        background: rgba(16, 16, 24, 0.9);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 60px;
+        padding: 6px 10px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .filter-pill-btn {
+        background: transparent;
+        border: 1px solid transparent;
+        color: #b0b0cc;
+        border-radius: 40px;
+        padding: 9px 20px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .filter-pill-btn:hover {
+        background: rgba(255, 255, 255, 0.09);
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+
+    .filter-pill-btn.active {
+        background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%) !important;
+        color: #000000 !important;
+        font-weight: 800 !important;
+        box-shadow: 0 6px 22px rgba(212, 175, 55, 0.6) !important;
+    }
+
+    /* Track Badges */
+    .track-badge-science {
+        background: rgba(59, 130, 246, 0.15);
+        border: 1px solid rgba(59, 130, 246, 0.45);
+        color: #60a5fa;
+        font-weight: 700;
+        border-radius: 10px;
+        padding: 4px 10px;
+        font-size: 0.78rem;
+    }
+
+    .track-badge-social {
+        background: rgba(168, 85, 247, 0.15);
+        border: 1px solid rgba(168, 85, 247, 0.45);
+        color: #c084fc;
+        font-weight: 700;
+        border-radius: 10px;
+        padding: 4px 10px;
+        font-size: 0.78rem;
+    }
+
+    .btn-gold-shimmer {
+        background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #b8860b 100%);
+        color: #050508;
+        font-weight: 800;
+        border: 1px solid rgba(255, 223, 0, 0.6);
+        border-radius: 14px;
+        padding: 10px 22px;
+        font-size: 0.88rem;
+        box-shadow: 0 6px 25px rgba(212, 175, 55, 0.45);
+        transition: all 0.3s ease;
+    }
+
+    .btn-gold-shimmer:hover {
+        box-shadow: 0 10px 35px rgba(212, 175, 55, 0.75);
+        transform: translateY(-2px);
+        color: #000;
+    }
+
+    .btn-card-details {
+        background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%);
+        color: #050508;
+        font-weight: 800;
+        border: 1px solid rgba(255, 215, 0, 0.5);
+        border-radius: 12px;
+        padding: 7px 16px;
+        font-size: 0.82rem;
+        box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+        transition: all 0.28s ease;
+    }
+
+    .btn-card-details:hover {
+        box-shadow: 0 8px 28px rgba(212, 175, 55, 0.75);
+        transform: translateY(-2px);
+        color: #000;
+    }
+
+    .btn-outline-glass {
+        background: rgba(22, 22, 32, 0.85);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        color: #f0f0f5;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 7px 14px;
+        font-size: 0.82rem;
+        transition: all 0.28s ease;
+    }
+
+    .btn-outline-glass:hover {
+        background: rgba(212, 175, 55, 0.22);
+        color: #ffd700;
+        border-color: rgba(212, 175, 55, 0.85);
+    }
+
+    .table-dark-custom th {
+        padding: 12px 14px !important;
+        font-size: 0.82rem;
+        white-space: nowrap;
+        background: rgba(16, 16, 26, 0.95) !important;
+        border-bottom: 2px solid rgba(212, 175, 55, 0.4) !important;
+        color: #d4af37 !important;
+    }
+
+    .table-dark-custom td {
+        padding: 12px 14px !important;
+        font-size: 0.86rem;
+        white-space: nowrap;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .score-chip {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        padding: 2px 8px;
+        font-weight: 700;
+        font-size: 0.84rem;
+        color: #ffffff;
+    }
+
+    /* STUDENT ARCHIVE BOXES GRID (ធ្វើជា Box Box) */
+    .student-archive-box {
+        background: linear-gradient(145deg, rgba(16, 16, 26, 0.95), rgba(24, 24, 38, 0.92));
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        border-radius: 20px;
+        backdrop-filter: blur(16px);
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .student-archive-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #d4af37, #ffd700, #f59e0b);
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+    }
+
+    .student-archive-box:hover {
+        transform: translateY(-5px);
+        border-color: rgba(212, 175, 55, 0.7);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(212, 175, 55, 0.2);
+    }
+
+    .student-archive-box:hover::before {
+        opacity: 1;
+        box-shadow: 0 0 12px #ffd700;
+    }
+
+    .student-avatar-ring {
+        width: 54px;
+        height: 54px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 215, 0, 0.05));
+        border: 2px solid rgba(212, 175, 55, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .student-mini-metrics {
+        background: rgba(10, 10, 18, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 10px 14px;
+    }
+
+    .view-mode-pill-btn {
+        background: transparent;
+        border: none;
+        color: #94a3b8;
+        font-size: 0.82rem;
+        font-weight: 700;
+        padding: 6px 14px;
+        border-radius: 8px;
+        transition: all 0.25s ease;
+        cursor: pointer;
+    }
+
+    .view-mode-pill-btn.active {
+        background: linear-gradient(135deg, #d4af37, #f5d061);
+        color: #050508;
+        box-shadow: 0 3px 12px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Class / Academic Year Cards Box (Box Box) */
+    .class-card-box {
+        background: linear-gradient(155deg, #12121a, #181826);
+        border: 1px solid rgba(212, 175, 55, 0.25);
+        border-radius: 22px;
+        transition: all 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.42);
+    }
+
+    .class-card-box::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, #d4af37, #f5d061, #d4af37, transparent);
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+
+    .class-card-box:hover {
+        border-color: rgba(212, 175, 55, 0.8);
+        box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
+        transform: translateY(-8px) scale(1.015);
+    }
+
+    .class-card-box:hover::before {
+        opacity: 1;
+    }
+
+    .track-badge {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(212, 175, 55, 0.08));
+        border: 1px solid rgba(212, 175, 55, 0.5);
+        color: #ffd700;
+        font-weight: 700;
+        border-radius: 12px;
+        padding: 5px 13px;
+        font-size: 0.78rem;
+    }
+
+    .teacher-pill {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 40px;
+        padding: 4px 12px;
+    }
+
+    .metrics-summary-box {
+        background: rgba(10, 10, 15, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 12px;
+    }
+
+    .progress-bar-custom {
+        height: 6px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+    }
+
+    .progress-bar-custom .fill {
+        height: 100%;
+        background: linear-gradient(90deg, #d4af37, #f5d061);
+        border-radius: 10px;
+        transition: width 0.6s ease;
+    }
+
+    .btn-card-score {
+        background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%);
+        color: #050508;
+        font-weight: 800;
+        border: 1px solid rgba(255, 215, 0, 0.5);
+        border-radius: 12px;
+        padding: 8px 18px;
+        font-size: 0.84rem;
+        box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
+        transition: all 0.28s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+    }
+
+    .btn-card-score:hover {
+        box-shadow: 0 8px 28px rgba(212, 175, 55, 0.75);
+        transform: translateY(-2px);
+        color: #000000;
+    }
+</style>
+
 <div class="p-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h3 class="fw-bold mb-1 text-white">Student Projects & Submissions</h3>
-            <p class="text-muted small mb-0">Track capstone projects, lab assignments, and group submissions.</p>
+    <!-- Executive Hero Header Banner (បើកឆ្នាំសិក្សាថ្មី & បណ្ណាសារទិន្នន័យ) -->
+    <div class="archive-hero-banner p-4 mb-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div>
+                <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;">
+                    <i class="bi bi-calendar-check-fill me-1"></i> ប្រព័ន្ធគ្រប់គ្រងការបើកឆ្នាំសិក្សាថ្មី & បណ្ណាសារ (Academic Year & Operations)
+                </span>
+                <h2 class="fw-bold text-white mb-1">បើកឆ្នាំសិក្សាថ្មី និង គ្រប់គ្រងបណ្ណាសារទិន្នន័យចាស់ៗ</h2>
+                <p class="text-white-50 small mb-0">
+                    ទាល់តែបើកឆ្នាំសិក្សាថ្មីជាផ្លូវការ (Active Academic Year) ទើបអាចអនុញ្ញាតឱ្យបញ្ចូលសិស្សថ្មី បញ្ចូលពិន្ទុ កត់ត្រាវត្តមាន និងប្រតិបត្តិការរដ្ឋបាលផ្សេងៗ។
+                    ឆ្នាំសិក្សាដែលបានបញ្ចប់នឹងត្រូវរក្សាទុកក្នុងបណ្ណាសារជាប្រវត្តិសាស្ត្រ។
+                </p>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-outline-glass btn-sm" onclick="window.print()">
+                    <i class="bi bi-download me-1"></i> ទាញយករបាយការណ៍
+                </button>
+                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#openNewAcademicYearModal">
+                    <i class="bi bi-calendar-plus-fill me-1.5"></i> ➕ បើកឆ្នាំសិក្សាថ្មី (Open New Year)
+                </button>
+            </div>
         </div>
-        <button class="btn btn-gold btn-sm"><i class="bi bi-plus-lg me-1"></i> New Project Assignment</button>
     </div>
 
-    <!-- Active Projects List -->
-    <div class="row g-3">
-        <div class="col-md-4">
-            <div class="card-custom p-4 card-gold-accent">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <span class="badge bg-gold text-dark" style="background:#d4af37; font-weight:700;">Computer Science</span>
-                    <span class="text-muted extra-small">Due: Aug 20</span>
+    <!-- Active Academic Year Status Alert & Quick Actions Card -->
+    <div id="active-year-hero-container" class="mb-4">
+        <!-- Dynamically rendered active year card -->
+    </div>
+
+    <!-- Top Statistics KPI Row -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="glass-archive-kpi" style="border-color: rgba(212, 175, 55, 0.45);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-warning extra-small fw-bold" style="color:#d4af37 !important;">📁
+                        ឆ្នាំសិក្សាក្នុងបណ្ណាសារ</span>
+                    <i class="bi bi-clock-history fs-5" style="color:#ffd700;"></i>
                 </div>
-                <h5 class="fw-bold text-white mb-2">AI Chatbot Development Project</h5>
-                <p class="text-muted small mb-3">Group project building an intelligent virtual assistant with Python and Flask.</p>
-                <div class="progress mb-3" style="height: 6px; background:#1c1c24;">
-                    <div class="progress-bar bg-warning" style="width: 75%;"></div>
+                <h3 class="fw-bold text-white mb-0" id="kpi-total-years">៥ ឆ្នាំសិក្សា</h3>
+                <span class="extra-small text-white-50"><i class="bi bi-calendar-range me-1 text-warning"></i>២០២១ ដល់
+                    ២០២៦</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-archive-kpi" style="border-color: rgba(59, 130, 246, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-info extra-small fw-bold">👥 សិស្សក្នុងបណ្ណាសារសរុប</span>
+                    <i class="bi bi-people-fill text-info fs-5"></i>
                 </div>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted extra-small">28/35 Submitted</span>
-                    <button class="btn btn-outline-dark-custom btn-sm">Review Submissions</button>
+                <h3 class="fw-bold text-white mb-0" id="kpi-total-archived-students">១,៤២០ នាក់</h3>
+                <span class="extra-small text-white-50"><i
+                        class="bi bi-database-check me-1 text-info"></i>ទិន្នន័យបានផ្ទៀងផ្ទាត់</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-archive-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-success extra-small fw-bold">🎓 អត្រាជាប់មធ្យមគ្រប់ឆ្នាំ</span>
+                    <i class="bi bi-mortarboard-fill text-success fs-5"></i>
+                </div>
+                <h3 class="fw-bold text-success mb-0" id="kpi-historical-pass-rate">៩៤.៥%</h3>
+                <span class="text-success extra-small"><i
+                        class="bi bi-arrow-up-right me-1"></i>សិស្សប្រឡងជាប់សរុប</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-archive-kpi" style="border-color: rgba(245, 158, 11, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-warning extra-small fw-bold" style="color:#f59e0b !important;">🏆
+                        សិស្សឆ្នើមនិទ្ទេស A</span>
+                    <i class="bi bi-award-fill text-warning fs-5" style="color:#f59e0b;"></i>
+                </div>
+                <h3 class="fw-bold text-warning mb-0" style="color:#f59e0b !important;" id="kpi-total-grade-a">១៦៨ នាក់
+                </h3>
+                <span class="extra-small text-white-50"><i
+                        class="bi bi-star-fill me-1 text-warning"></i>ទទួលបានប័ណ្ណសរសើរ</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- LEVEL 1: ACADEMIC YEARS ARCHIVE BOXES GRID (កម្រិតទី ១: បណ្ណាសារឆ្នាំសិក្សាជា Box Box) -->
+    <!-- ========================================================================= -->
+    <div id="archive-years-grid-view">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge text-dark fw-bold px-3 py-1.5"
+                    style="background: linear-gradient(135deg, #d4af37, #f5d061); font-size: 0.85rem; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);">
+                    <i class="bi bi-grid-3x3-gap-fill me-1.5"></i> បណ្ណាសារប្រអប់ឆ្នាំសិក្សាទាំងអស់
+                </span>
+                <span class="badge bg-dark border border-warning text-warning extra-small fw-bold px-2.5 py-1"
+                    id="archive-boxes-count-badge">
+                    <i class="bi bi-collection me-1"></i> កំពុងផ្ទុក...
+                </span>
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+                <div class="extra-small text-white-50 d-none d-md-block">
+                    <i class="bi bi-info-circle text-warning me-1"></i> ចុចលើប្រអប់ឆ្នាំសិក្សាដើម្បីពិនិត្យទិន្នន័យលម្អិត
+                </div>
+                <div class="search-box" style="width: 300px;">
+                    <i class="bi bi-search text-muted"></i>
+                    <input type="text" id="archive-year-search-input"
+                        placeholder="ស្វែងរក ឆ្នាំសិក្សា, គ្រូ, សិស្ស...">
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card-custom p-4">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <span class="badge bg-primary-subtle text-primary">Physics</span>
-                    <span class="text-muted extra-small">Due: Aug 15</span>
-                </div>
-                <h5 class="fw-bold text-white mb-2">Solar Cell Efficiency Analysis</h5>
-                <p class="text-muted small mb-3">Experimental report evaluating renewable energy conversion in lab settings.</p>
-                <div class="progress mb-3" style="height: 6px; background:#1c1c24;">
-                    <div class="progress-bar bg-primary" style="width: 40%;"></div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted extra-small">12/30 Submitted</span>
-                    <button class="btn btn-outline-dark-custom btn-sm">Review Submissions</button>
-                </div>
-            </div>
+        <!-- ACADEMIC YEARS BOXES GRID (ធ្វើជា Box Box តាមឆ្នាំនីមួយៗ) -->
+        <div id="academic-years-boxes-grid" class="row g-3.5 mb-4">
+            <!-- Dynamic Year & Class Box Cards Rendered Here -->
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- LEVEL 2: STUDENT LIST & MONTHLY SCORES PANEL (កម្រិតទី ២: បញ្ជីសិស្សលម្អិតក្នុងឆ្នាំនោះ) -->
+    <!-- ========================================================================= -->
+    <div id="year-students-archive-panel" style="display: none;">
+        <!-- Top Navigation Bar to return to Level 1 -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <button id="back-to-years-grid-btn" class="btn btn-outline-glass btn-sm">
+                <i class="bi bi-arrow-left me-1"></i> ត្រឡប់ទៅប្រអប់ឆ្នាំសិក្សាទាំងអស់ (Back to Year Boxes)
+            </button>
+            <span class="badge bg-dark border border-warning text-warning extra-small px-3 py-1.5 fw-bold">
+                <i class="bi bi-folder-check me-1"></i> កំពុងពិនិត្យទិន្នន័យបណ្ណាសារលម្អិត
+            </span>
         </div>
 
-        <div class="col-md-4">
-            <div class="card-custom p-4">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <span class="badge bg-success-subtle text-success">Mathematics</span>
-                    <span class="text-muted extra-small">Completed</span>
+        <!-- SELECTED YEAR SUMMARY CARD -->
+        <div class="card-custom p-4 mb-4" style="border-color: rgba(212, 175, 55, 0.35) !important;">
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-3">
+                <div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <span class="badge text-dark fw-bold" style="background:#d4af37;"
+                            id="current-selected-year-badge">
+                            ឆ្នាំសិក្សា ២០២៥ - ២០២៦
+                        </span>
+                        <span class="badge bg-success-subtle text-success border border-success extra-small fw-bold">
+                            🔒 បានបិទបញ្ជីទិន្នន័យផ្លូវការ
+                        </span>
+                        <span class="badge bg-dark border border-secondary text-white-50 extra-small"
+                            id="current-year-classes-count">
+                            ៦ ថ្នាក់រៀន
+                        </span>
+                    </div>
+                    <h4 class="fw-bold text-white mb-0" id="current-selected-year-title">
+                        <i class="bi bi-mortarboard-fill text-warning me-2"></i>ទិន្នន័យសិស្ស និង
+                        លទ្ធផលប្រចាំឆ្នាំសិក្សា ២០២៥ - ២០២៦
+                    </h4>
+                    <span class="text-white-50 extra-small">
+                        សិស្សសរុបក្នុងឆ្នាំនេះ: <strong class="text-warning" id="current-year-total-students">២៤០
+                            នាក់</strong> • អត្រាប្រឡងជាប់: <strong class="text-success"
+                            id="current-year-pass-rate">៩៦.២%</strong> • សិស្សឆ្នើមប្រចាំឆ្នាំ: <strong
+                            class="text-white" id="current-year-top-student">សុខ ចាន់ដារ៉ា (និទ្ទេស A)</strong>
+                    </span>
                 </div>
-                <h5 class="fw-bold text-white mb-2">Statistical Data Modeling</h5>
-                <p class="text-muted small mb-3">Real-world data modeling and linear regression calculations in R / Python.</p>
-                <div class="progress mb-3" style="height: 6px; background:#1c1c24;">
-                    <div class="progress-bar bg-success" style="width: 100%;"></div>
+
+                <!-- Controls: View Mode Switcher, Class and Track Filters -->
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <!-- View Mode Switcher: Table View (Default Horizontal Rows) vs Box Cards -->
+                    <div class="d-flex align-items-center gap-1 bg-black p-1 rounded-3 border border-secondary">
+                        <button type="button" class="view-mode-pill-btn active" id="view-mode-table-btn"
+                            title="បង្ហាញជាទម្រង់ជួរដេក / តារាង (Horizontal Table Rows)">
+                            <i class="bi bi-list-task me-1"></i> ទម្រង់ជួរដេក (Table Rows)
+                        </button>
+                        <button type="button" class="view-mode-pill-btn" id="view-mode-box-btn"
+                            title="បង្ហាញជាទម្រង់ប្រអប់ (Box Grid)">
+                            <i class="bi bi-grid-3x3-gap-fill me-1"></i> ទម្រង់ប្រអប់ (Boxes)
+                        </button>
+                    </div>
+
+                    <div
+                        class="d-flex align-items-center gap-1.5 bg-dark px-3 py-1.5 rounded-3 border border-secondary">
+                        <i class="bi bi-filter-square text-warning fs-6"></i>
+                        <span class="text-white-50 extra-small me-1">ថ្នាក់រៀន:</span>
+                        <select id="archive-class-filter"
+                            class="bg-transparent text-white border-0 extra-small fw-semibold outline-none"
+                            style="cursor: pointer;">
+                            <option value="All" class="bg-dark text-white">គ្រប់ថ្នាក់ទាំងអស់</option>
+                            <option value="ថ្នាក់ទី ១២-A" class="bg-dark text-white">ថ្នាក់ទី ១២-A (វិទ្យាសាស្ត្រ)
+                            </option>
+                            <option value="ថ្នាក់ទី ១២-B" class="bg-dark text-white">ថ្នាក់ទី ១២-B (វិទ្យាសាស្ត្រ)
+                            </option>
+                            <option value="ថ្នាក់ទី ១២-C" class="bg-dark text-white">ថ្នាក់ទី ១២-C (វិទ្យាសាស្ត្រសង្គម)
+                            </option>
+                            <option value="ថ្នាក់ទី ១១-A" class="bg-dark text-white">ថ្នាក់ទី ១១-A (វិទ្យាសាស្ត្រ)
+                            </option>
+                            <option value="ថ្នាក់ទី ១០-A" class="bg-dark text-white">ថ្នាក់ទី ១០-A (វិទ្យាសាស្ត្រសង្គម)
+                            </option>
+                        </select>
+                    </div>
+
+                    <div
+                        class="d-flex align-items-center gap-1.5 bg-dark px-3 py-1.5 rounded-3 border border-secondary">
+                        <i class="bi bi-mortarboard text-warning fs-6"></i>
+                        <span class="text-white-50 extra-small me-1">ផ្នែក:</span>
+                        <select id="archive-track-filter"
+                            class="bg-transparent text-white border-0 extra-small fw-semibold outline-none"
+                            style="cursor: pointer;">
+                            <option value="All" class="bg-dark text-white">គ្រប់ផ្នែកទាំងអស់</option>
+                            <option value="Science" class="bg-dark text-white">ថ្នាក់វិទ្យាសាស្ត្រ</option>
+                            <option value="Social" class="bg-dark text-white">ថ្នាក់វិទ្យាសាស្ត្រសង្គម</option>
+                        </select>
+                    </div>
+
+                    <div class="search-box" style="width: 240px;">
+                        <i class="bi bi-search text-muted"></i>
+                        <input type="text" id="archive-student-search-input" placeholder="ស្វែងរក ឈ្មោះ, អត្តលេខ...">
+                    </div>
                 </div>
-                <div class="d-flex justify-content-between align-items-center">
-                    <span class="text-muted extra-small">38/38 Graded</span>
-                    <button class="btn btn-outline-dark-custom btn-sm">View Grades</button>
+            </div>
+
+            <!-- 1. MAIN STUDENTS ARCHIVE TABLE (ទម្រង់តារាងជាជួរដេក - DEFAULT) -->
+            <div id="archive-students-table-container" class="table-responsive" style="display: block;">
+                <table class="table table-dark table-hover align-middle mb-0 table-dark-custom"
+                    style="background: transparent;">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>ឈ្មោះសិស្ស & អត្តលេខ</th>
+                            <th>ភេទ</th>
+                            <th>ថ្នាក់រៀន</th>
+                            <th>គ្រូបន្ទុកថ្នាក់</th>
+                            <th>ផ្នែកសិក្សា</th>
+                            <th class="text-center">ពិន្ទុមធ្យមប្រចាំឆ្នាំ</th>
+                            <th class="text-center">និទ្ទេស</th>
+                            <th class="text-center">ចំណាត់ថ្នាក់</th>
+                            <th class="text-center">វត្តមាន & អវត្តមាន</th>
+                            <th>លទ្ធផលផ្លូវការ</th>
+                            <th class="text-end">សកម្មភាព</th>
+                        </tr>
+                    </thead>
+                    <tbody id="archive-students-table-body">
+                        <!-- Dynamic Student Rows Rendered Here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 2. ACTIVE STUDENT ARCHIVE BOXES GRID (ទម្រង់ប្រអប់ Box Box) -->
+            <div id="archive-students-boxes-grid" class="row g-3 mb-2" style="display: none;">
+                <!-- Dynamic Student Box Cards Rendered Here -->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- MODAL: DEEP DIVE STUDENT YEARLY HISTORY & MONTHLY SCORES (ពិនិត្យពិន្ទុរៀងរាល់ខែ & ព័ត៌មានលម្អិតសិស្សក្នុងឆ្នាំនោះ) -->
+<div class="modal fade" id="studentYearlyArchiveModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center justify-content-between w-100 flex-wrap gap-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning shadow overflow-hidden"
+                            style="width: 60px; height: 60px; background: rgba(212, 175, 55, 0.15); flex-shrink: 0;">
+                            <i class="bi bi-person-fill fs-2" style="color:#d4af37;"></i>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <span class="badge text-dark fw-bold" style="background:#d4af37;"
+                                    id="modal-arch-code">STD-2025-001</span>
+                                <span class="badge bg-dark border border-secondary text-white-50"
+                                    id="modal-arch-year">ឆ្នាំសិក្សា ២០២៥ - ២០២៦</span>
+                                <span
+                                    class="badge bg-success-subtle text-success border border-success extra-small fw-bold"
+                                    id="modal-arch-outcome">✅ ប្រឡងជាប់ផ្លូវការ</span>
+                            </div>
+                            <h4 class="fw-bold text-white mb-0" id="modal-arch-name">សុខ ចាន់ដារ៉ា</h4>
+                            <span class="text-white-50 extra-small" id="modal-arch-meta">
+                                ភេទ: ប្រុស • ថ្ងៃខែឆ្នាំកំណើត: ១៥-មេសា-២០០៧ • ទូរស័ព្ទ: 092 112 233
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Annual KPIs -->
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="p-2 px-3 rounded-3 bg-black border border-secondary text-center">
+                            <span class="text-white-50 extra-small d-block mb-0.5">ពិន្ទុមធ្យម</span>
+                            <h5 class="fw-bold text-warning mb-0" style="color:#ffd700;" id="modal-arch-avg-score">៤៧២ /
+                                ៥០៤</h5>
+                        </div>
+                        <div class="p-2 px-3 rounded-3 bg-black border border-warning text-center">
+                            <span class="text-warning extra-small d-block mb-0.5">និទ្ទេស</span>
+                            <h5 class="fw-bold text-warning mb-0" style="color:#ffd700;" id="modal-arch-grade">A (៩៣.៦%)
+                            </h5>
+                        </div>
+                        <div class="p-2 px-3 rounded-3 bg-black border border-secondary text-center">
+                            <span class="text-white-50 extra-small d-block mb-0.5">ចំណាត់ថ្នាក់ឆ្នាំ</span>
+                            <h5 class="fw-bold text-white mb-0" id="modal-arch-rank">លេខ ១</h5>
+                        </div>
+                        <div class="p-2 px-3 rounded-3 bg-black border border-success text-center">
+                            <span class="text-success extra-small d-block mb-0.5">វត្តមានឆ្នាំ</span>
+                            <h5 class="fw-bold text-success mb-0" id="modal-arch-attendance">៩៨.២%</h5>
+                        </div>
+                    </div>
                 </div>
+                <button type="button" class="btn-close btn-close-white ms-3" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <!-- Academic Year Context & Parent Info Banner -->
+                <div class="p-3 rounded-3 bg-black border border-secondary mb-4"
+                    style="background: rgba(16, 16, 26, 0.8) !important;">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-3">
+                            <span class="text-white-50 extra-small d-block mb-0.5"><i
+                                    class="bi bi-door-open text-warning me-1"></i>ថ្នាក់រៀនក្នុងឆ្នាំនោះ:</span>
+                            <strong class="text-white small" id="modal-arch-class">ថ្នាក់ទី ១២-A
+                                (វិទ្យាសាស្ត្រ)</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="text-white-50 extra-small d-block mb-0.5"><i
+                                    class="bi bi-person-badge text-warning me-1"></i>គ្រូបន្ទុកថ្នាក់:</span>
+                            <strong class="text-warning small" id="modal-arch-teacher">ស្រី ពេជ្រ</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="text-white-50 extra-small d-block mb-0.5"><i
+                                    class="bi bi-person-heart text-warning me-1"></i>ឈ្មោះអាណាព្យាបាល:</span>
+                            <strong class="text-white small" id="modal-arch-parent">សុខ ចាន់ថា (ឪពុក)</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="text-white-50 extra-small d-block mb-0.5"><i
+                                    class="bi bi-telephone text-warning me-1"></i>លេខទូរស័ព្ទអាណាព្យាបាល:</span>
+                            <strong class="text-warning small" id="modal-arch-parent-phone">012 345 678</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MONTHLY SCORES BREAKDOWN TABLE (ពិន្ទុរៀងរាល់ខែក្នុងឆ្នាំនោះ) -->
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold text-warning mb-0 d-flex align-items-center gap-2"
+                            style="color:#d4af37 !important;">
+                            <i class="bi bi-calendar3 fs-5"></i>
+                            តារាងលទ្ធផលពិន្ទុរៀងរាល់ខែក្នុងឆ្នាំសិក្សា (Monthly Exam Records & Scores)
+                        </h6>
+                        <span class="badge bg-dark border border-secondary text-white-50 extra-small">
+                            កត់ត្រាពេញមួយឆ្នាំសិក្សា (១០ ខែ និង ២ ឆមាស)
+                        </span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0 table-dark-custom"
+                            style="background: transparent;">
+                            <thead>
+                                <tr>
+                                    <th>ខែប្រឡង / ឆមាស</th>
+                                    <th>មុខវិជ្ជាស្នូល</th>
+                                    <th class="text-center">ពិន្ទុសរុប</th>
+                                    <th class="text-center">មធ្យមភាគ</th>
+                                    <th class="text-center">និទ្ទេស</th>
+                                    <th class="text-center">ចំណាត់ថ្នាក់ខែ</th>
+                                    <th class="text-center">វត្តមានខែ</th>
+                                    <th>ការវាយតម្លៃរបស់គ្រូបន្ទុកថ្នាក់</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modal-arch-monthly-scores-tbody">
+                                <!-- Dynamic Monthly Score Rows Rendered Here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- SUBJECT MASTERY BREAKDOWN FOR THE ENTIRE YEAR -->
+                <div>
+                    <h6 class="fw-bold text-white mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-bar-chart-line-fill text-warning"></i>
+                        ពិន្ទុមធ្យមតាមមុខវិជ្ជានីមួយៗពេញមួយឆ្នាំសិក្សា (Full Year Subject Breakdown)
+                    </h6>
+                    <div class="row g-2" id="modal-arch-subject-cards">
+                        <!-- Dynamic Subject Score Mini Cards Rendered Here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer border-top border-dark p-3 d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-glass btn-sm" onclick="window.print()">
+                    <i class="bi bi-printer me-1" style="color:#ffd700;"></i>
+                    បោះពុម្ពព្រឹត្តិបត្រពិន្ទុផ្លូវការប្រចាំឆ្នាំ (Print Academic Transcript)
+                </button>
+                <button type="button" class="btn-gold-shimmer btn-sm px-4" data-bs-dismiss="modal">
+                    យល់ព្រម / បិទ (Close)
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- MODAL: OPEN NEW ACADEMIC YEAR (បើកដំណើរការឆ្នាំសិក្សាថ្មី) -->
+<div class="modal fade" id="openNewAcademicYearModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2.5 rounded-circle border border-warning text-warning fs-4"
+                        style="background: rgba(212,175,55,0.15); color:#d4af37 !important;">
+                        <i class="bi bi-calendar-plus-fill"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-dark fw-bold mb-1" style="background:#d4af37;">ប្រព័ន្ធបើកឆ្នាំសិក្សា</span>
+                        <h4 class="fw-bold text-white mb-0">ទម្រង់បើកដំណើរការឆ្នាំសិក្សាថ្មី (Open New Academic Year)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="alert bg-black border border-warning text-light small mb-4 p-3 rounded-3" style="border-color: rgba(212, 175, 55, 0.4) !important;">
+                    <i class="bi bi-info-circle-fill text-warning me-2 fs-5 align-middle"></i>
+                    <strong>សេចក្តីបញ្ជាក់សំខាន់៖</strong> នៅពេលដែលឆ្នាំសិក្សាថ្មីត្រូវបានបើកដំណើរការជាផ្លូវការ (Status: Active) ប្រព័ន្ធនឹងអនុញ្ញាតឱ្យលោកអ្នកធ្វើការបញ្ចូលសិស្សថ្មី បញ្ចូលពិន្ទុប្រចាំខែ និងកត់ត្រាវត្តមាន។ ឆ្នាំសិក្សាចាស់ៗនឹងត្រូវបិទបញ្ចប់ចូលក្នុងបណ្ណាសារដោយស្វ័យប្រវត្តិ។
+                </div>
+
+                <form id="open-new-year-form">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">
+                                ឈ្មោះឆ្នាំសិក្សា (Academic Year) <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control form-control-lg bg-dark text-white border-warning"
+                                id="new-year-name" placeholder="ឧ. 2026-2027 ឬ ២០២៦-២០២៧" required style="font-size: 1.1rem; border-color: rgba(212,175,55,0.6) !important;">
+                            <div class="extra-small text-white-50 mt-1.5">
+                                <i class="bi bi-clock-history text-warning me-1"></i> កាលបរិច្ឆេទបង្កើតឆ្នាំសិក្សា នឹងត្រូវបានកត់ត្រាចាប់យកថ្ងៃខែឆ្នាំបច្ចុប្បន្នដោយស្វ័យប្រវត្តិ។
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">
+                                កំណត់សម្គាល់បន្ថែម (Notes - ស្រេចចិត្ត)
+                            </label>
+                            <textarea class="form-control bg-dark text-white border-secondary" id="new-year-desc" rows="2"
+                                placeholder="ឧ. ឆ្នាំសិក្សា ២០២៦-២០២៧ ចាប់ផ្តើមចុះឈ្មោះ និងទទួលសិស្សថ្មី..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4 d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm" id="btn-submit-open-year">
+                            <i class="bi bi-check2-circle me-1"></i> បញ្ជាក់ការបើកដំណើរការឆ្នាំសិក្សាថ្មី
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        let dbAcademicYearsList = [];
+        let currentActiveDbYear = null;
+        let currentSelectedYearKey = "";
+        let currentClassFilter = "All";
+        let currentTrackFilter = "All";
+        let currentSearchQuery = "";
+        let currentActiveYearFilter = "All";
+        let currentLevel1SearchQuery = "";
+        let currentLoadedYearDetails = null;
+
+        // Render Top Active Academic Year Hero Banner
+        function renderActiveYearHeroBanner(activeYear) {
+            const container = document.getElementById('active-year-hero-container');
+            if (!container) return;
+
+            if (activeYear && activeYear.status === 'Active') {
+                container.innerHTML = `
+                    <div class="glass-archive-kpi p-3.5 border-warning" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(18, 18, 26, 0.95) 100%); border-color: rgba(212, 175, 55, 0.6) !important; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning fs-3 text-warning" style="width: 52px; height: 52px; background: rgba(212,175,55,0.2);">
+                                    <i class="bi bi-mortarboard-fill"></i>
+                                </div>
+                                <div>
+                                    <div class="d-flex align-items-center gap-2 mb-1">
+                                        <span class="badge bg-success-subtle text-success border border-success extra-small fw-bold px-2 py-0.5">
+                                            🟢 ឆ្នាំសិក្សាសកម្មផ្លូវការ (Active Academic Year)
+                                        </span>
+                                        <span class="text-white-50 extra-small">
+                                            <i class="bi bi-clock-history me-1"></i>បង្កើតនៅ៖ ${activeYear.start_date || 'ដើមឆ្នាំ'}
+                                        </span>
+                                    </div>
+                                    <h3 class="fw-bold text-white mb-0" style="color: #ffd700 !important;">
+                                        ឆ្នាំសិក្សា៖ ${activeYear.academic_year}
+                                    </h3>
+                                    <p class="text-white-50 extra-small mb-0 mt-0.5">
+                                        ${activeYear.description || 'ឆ្នាំសិក្សានេះកំពុងបើកដំណើរការសកម្មសម្រាប់ការចុះឈ្មោះសិស្ស បញ្ចូលពិន្ទុ និងវត្តមាន។'}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <a href="#" class="btn btn-outline-glass btn-sm admin-subpage-link" data-subpage="/admin-desbord-students.html">
+                                    <i class="bi bi-person-plus-fill me-1 text-warning"></i> 👥 បញ្ចូលសិស្ស
+                                </a>
+                                <a href="#" class="btn btn-outline-glass btn-sm admin-subpage-link" data-subpage="/admin-desbord-exams.html">
+                                    <i class="bi bi-pencil-square me-1 text-info"></i> 📊 បញ្ចូលពិន្ទុ
+                                </a>
+                                <a href="#" class="btn btn-outline-glass btn-sm admin-subpage-link" data-subpage="/admin-desbord-attendance.html">
+                                    <i class="bi bi-calendar-check me-1 text-success"></i> 📋 វត្តមាន
+                                </a>
+                                <button class="btn btn-outline-danger btn-sm py-1.5 px-3" onclick="closeAcademicYear(${activeYear.academic_year_id}, '${activeYear.academic_year}')">
+                                    <i class="bi bi-lock-fill me-1"></i> 🔒 បិទឆ្នាំសិក្សា
+                                </button>
+                                <button class="btn-gold-shimmer btn-sm py-1.5 px-3" data-bs-toggle="modal" data-bs-target="#openNewAcademicYearModal">
+                                    <i class="bi bi-plus-circle-fill me-1"></i> បើកឆ្នាំថ្មី
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Subpage navigation listeners
+                container.querySelectorAll('.admin-subpage-link').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetPage = this.getAttribute('data-subpage');
+                        const navLink = document.querySelector(`.nav-link[data-page="${targetPage}"]`);
+                        if (navLink) navLink.click();
+                    });
+                });
+            } else if (activeYear) {
+                // Closed/Archived status
+                container.innerHTML = `
+                    <div class="glass-archive-kpi p-3.5 border-danger" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(18, 18, 26, 0.95) 100%); border-color: rgba(239, 68, 68, 0.5) !important;">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center border border-danger fs-3 text-danger" style="width: 52px; height: 52px; background: rgba(239,68,68,0.15);">
+                                    <i class="bi bi-lock-fill"></i>
+                                </div>
+                                <div>
+                                    <div class="d-flex align-items-center gap-2 mb-1">
+                                        <span class="badge bg-danger text-white extra-small fw-bold px-2 py-0.5">
+                                            🔒 ឆ្នាំសិក្សាត្រូវបានបិទបញ្ចប់ (Closed / Locked)
+                                        </span>
+                                        <span class="text-white-50 extra-small">
+                                            <i class="bi bi-shield-lock me-1"></i>គ្រូទាំងអស់ស្ថិតក្នុងស្ថានភាព View Only (មើលតែប៉ុណ្ណោះ)
+                                        </span>
+                                    </div>
+                                    <h4 class="fw-bold text-white mb-0">
+                                        ឆ្នាំសិក្សា៖ ${activeYear.academic_year} (បិទបញ្ចប់រួចរាល់)
+                                    </h4>
+                                    <p class="text-white-50 extra-small mb-0 mt-0.5">
+                                        គ្រូមិនអាចកែប្រែពិន្ទុ បញ្ចូលសិស្ស ឬកត់ត្រាវត្តមានបានឡើយ។ លោកអ្នកអាចបើកដំណើរការឡើងវិញ ឬបើកឆ្នាំសិក្សាថ្មី។
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-wrap align-items-center gap-2">
+                                <button class="btn btn-outline-warning btn-sm py-1.5 px-3" onclick="activateAcademicYear(${activeYear.academic_year_id}, '${activeYear.academic_year}')">
+                                    <i class="bi bi-lightning-charge-fill me-1"></i> ⚡ បើកដំណើរការឡើងវិញ
+                                </button>
+                                <button class="btn-gold-shimmer btn-sm py-1.5 px-3" data-bs-toggle="modal" data-bs-target="#openNewAcademicYearModal">
+                                    <i class="bi bi-calendar-plus-fill me-1"></i> ➕ បើកឆ្នាំសិក្សាថ្មី
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="alert bg-dark text-white border-warning p-3 rounded-4 d-flex justify-content-between align-items-center" style="border-color: rgba(212, 175, 55, 0.4) !important;">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-exclamation-triangle-fill text-warning fs-3"></i>
+                            <div>
+                                <h6 class="fw-bold text-white mb-0">មិនទាន់មានឆ្នាំសិក្សាសកម្មនៅឡើយទេ!</h6>
+                                <span class="extra-small text-white-50">សូមចុចបើកឆ្នាំសិក្សាថ្មីជាមុនសិន ដើម្បីអនុញ្ញាតឱ្យបញ្ចូលសិស្ស និងពិន្ទុក្នុងប្រព័ន្ធ។</span>
+                            </div>
+                        </div>
+                        <button class="btn-gold-shimmer btn-sm" data-bs-toggle="modal" data-bs-target="#openNewAcademicYearModal">
+                            <i class="bi bi-calendar-plus-fill me-1"></i> ➕ បើកឆ្នាំសិក្សាថ្មីឥឡូវនេះ
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        // Fetch Real Academic Years from Database API
+        async function fetchAcademicYearsFromAPI() {
+            try {
+                const res = await fetch('/api/academic_years');
+                const data = await res.json();
+                if (data.status === 'success') {
+                    dbAcademicYearsList = data.academic_years || [];
+                    currentActiveDbYear = data.active_year || (dbAcademicYearsList.find(y => y.status === 'Active') || dbAcademicYearsList[0]);
+                    renderActiveYearHeroBanner(currentActiveDbYear);
+                    renderAcademicYearBoxes();
+
+                    // Update Top Statistics KPIs
+                    const kpiYears = document.getElementById('kpi-total-years');
+                    if (kpiYears) kpiYears.innerText = `${dbAcademicYearsList.length} ឆ្នាំសិក្សា`;
+
+                    // If we have active year and no year selected yet, select active year
+                    if (!currentSelectedYearKey && currentActiveDbYear) {
+                        currentSelectedYearKey = currentActiveDbYear.academic_year;
+                    }
+                }
+            } catch (err) {
+                console.error("[-] Error fetching academic years:", err);
+            }
+        }
+
+        // Activate Academic Year API Call
+        window.activateAcademicYear = async function(yearId, yearName) {
+            if (!confirm(`តើអ្នកពិតជាចង់កំណត់ឆ្នាំសិក្សា "${yearName}" ឱ្យដំណើរការសកម្ម (Active) មែនទេ?\n(គ្រូទាំងអស់នឹងអាចបញ្ចូលសិស្ស និងពិន្ទុឡើងវិញបាន)`)) {
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/academic_years/${yearId}/activate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    alert(`✅ បានប្តូរទៅប្រើឆ្នាំសិក្សា "${yearName}" ជាផ្លូវការជោគជ័យ!`);
+                    fetchAcademicYearsFromAPI();
+                } else {
+                    alert(data.message || 'មានបញ្ហាក្នុងការប្តូរឆ្នាំសិក្សា');
+                }
+            } catch (err) {
+                alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+            }
+        };
+
+        // Close / Lock Academic Year API Call
+        window.closeAcademicYear = async function(yearId, yearName) {
+            if (!confirm(`តើអ្នកពិតជាចង់បិទបញ្ចប់ឆ្នាំសិក្សា "${yearName}" មែនទេ?\n⚠️ ក្រោយពេលបិទ គ្រូទាំងអស់មិនអាចកែប្រែ ឬបញ្ចូលពិន្ទុ/វត្តមានថ្មីបានឡើយ (មើលបានតែប៉ុណ្ណោះ View Only)។`)) {
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/academic_years/${yearId}/close`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    alert(`🔒 បានបិទបញ្ចប់ឆ្នាំសិក្សា "${yearName}" ដោយជោគជ័យ!\n(គ្រូទាំងអស់ស្ថិតក្នុងស្ថានភាព View Only)`);
+                    fetchAcademicYearsFromAPI();
+                } else {
+                    alert(data.message || 'មានបញ្ហាក្នុងការបិទឆ្នាំសិក្សា');
+                }
+            } catch (err) {
+                alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+            }
+        };
+
+        // RENDER LEVEL 1: ACADEMIC YEAR & CLASS ARCHIVE BOXES
+        function renderAcademicYearBoxes() {
+            const container = document.getElementById('academic-years-boxes-grid');
+            const countBadge = document.getElementById('archive-boxes-count-badge');
+            if (!container) return;
+
+            const yearsToDisplay = dbAcademicYearsList || [];
+
+            // Filter by search query
+            const filtered = yearsToDisplay.filter(y => {
+                if (!currentLevel1SearchQuery) return true;
+                const q = currentLevel1SearchQuery.toLowerCase();
+                return (
+                    (y.academic_year && y.academic_year.toLowerCase().includes(q)) ||
+                    (y.status && y.status.toLowerCase().includes(q)) ||
+                    (y.description && y.description.toLowerCase().includes(q))
+                );
+            });
+
+            if (countBadge) {
+                countBadge.innerHTML = `<i class="bi bi-collection me-1"></i> បង្ហាញ ${filtered.length} ឆ្នាំសិក្សា`;
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5 text-muted">
+                        <div class="p-4 rounded-4" style="background: rgba(18, 18, 26, 0.6); border: 1px dashed rgba(212, 175, 55, 0.3);">
+                            <i class="bi bi-calendar-x text-warning fs-1 d-block mb-2"></i>
+                            <h5 class="text-white fw-bold mb-1">មិនទាន់មានឆ្នាំសិក្សាដែលត្រូវនឹងលក្ខខណ្ឌស្វែងរកឡើយ!</h5>
+                            <p class="extra-small mb-0 text-white-50">សូមចុចប៊ូតុង "➕ បើកឆ្នាំសិក្សាថ្មី" ដើម្បីបង្កើតឆ្នាំសិក្សាដំបូង។</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(y => {
+                const isActive = y.status === 'Active';
+                const statusBadge = isActive 
+                    ? `<span class="badge bg-success text-dark fw-bold px-2.5 py-1"><i class="bi bi-check-circle-fill me-1"></i> សកម្ម (Active)</span>`
+                    : `<span class="badge bg-secondary text-light fw-bold px-2.5 py-1"><i class="bi bi-lock-fill me-1"></i> បិទបញ្ចប់ / បណ្ណាសារ</span>`;
+
+                const totalClasses = y.total_classes !== undefined ? y.total_classes : 0;
+                const totalStudents = y.total_students !== undefined ? y.total_students : 0;
+                const totalExams = y.total_exams !== undefined ? y.total_exams : 0;
+
+                return `
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-3.5">
+                    <div class="class-card-box p-3.5 h-100 d-flex flex-column justify-content-between class-box-item ${isActive ? 'border-warning shadow-lg' : ''}"
+                        style="${isActive ? 'border-color: rgba(212, 175, 55, 0.8) !important; background: linear-gradient(155deg, rgba(212,175,55,0.08), #181826); cursor: pointer;' : 'cursor: pointer;'}"
+                        onclick="openYearStudentsArchive('${y.academic_year}', 'All')">
+                        <div class="m-2">
+                            <!-- Header Year Badge Box -->
+                            <div class="d-flex justify-content-between align-items-center w-100 mb-2 pb-2 border-bottom border-secondary border-opacity-25">
+                                <div>${statusBadge}</div>
+                                <span class="extra-small text-white-50"><i class="bi bi-clock-history me-1"></i>${y.start_date || 'ដើមឆ្នាំ'}</span>
+                            </div>
+                            <div class="text-center py-2">
+                                <span class="track-badge w-100 py-2 d-flex align-items-center justify-content-center">
+                                    <h4 class="fw-bold mb-0 text-white" style="${isActive ? 'color:#ffd700 !important;' : ''}">
+                                        ${y.academic_year}
+                                    </h4>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <!-- Metrics Summary Box from MySQL DB -->
+                            <div class="metrics-summary-box mb-3">
+                                <div class="d-flex justify-content-between align-items-center extra-small mb-1">
+                                    <span class="text-muted"><i class="bi bi-grid-fill me-1" style="color:#d4af37;"></i> ថ្នាក់រៀនសរុប:</span>
+                                    <span class="fw-bold text-white fs-6">${totalClasses} ថ្នាក់</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center extra-small mb-1">
+                                    <span class="text-muted"><i class="bi bi-people-fill me-1" style="color:#60a5fa;"></i> សិស្សសរុប:</span>
+                                    <span class="fw-bold text-white fs-6">${totalStudents} នាក់</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center extra-small mb-1">
+                                    <span class="text-muted"><i class="bi bi-file-earmark-check me-1" style="color:#34d399;"></i> ការប្រឡង/ពិន្ទុ:</span>
+                                    <span class="fw-bold text-white fs-6">${totalExams} លើក</span>
+                                </div>
+                            </div>
+
+                            <!-- Footer Actions -->
+                            <div class="d-flex flex-column gap-1.5 border-top border-dark pt-2.5" onclick="event.stopPropagation();">
+                                ${isActive && y.academic_year_id ? `
+                                    <button type="button" class="btn btn-outline-danger btn-sm w-100 py-1.5" onclick="closeAcademicYear(${y.academic_year_id}, '${y.academic_year}')">
+                                        <i class="bi bi-lock-fill me-1"></i> 🔒 បិទបញ្ចប់ឆ្នាំសិក្សា (Lock)
+                                    </button>
+                                ` : (!isActive && y.academic_year_id ? `
+                                    <button type="button" class="btn btn-outline-glass btn-sm w-100 py-1.5" onclick="activateAcademicYear(${y.academic_year_id}, '${y.academic_year}')">
+                                        <i class="bi bi-lightning-charge-fill text-warning me-1"></i> ⚡ កំណត់ជាឆ្នាំសកម្ម
+                                    </button>
+                                ` : '')}
+                                <button type="button" class="btn-card-score open-scores-btn w-100 justify-content-center fs-6 text-center py-1.5" onclick="openYearStudentsArchive('${y.academic_year}', 'All')">
+                                    <i class="bi bi-folder2-open me-1"></i> ពិនិត្យបណ្ណាសារ & ពិន្ទុលម្អិត <i class="bi bi-arrow-right-short"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Open Level 2 Student Archive for specific Year & Class from DB
+        async function openYearStudentsArchive(yearKey, className) {
+            currentSelectedYearKey = yearKey || (currentActiveDbYear ? currentActiveDbYear.academic_year : "2029-2030");
+            currentClassFilter = className || "All";
+            currentTrackFilter = "All";
+            currentSearchQuery = "";
+
+            // Hide Level 1 and Show Level 2
+            const level1 = document.getElementById('archive-years-grid-view');
+            const level2 = document.getElementById('year-students-archive-panel');
+            if (level1) level1.style.display = 'none';
+            if (level2) {
+                level2.style.display = 'block';
+                level2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Show Loading Indicator (Horizontal Rows Table & Box Grid)
+            const tbody = document.getElementById('archive-students-table-body');
+            const boxesContainer = document.getElementById('archive-students-boxes-grid');
+            if (tbody) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="12" class="text-center py-5">
+                            <div class="spinner-border text-warning mb-2" role="status" style="width: 2.2rem; height: 2.2rem;"></div>
+                            <h6 class="text-white fw-bold">កំពុងទាញយកទិន្នន័យពិន្ទុ និងវត្តមានពី Database...</h6>
+                        </td>
+                    </tr>
+                `;
+            }
+            if (boxesContainer) {
+                boxesContainer.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-warning mb-2" role="status" style="width: 2.5rem; height: 2.5rem;"></div>
+                        <h6 class="text-white fw-bold">កំពុងទាញយកទិន្នន័យពិន្ទុ និងវត្តមានពី Database...</h6>
+                    </div>
+                `;
+            }
+
+            try {
+                const res = await fetch(`/api/academic_years/${encodeURIComponent(currentSelectedYearKey)}/details`);
+                const data = await res.json();
+                if (data.status === 'success') {
+                    currentLoadedYearDetails = data;
+                } else {
+                    currentLoadedYearDetails = null;
+                }
+            } catch (err) {
+                console.error("[-] Error fetching year details:", err);
+                currentLoadedYearDetails = null;
+            }
+
+            // Sync Dropdown Options in Level 2 for this selected Year
+            syncClassFilterOptions(currentSelectedYearKey, currentClassFilter);
+
+            renderArchiveStudentsTable();
+        }
+        window.openYearStudentsArchive = openYearStudentsArchive;
+
+        // Sync dropdown options based on the selected year's classes from DB
+        function syncClassFilterOptions(yearKey, activeClass) {
+            const classSelect = document.getElementById('archive-class-filter');
+            if (!classSelect) return;
+
+            let classes = [];
+            if (currentLoadedYearDetails && currentLoadedYearDetails.classes) {
+                classes = currentLoadedYearDetails.classes;
+            }
+
+            let optionsHtml = `<option value="All" class="bg-dark text-white">គ្រប់ថ្នាក់ទាំងអស់</option>`;
+            classes.forEach(cl => {
+                const cName = cl.name || cl.class_name;
+                if (cName) {
+                    const isSelected = cName === activeClass ? 'selected' : '';
+                    optionsHtml += `<option value="${cName}" class="bg-dark text-white" ${isSelected}>${cName}</option>`;
+                }
+            });
+            classSelect.innerHTML = optionsHtml;
+        }
+
+        // RENDER STUDENTS (BOX VIEW & TABLE VIEW) FOR SELECTED YEAR FROM REAL DB
+        function renderArchiveStudentsTable() {
+            let yearData = null;
+            let allStudents = [];
+
+            if (currentLoadedYearDetails && currentLoadedYearDetails.status === 'success') {
+                const info = currentLoadedYearDetails.year_info || {};
+                const sum = currentLoadedYearDetails.summary || {};
+                allStudents = currentLoadedYearDetails.students || [];
+
+                yearData = {
+                    year_key: info.academic_year || currentSelectedYearKey,
+                    year_title: info.year_title || `ឆ្នាំសិក្សា ${currentSelectedYearKey}`,
+                    classes_count: sum.total_classes || '0 ថ្នាក់',
+                    total_students: sum.total_students || `${allStudents.length} នាក់`,
+                    pass_rate: sum.pass_rate || '100%',
+                    top_student: (allStudents[0] ? `${allStudents[0].name} (និទ្ទេស ${allStudents[0].grade})` : 'មិនទាន់មានទិន្នន័យ'),
+                    students: allStudents
+                };
+            } else {
+                yearData = {
+                    year_key: currentSelectedYearKey,
+                    year_title: `ឆ្នាំសិក្សា ${currentSelectedYearKey}`,
+                    classes_count: '0 ថ្នាក់',
+                    total_students: '0 នាក់',
+                    pass_rate: '0%',
+                    top_student: '-',
+                    students: []
+                };
+                allStudents = [];
+            }
+
+            const tbody = document.getElementById('archive-students-table-body');
+            const boxesContainer = document.getElementById('archive-students-boxes-grid');
+            if (!tbody && !boxesContainer) return;
+
+            // Update Year Overview Header
+            if (yearData) {
+                const yearBadge = document.getElementById('current-selected-year-badge');
+                if (yearBadge) yearBadge.innerText = yearData.year_title || `ឆ្នាំសិក្សា ${currentSelectedYearKey}`;
+                const titleElem = document.getElementById('current-selected-year-title');
+                if (titleElem) titleElem.innerHTML = `<i class="bi bi-mortarboard-fill text-warning me-2"></i>ទិន្នន័យសិស្ស និង លទ្ធផលប្រចាំ${yearData.year_title || currentSelectedYearKey}`;
+                const clCount = document.getElementById('current-year-classes-count');
+                if (clCount) clCount.innerText = yearData.classes_count;
+                const totSt = document.getElementById('current-year-total-students');
+                if (totSt) totSt.innerText = yearData.total_students;
+                const pRate = document.getElementById('current-year-pass-rate');
+                if (pRate) pRate.innerText = yearData.pass_rate;
+                const topSt = document.getElementById('current-year-top-student');
+                if (topSt && yearData.top_student) topSt.innerText = yearData.top_student;
+            }
+
+            // Filter Students
+            const filtered = allStudents.filter(s => {
+                const matchClass = currentClassFilter === 'All' || s.class_attended === currentClassFilter;
+                const matchTrack = currentTrackFilter === 'All' || (s.track && s.track.toLowerCase() === currentTrackFilter.toLowerCase());
+                const matchSearch = !currentSearchQuery ||
+                    (s.name && s.name.toLowerCase().includes(currentSearchQuery)) ||
+                    (s.id && s.id.toLowerCase().includes(currentSearchQuery)) ||
+                    (s.class_attended && s.class_attended.toLowerCase().includes(currentSearchQuery)) ||
+                    (s.teacher && s.teacher.toLowerCase().includes(currentSearchQuery));
+
+                return matchClass && matchTrack && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                if (boxesContainer) {
+                    boxesContainer.innerHTML = `
+                        <div class="col-12 text-center py-5 text-muted">
+                            <i class="bi bi-search text-warning fs-2 d-block mb-2"></i>
+                            <h6 class="text-white fw-bold mb-1">មិនមានទិន្នន័យសិស្សក្នុងឆ្នាំសិក្សានេះឡើយ!</h6>
+                            <p class="extra-small mb-0 text-white-50">សូមជ្រើសរើសថ្នាក់ផ្សេង ឬបញ្ចូលសិស្សក្នុងផ្ទាំង "គ្រប់គ្រងសិស្ស"។</p>
+                        </div>`;
+                }
+                if (tbody) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="12" class="text-center py-5 text-muted">
+                                <i class="bi bi-search text-warning fs-2 d-block mb-2"></i>
+                                <h6 class="text-white fw-bold mb-1">មិនមានទិន្នន័យសិស្សក្នុងឆ្នាំសិក្សានេះឡើយ!</h6>
+                                <p class="extra-small mb-0 text-white-50">សូមជ្រើសរើសថ្នាក់ផ្សេង ឬបញ្ចូលសិស្សក្នុងផ្ទាំង "គ្រប់គ្រងសិស្ស"។</p>
+                            </td>
+                        </tr>`;
+                }
+                return;
+            }
+
+            // 1. RENDER BOXES GRID (របៀបមើលជា Box Card)
+            if (boxesContainer) {
+                boxesContainer.innerHTML = filtered.map(s => {
+                    const isScience = s.track === 'Science';
+                    const trackBadge = isScience
+                        ? `<span class="track-badge-science"><i class="bi bi-calculator me-1"></i>${s.track_khmer || 'វិទ្យាសាស្ត្រពិត'}</span>`
+                        : `<span class="track-badge-social"><i class="bi bi-globe me-1"></i>${s.track_khmer || 'វិទ្យាសាស្ត្រសង្គម'}</span>`;
+
+                    const isPassed = s.outcome === 'Passed';
+                    const outcomeBadge = isPassed
+                        ? `<span class="badge bg-success-subtle text-success border border-success extra-small fw-bold">✅ ជាប់ផ្លូវការ</span>`
+                        : `<span class="badge bg-danger-subtle text-danger border border-danger extra-small fw-bold">❌ មិនជាប់</span>`;
+
+                    const rankColor = s.rank === 'លេខ ១' ? '#ffd700' : (s.rank === 'លេខ ២' ? '#cbd5e1' : '#f59e0b');
+
+                    const recentExamsHtml = (s.monthly_scores || []).slice(0, 3).map(m => `
+                        <span class="badge bg-black border border-secondary text-white-50 extra-small px-2 py-1">
+                            ${m.month}: <strong class="text-warning">${m.total}</strong>
+                        </span>
+                    `).join('');
+
+                    return `
+                    <div class="col-lg-4 col-md-6 mb-3">
+                        <div class="student-archive-box p-4 h-100 d-flex flex-column justify-content-between">
+                            <div>
+                                <!-- Top Bar: Track, Code & Outcome -->
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    ${trackBadge}
+                                    <div class="d-flex align-items-center gap-1.5">
+                                        <code class="text-warning extra-small px-2 py-0.5 rounded bg-black border border-secondary">${s.id}</code>
+                                        ${outcomeBadge}
+                                    </div>
+                                </div>
+
+                                <!-- Student Hero Profile -->
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <div class="student-avatar-ring">
+                                        <i class="bi ${s.gender === 'ស្រី' ? 'bi-person-heart text-info' : 'bi-person-fill text-warning'} fs-2"></i>
+                                    </div>
+                                    <div class="flex-grow-1 min-w-0">
+                                        <div class="d-flex align-items-center gap-1.5 mb-1">
+                                            <span class="badge bg-dark border border-secondary text-warning extra-small fw-bold">${s.class_attended}</span>
+                                            <span class="badge ${s.gender === 'ស្រី' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'} extra-small">${s.gender === 'ស្រី' ? '👩 ស្រី' : '👨 ប្រុស'}</span>
+                                        </div>
+                                        <h5 class="fw-bold text-white mb-0 text-truncate" style="font-size: 1.15rem;">${s.name}</h5>
+                                        <span class="text-white-50 extra-small d-block">
+                                            <i class="bi bi-person-badge text-warning me-1"></i>គ្រូបន្ទុក: <strong>${s.teacher}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Mini Metrics Grid Box -->
+                                <div class="student-mini-metrics mb-3">
+                                    <div class="row g-2 align-items-center text-center">
+                                        <div class="col-6 border-end border-secondary border-opacity-25">
+                                            <span class="text-white-50 extra-small d-block mb-0.5">ពិន្ទុមធ្យមឆ្នាំ</span>
+                                            <h6 class="fw-bold text-warning mb-0" style="color:#ffd700 !important;">${s.annual_score}</h6>
+                                            <span class="text-white-50 extra-small">(${s.annual_percentage})</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="d-flex align-items-center justify-content-center gap-1 mb-1">
+                                                <span class="badge text-dark fw-bold px-2 py-0.5" style="background:#d4af37; font-size:0.82rem;">${s.grade}</span>
+                                                <span class="badge border extra-small fw-bold" style="border-color:${rankColor} !important; color:${rankColor};">${s.rank}</span>
+                                            </div>
+                                            <span class="text-success extra-small fw-semibold d-block">
+                                                <i class="bi bi-check-circle me-0.5"></i>វត្តមាន ${s.attendance_rate}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Recent Exams Strip -->
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-center gap-1 mb-1.5 flex-wrap">
+                                        <span class="text-white-50 extra-small"><i class="bi bi-calendar3 me-1 text-warning"></i>លទ្ធផលប្រឡងក្នុង DB:</span>
+                                    </div>
+                                    <div class="d-flex gap-1.5 flex-wrap">
+                                        ${recentExamsHtml || '<span class="text-white-50 extra-small">មិនទាន់មានពិន្ទុ</span>'}
+                                    </div>
+                                </div>
+
+                                <!-- Parent Contact Info & Absence Stats -->
+                                <div class="p-2 px-2.5 rounded-3 bg-black bg-opacity-50 border border-secondary border-opacity-25 mb-3 extra-small text-white-50 d-flex justify-content-between align-items-center">
+                                    <span class="text-truncate me-2"><i class="bi bi-person-heart text-warning me-1"></i>${s.parent_name}</span>
+                                    <span class="text-warning fw-semibold font-monospace">${s.parent_phone}</span>
+                                </div>
+                            </div>
+
+                            <!-- Action Footer Buttons -->
+                            <div class="d-flex align-items-center gap-2 pt-2 border-top border-secondary border-opacity-25 mt-auto">
+                                <button type="button" class="btn-card-details flex-grow-1 view-student-archive-btn" data-student-id="${s.id}">
+                                    <i class="bi bi-eye-fill me-1"></i> ពិនិត្យប្រវត្តិ & ពិន្ទុរៀងរាល់ខែ 👁️
+                                </button>
+                                <button type="button" class="btn btn-outline-glass print-transcript-btn" data-student-id="${s.id}" title="បោះពុម្ពព្រឹត្តិបត្រពិន្ទុ">
+                                    <i class="bi bi-printer" style="color:#ffd700;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                }).join('');
+            }
+
+            // 2. RENDER TABLE ROWS (របៀបមើលជាជួរដេក Table Rows)
+            if (tbody) {
+                tbody.innerHTML = filtered.map((s, index) => {
+                    const isScience = s.track === 'Science';
+                    const trackBadge = isScience
+                        ? `<span class="track-badge-science"><i class="bi bi-calculator me-1"></i>${s.track_khmer || 'វិទ្យាសាស្ត្រពិត'}</span>`
+                        : `<span class="track-badge-social"><i class="bi bi-globe me-1"></i>${s.track_khmer || 'វិទ្យាសាស្ត្រសង្គម'}</span>`;
+
+                    const isPassed = s.outcome === 'Passed';
+                    const outcomeBadge = isPassed
+                        ? `<span class="badge bg-success-subtle text-success border border-success px-2.5 py-1 fw-bold">✅ ជាប់</span>`
+                        : `<span class="badge bg-danger-subtle text-danger border border-danger px-2.5 py-1 fw-bold">❌ ធ្លាក់</span>`;
+
+                    const rankColor = s.rank === 'លេខ ១' ? '#ffd700' : (s.rank === 'លេខ ២' ? '#cbd5e1' : '#f59e0b');
+
+                    return `
+                    <tr>
+                        <td><span class="text-white-50 fw-bold">${index + 1}</span></td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2.5">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center border border-secondary text-warning" style="width: 38px; height: 38px; background: rgba(212,175,55,0.1); flex-shrink: 0;">
+                                    <i class="bi bi-person-fill fs-5"></i>
+                                </div>
+                                <div>
+                                    <strong class="text-white d-block" style="font-size: 0.94rem;">${s.name}</strong>
+                                    <code class="text-warning extra-small">${s.id}</code>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge ${s.gender === 'ស្រី' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'} px-2 py-1 extra-small">
+                                ${s.gender === 'ស្រី' ? '👩 ស្រី' : '👨 ប្រុស'}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-dark border border-secondary text-white fw-bold px-2.5 py-1">
+                                ${s.class_attended}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="text-white extra-small fw-semibold">
+                                <i class="bi bi-person-badge text-warning me-1"></i>${s.teacher}
+                            </span>
+                        </td>
+                        <td>${trackBadge}</td>
+                        <td class="text-center">
+                            <strong class="text-warning" style="color:#d4af37 !important;">${s.annual_score}</strong>
+                            <span class="text-white-50 extra-small d-block">(${s.annual_percentage})</span>
+                        </td>
+                        <td class="text-center">
+                            <span class="badge text-dark fw-bold px-2.5 py-1" style="background:#d4af37; font-size:0.85rem;">
+                                ${s.grade}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <span class="badge border px-2 py-1 fw-bold" style="background:rgba(212,175,55,0.12); border-color:${rankColor} !important; color:${rankColor};">
+                                ${s.rank}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <span class="text-success extra-small fw-bold d-block">${s.attendance_rate}</span>
+                            <span class="text-white-50 extra-small" style="font-size: 0.72rem;">ច្បាប់: ${s.absent_permission || 0} • ឥត: ${s.absent_unexcused || 0}</span>
+                        </td>
+                        <td>${outcomeBadge}</td>
+                        <td class="text-end">
+                            <div class="d-flex justify-content-end gap-1.5">
+                                <button type="button" class="btn-card-details btn-sm view-student-archive-btn" data-student-id="${s.id}" title="ពិនិត្យប្រវត្តិ & ពិន្ទុរៀងរាល់ខែក្នុងឆ្នាំនោះ">
+                                    <i class="bi bi-eye-fill me-1"></i> ពិនិត្យប្រវត្តិ & ពិន្ទុរៀងរាល់ខែ 👁️
+                                </button>
+                                <button type="button" class="btn btn-outline-glass btn-sm print-transcript-btn" data-student-id="${s.id}" title="បោះពុម្ពព្រឹត្តិបត្រពិន្ទុ">
+                                    <i class="bi bi-printer me-1" style="color:#ffd700;"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    `;
+                }).join('');
+            }
+
+            // Click listeners for View Student Full Archive Details (both boxes and table)
+            document.querySelectorAll('.view-student-archive-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const studentId = this.getAttribute('data-student-id');
+                    const student = allStudents.find(s => s.id === studentId);
+                    if (student) {
+                        showStudentYearlyArchiveModal(student, yearData);
+                    }
+                });
+            });
+
+            // Click listeners for Print Transcript (both boxes and table)
+            document.querySelectorAll('.print-transcript-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const studentId = this.getAttribute('data-student-id');
+                    const student = allStudents.find(s => s.id === studentId);
+                    if (student) {
+                        showStudentYearlyArchiveModal(student, yearData);
+                        setTimeout(() => { window.print(); }, 400);
+                    }
+                });
+            });
+        }
+
+        // SHOW DEEP DIVE MODAL FOR STUDENT
+        function showStudentYearlyArchiveModal(student, yearData) {
+            document.getElementById('modal-arch-name').innerText = student.name;
+            document.getElementById('modal-arch-code').innerText = student.id;
+            document.getElementById('modal-arch-year').innerText = yearData.year_title || `ឆ្នាំសិក្សា ${currentSelectedYearKey}`;
+            document.getElementById('modal-arch-meta').innerText = `ភេទ: ${student.gender} • ថ្ងៃខែឆ្នាំកំណើត: ${student.dob} • ទូរស័ព្ទ: ${student.phone}`;
+
+            // Outcome
+            const outcomeBadge = document.getElementById('modal-arch-outcome');
+            if (outcomeBadge) {
+                if (student.outcome === 'Passed') {
+                    outcomeBadge.innerText = '✅ ប្រឡងជាប់ផ្លូវការ';
+                    outcomeBadge.className = 'badge bg-success-subtle text-success border border-success extra-small fw-bold';
+                } else {
+                    outcomeBadge.innerText = '❌ មិនជាប់';
+                    outcomeBadge.className = 'badge bg-danger-subtle text-danger border border-danger extra-small fw-bold';
+                }
+            }
+
+            // KPIs
+            document.getElementById('modal-arch-avg-score').innerText = student.annual_score;
+            document.getElementById('modal-arch-grade').innerText = `${student.grade} (${student.annual_percentage})`;
+            document.getElementById('modal-arch-rank').innerText = student.rank;
+            document.getElementById('modal-arch-attendance').innerText = `${student.attendance_rate} (ច្បាប់: ${student.absent_permission || 0} • ឥតច្បាប់: ${student.absent_unexcused || 0})`;
+
+            // Class & Parent Banner
+            document.getElementById('modal-arch-class').innerText = `${student.class_attended} (${student.track_khmer || 'វិទ្យាសាស្ត្រ'})`;
+            document.getElementById('modal-arch-teacher').innerText = student.teacher;
+            document.getElementById('modal-arch-parent').innerText = student.parent_name;
+            document.getElementById('modal-arch-parent-phone').innerText = student.parent_phone;
+
+            // Render Monthly Scores Breakdown (ពិន្ទុប្រចាំខែ និង ឆមាស ពេញមួយឆ្នាំពី DB)
+            const monthlyTbody = document.getElementById('modal-arch-monthly-scores-tbody');
+            if (monthlyTbody) {
+                const scoresList = student.monthly_scores || [];
+                if (scoresList.length === 0) {
+                    monthlyTbody.innerHTML = `
+                        <tr>
+                            <td colspan="8" class="text-center py-4 text-white-50">មិនទាន់មានកំណត់ត្រាពិន្ទុប្រចាំខែក្នុងប្រព័ន្ធនៅឡើយទេ</td>
+                        </tr>
+                    `;
+                } else {
+                    monthlyTbody.innerHTML = scoresList.map(m => {
+                        const rankVal = m.rank || 'លេខ ១';
+                        const isGold = rankVal.includes('១') || rankVal === 'លេខ 1';
+                        const isSilver = rankVal.includes('២') || rankVal === 'លេខ 2';
+                        const isBronze = rankVal.includes('៣') || rankVal === 'លេខ 3';
+                        const rankBorder = isGold ? '#ffd700' : (isSilver ? '#cbd5e1' : (isBronze ? '#f59e0b' : 'rgba(255,255,255,0.2)'));
+                        const rankColor = isGold ? '#ffd700' : (isSilver ? '#cbd5e1' : (isBronze ? '#f59e0b' : '#ffffff'));
+
+                        return `
+                        <tr>
+                            <td>
+                                <strong class="text-white">${m.month}</strong>
+                            </td>
+                            <td>
+                                <span class="text-white-50 extra-small">${m.subjects_summary}</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="score-chip text-warning">${m.total}</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-white fw-semibold">${m.percentage}</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge text-dark fw-bold px-2 py-0.5" style="background:#d4af37;">${m.grade}</span>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge border extra-small fw-bold px-2.5 py-1" style="background: rgba(0,0,0,0.6); border-color: ${rankBorder} !important; color: ${rankColor};">
+                                    ${isGold ? '🥇 ' : (isSilver ? '🥈 ' : (isBronze ? '🥉 ' : '🎖️ '))}${rankVal}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <span class="text-success extra-small fw-bold">${m.attendance}</span>
+                            </td>
+                            <td>
+                                <span class="text-white-50 extra-small"><i class="bi bi-chat-quote me-1 text-warning"></i>${m.remark}</span>
+                            </td>
+                        </tr>
+                        `;
+                    }).join('');
+                }
+            }
+
+            // Render Subject Mastery Mini Cards (ពិន្ទុតាមមុខវិជ្ជាពី DB)
+            const subjectCardsContainer = document.getElementById('modal-arch-subject-cards');
+            if (subjectCardsContainer) {
+                const subjects = student.subject_mastery || [];
+                if (subjects.length === 0) {
+                    subjectCardsContainer.innerHTML = `<div class="col-12 text-center text-white-50 py-3">មិនទាន់មានមុខវិជ្ជា</div>`;
+                } else {
+                    subjectCardsContainer.innerHTML = subjects.map(sb => `
+                        <div class="col-md-3 col-sm-6">
+                            <div class="p-2.5 rounded-3 bg-black border border-secondary text-center">
+                                <span class="text-white-50 extra-small d-block mb-1">${sb.subject}</span>
+                                <strong class="text-warning small d-block mb-0.5" style="color:#d4af37 !important;">${sb.score}</strong>
+                                <div class="d-flex align-items-center justify-content-center gap-1 mt-1">
+                                    <span class="badge text-dark fw-bold px-2 py-0.5" style="background:#d4af37; font-size: 0.75rem;">និទ្ទេស ${sb.grade}</span>
+                                    <span class="badge bg-dark border border-secondary text-info extra-small">${sb.status || 'ល្អ'}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            // Show Modal
+            const modalElem = document.getElementById('studentYearlyArchiveModal');
+            if (modalElem && typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                bsModal.show();
+            }
+        }
+
+        // Search Input Listener
+        const searchInput = document.getElementById('archive-student-search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function () {
+                currentSearchQuery = this.value.toLowerCase().trim();
+                renderArchiveStudentsTable();
+            });
+        }
+
+        // Class Filter Selector Listener
+        const classFilter = document.getElementById('archive-class-filter');
+        if (classFilter) {
+            classFilter.addEventListener('change', function () {
+                currentClassFilter = this.value;
+                renderArchiveStudentsTable();
+            });
+        }
+
+        // Track Filter Selector Listener
+        const trackFilter = document.getElementById('archive-track-filter');
+        if (trackFilter) {
+            trackFilter.addEventListener('change', function () {
+                currentTrackFilter = this.value;
+                renderArchiveStudentsTable();
+            });
+        }
+
+        // Form Submit Handler for Opening a New Academic Year (បើកដំណើរការឆ្នាំសិក្សាថ្មី)
+        const openYearForm = document.getElementById('open-new-year-form');
+        if (openYearForm) {
+            openYearForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const yearName = document.getElementById('new-year-name')?.value.trim();
+                const status = document.getElementById('new-year-status')?.value || 'Active';
+                const startDate = document.getElementById('new-year-start-date')?.value || null;
+                const endDate = document.getElementById('new-year-end-date')?.value || null;
+                const desc = document.getElementById('new-year-desc')?.value.trim() || '';
+
+                if (!yearName) {
+                    alert('សូមបញ្ចូលឈ្មោះឆ្នាំសិក្សា!');
+                    return;
+                }
+
+                const submitBtn = document.getElementById('btn-submit-open-year');
+                if (submitBtn) submitBtn.disabled = true;
+
+                try {
+                    const res = await fetch('/api/academic_years', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            academic_year: yearName,
+                            status: status,
+                            start_date: startDate,
+                            end_date: endDate,
+                            description: desc
+                        })
+                    });
+                    const data = await res.json();
+
+                    if (res.ok && data.status === 'success') {
+                        alert(`🎉 បានបើកដំណើរការឆ្នាំសិក្សាថ្មី "${yearName}" ដោយជោគជ័យ!\n(លោកអ្នកអាចចាប់ផ្តើមបញ្ចូលសិស្ស បញ្ចូលពិន្ទុ និងវត្តមានបាន)`);
+                        
+                        const modalElem = document.getElementById('openNewAcademicYearModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+                        openYearForm.reset();
+                        fetchAcademicYearsFromAPI();
+                    } else {
+                        alert(data.message || 'មានបញ្ហាក្នុងការបើកឆ្នាំសិក្សា');
+                    }
+                } catch (err) {
+                    alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                } finally {
+                    if (submitBtn) submitBtn.disabled = false;
+                }
+            });
+        }
+
+        // View Mode Switcher (Box View vs Table View)
+        const viewModeBoxBtn = document.getElementById('view-mode-box-btn');
+        const viewModeTableBtn = document.getElementById('view-mode-table-btn');
+        const boxesGrid = document.getElementById('archive-students-boxes-grid');
+        const tableContainer = document.getElementById('archive-students-table-container');
+
+        if (viewModeBoxBtn && viewModeTableBtn && boxesGrid && tableContainer) {
+            viewModeBoxBtn.addEventListener('click', function () {
+                viewModeBoxBtn.classList.add('active');
+                viewModeTableBtn.classList.remove('active');
+                boxesGrid.style.display = 'flex';
+                tableContainer.style.display = 'none';
+            });
+
+            viewModeTableBtn.addEventListener('click', function () {
+                viewModeTableBtn.classList.add('active');
+                viewModeBoxBtn.classList.remove('active');
+                boxesGrid.style.display = 'none';
+                tableContainer.style.display = 'block';
+            });
+        }
+
+        // Back to Level 1 Grid Button
+        const backBtn = document.getElementById('back-to-years-grid-btn');
+        if (backBtn) {
+            backBtn.addEventListener('click', function () {
+                const level1 = document.getElementById('archive-years-grid-view');
+                const level2 = document.getElementById('year-students-archive-panel');
+                if (level2) level2.style.display = 'none';
+                if (level1) {
+                    level1.style.display = 'block';
+                    level1.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                renderAcademicYearBoxes();
+            });
+        }
+
+        // Level 1 Search Input Listener
+        const yearSearchInput = document.getElementById('archive-year-search-input');
+        if (yearSearchInput) {
+            yearSearchInput.addEventListener('input', function () {
+                currentLevel1SearchQuery = this.value.trim();
+                renderAcademicYearBoxes();
+            });
+        }
+
+        // Level 1 Year Selector Pills Listener
+        document.querySelectorAll('#archive-year-pills .filter-pill-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('#archive-year-pills .filter-pill-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                currentActiveYearFilter = this.getAttribute('data-year');
+                renderAcademicYearBoxes();
+            });
+        });
+
+        // Expose functions globally to window for inline onclick handlers
+        window.openYearStudentsArchive = openYearStudentsArchive;
+        window.activateAcademicYear = activateAcademicYear;
+        window.closeAcademicYear = closeAcademicYear;
+        window.showStudentYearlyArchiveModal = showStudentYearlyArchiveModal;
+        window.renderArchiveStudentsTable = renderArchiveStudentsTable;
+        window.renderAcademicYearBoxes = renderAcademicYearBoxes;
+        window.fetchAcademicYearsFromAPI = fetchAcademicYearsFromAPI;
+
+        // Initial Render & Load Live Data from API
+        fetchAcademicYearsFromAPI();
+    })();
+</script>

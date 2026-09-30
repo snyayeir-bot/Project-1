@@ -294,16 +294,20 @@
         <div class="classes-hero-banner p-4 mb-4">
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
                 <div>
-                    <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;"><i class="bi bi-stars me-1"></i> ប្រព័ន្ធគ្រប់គ្រងថ្នាក់រៀន</span>
+                    <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;"><i
+                            class="bi bi-stars me-1"></i> ប្រព័ន្ធគ្រប់គ្រងថ្នាក់រៀន</span>
                     <h2 class="fw-bold text-white mb-1">គ្រប់គ្រងប្រអប់ថ្នាក់រៀន (Class Boxes Grid)</h2>
-                    <p class="text-muted small mb-0">ចុចលើប្រអប់ថ្នាក់នីមួយៗ ដើម្បីមើលបញ្ជីសិស្ស ឈ្មោះ, អត្តលេខ, ភេទ, អាយុ, និទ្ទេស, និង វត្តមានអវត្តមាន។</p>
+                    <p class="text-muted small mb-0">ចុចលើប្រអប់ថ្នាក់នីមួយៗ ដើម្បីមើលបញ្ជីសិស្ស ឈ្មោះ, អត្តលេខ, ភេទ,
+                        អាយុ, និទ្ទេស, និង វត្តមានអវត្តមាន។</p>
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-2 bg-dark px-3 py-2 rounded-3 border border-secondary">
                         <i class="bi bi-calendar-check text-warning fs-5" style="color:#d4af37 !important;"></i>
                         <div>
                             <span class="text-muted extra-small d-block">របាយការណ៍ប្រចាំខែ:</span>
-                            <select id="monthly-filter-select" class="bg-transparent text-white border-0 extra-small fw-bold" style="cursor: pointer; outline:none;">
+                            <select id="monthly-filter-select"
+                                class="bg-transparent text-white border-0 extra-small fw-bold"
+                                style="cursor: pointer; outline:none;">
                                 <option value="Aug" class="bg-dark" selected>ខែសីហា ២០២៦</option>
                                 <option value="Jul" class="bg-dark">ខែកក្កដា ២០២៦</option>
                                 <option value="Jun" class="bg-dark">ខែមិថុនា ២០២៦</option>
@@ -311,7 +315,8 @@
                             </select>
                         </div>
                     </div>
-                    <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#addNewClassModal"><i class="bi bi-plus-lg me-1"></i> ➕ បង្កើតថ្នាក់ថ្មី</button>
+                    <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#addNewClassModal"><i
+                            class="bi bi-plus-lg me-1"></i> ➕ បង្កើតថ្នាក់ថ្មី</button>
                 </div>
             </div>
         </div>
@@ -321,21 +326,21 @@
             <div class="col-md-3">
                 <div class="glass-kpi-card">
                     <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="text-muted extra-small">🏫 ថ្នាក់រៀនសរុប</span>
+                        <span class="text-white extra-small">🏫 ថ្នាក់រៀនសរុប</span>
                         <i class="bi bi-grid-3x3-gap-fill fs-5" style="color:#d4af37;"></i>
                     </div>
                     <h3 class="fw-bold text-white mb-0" id="top-stat-total-classes">៦ ថ្នាក់</h3>
-                    <span class="text-success extra-small"><i class="bi bi-check-circle me-1"></i>ដំណើរការពេញលេញ</span>
+                    <span class="text-success extra-small"><i class="bi bi-check-circle me-1"></i>ដំណើរការ</span>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="glass-kpi-card">
                     <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="text-muted extra-small">👥 សិស្សសរុប</span>
+                        <span class="text-white extra-small">👥 សិស្សសរុប</span>
                         <i class="bi bi-people-fill fs-5" style="color:#d4af37;"></i>
                     </div>
                     <h3 class="fw-bold text-white mb-0" id="top-stat-total-students">២១៨ នាក់</h3>
-                    <span class="text-muted extra-small">គ្រប់ថ្នាក់ទាំងអស់</span>
+                    <span class="text-white extra-small">គ្រប់ថ្នាក់ទាំងអស់</span>
                 </div>
             </div>
             <div class="col-md-3">
@@ -360,13 +365,26 @@
             </div>
         </div>
 
-        <!-- Filter Track Capsule Bar & Live Search -->
+        <!-- Filter Track Capsule Bar, Academic Year Filter & Live Search -->
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-            <div class="filter-capsule-bar flex-wrap" id="track-filter-pills">
-                <button class="filter-pill-btn pill-all active" data-track="All"><i class="bi bi-grid-fill me-1"></i> គ្រប់ថ្នាក់ទាំងអស់</button>
-                <button class="filter-pill-btn pill-stem" data-track="STEM Track"><i class="bi bi-calculator me-1"></i> វិទ្យាសាស្ត្រពិត (STEM)</button>
-                <button class="filter-pill-btn pill-science" data-track="Science Track"><i class="bi bi-lightning-charge me-1"></i> វិទ្យាសាស្ត្រសង្គម</button>
-                <button class="filter-pill-btn pill-tech" data-track="Tech Track"><i class="bi bi-code-slash me-1"></i> បច្ចេកវិទ្យា & AI</button>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <div class="d-flex align-items-center gap-1.5 bg-dark px-2.5 py-1 rounded-pill border border-warning">
+                    <i class="bi bi-calendar3 text-warning"></i>
+                    <select id="class-academic-year-filter" class="form-select form-select-sm bg-transparent text-warning border-0 fw-bold shadow-none" style="cursor: pointer; min-width: 170px;">
+                        <option value="active" class="bg-dark text-warning">⚡ ឆ្នាំសិក្សាសកម្ម</option>
+                        <option value="all" class="bg-dark text-white">📚 គ្រប់ឆ្នាំសិក្សាទាំងអស់</option>
+                    </select>
+                </div>
+                <div class="filter-capsule-bar flex-wrap" id="track-filter-pills">
+                    <button class="filter-pill-btn pill-all active" data-grade="All"><i class="bi bi-grid-fill me-1"></i>
+                        គ្រប់ថ្នាក់</button>
+                    <button class="filter-pill-btn pill-stem" data-grade="Grade 10"><i class="bi bi-mortarboard me-1"></i>
+                        ថ្នាក់ទី១០</button>
+                    <button class="filter-pill-btn pill-science" data-grade="Grade 11"><i
+                            class="bi bi-mortarboard-fill me-1"></i> ថ្នាក់ទី១១</button>
+                    <button class="filter-pill-btn pill-tech" data-grade="Grade 12"><i class="bi bi-award-fill me-1"></i>
+                        ថ្នាក់ទី១២</button>
+                </div>
             </div>
             <div class="search-box" style="width: 320px;">
                 <i class="bi bi-search text-muted"></i>
@@ -383,21 +401,38 @@
     <!-- View 2: Student List Panel for Clicked Class Box (បង្ហាញតែ ឈ្មោះសិស្ស អត្តលេខ ភេទ អាយុ និទ្ទេសប្រចាំខែ អវត្តមានមានច្បាប់ អវត្តមានអត់ច្បាប់ និង វត្តមានសរុប) -->
     <div id="class-scores-panel" style="display: none;">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <button id="back-to-classes-btn" class="btn btn-outline-glass btn-sm"><i class="bi bi-arrow-left me-1.5"></i> ត្រឡប់ទៅប្រអប់ថ្នាក់រៀន</button>
+            <button id="back-to-classes-btn" class="btn btn-outline-glass btn-sm"><i
+                    class="bi bi-arrow-left me-1.5"></i> ត្រឡប់ទៅប្រអប់ថ្នាក់រៀន</button>
             <div class="d-flex align-items-center gap-2">
                 <div class="d-flex align-items-center gap-1.5 bg-dark px-3 py-1.5 rounded-3 border border-secondary">
                     <i class="bi bi-calendar-month fs-6" style="color:#d4af37;"></i>
                     <span class="text-muted extra-small me-1">ប្រចាំខែ:</span>
-                    <select id="scores-month-select" class="bg-transparent text-white border-0 extra-small fw-semibold outline-none" style="cursor: pointer;">
+                    <select id="scores-month-select"
+                        class="bg-transparent text-white border-0 extra-small fw-semibold outline-none"
+                        style="cursor: pointer;">
                         <option value="Aug" class="bg-dark" selected>ខែសីហា ២០២៦</option>
                         <option value="Jul" class="bg-dark">ខែកក្កដា ២០២៦</option>
                         <option value="Jun" class="bg-dark">ខែមិថុនា ២០២៦</option>
                         <option value="May" class="bg-dark">ខែឧសភា ២០២៦</option>
                     </select>
                 </div>
-                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-download me-1"></i> ទាញយកបញ្ជីសិស្ស</button>
-                <button class="btn-gold-shimmer"><i class="bi bi-person-plus me-1"></i> បន្ថែមសិស្សក្នុងថ្នាក់</button>
+                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-download me-1"></i>
+                    ទាញយកបញ្ជីសិស្ស</button>
+
             </div>
+        </div>
+
+        <!-- Success Alert Toast for Adding/Editing Student -->
+        <div id="class-student-alert-toast"
+            class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-3 d-none d-flex align-items-center justify-content-between p-3"
+            role="alert">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle-fill fs-5 text-success"></i>
+                <span class="fw-bold text-white"
+                    id="class-student-alert-msg">បានបន្ថែមសិស្សថ្មីទៅក្នុងថ្នាក់ដោយជោគជ័យ!</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white"
+                onclick="document.getElementById('class-student-alert-toast').classList.add('d-none');"></button>
         </div>
 
         <!-- Selected Class Main Header -->
@@ -405,46 +440,53 @@
             <div class="d-flex justify-content-between align-items-start mb-3">
                 <div>
                     <span id="selected-class-track" class="track-badge mb-2">ថ្នាក់ទី ១២-A</span>
-                    <div class="extra-small fw-bold mb-1" style="color:#d4af37;"><i class="bi bi-door-open me-1"></i> ឈ្មោះថ្នាក់រៀន:</div>
+                    <div class="extra-small fw-bold mb-1" style="color:#d4af37;"><i class="bi bi-door-open me-1"></i>
+                        ឈ្មោះថ្នាក់រៀន:</div>
                     <h2 id="selected-class-title" class="fw-bold text-white mb-1">ថ្នាក់ទី ១២-A</h2>
-                    <p id="selected-class-details" class="text-muted small mb-0"><i class="bi bi-geo-alt me-1" style="color:#d4af37;"></i>ទីតាំង: បន្ទប់លេខ ៣០២ • ច័ន្ទ / ពុធ / សុក្រ</p>
+                    <p id="selected-class-details" class="text-muted small mb-0"><i class="bi bi-geo-alt me-1"
+                            style="color:#d4af37;"></i>ទីតាំង: បន្ទប់លេខ ៣០២ • ច័ន្ទ / ពុធ / សុក្រ</p>
                 </div>
                 <div class="text-end">
-                    <span class="badge bg-secondary-subtle text-light mb-1 px-3 py-1.5" id="selected-month-badge">ប្រចាំខែសីហា ២០២៦</span>
-                    <div class="fw-bold text-warning fs-2 mb-0" style="color:#d4af37;" id="selected-class-pass-rate">អត្រាជាប់ ៩២%</div>
+                    <span class="badge bg-secondary-subtle text-light mb-1 px-3 py-1.5"
+                        id="selected-month-badge">ប្រចាំខែសីហា ២០២៦</span>
+                    <div class="fw-bold text-warning fs-2 mb-0" style="color:#d4af37;" id="selected-class-pass-rate">
+                        អត្រាជាប់ ៩២%</div>
                 </div>
             </div>
-
             <!-- Khmer Statistics KPI Cards -->
             <div class="row g-3 pt-3 border-top border-dark">
                 <div class="col-md-3">
                     <div class="glass-kpi-card">
-                        <span class="extra-small d-block fw-bold" style="color:#d4af37;"><i class="bi bi-mortarboard me-1"></i> ឈ្មោះថ្នាក់</span>
+                        <span class="extra-small d-block fw-bold" style="color:#d4af37;"><i
+                                class="bi bi-mortarboard me-1"></i> ឈ្មោះថ្នាក់</span>
                         <div class="fw-bold text-white fs-6 mt-1" id="kpi-class-name">ថ្នាក់ទី ១២-A</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="glass-kpi-card">
-                        <span class="text-muted extra-small d-block"><i class="bi bi-person-badge me-1" style="color:#d4af37;"></i> គ្រូបន្ទុកថ្នាក់</span>
-                        <div class="fw-bold text-white fs-6 mt-1" id="kpi-homeroom-teacher">ស្រី ពេជ្រ</div>
+                        <span class="text-wh extra-small d-block"><i class="bi bi-person-badge me-1"
+                                style="color:#d4af37;"></i> គ្រូបន្ទុកថ្នាក់</span>
+                        <div class="fw-​bold text-white fs-6 mt-1" id="kpi-homeroom-teacher">ស្រី ពេជ្រ</div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="glass-kpi-card">
-                        <span class="text-muted extra-small d-block"><i class="bi bi-people me-1"></i> សិស្សសរុប</span>
-                        <div class="fw-bold text-white fs-5 mt-1" id="kpi-total-students">៣៨ នាក់</div>
+                        <span class="text-white extra-small d-block"><i class="bi bi-people me-1"></i> សិស្សសរុប</span>
+                        <div class="fw-bold text-white fs-5 mt-1" id="kpi-total-students">១ នាក់</div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="glass-kpi-card" style="border-color: rgba(16, 185, 129, 0.4);">
-                        <span class="text-success extra-small d-block fw-bold"><i class="bi bi-check-circle-fill me-1"></i> សិស្សជាប់</span>
-                        <div class="fw-bold text-success fs-5 mt-1" id="kpi-passed-students">៣៥ នាក់</div>
+                        <span class="text-success extra-small d-block fw-bold"><i
+                                class="bi bi-check-circle-fill me-1"></i> កំពុងសិក្សា (Active)</span>
+                        <div class="fw-bold text-success fs-5 mt-1" id="kpi-active-students">១ នាក់</div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="glass-kpi-card" style="border-color: rgba(239, 68, 68, 0.4);">
-                        <span class="text-danger extra-small d-block fw-bold"><i class="bi bi-x-circle-fill me-1"></i> សិស្សធ្លាក់</span>
-                        <div class="fw-bold text-danger fs-5 mt-1" id="kpi-failed-students">៣ នាក់</div>
+                        <span class="text-danger extra-small d-block fw-bold"><i class="bi bi-x-circle-fill me-1"></i>
+                            ផ្អាកការសិក្សា</span>
+                        <div class="fw-bold text-danger fs-5 mt-1" id="kpi-inactive-students">០ នាក់</div>
                     </div>
                 </div>
             </div>
@@ -452,26 +494,35 @@
 
         <!-- Student Attendance & Grade Table for Clicked Class -->
         <div class="card-custom p-4">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="fw-bold text-white mb-0"><i class="bi bi-person-lines-fill me-2" style="color:#d4af37;"></i>បញ្ជីឈ្មោះសិស្សក្នុងថ្នាក់ (ព័ត៌មាន និង វត្តមានសិស្ស)</h5>
-                <div class="search-box">
-                    <i class="bi bi-search text-muted"></i>
-                    <input type="text" id="scores-search-input" placeholder="ស្វែងរក ឈ្មោះសិស្ស ឬ អត្តលេខ...">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
+                <h5 class="fw-bold text-white mb-0"><i class="bi bi-person-lines-fill me-2"
+                        style="color:#d4af37;"></i>បញ្ជីឈ្មោះសិស្សក្នុងថ្នាក់ (តារាងព័ត៌មានសិស្ស)</h5>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="search-box">
+                        <i class="bi bi-search text-muted"></i>
+                        <input type="text" id="scores-search-input" placeholder="ស្វែងរក ឈ្មោះសិស្ស ឬ អត្តលេខ...">
+                    </div>
+                    <button class="btn-gold-shimmer btn-sm px-3 py-1.5 d-flex align-items-center gap-1.5"
+                        id="btn-open-add-student-modal">
+                        <i class="bi bi-person-plus-fill"></i>
+                        <span>បញ្ចូលសិស្សក្នុងថ្នាក់</span>
+                    </button>
                 </div>
             </div>
 
             <div class="table-responsive">
-                <table class="table table-dark table-hover align-middle mb-0 class-student-table" style="background: transparent;">
+                <table class="table table-dark table-hover align-middle mb-0 class-student-table"
+                    style="background: transparent;">
                     <thead>
                         <tr class="text-muted extra-small text-uppercase border-bottom border-dark">
-                            <th>ឈ្មោះសិស្ស</th>
-                            <th>អត្តលេខ</th>
-                            <th>ភេទ</th>
-                            <th>អាយុ</th>
-                            <th>និទ្ទេសប្រចាំខែ</th>
-                            <th>អវត្តមានមានច្បាប់</th>
-                            <th>អវត្តមានអត់ច្បាប់</th>
-                            <th>វត្តមានសរុប</th>
+                            <th>ឈ្មោះសិស្ស (Full Name)</th>
+                            <th>អត្តលេខ (Code)</th>
+                            <th>ភេទ (Gender)</th>
+                            <th>ថ្ងៃខែឆ្នាំកំណើត (DOB)</th>
+                            <th>លេខទូរស័ព្ទ (Phone)</th>
+                            <th>ឪពុក - ម្តាយ (Parents)</th>
+                            <th>អាសយដ្ឋាន (Address)</th>
+                            <th>ស្ថានភាព (Status)</th>
                             <th class="text-end">សកម្មភាព</th>
                         </tr>
                     </thead>
@@ -486,157 +537,71 @@
 
 <script>
     (function () {
-        const loadedClasses = [
-            {
-                "id": "CLS-101",
-                "name": "ថ្នាក់ទី ១២-A",
-                "full_name": "ថ្នាក់ទី ១២-A",
-                "track": "STEM Track",
-                "instructor": "ស្រី ពេជ្រ",
-                "instructor_avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់លេខ ៣០២",
-                "schedule": "ច័ន្ទ / ពុធ / សុក្រ (០៩:០០ ព្រឹក)",
-                "students_count": 38,
-                "passed_count": 35,
-                "failed_count": 3,
-                "pass_rate": "៩២%",
-                "icon": "bi-calculator"
-            },
-            {
-                "id": "CLS-202",
-                "name": "ថ្នាក់ទី ១២-B",
-                "full_name": "ថ្នាក់ទី ១២-B",
-                "track": "Science Track",
-                "instructor": "ឈឹម វិចិត្រ",
-                "instructor_avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់ពិសោធន៍ ២",
-                "schedule": "អង្គារ / ព្រហស្បតិ៍ (១០:៣០ ព្រឹក)",
-                "students_count": 32,
-                "passed_count": 28,
-                "failed_count": 4,
-                "pass_rate": "៩៤%",
-                "icon": "bi-lightning-charge"
-            },
-            {
-                "id": "CLS-303",
-                "name": "ថ្នាក់ទី ១១-C",
-                "full_name": "ថ្នាក់ទី ១១-C",
-                "track": "Tech Track",
-                "instructor": "សុខ វិបុល",
-                "instructor_avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់កុំព្យូទ័រ A",
-                "schedule": "ច័ន្ទ ដល់ សុក្រ (០១:០០ រសៀល)",
-                "students_count": 45,
-                "passed_count": 43,
-                "failed_count": 2,
-                "pass_rate": "៩៥%",
-                "icon": "bi-code-slash"
-            }
-        ];
-
-        // Student Data inside Class showing ONLY: ឈ្មោះសិស្ស, អត្តលេខ, ភេទ, អាយុ, និទ្ទេសប្រចាំខែ, អវត្តមានមានច្បាប់, អវត្តមានអត់ច្បាប់, និង វត្តមានសរុប
-        const loadedStudentsInClass = [
-            {
-                "id": "STD-2026-001",
-                "name": "សុខ ចាន់ដារ៉ា",
-                "gender": "ប្រុស",
-                "age": "១៧ ឆ្នាំ",
-                "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
-                "grade": "A+",
-                "score_percent": "៩៦%",
-                "excused_absent": "២ ថ្ងៃ",
-                "unexcused_absent": "០ ថ្ងៃ",
-                "total_attendance": "២៨ ថ្ងៃ (៩៨%)",
-                "status": "Passed"
-            },
-            {
-                "id": "STD-2026-002",
-                "name": "គឹម ស៊ាងហៃ",
-                "gender": "ស្រី",
-                "age": "១៧ ឆ្នាំ",
-                "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80",
-                "grade": "A",
-                "score_percent": "៩២%",
-                "excused_absent": "១ ថ្ងៃ",
-                "unexcused_absent": "០ ថ្ងៃ",
-                "total_attendance": "២៩ ថ្ងៃ (៩៩%)",
-                "status": "Passed"
-            },
-            {
-                "id": "STD-2026-003",
-                "name": "លី សុវណ្ណារ៉ា",
-                "gender": "ប្រុស",
-                "age": "១៨ ឆ្នាំ",
-                "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
-                "grade": "B+",
-                "score_percent": "៨៦%",
-                "excused_absent": "៣ ថ្ងៃ",
-                "unexcused_absent": "១ ថ្ងៃ",
-                "total_attendance": "២៦ ថ្ងៃ (៩៣%)",
-                "status": "Passed"
-            },
-            {
-                "id": "STD-2026-004",
-                "name": "ចាន់ ស្រីណេត",
-                "gender": "ស្រី",
-                "age": "១៧ ឆ្នាំ",
-                "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80",
-                "grade": "B",
-                "score_percent": "៨១%",
-                "excused_absent": "១ ថ្ងៃ",
-                "unexcused_absent": "០ ថ្ងៃ",
-                "total_attendance": "២៩ ថ្ងៃ (៩៩%)",
-                "status": "Passed"
-            },
-            {
-                "id": "STD-2026-005",
-                "name": "អ៊ុង វីរៈ",
-                "gender": "ប្រុស",
-                "age": "១៨ ឆ្នាំ",
-                "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80",
-                "grade": "F",
-                "score_percent": "៤៨%",
-                "excused_absent": "៤ ថ្ងៃ",
-                "unexcused_absent": "៥ ថ្ងៃ",
-                "total_attendance": "២១ ថ្ងៃ (៧៥%)",
-                "status": "Failed"
-            }
-        ];
+        // Classes & Students data arrays initialized as empty (populated live from Database API)
+        const loadedClasses = [];
+        const loadedStudentsInClass = [];
 
         function updateTopSummaryStats(classList) {
-            const totalClasses = classList.length;
+            const totalClasses = (classList && classList.length) || 0;
             let totalStudents = 0;
             let totalPassed = 0;
             let totalFailed = 0;
 
-            classList.forEach(c => {
-                const count = c.students_count || 0;
-                const passed = c.passed_count || Math.round(count * 0.9);
-                const failed = c.failed_count || (count - passed);
+            if (classList && classList.length > 0) {
+                classList.forEach(c => {
+                    const count = c.students_count || 0;
+                    const passed = c.passed_count || Math.round(count * 0.9);
+                    const failed = c.failed_count || (count - passed);
 
-                totalStudents += count;
-                totalPassed += passed;
-                totalFailed += failed;
-            });
+                    totalStudents += count;
+                    totalPassed += passed;
+                    totalFailed += failed;
+                });
+            }
 
             const overallPassRate = totalStudents > 0 ? Math.round((totalPassed / totalStudents) * 100) : 0;
 
-            document.getElementById('top-stat-total-classes').innerText = `${totalClasses} ថ្នាក់`;
-            document.getElementById('top-stat-total-students').innerText = `${totalStudents} នាក់`;
-            document.getElementById('top-stat-passed').innerText = `${totalPassed} នាក់ (${overallPassRate}%)`;
-            document.getElementById('top-stat-failed').innerText = `${totalFailed} នាក់ (${100 - overallPassRate}%)`;
+            const topClassesElem = document.getElementById('top-stat-total-classes');
+            if (topClassesElem) topClassesElem.innerText = `${totalClasses} ថ្នាក់`;
+            const topStudentsElem = document.getElementById('top-stat-total-students');
+            if (topStudentsElem) topStudentsElem.innerText = `${totalStudents} នាក់`;
+            const topPassedElem = document.getElementById('top-stat-passed');
+            if (topPassedElem) topPassedElem.innerText = `${totalPassed} នាក់ (${overallPassRate}%)`;
+            const topFailedElem = document.getElementById('top-stat-failed');
+            if (topFailedElem) topFailedElem.innerText = `${totalFailed} នាក់ (${100 - overallPassRate}%)`;
         }
 
         function renderClassBoxes(classList) {
             const gridContainer = document.getElementById('class-boxes-grid');
-            if (!gridContainer || !classList) return;
+            if (!gridContainer) return;
 
-            updateTopSummaryStats(classList);
+            updateTopSummaryStats(classList || []);
+
+            if (!classList || classList.length === 0) {
+                gridContainer.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <div class="p-5 rounded-4 border border-secondary" style="background: rgba(255,255,255,0.02);">
+                        <i class="bi bi-door-open fs-1 text-warning mb-3 d-block" style="color:#d4af37 !important;"></i>
+                        <h5 class="text-white fw-bold mb-2">មិនទាន់មានទិន្នន័យថ្នាក់រៀននៅឡើយទេ</h5>
+                        <p class="text-muted small mb-4">សូមចុចប៊ូតុង "បង្កើតថ្នាក់រៀន" ដើម្បីបន្ថែមថ្នាក់រៀនដំបូងរបស់អ្នក</p>
+                        <button class="btn-gold-shimmer btn-sm px-4 py-2" data-bs-toggle="modal" data-bs-target="#addNewClassModal">
+                            <i class="bi bi-plus-lg me-1"></i> បង្កើតថ្នាក់រៀនថ្មី
+                        </button>
+                    </div>
+                </div>
+                `;
+                return;
+            }
 
             gridContainer.innerHTML = classList.map(c => {
-                const passed = c.passed_count || Math.round(c.students_count * 0.9);
-                const failed = c.failed_count || (c.students_count - passed);
-                const passRateVal = parseInt(c.pass_rate) || 90;
+                const studentsCount = parseInt(c.students_count) || 0;
+                const femaleCount = parseInt(c.female_count) || 0;
+                const maleCount = parseInt(c.male_count) || Math.max(0, studentsCount - femaleCount);
+                const passed = c.passed_count || (studentsCount > 0 ? Math.round(studentsCount * 0.9) : 0);
+                const failed = c.failed_count || Math.max(0, studentsCount - passed);
+                const passRateVal = studentsCount > 0 ? (parseInt(c.pass_rate) || 90) : 0;
+
+                const hasTeacher = c.teacher_id && c.instructor && !c.instructor.includes('មិនទាន់មាន') && !c.instructor.includes('លោកគ្រូ/អ្នកគ្រូ');
 
                 return `
                 <div class="col-md-4">
@@ -644,33 +609,61 @@
                         <div>
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="track-badge"><i class="bi ${c.icon || 'bi-bookmark-star'} me-1.5"></i>${c.track}</span>
-                                <span class="text-muted extra-small"><code>${c.id}</code></span>
+                                <span class="badge rounded-pill fw-bold" style="background: rgba(212, 175, 55, 0.15); color: #ffd700; border: 1px solid rgba(212, 175, 55, 0.4); font-size: 0.85rem; padding: 4px 10px;">
+                                    <i class="bi bi-people-fill me-1"></i> ${studentsCount} នាក់
+                                </span>
                             </div>
                             
                             <div class="extra-small fw-bold mb-1 text-uppercase" style="color:#d4af37;"><i class="bi bi-door-open me-1"></i>ឈ្មោះថ្នាក់:</div>
                             <h5 class="fw-bold text-white mb-2.5" style="font-size: 1.22rem; line-height: 1.35;">${c.full_name || c.name}</h5>
                             
-                            <div class="teacher-pill d-flex align-items-center gap-2 mb-3">
-                                <img src="${c.instructor_avatar}" class="rounded-circle border border-warning" width="32" height="32" alt="">
-                                <div>
-                                    <span class="text-muted extra-small d-block" style="line-height: 1;">គ្រូបន្ទុកថ្នាក់:</span>
-                                    <strong class="text-white small">${c.instructor}</strong>
+                            ${!hasTeacher ? `
+                            <div class="teacher-pill d-flex align-items-center justify-content-between p-2 rounded-3 mb-3" style="background: rgba(212, 175, 55, 0.12); border: 1px dashed rgba(212, 175, 55, 0.6);">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center bg-warning text-dark fw-bold" style="width: 32px; height: 32px; flex-shrink: 0;">
+                                        <i class="bi bi-person-exclamation fs-6"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-warning extra-small d-block fw-bold" style="line-height: 1.1;">⚠️ មិនទាន់មានគ្រូប្រចាំថ្នាក់</span>
+                                        <span class="text-white-50 extra-small">${studentsCount > 0 ? `សិស្ស ${studentsCount} នាក់រង់ចាំគ្រូ` : 'ថ្នាក់ទំនេរ'}</span>
+                                    </div>
                                 </div>
+                                <button type="button" class="btn btn-warning btn-sm py-1 px-2.5 extra-small fw-bold text-dark quick-assign-teacher-btn" data-class-id="${c.id}" data-class-name="${c.full_name || c.name}" style="white-space: nowrap; box-shadow: 0 4px 12px rgba(212,175,55,0.4);">
+                                    <i class="bi bi-person-check-fill me-1"></i> រើសគ្រូ
+                                </button>
                             </div>
+                            ` : `
+                            <div class="teacher-pill d-flex align-items-center justify-content-between mb-3 p-1.5 rounded-3" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+                                <div class="d-flex align-items-center gap-2">
+                                    <img src="${c.instructor_avatar}" class="rounded-circle border border-warning" width="32" height="32" alt="">
+                                    <div>
+                                        <span class="text-muted extra-small d-block" style="line-height: 1;">គ្រូបន្ទុកថ្នាក់:</span>
+                                        <strong class="text-white small">${c.instructor}</strong>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-outline-warning btn-sm py-0.5 px-2 extra-small quick-assign-teacher-btn" data-class-id="${c.id}" data-class-name="${c.full_name || c.name}" title="ផ្លាស់ប្តូរគ្រូបន្ទុក">
+                                    <i class="bi bi-pencil-square me-1"></i> ប្តូរ
+                                </button>
+                            </div>
+                            `}
                         </div>
                         
                         <div>
                             <div class="metrics-summary-box mb-3">
-                                <div class="d-flex justify-content-between align-items-center extra-small mb-1">
-                                    <span class="text-muted"><i class="bi bi-people-fill me-1" style="color:#d4af37;"></i> សិស្សសរុប:</span>
-                                    <span class="fw-bold text-white fs-6">${c.students_count} នាក់</span>
+                                <div class="d-flex justify-content-between align-items-center mb-2 pb-1.5 border-bottom border-secondary border-opacity-25">
+                                    <span class="text-white extra-small fw-bold"><i class="bi bi-people-fill me-1" style="color:#d4af37;"></i> សិស្សសរុប:</span>
+                                    <span class="badge text-dark fw-bold px-2.5 py-1" style="background:#d4af37; font-size: 0.88rem;">${studentsCount} នាក់</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center extra-small mb-2 text-muted">
+                                    <span><i class="bi bi-gender-female text-danger me-1"></i> ស្រី: <strong class="text-white">${femaleCount}</strong> នាក់</span>
+                                    <span><i class="bi bi-gender-male text-info me-1"></i> ប្រុស: <strong class="text-white">${maleCount}</strong> នាក់</span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center extra-small mb-1">
-                                    <span class="text-success"><i class="bi bi-check-circle-fill me-1"></i> សិស្សជាប់:</span>
+                                    <span class="text-success"><i class="bi bi-check-circle-fill me-1"></i> សិស្សកំពុងសិស្សា:</span>
                                     <span class="fw-bold text-success">${passed} នាក់ (${c.pass_rate})</span>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center extra-small mb-2">
-                                    <span class="text-danger"><i class="bi bi-x-circle-fill me-1"></i> សិស្សធ្លាក់:</span>
+                                    <span class="text-danger"><i class="bi bi-x-circle-fill me-1"></i> សិស្សបានបញ្ឈប់ការសិស្សា:</span>
                                     <span class="fw-bold text-danger">${failed} នាក់</span>
                                 </div>
 
@@ -684,9 +677,9 @@
                                     <span class="badge bg-success-subtle text-success px-2 py-1 fw-bold me-1">ជាប់ ${c.pass_rate}</span>
                                     <span class="text-muted extra-small"><i class="bi bi-geo-alt me-1" style="color:#d4af37;"></i>${c.room}</span>
                                 </div>
-                                <div class="d-flex gap-2">
-                                    <button class="btn-card-score open-scores-btn" data-class-id="${c.id}">
-                                        បញ្ជីសិស្ស <i class="bi bi-arrow-right-short"></i>
+                                <div class="d-flex gap-1">
+                                    <button type="button" class="btn-card-score open-scores-btn px-2.5 py-1 extra-small" data-class-id="${c.id}">
+                                        បញ្ជីសិស្ស (${studentsCount}) <i class="bi bi-arrow-right-short"></i>
                                     </button>
                                 </div>
                             </div>
@@ -696,64 +689,919 @@
                 `;
             }).join('');
 
+            // Card click listener (open student score view)
             document.querySelectorAll('.class-box-item').forEach(card => {
-                card.addEventListener('click', function () {
+                card.addEventListener('click', function (e) {
+                    if (e.target.closest('.quick-add-students-btn') || e.target.closest('.quick-assign-teacher-btn')) {
+                        return;
+                    }
                     const classId = this.getAttribute('data-class-id');
                     openClassScores(classId);
                 });
             });
+
+            // Quick Assign Teacher Button Click Handler
+            document.querySelectorAll('.quick-assign-teacher-btn').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const classId = this.getAttribute('data-class-id');
+                    openAssignTeacherModal(classId);
+                });
+            });
+
+            // Quick Add Students Button Click Handler
+            document.querySelectorAll('.quick-add-students-btn').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const classId = this.getAttribute('data-class-id');
+                    openAddStudentModal(classId);
+                });
+            });
+        }
+
+        let currentSelectedClassId = null;
+
+        // Fetch & Load Real Students from Database for a Selected Class
+        async function loadStudentsForClass(classId) {
+            const numericId = parseInt(String(classId).replace(/\D/g, '')) || 0;
+            if (!numericId) {
+                loadedStudentsInClass.length = 0;
+                renderClassStudentTableRows(loadedStudentsInClass);
+                updateClassKpiStats();
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/class/${numericId}/students`);
+                const data = await res.json();
+                if (data.status === 'success' && Array.isArray(data.students)) {
+                    loadedStudentsInClass.length = 0;
+                    loadedStudentsInClass.push(...data.students);
+                    renderClassStudentTableRows(loadedStudentsInClass);
+                    updateClassKpiStats();
+                }
+            } catch (err) {
+                console.error('Error fetching class students from DB:', err);
+            }
+        }
+
+        function updateClassKpiStats() {
+            const total = loadedStudentsInClass.length;
+            const active = loadedStudentsInClass.filter(s => s.status === 'Active' || !s.status).length;
+            const inactive = total - active;
+
+            const totalEl = document.getElementById('kpi-total-students');
+            if (totalEl) totalEl.innerText = `${total} នាក់`;
+            const activeEl = document.getElementById('kpi-active-students');
+            if (activeEl) activeEl.innerText = `${active} នាក់`;
+            const inactiveEl = document.getElementById('kpi-inactive-students');
+            if (inactiveEl) inactiveEl.innerText = `${inactive} នាក់`;
         }
 
         function openClassScores(classId) {
-            const selectedClass = loadedClasses.find(c => c.id === classId) || loadedClasses[0];
-            const passed = selectedClass.passed_count || Math.round(selectedClass.students_count * 0.9);
-            const failed = selectedClass.failed_count || (selectedClass.students_count - passed);
+            currentSelectedClassId = classId;
+            const selectedClass = loadedClasses.find(c => String(c.id) === String(classId)) || { full_name: 'ថ្នាក់រៀន', name: 'ថ្នាក់រៀន', room: 'បន្ទប់ ៣០២', instructor: 'មិនទាន់មានគ្រូបន្ទុក', teacher_id: null };
 
             document.getElementById('selected-class-title').innerText = selectedClass.full_name || selectedClass.name;
-            document.getElementById('selected-class-track').innerText = selectedClass.track;
-            document.getElementById('selected-class-details').innerText = `ទីតាំង: ${selectedClass.room} • ${selectedClass.schedule}`;
-            document.getElementById('selected-class-pass-rate').innerText = `អត្រាជាប់ ${selectedClass.pass_rate}`;
+            document.getElementById('selected-class-track').innerText = selectedClass.track || 'ចំណេះទូទៅ';
+            document.getElementById('selected-class-details').innerText = `ទីតាំង: ${selectedClass.room || 'បន្ទប់ ៣០២'}`;
+            document.getElementById('selected-class-pass-rate').innerText = `អត្រាជាប់ ${selectedClass.pass_rate || '100%'}`;
 
             document.getElementById('kpi-class-name').innerText = selectedClass.full_name || selectedClass.name;
-            document.getElementById('kpi-homeroom-teacher').innerText = selectedClass.instructor;
-            document.getElementById('kpi-total-students').innerText = `${selectedClass.students_count} នាក់`;
-            document.getElementById('kpi-passed-students').innerText = `${passed} នាក់ (${selectedClass.pass_rate})`;
-            document.getElementById('kpi-failed-students').innerText = `${failed} នាក់`;
+            
+            const hasTeacher = selectedClass.teacher_id && selectedClass.instructor && !selectedClass.instructor.includes('មិនទាន់មាន') && !selectedClass.instructor.includes('លោកគ្រូ/អ្នកគ្រូ');
+            const teacherKpiEl = document.getElementById('kpi-homeroom-teacher');
+            if (teacherKpiEl) {
+                if (hasTeacher) {
+                    teacherKpiEl.innerHTML = `
+                        <div class="d-flex align-items-center justify-content-between">
+                            <span>${selectedClass.instructor}</span>
+                            <button type="button" class="btn btn-outline-warning btn-sm py-0 px-1.5 extra-small quick-assign-teacher-btn" data-class-id="${classId}" title="ផ្លាស់ប្តូរគ្រូបន្ទុក">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    teacherKpiEl.innerHTML = `
+                        <button type="button" class="btn btn-warning btn-sm py-1 px-2.5 extra-small fw-bold text-dark quick-assign-teacher-btn w-100" data-class-id="${classId}">
+                            <i class="bi bi-person-plus-fill me-1"></i> រើសគ្រូប្រចាំថ្នាក់
+                        </button>
+                    `;
+                }
+                // Attach listener to KPI button
+                const btn = teacherKpiEl.querySelector('.quick-assign-teacher-btn');
+                if (btn) {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openAssignTeacherModal(classId);
+                    });
+                }
+            }
 
-            renderClassStudentTableRows(loadedStudentsInClass);
+            // Load real database students for this class
+            loadStudentsForClass(classId);
 
             document.getElementById('class-boxes-view').style.display = 'none';
             document.getElementById('class-scores-panel').style.display = 'block';
         }
 
-        // Render Student Table Rows displaying ONLY: ឈ្មោះសិស្ស, អត្តលេខ, ភេទ, អាយុ, និទ្ទេសប្រចាំខែ, អវត្តមានមានច្បាប់, អវត្តមានអត់ច្បាប់, វត្តមានសរុប
+        // ----------------------------------------------------
+        // ASSIGN HOMEROOM TEACHER MODAL & HANDLERS
+        // ----------------------------------------------------
+        let cachedAvailableTeachersForAssign = [];
+        let assignTargetClassId = null;
+
+        async function openAssignTeacherModal(classId) {
+            assignTargetClassId = classId;
+            const numericClassId = parseInt(String(classId).replace(/\D/g, '')) || 0;
+            const targetClass = loadedClasses.find(c => String(c.id) === String(classId)) || { full_name: 'ថ្នាក់រៀន', name: 'ថ្នាក់រៀន', students_count: 0, teacher_id: null };
+
+            const badgeEl = document.getElementById('assign-teacher-modal-class-badge');
+            if (badgeEl) badgeEl.innerText = targetClass.full_name || targetClass.name;
+
+            const nameEl = document.getElementById('assign-teacher-modal-class-name');
+            if (nameEl) nameEl.innerText = targetClass.full_name || targetClass.name;
+
+            const countEl = document.getElementById('assign-teacher-modal-students-count');
+            if (countEl) countEl.innerHTML = `<i class="bi bi-people-fill me-1"></i> ${targetClass.students_count || 0} នាក់`;
+
+            const hiddenClassInput = document.getElementById('assign-teacher-target-class-id');
+            if (hiddenClassInput) hiddenClassInput.value = numericClassId;
+
+            const searchInput = document.getElementById('modal-teacher-search-input');
+            if (searchInput) searchInput.value = '';
+
+            // Open bootstrap modal
+            const modalEl = document.getElementById('assignTeacherToClassModal');
+            if (modalEl && typeof bootstrap !== 'undefined') {
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalEl);
+                bsModal.show();
+            }
+
+            // Load teachers from API
+            await loadTeachersForAssignModal(numericClassId, targetClass.teacher_id);
+        }
+
+        async function loadTeachersForAssignModal(classId, currentTeacherId = null) {
+            const listContainer = document.getElementById('assign-teachers-list-container');
+            const countBadge = document.getElementById('available-teachers-count-badge');
+            if (!listContainer) return;
+
+            listContainer.innerHTML = `
+                <div class="col-12 text-center py-4">
+                    <div class="spinner-border spinner-border-sm text-warning me-2"></div>
+                    <span class="text-muted small">កំពុងទាញយកបញ្ជីគ្រូបង្រៀន...</span>
+                </div>
+            `;
+
+            try {
+                const res = await fetch(`/api/available_teachers?include_class_id=${classId}`);
+                const data = await res.json();
+
+                if (data.status === 'success' && Array.isArray(data.teachers)) {
+                    cachedAvailableTeachersForAssign = data.teachers;
+                    renderAssignTeachersList(cachedAvailableTeachersForAssign, currentTeacherId);
+                } else {
+                    listContainer.innerHTML = '<div class="col-12 text-center text-muted py-3">មិនអាចទាញយកបញ្ជីគ្រូបានទេ</div>';
+                }
+            } catch (err) {
+                console.error('Error loading teachers for assign modal:', err);
+                listContainer.innerHTML = `<div class="col-12 text-center text-danger py-3">កំហុស៖ ${err.message}</div>`;
+            }
+        }
+
+        function renderAssignTeachersList(teachers, currentTeacherId = null) {
+            const listContainer = document.getElementById('assign-teachers-list-container');
+            const countBadge = document.getElementById('available-teachers-count-badge');
+            if (!listContainer) return;
+
+            if (countBadge) {
+                countBadge.innerText = `គ្រូទំនេរ: ${teachers.length} នាក់`;
+            }
+
+            if (!teachers || teachers.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="col-12 text-center py-4">
+                        <div class="p-3 rounded-3 border border-secondary" style="background: rgba(255,255,255,0.02);">
+                            <i class="bi bi-person-x fs-2 text-warning mb-2 d-block"></i>
+                            <h6 class="text-white fw-bold mb-1">គ្មានគ្រូទំនេរនៅឡើយទេ</h6>
+                            <p class="text-muted extra-small mb-0">គ្រូបង្រៀនទាំងអស់សុទ្ធតែមានថ្នាក់បង្រៀនរៀងៗខ្លួនរួចហើយ</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            listContainer.innerHTML = teachers.map(t => {
+                const isCurrent = (currentTeacherId && String(t.teacher_id) === String(currentTeacherId)) || (t.current_class_id && String(t.current_class_id) === String(assignTargetClassId));
+                const avatar = (t.gender && t.gender.toLowerCase().includes('fem'))
+                    ? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80'
+                    : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80';
+
+                return `
+                <div class="col-md-6">
+                    <label class="p-3 rounded-3 border d-flex align-items-center justify-content-between gap-2 teacher-select-card w-100 ${isCurrent ? 'border-warning' : 'border-secondary'}" 
+                        style="cursor: pointer; background: ${isCurrent ? 'rgba(212,175,55,0.15)' : 'rgba(255,255,255,0.02)'}; transition: all 0.2s ease;">
+                        <div class="d-flex align-items-center gap-2.5 overflow-hidden">
+                            <img src="${avatar}" class="rounded-circle border border-warning" width="40" height="40" style="object-fit: cover; flex-shrink: 0;" alt="">
+                            <div class="overflow-hidden">
+                                <div class="d-flex align-items-center gap-1.5 mb-0.5">
+                                    <strong class="text-white small text-truncate">${t.full_name}</strong>
+                                    ${isCurrent ? '<span class="badge bg-warning text-dark extra-small fw-bold">គ្រូបច្ចុប្បន្ន</span>' : ''}
+                                </div>
+                                <span class="text-muted extra-small d-block text-truncate">
+                                    <span class="text-warning">${t.teacher_code || 'TCH'}</span> • ${t.specialty || 'ឯកទេសទូទៅ'}
+                                </span>
+                            </div>
+                        </div>
+                        <input type="radio" name="selected_homeroom_teacher" value="${t.teacher_id}" class="form-check-input bg-dark border-secondary ms-2" ${isCurrent ? 'checked' : ''} style="cursor: pointer; flex-shrink: 0;">
+                    </label>
+                </div>
+                `;
+            }).join('');
+
+            // Card highlight effect on click
+            listContainer.querySelectorAll('.teacher-select-card').forEach(card => {
+                card.addEventListener('click', function () {
+                    listContainer.querySelectorAll('.teacher-select-card').forEach(c => {
+                        c.style.background = 'rgba(255,255,255,0.02)';
+                        c.classList.remove('border-warning');
+                        c.classList.add('border-secondary');
+                    });
+                    this.style.background = 'rgba(212,175,55,0.15)';
+                    this.classList.remove('border-secondary');
+                    this.classList.add('border-warning');
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio) radio.checked = true;
+                });
+            });
+        }
+
+        // Live Teacher Search in Modal
+        const teacherSearchInput = document.getElementById('modal-teacher-search-input');
+        if (teacherSearchInput) {
+            teacherSearchInput.addEventListener('input', function () {
+                const q = this.value.toLowerCase().trim();
+                const filtered = cachedAvailableTeachersForAssign.filter(t => 
+                    (t.full_name && t.full_name.toLowerCase().includes(q)) ||
+                    (t.teacher_code && t.teacher_code.toLowerCase().includes(q)) ||
+                    (t.specialty && t.specialty.toLowerCase().includes(q))
+                );
+                renderAssignTeachersList(filtered);
+            });
+        }
+
+        const clearTeacherSearchBtn = document.getElementById('btn-clear-teacher-search');
+        if (clearTeacherSearchBtn) {
+            clearTeacherSearchBtn.addEventListener('click', function () {
+                if (teacherSearchInput) {
+                    teacherSearchInput.value = '';
+                    renderAssignTeachersList(cachedAvailableTeachersForAssign);
+                }
+            });
+        }
+
+        // Form Submission: Save Homeroom Teacher Assignment
+        const assignTeacherForm = document.getElementById('admin-assign-teacher-form');
+        if (assignTeacherForm) {
+            assignTeacherForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const submitBtn = document.getElementById('btn-save-assign-teacher');
+                const origBtnText = submitBtn ? submitBtn.innerHTML : '';
+
+                const selectedRadio = document.querySelector('input[name="selected_homeroom_teacher"]:checked');
+                const teacherId = selectedRadio ? selectedRadio.value : null;
+
+                if (!teacherId) {
+                    alert('សូមជ្រើសរើសគ្រូបង្រៀនម្នាក់ (Please select a teacher)!');
+                    return;
+                }
+
+                const targetClassVal = document.getElementById('assign-teacher-target-class-id')?.value || assignTargetClassId;
+                const numericClassId = parseInt(String(targetClassVal).replace(/\D/g, '')) || 0;
+
+                if (!numericClassId) {
+                    alert('រកមិនឃើញលេខសម្គាល់ថ្នាក់រៀនទេ!');
+                    return;
+                }
+
+                try {
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> កំពុងរក្សាទុក...';
+                    }
+
+                    const res = await fetch(`/api/classes/${numericClassId}/assign_teacher`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ teacher_id: parseInt(teacherId) })
+                    });
+
+                    const resData = await res.json();
+                    if (resData.status !== 'success') {
+                        alert(resData.message || 'មានបញ្ហាក្នុងការចាត់តាំងគ្រូ!');
+                        return;
+                    }
+
+                    // Reload classes list and student view
+                    await fetchClassesFromAPI();
+                    if (currentSelectedClassId && parseInt(String(currentSelectedClassId).replace(/\D/g, '')) === numericClassId) {
+                        openClassScores(currentSelectedClassId);
+                    }
+
+                    // Close modal
+                    const modalEl = document.getElementById('assignTeacherToClassModal');
+                    if (modalEl && typeof bootstrap !== 'undefined') {
+                        const bsModal = bootstrap.Modal.getInstance(modalEl);
+                        if (bsModal) bsModal.hide();
+                    }
+
+                    // Show success toast
+                    const toast = document.getElementById('class-student-alert-toast');
+                    if (toast) {
+                        const msgEl = document.getElementById('class-student-alert-msg');
+                        if (msgEl) msgEl.innerText = resData.message || '✅ បានចាត់តាំងគ្រូបន្ទុកថ្នាក់ដោយជោគជ័យ!';
+                        toast.classList.remove('d-none');
+                        setTimeout(() => toast.classList.add('d-none'), 5000);
+                    }
+                } catch (err) {
+                    console.error('Error assigning teacher:', err);
+                    alert('បរាជ័យក្នុងការចាត់តាំងគ្រូ៖ ' + err.message);
+                } finally {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = origBtnText;
+                    }
+                }
+            });
+        }
+
+        // Unassigned / All Students Multi-Select Management for Class Enrollment
+        let cachedUnassignedStudents = [];
+        let filterUnassignedOnlyMode = false;
+        const selectedStudentIdsSet = new Set();
+        const selectedStudentsMap = new Map();
+
+        // Populate Target Class Dropdown inside Add Student Modal
+        function populateModalTargetClassSelect(selectedClassId = null) {
+            const classSelect = document.getElementById('modal-select-class-target');
+            if (!classSelect) return;
+
+            if (!loadedClasses || loadedClasses.length === 0) {
+                classSelect.innerHTML = '<option value="">-- គ្មានថ្នាក់រៀនទេ --</option>';
+                return;
+            }
+
+            let opts = '';
+            loadedClasses.forEach(c => {
+                const isSel = (selectedClassId && String(c.id) === String(selectedClassId)) ? 'selected' : '';
+                const name = c.full_name || c.name;
+                const teacher = c.instructor ? ` (គ្រូ: ${c.instructor})` : '';
+                opts += `<option value="${c.id}" ${isSel}>🏫 ${name} • ${c.room}${teacher}</option>`;
+            });
+            classSelect.innerHTML = opts;
+
+            // Update badge
+            const targetBadge = document.getElementById('target-class-indicator-badge');
+            if (targetBadge && classSelect.selectedOptions.length > 0) {
+                targetBadge.innerText = classSelect.selectedOptions[0].text.replace(/^[^\w\u1780-\u17FF]+/, '');
+            }
+        }
+
+        // Load & Render Students (ទាំងសិស្សទំនេរ និង សិស្សទាំងអស់)
+        async function loadUnassignedStudentsForClass(query = '') {
+            const selectElem = document.getElementById('modal-select-unassigned-student');
+            const cardListElem = document.getElementById('unassigned-students-card-list');
+            const countBadge = document.getElementById('available-students-count-badge');
+            const filterInfo = document.getElementById('unassigned-list-filter-info');
+
+            if (selectElem) selectElem.innerHTML = '<option value="">-- កំពុងទាញយកបញ្ជីសិស្ស... --</option>';
+            if (cardListElem) cardListElem.innerHTML = '<div class="col-12 text-center py-3 text-muted extra-small"><span class="spinner-border spinner-border-sm me-1 text-warning"></span> កំពុងទាញយកទិន្នន័យ...</div>';
+
+            try {
+                const targetClassNumeric = currentSelectedClassId ? String(currentSelectedClassId).replace(/\D/g, '') : '';
+                let url = `/api/available_students?q=${encodeURIComponent((query || '').trim())}`;
+                if (filterUnassignedOnlyMode) {
+                    url += '&unassigned_only=1';
+                } else if (targetClassNumeric) {
+                    url += `&class_id=${targetClassNumeric}`;
+                }
+
+                const res = await fetch(url);
+                const data = await res.json();
+
+                if (data.status === 'success' && Array.isArray(data.students)) {
+                    cachedUnassignedStudents = data.students;
+
+                    const labelType = filterUnassignedOnlyMode ? 'សិស្សទំនេរ' : 'សិស្សទាំងអស់';
+                    if (countBadge) {
+                        countBadge.innerText = `${labelType}: ${data.students.length} នាក់`;
+                    }
+                    if (filterInfo) {
+                        filterInfo.innerText = query ? `(លទ្ធផល: ${data.students.length} នាក់)` : '';
+                    }
+
+                    if (data.students.length === 0) {
+                        if (selectElem) {
+                            selectElem.innerHTML = '<option value="">⚠️ គ្មានសិស្សត្រូវតាមលក្ខខណ្ឌស្វែងរកនេះទេ</option>';
+                        }
+                        if (cardListElem) {
+                            cardListElem.innerHTML = `
+                                <div class="col-12 text-center py-4 text-muted">
+                                    <i class="bi bi-person-x fs-3 text-warning d-block mb-1"></i>
+                                    <span class="extra-small">${query ? 'រកមិនឃើញសិស្សឈ្មោះ ឬ ID នេះទេ' : 'មិនទាន់មានទិន្នន័យសិស្សនៅឡើយទេ'}</span>
+                                </div>
+                            `;
+                        }
+                        updateMultiSelectedUI();
+                        return;
+                    }
+
+                    // Populate Multi-Select Dropdown Options
+                    let opts = '';
+                    data.students.forEach(s => {
+                        const genderText = (s.gender === 'Female' || s.gender === 'ស្រី') ? 'ស្រី' : 'ប្រុស';
+                        const currentClassText = s.current_class_name ? ` [ថ្នាក់: ${s.current_class_name}]` : ' [គ្មានថ្នាក់]';
+                        const isSel = selectedStudentIdsSet.has(String(s.student_id));
+                        opts += `<option value="${s.student_id}" ${isSel ? 'selected' : ''} data-code="${s.student_code}" data-name="${s.full_name}" data-gender="${genderText}" data-phone="${s.phone || '-'}" data-class="${s.current_class_name || ''}">👨‍🎓 ${s.full_name} [${s.student_code}] (${genderText})${currentClassText}</option>`;
+                    });
+                    if (selectElem) selectElem.innerHTML = opts;
+
+                    // Populate Interactive Cards with Checkboxes
+                    renderUnassignedStudentCards(data.students);
+                    updateMultiSelectedUI();
+                }
+            } catch (err) {
+                console.error('Error fetching students:', err);
+                if (selectElem) selectElem.innerHTML = '<option value="">-- ជ្រើសរើសសិស្ស --</option>';
+                if (cardListElem) cardListElem.innerHTML = '<div class="col-12 text-center py-3 text-danger extra-small">បរាជ័យក្នុងការទាញយកសិស្ស</div>';
+            }
+        }
+
+        // Render Unassigned Student Cards Grid with Checkboxes
+        function renderUnassignedStudentCards(students) {
+            const cardListElem = document.getElementById('unassigned-students-card-list');
+            if (!cardListElem) return;
+
+            cardListElem.innerHTML = students.map(s => {
+                const isSelected = selectedStudentIdsSet.has(String(s.student_id));
+                const isFemale = s.gender === 'Female' || s.gender === 'ស្រី';
+                const genderBadge = isFemale
+                    ? '<span class="badge bg-danger-subtle text-danger border border-danger-subtle extra-small"><i class="bi bi-gender-female me-0.5"></i>ស្រី</span>'
+                    : '<span class="badge bg-info-subtle text-info border border-info-subtle extra-small"><i class="bi bi-gender-male me-0.5"></i>ប្រុស</span>';
+
+                const classBadge = s.current_class_name
+                    ? `<span class="badge bg-secondary-subtle text-light border border-secondary extra-small"><i class="bi bi-door-closed me-0.5"></i>${s.current_class_name}</span>`
+                    : `<span class="badge bg-success-subtle text-success border border-success-subtle extra-small"><i class="bi bi-patch-check me-0.5"></i>ទំនេរ</span>`;
+
+                return `
+                <div class="col-md-6">
+                    <div class="unassigned-student-card p-2.5 rounded-3 border d-flex align-items-center justify-content-between ${isSelected ? 'border-warning shadow-sm' : 'border-secondary'}"
+                         style="background: ${isSelected ? 'rgba(212,175,55,0.22)' : 'rgba(255,255,255,0.03)'}; cursor: pointer; transition: all 0.2s ease;"
+                         data-student-id="${s.student_id}" data-name="${s.full_name}" data-code="${s.student_code}" data-gender="${isFemale ? 'ស្រី' : 'ប្រុស'}" data-phone="${s.phone || '-'}" data-class="${s.current_class_name || ''}">
+                        <div class="d-flex align-items-center gap-2.5" style="pointer-events: none;">
+                            <input type="checkbox" class="form-check-input bg-dark border-secondary student-card-checkbox me-1" 
+                                   style="cursor:pointer; width: 18px; height: 18px; pointer-events: auto;" 
+                                   ${isSelected ? 'checked' : ''} 
+                                   data-student-id="${s.student_id}">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center ${isSelected ? 'bg-warning text-dark font-weight-bold' : 'text-warning border border-secondary'}" 
+                                 style="width: 34px; height: 34px; background: rgba(212,175,55,0.1); flex-shrink:0;">
+                                <i class="bi bi-person-fill fs-6"></i>
+                            </div>
+                            <div>
+                                <strong class="d-block text-white" style="font-size: 0.92rem; line-height: 1.2;">${s.full_name}</strong>
+                                <div class="d-flex align-items-center gap-1.5 mt-0.5">
+                                    <code class="text-warning extra-small fw-bold">${s.student_code}</code>
+                                    ${genderBadge}
+                                    ${classBadge}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end" style="pointer-events: none;">
+                            <span class="badge ${isSelected ? 'bg-warning text-dark' : 'bg-dark border border-secondary text-muted'} extra-small py-1 px-2 fw-bold">
+                                ${isSelected ? '<i class="bi bi-check2-square me-0.5"></i>បានរើស' : '<i class="bi bi-plus-lg me-0.5"></i>រើស'}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            // Click listener for each student card (Smooth toggle on whole card)
+            cardListElem.querySelectorAll('.unassigned-student-card').forEach(card => {
+                card.addEventListener('click', function (e) {
+                    const stId = this.getAttribute('data-student-id');
+                    const stName = this.getAttribute('data-name');
+                    const stCode = this.getAttribute('data-code');
+                    const stGender = this.getAttribute('data-gender');
+                    const stPhone = this.getAttribute('data-phone');
+                    toggleSelectStudent(stId, stName, stCode, stGender, stPhone);
+                });
+            });
+        }
+
+        // Toggle Student Selection
+        function toggleSelectStudent(stId, stName, stCode, stGender, stPhone) {
+            const sidStr = String(stId);
+            if (selectedStudentIdsSet.has(sidStr)) {
+                selectedStudentIdsSet.delete(sidStr);
+                selectedStudentsMap.delete(sidStr);
+            } else {
+                selectedStudentIdsSet.add(sidStr);
+                selectedStudentsMap.set(sidStr, {
+                    student_id: stId,
+                    full_name: stName,
+                    student_code: stCode,
+                    gender: stGender,
+                    phone: stPhone
+                });
+            }
+
+            updateMultiSelectedUI();
+        }
+
+        // Expose Remove Student from chips globally
+        window.removeSelectedStudentChip = function (stId) {
+            const sidStr = String(stId);
+            selectedStudentIdsSet.delete(sidStr);
+            selectedStudentsMap.delete(sidStr);
+            updateMultiSelectedUI();
+        };
+
+        // Update Multi-Selected Preview Container & Submit Button
+        function updateMultiSelectedUI() {
+            const countElem = document.getElementById('multi-selected-count');
+            const container = document.getElementById('selected-students-multi-container');
+            const pillsList = document.getElementById('selected-students-pills-list');
+            const submitBtn = document.getElementById('modal-s-submit-btn');
+            const selectElem = document.getElementById('modal-select-unassigned-student');
+
+            const count = selectedStudentIdsSet.size;
+
+            if (countElem) countElem.innerText = count;
+
+            if (container) {
+                if (count > 0) {
+                    container.classList.remove('d-none');
+                } else {
+                    container.classList.add('d-none');
+                }
+            }
+
+            if (pillsList) {
+                if (count === 0) {
+                    pillsList.innerHTML = '<span class="text-muted extra-small">មិនទាន់មានសិស្សត្រូវបានជ្រើសរើសនៅឡើយទេ</span>';
+                } else {
+                    let pillsHtml = '';
+                    selectedStudentsMap.forEach(st => {
+                        pillsHtml += `
+                            <div class="badge bg-dark border border-warning text-white p-2 d-inline-flex align-items-center gap-2 rounded-3 shadow-sm" style="font-size: 0.82rem;">
+                                <i class="bi bi-person-fill text-warning"></i>
+                                <span class="fw-bold">${st.full_name}</span>
+                                <code class="text-warning extra-small">${st.student_code}</code>
+                                <button type="button" class="btn-close btn-close-white ms-1" style="font-size: 0.55rem; cursor: pointer;" 
+                                        onclick="window.removeSelectedStudentChip('${st.student_id}')" title="ដកចេញ"></button>
+                            </div>
+                        `;
+                    });
+                    pillsList.innerHTML = pillsHtml;
+                }
+            }
+
+            if (submitBtn) {
+                if (count > 0) {
+                    submitBtn.innerHTML = `<i class="bi bi-person-plus-fill me-1"></i> បញ្ចូលសិស្សទាំង (${count}) នាក់ក្នុងថ្នាក់`;
+                } else {
+                    submitBtn.innerHTML = `<i class="bi bi-person-plus-fill me-1"></i> បញ្ចូលសិស្សក្នុងថ្នាក់`;
+                }
+            }
+
+            // Sync Multi-Select Dropdown
+            if (selectElem && selectElem.options) {
+                Array.from(selectElem.options).forEach(opt => {
+                    opt.selected = selectedStudentIdsSet.has(String(opt.value));
+                });
+            }
+
+            // Sync Card Visual Highlights
+            const cardListElem = document.getElementById('unassigned-students-card-list');
+            if (cardListElem) {
+                cardListElem.querySelectorAll('.unassigned-student-card').forEach(card => {
+                    const stId = card.getAttribute('data-student-id');
+                    const isSel = selectedStudentIdsSet.has(String(stId));
+                    const chk = card.querySelector('.student-card-checkbox');
+                    const badge = card.querySelector('.badge:last-child');
+                    const iconBox = card.querySelector('.rounded-circle');
+
+                    if (chk) chk.checked = isSel;
+
+                    if (isSel) {
+                        card.classList.remove('border-secondary');
+                        card.classList.add('border-warning', 'shadow-sm');
+                        card.style.background = 'rgba(212,175,55,0.22)';
+                        if (badge) {
+                            badge.className = 'badge bg-warning text-dark extra-small py-1 px-2 fw-bold';
+                            badge.innerHTML = '<i class="bi bi-check2-square me-0.5"></i>បានរើស';
+                        }
+                        if (iconBox) {
+                            iconBox.className = 'rounded-circle d-flex align-items-center justify-content-center bg-warning text-dark fw-bold';
+                        }
+                    } else {
+                        card.classList.add('border-secondary');
+                        card.classList.remove('border-warning', 'shadow-sm');
+                        card.style.background = 'rgba(255,255,255,0.03)';
+                        if (badge) {
+                            badge.className = 'badge bg-dark border border-secondary text-muted extra-small py-1 px-2 fw-bold';
+                            badge.innerHTML = '<i class="bi bi-plus-lg me-0.5"></i>រើស';
+                        }
+                        if (iconBox) {
+                            iconBox.className = 'rounded-circle d-flex align-items-center justify-content-center text-warning border border-secondary';
+                        }
+                    }
+                });
+            }
+        }
+
+        // Setup Live Search Filter & Multi-Select Controls
+        function setupStudentLiveSearch() {
+            const searchInput = document.getElementById('modal-s-search');
+            const clearBtn = document.getElementById('btn-clear-student-search');
+            const selectElem = document.getElementById('modal-select-unassigned-student');
+            const btnSelectAll = document.getElementById('btn-select-all-students');
+            const btnDeselectTop = document.getElementById('btn-deselect-all-students-top');
+            const btnDeselectBot = document.getElementById('btn-deselect-all-students-bot');
+            const btnFilterAll = document.getElementById('filter-all-students-btn');
+            const btnFilterUnassigned = document.getElementById('filter-unassigned-students-btn');
+            const classSelectTarget = document.getElementById('modal-select-class-target');
+
+            let debounceTimer = null;
+
+            if (classSelectTarget) {
+                classSelectTarget.addEventListener('change', function () {
+                    currentSelectedClassId = this.value;
+                    const targetBadge = document.getElementById('target-class-indicator-badge');
+                    if (targetBadge && this.selectedOptions.length > 0) {
+                        targetBadge.innerText = this.selectedOptions[0].text.replace(/^[^\w\u1780-\u17FF]+/, '');
+                    }
+                    loadUnassignedStudentsForClass(searchInput ? searchInput.value : '');
+                });
+            }
+
+            if (btnFilterAll) {
+                btnFilterAll.addEventListener('click', function () {
+                    filterUnassignedOnlyMode = false;
+                    btnFilterAll.className = 'btn btn-warning btn-sm py-1 px-2.5 extra-small fw-bold text-dark';
+                    if (btnFilterUnassigned) btnFilterUnassigned.className = 'btn btn-outline-secondary btn-sm py-1 px-2.5 extra-small text-white';
+                    loadUnassignedStudentsForClass(searchInput ? searchInput.value : '');
+                });
+            }
+
+            if (btnFilterUnassigned) {
+                btnFilterUnassigned.addEventListener('click', function () {
+                    filterUnassignedOnlyMode = true;
+                    btnFilterUnassigned.className = 'btn btn-warning btn-sm py-1 px-2.5 extra-small fw-bold text-dark';
+                    if (btnFilterAll) btnFilterAll.className = 'btn btn-outline-secondary btn-sm py-1 px-2.5 extra-small text-white';
+                    loadUnassignedStudentsForClass(searchInput ? searchInput.value : '');
+                });
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', function () {
+                    clearTimeout(debounceTimer);
+                    const query = this.value;
+                    debounceTimer = setTimeout(() => {
+                        loadUnassignedStudentsForClass(query);
+                    }, 250);
+                });
+            }
+
+            if (clearBtn) {
+                clearBtn.addEventListener('click', function () {
+                    if (searchInput) {
+                        searchInput.value = '';
+                        searchInput.focus();
+                    }
+                    loadUnassignedStudentsForClass('');
+                });
+            }
+
+            // Select All Button
+            if (btnSelectAll) {
+                btnSelectAll.addEventListener('click', function () {
+                    if (Array.isArray(cachedUnassignedStudents) && cachedUnassignedStudents.length > 0) {
+                        cachedUnassignedStudents.forEach(s => {
+                            const sidStr = String(s.student_id);
+                            selectedStudentIdsSet.add(sidStr);
+                            selectedStudentsMap.set(sidStr, {
+                                student_id: s.student_id,
+                                full_name: s.full_name,
+                                student_code: s.student_code,
+                                gender: s.gender,
+                                phone: s.phone || '-'
+                            });
+                        });
+                        updateMultiSelectedUI();
+                    }
+                });
+            }
+
+            // Deselect All Buttons
+            const deselectAll = function () {
+                selectedStudentIdsSet.clear();
+                selectedStudentsMap.clear();
+                updateMultiSelectedUI();
+            };
+
+            if (btnDeselectTop) btnDeselectTop.addEventListener('click', deselectAll);
+            if (btnDeselectBot) btnDeselectBot.addEventListener('click', deselectAll);
+
+            // Multi-Select Dropdown Change Listener
+            if (selectElem) {
+                selectElem.addEventListener('change', function () {
+                    const selectedOpts = Array.from(this.selectedOptions);
+                    selectedStudentIdsSet.clear();
+                    selectedStudentsMap.clear();
+
+                    selectedOpts.forEach(opt => {
+                        if (opt.value) {
+                            const sidStr = String(opt.value);
+                            selectedStudentIdsSet.add(sidStr);
+                            selectedStudentsMap.set(sidStr, {
+                                student_id: opt.value,
+                                full_name: opt.getAttribute('data-name') || 'សិស្ស',
+                                student_code: opt.getAttribute('data-code') || '',
+                                gender: opt.getAttribute('data-gender') || '-',
+                                phone: opt.getAttribute('data-phone') || '-'
+                            });
+                        }
+                    });
+
+                    updateMultiSelectedUI();
+                });
+            }
+        }
+
+        setupStudentLiveSearch();
+
+        // Render Student Table Rows matching Database fields
         function renderClassStudentTableRows(studentsList) {
             const tbody = document.getElementById('class-scores-table-body');
             if (!tbody) return;
 
-            tbody.innerHTML = studentsList.map(s => `
+            if (studentsList.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="text-center py-4 text-muted">
+                            <i class="bi bi-inbox fs-3 d-block mb-1"></i> មិនមានទិន្នន័យសិស្សក្នុងតារាងនេះទេ
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = studentsList.map(s => {
+                const genderBadge = (s.gender === 'Female' || s.gender === 'ស្រី')
+                    ? '<span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1"><i class="bi bi-gender-female me-1"></i>ស្រី (Female)</span>'
+                    : '<span class="badge bg-info-subtle text-info border border-info-subtle px-2 py-1"><i class="bi bi-gender-male me-1"></i>ប្រុស (Male)</span>';
+
+                const statusBadge = (s.status === 'Active')
+                    ? '<span class="badge bg-success-subtle text-success border border-success px-2.5 py-1 fw-bold"><i class="bi bi-check-circle-fill me-1"></i>កំពុងសិក្សា (Active)</span>'
+                    : '<span class="badge bg-secondary-subtle text-secondary border border-secondary px-2.5 py-1 fw-bold"><i class="bi bi-dash-circle me-1"></i>ផ្អាក (Inactive)</span>';
+
+                const parentsDisplay = `
+                    <div class="extra-small" style="line-height: 1.35;">
+                        <div><strong class="text-white">ឪពុក:</strong> ${s.father_name || '-'} <span class="text-muted">(${s.father_phone || '-'})</span></div>
+                        <div><strong class="text-white">ម្តាយ:</strong> ${s.mother_name || '-'} <span class="text-muted">(${s.mother_phone || '-'})</span></div>
+                    </div>
+                `;
+
+                return `
                 <tr>
                     <td>
                         <div class="d-flex align-items-center gap-2.5">
-                            <img src="${s.avatar}" class="rounded-circle border border-secondary" width="34" height="34" alt="${s.name}">
-                            <span class="fw-semibold text-white" style="font-size: 0.94rem;">${s.name}</span>
+                            <div class="rounded-circle d-flex align-items-center justify-content-center border border-secondary text-warning" style="width: 36px; height: 36px; background: rgba(212,175,55,0.1); flex-shrink: 0;">
+                                <i class="bi bi-person-fill fs-6"></i>
+                            </div>
+                            <div>
+                                <span class="fw-semibold text-white d-block" style="font-size: 0.94rem;">${s.full_name}</span>
+                                <span class="text-muted extra-small">ចុះឈ្មោះ: ${s.enrollment_date || '2025-10-01'}</span>
+                            </div>
                         </div>
                     </td>
-                    <td><code>${s.id}</code></td>
-                    <td><span class="badge ${s.gender === 'ស្រី' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'} px-2.5 py-1">${s.gender}</span></td>
-                    <td><span class="fw-medium text-white">${s.age}</span></td>
-                    <td>
-                        <span class="badge text-dark fw-bold" style="background:#d4af37; padding:4px 10px;">${s.grade} (${s.score_percent})</span>
-                    </td>
-                    <td><span class="badge bg-warning-subtle text-warning border border-warning px-2.5 py-1 fw-bold">${s.excused_absent}</span></td>
-                    <td><span class="badge ${s.unexcused_absent === '០ ថ្ងៃ' ? 'bg-dark border border-secondary text-muted' : 'bg-danger-subtle text-danger border border-danger'} px-2.5 py-1 fw-bold">${s.unexcused_absent}</span></td>
-                    <td><span class="text-success fw-bold">${s.total_attendance}</span></td>
+                    <td><code class="fw-bold text-warning">${s.student_code}</code></td>
+                    <td>${genderBadge}</td>
+                    <td><span class="text-white small">${s.date_of_birth}</span></td>
+                    <td><span class="text-info small"><i class="bi bi-telephone me-1"></i>${s.phone || '-'}</span></td>
+                    <td>${parentsDisplay}</td>
+                    <td><span class="text-white-50 extra-small d-inline-block text-truncate" style="max-width: 170px;" title="${s.address || ''}">${s.address || '-'}</span></td>
+                    <td>${statusBadge}</td>
                     <td class="text-end">
-                        <button class="btn-action-edit me-1" title="កែប្រែ"><i class="bi bi-pencil-square me-1"></i>កែប្រែ</button>
-                        <button class="btn-action-view" title="មើលព័ត៌មាន"><i class="bi bi-eye me-1"></i>មើល</button>
+                        <button class="btn-action-view me-1" data-student-code="${s.student_code}" title="មើលព័ត៌មានលម្អិត"><i class="bi bi-eye me-1"></i>មើល</button>
+                        <button class="btn-action-delete btn-action-remove-student text-danger border border-danger-subtle bg-danger-subtle px-2 py-1 rounded-2 extra-small fw-bold" data-student-id="${s.student_id}" data-name="${s.full_name}" title="ដកចេញពីថ្នាក់"><i class="bi bi-person-x me-1"></i>ដកចេញ</button>
                     </td>
                 </tr>
-            `).join('');
+                `;
+            }).join('');
+
+            // Click listener for "មើល សិស្ស" (View) button to open modal
+            tbody.querySelectorAll('.btn-action-view').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const studentCode = this.getAttribute('data-student-code');
+                    openStudentDetailModal(studentCode);
+                });
+            });
+
+            // Click listener for "ដកចេញ" (Remove from Class) button
+            tbody.querySelectorAll('.btn-action-remove-student').forEach(btn => {
+                btn.addEventListener('click', async function () {
+                    const stId = this.getAttribute('data-student-id');
+                    const stName = this.getAttribute('data-name');
+                    const numericClassId = parseInt(String(currentSelectedClassId).replace(/\D/g, '')) || 0;
+
+                    if (!confirm(`តើអ្នកពិតជាចង់ដកសិស្ស "${stName}" ចេញពីថ្នាក់នេះមែនទេ?`)) return;
+
+                    try {
+                        const res = await fetch('/api/remove_student_from_class', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                class_id: numericClassId,
+                                student_id: stId
+                            })
+                        });
+                        const data = await res.json();
+                        if (data.status === 'success') {
+                            await loadStudentsForClass(currentSelectedClassId);
+                            await fetchClassesFromAPI();
+
+                            const toast = document.getElementById('class-student-alert-toast');
+                            if (toast) {
+                                document.getElementById('class-student-alert-msg').innerText = `បានដកសិស្ស "${stName}" ចេញពីថ្នាក់ដោយជោគជ័យ!`;
+                                toast.classList.remove('d-none');
+                                setTimeout(() => toast.classList.add('d-none'), 4000);
+                            }
+                        } else {
+                            alert(data.message || 'បរាជ័យក្នុងការដកសិស្សចេញពីថ្នាក់!');
+                        }
+                    } catch (err) {
+                        console.error('Error removing student from class:', err);
+                        alert('បរាជ័យក្នុងការដកសិស្ស: ' + err.message);
+                    }
+                });
+            });
+        }
+
+        // Open Student Detail Profile Modal
+        function openStudentDetailModal(studentCode) {
+            const s = loadedStudentsInClass.find(item => item.student_code === studentCode);
+            if (!s) return;
+
+            const selectedClassTitle = document.getElementById('selected-class-title')?.innerText || 'ថ្នាក់ទី ១២-A';
+            const teacherName = document.getElementById('kpi-homeroom-teacher')?.innerText || 'ស្រី ពេជ្រ';
+
+            // Populate Modal Header
+            const idElem = document.getElementById('view-m-id');
+            if (idElem) idElem.innerText = s.student_code;
+            const nameElem = document.getElementById('view-m-name');
+            if (nameElem) nameElem.innerText = s.full_name;
+            const classElem = document.getElementById('view-m-class-badge');
+            if (classElem) classElem.innerText = selectedClassTitle;
+
+            // Status Badge
+            const statusElem = document.getElementById('view-m-status');
+            if (statusElem) {
+                if (s.status === 'Active') {
+                    statusElem.className = 'badge bg-success-subtle text-success border border-success px-2.5 py-1 fw-bold';
+                    statusElem.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> កំពុងសិក្សា (Active)';
+                } else {
+                    statusElem.className = 'badge bg-secondary-subtle text-secondary border border-secondary px-2.5 py-1 fw-bold';
+                    statusElem.innerHTML = '<i class="bi bi-dash-circle me-1"></i> ផ្អាកការសិក្សា (Inactive)';
+                }
+            }
+
+            // Populate Personal & Academic Info
+            document.getElementById('view-m-gender').innerText = (s.gender === 'Female' || s.gender === 'ស្រី') ? 'ស្រី (Female)' : 'ប្រុស (Male)';
+            document.getElementById('view-m-dob').innerText = s.date_of_birth;
+            document.getElementById('view-m-phone').innerText = s.phone || 'គ្មានលេខ';
+            document.getElementById('view-m-enroll-date').innerText = s.enrollment_date || '2025-10-01';
+            document.getElementById('view-m-class-info').innerText = `${selectedClassTitle} (គ្រូបន្ទុក: ${teacherName})`;
+
+            // Parents Info
+            document.getElementById('view-m-father-name').innerText = s.father_name || '-';
+            document.getElementById('view-m-father-phone').innerText = s.father_phone || '-';
+            document.getElementById('view-m-mother-name').innerText = s.mother_name || '-';
+            document.getElementById('view-m-mother-phone').innerText = s.mother_phone || '-';
+
+            // Address
+            document.getElementById('view-m-address').innerText = s.address || 'មិនទាន់បញ្ជាក់';
+
+            // Show Modal
+            const modalElem = document.getElementById('classStudentDetailModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                bsModal.show();
+            }
         }
 
         const backBtn = document.getElementById('back-to-classes-btn');
@@ -764,26 +1612,41 @@
             });
         }
 
-        const searchInput = document.getElementById('class-search-input');
-        if (searchInput) {
-            searchInput.addEventListener('input', function () {
-                const q = this.value.toLowerCase().trim();
-                const filtered = loadedClasses.filter(c =>
-                    c.name.toLowerCase().includes(q) ||
+        const classSearchInput = document.getElementById('class-search-input');
+        const scoresSearchInput = document.getElementById('scores-search-input');
+        let currentGradeFilter = 'All';
+
+        function filterAndRenderClasses() {
+            const q = (classSearchInput ? classSearchInput.value : '').toLowerCase().trim();
+            const filtered = loadedClasses.filter(c => {
+                const matchSearch = !q ||
+                    (c.name && c.name.toLowerCase().includes(q)) ||
                     (c.full_name && c.full_name.toLowerCase().includes(q)) ||
-                    c.instructor.toLowerCase().includes(q)
-                );
-                renderClassBoxes(filtered);
+                    (c.instructor && c.instructor.toLowerCase().includes(q)) ||
+                    (c.grade_level && c.grade_level.toLowerCase().includes(q)) ||
+                    (c.academic_year && c.academic_year.toLowerCase().includes(q));
+
+                const matchGrade = currentGradeFilter === 'All' ||
+                    (c.grade_level && c.grade_level.toLowerCase().includes(currentGradeFilter.toLowerCase())) ||
+                    (c.name && c.name.toLowerCase().includes(currentGradeFilter.toLowerCase()));
+
+                return matchSearch && matchGrade;
             });
+            renderClassBoxes(filtered);
         }
 
-        const scoresSearchInput = document.getElementById('scores-search-input');
+        if (classSearchInput) {
+            classSearchInput.addEventListener('input', filterAndRenderClasses);
+        }
+
         if (scoresSearchInput) {
             scoresSearchInput.addEventListener('input', function () {
                 const q = this.value.toLowerCase().trim();
                 const filtered = loadedStudentsInClass.filter(s =>
-                    s.name.toLowerCase().includes(q) ||
-                    s.id.toLowerCase().includes(q)
+                    (s.full_name && s.full_name.toLowerCase().includes(q)) ||
+                    (s.student_code && s.student_code.toLowerCase().includes(q)) ||
+                    (s.phone && s.phone.toLowerCase().includes(q)) ||
+                    (s.father_name && s.father_name.toLowerCase().includes(q))
                 );
                 renderClassStudentTableRows(filtered);
             });
@@ -793,16 +1656,60 @@
             btn.addEventListener('click', function () {
                 document.querySelectorAll('#track-filter-pills .filter-pill-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-
-                const track = this.getAttribute('data-track');
-                if (track === 'All') {
-                    renderClassBoxes(loadedClasses);
-                } else {
-                    const filtered = loadedClasses.filter(c => c.track.toLowerCase() === track.toLowerCase());
-                    renderClassBoxes(filtered);
-                }
+                currentGradeFilter = this.getAttribute('data-grade') || 'All';
+                filterAndRenderClasses();
             });
         });
+
+        const yearFilterSelect = document.getElementById('class-academic-year-filter');
+        if (yearFilterSelect) {
+            yearFilterSelect.addEventListener('change', function () {
+                fetchClassesFromAPI(this.value);
+            });
+        }
+
+        // Load unassigned teachers into select dropdown
+        function loadAvailableTeachersForSelect(selectedTeacherId = null) {
+            const selectElem = document.getElementById('adm-c-instructor');
+            if (!selectElem) return;
+
+            selectElem.innerHTML = '<option value="">-- កំពុងទាញយកគ្រូដែលមិនទាន់មានថ្នាក់... --</option>';
+
+            fetch('/api/available_teachers')
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.status === 'success' && data.teachers) {
+                        if (data.teachers.length === 0) {
+                            selectElem.innerHTML = '<option value="">⚠️ គ្មានគ្រូទំនេរទេ (គ្រូទាំងអស់មានថ្នាក់បង្រៀនរួចហើយ)</option>';
+                            return;
+                        }
+
+                        let opts = '<option value="">-- សូមជ្រើសរើសគ្រូបន្ទុកថ្នាក់ (Homeroom Instructor) --</option>';
+                        data.teachers.forEach(t => {
+                            const isSel = selectedTeacherId && String(t.teacher_id) === String(selectedTeacherId) ? 'selected' : '';
+                            const code = t.teacher_code ? ` [${t.teacher_code}]` : '';
+                            const spec = t.specialty ? ` - ឯកទេស: ${t.specialty}` : '';
+                            opts += `<option value="${t.teacher_id}" data-name="${t.full_name}" data-code="${t.teacher_code || ''}" ${isSel}>👨‍🏫 ${t.full_name}${code}${spec}</option>`;
+                        });
+                        selectElem.innerHTML = opts;
+                    } else {
+                        selectElem.innerHTML = '<option value="">-- ជ្រើសរើសគ្រូបន្ទុកថ្នាក់ --</option>';
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching available teachers:', err);
+                    selectElem.innerHTML = '<option value="">-- ជ្រើសរើសគ្រូបន្ទុកថ្នាក់ --</option>';
+                });
+        }
+
+        // Trigger loading available teachers on modal open and initial load
+        loadAvailableTeachersForSelect();
+        const modalElem = document.getElementById('addNewClassModal');
+        if (modalElem) {
+            modalElem.addEventListener('show.bs.modal', function () {
+                loadAvailableTeachersForSelect();
+            });
+        }
 
         // Add Class Form Submission Handler
         const addClassForm = document.getElementById('admin-add-class-form');
@@ -811,30 +1718,54 @@
                 e.preventDefault();
 
                 const cName = document.getElementById('adm-c-name').value.trim();
-                const cFullname = document.getElementById('adm-c-fullname').value.trim();
                 const cGrade = document.getElementById('adm-c-grade').value;
                 const cTrack = document.getElementById('adm-c-track').value;
                 const cRoom = document.getElementById('adm-c-room').value.trim();
-                const cInstructor = document.getElementById('adm-c-instructor').value.trim();
-                const cCap = parseInt(document.getElementById('adm-c-capacity').value) || 38;
 
-                if (cName && cInstructor) {
-                    loadedClasses.unshift({
+                const selectInstructor = document.getElementById('adm-c-instructor');
+                const teacherId = selectInstructor ? selectInstructor.value : null;
+                const selectedOpt = selectInstructor && selectInstructor.selectedOptions.length > 0 ? selectInstructor.selectedOptions[0] : null;
+                const cInstructor = selectedOpt && teacherId ? (selectedOpt.getAttribute('data-name') || selectedOpt.text) : 'លោកគ្រូ/អ្នកគ្រូ';
+
+                if (cName) {
+                    const newClassObj = {
                         id: `class-${Date.now()}`,
                         name: cName,
-                        full_name: cFullname || `ថ្នាក់ទី ${cName}`,
+                        full_name: cName.startsWith('ថ្នាក់') ? cName : `ថ្នាក់ទី ${cName}`,
                         grade_level: cGrade,
                         track: cTrack,
-                        room: cRoom,
-                        instructor: cInstructor,
+                        room: cRoom || 'បន្ទប់ ៣០២',
+                        instructor: cInstructor || 'លោកគ្រូ/អ្នកគ្រូ',
+                        teacher_id: teacherId ? parseInt(teacherId) : null,
                         avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80",
-                        total_students: cCap,
-                        female_count: Math.floor(cCap / 2),
-                        male_count: cCap - Math.floor(cCap / 2),
-                        gpa: "3.45 GPA",
-                        attendance: "96.2%"
-                    });
+                        students_count: 0,
+                        female_count: 0,
+                        male_count: 0,
+                        gpa: "0.00 GPA",
+                        attendance: "100%"
+                    };
 
+                    // Send to backend API
+                    fetch('/api/create_class', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            class_name: newClassObj.full_name,
+                            grade: cGrade,
+                            room: cRoom,
+                            teacher_id: teacherId ? parseInt(teacherId) : null
+                        })
+                    }).then(res => res.json())
+                        .then(data => {
+                            console.log('Class created in API:', data);
+                            if (data && data.class && data.class.class_id) {
+                                newClassObj.id = `class-${data.class.class_id}`;
+                            }
+                            // Refresh available teachers dropdown for future creations
+                            loadAvailableTeachersForSelect();
+                        }).catch(err => console.error('Class API error:', err));
+
+                    loadedClasses.unshift(newClassObj);
                     renderClassBoxes(loadedClasses);
 
                     const modalElem = document.getElementById('addNewClassModal');
@@ -847,41 +1778,263 @@
             });
         }
 
-        // Initial Render
+        // Helper to convert numbers to Khmer Numerals
+        function toKhmerNum(num) {
+            const khmerDigits = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩'];
+            return String(num).replace(/[0-9]/g, d => khmerDigits[d]);
+        }
+
+        // Open Add Student Modal (សម្រាប់ជ្រើសរើសសិស្សចូលក្នុងថ្នាក់)
+        function openAddStudentModal(classId = null) {
+            if (classId) {
+                currentSelectedClassId = classId;
+            } else if (!currentSelectedClassId && loadedClasses.length > 0) {
+                currentSelectedClassId = loadedClasses[0].id;
+            }
+
+            const selectedClass = loadedClasses.find(c => String(c.id) === String(currentSelectedClassId)) || (loadedClasses[0] || { full_name: 'ថ្នាក់រៀន', name: 'ថ្នាក់រៀន' });
+            const classTitle = selectedClass.full_name || selectedClass.name;
+
+            const badgeElem = document.getElementById('modal-add-student-class-badge');
+            if (badgeElem) badgeElem.innerText = classTitle;
+
+            const targetBadge = document.getElementById('target-class-indicator-badge');
+            if (targetBadge) targetBadge.innerText = classTitle;
+
+            const searchInput = document.getElementById('modal-s-search');
+            if (searchInput) searchInput.value = '';
+
+            // Populate target class dropdown and set selection
+            populateModalTargetClassSelect(currentSelectedClassId);
+
+            // Clear previous selection
+            selectedStudentIdsSet.clear();
+            selectedStudentsMap.clear();
+            updateMultiSelectedUI();
+
+            // Load students from API
+            loadUnassignedStudentsForClass('');
+
+            const modalElem = document.getElementById('addStudentToClassModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                bsModal.show();
+            }
+        }
+
+        // Open Add Student button click listener
+        const openAddBtn = document.getElementById('btn-open-add-student-modal');
+        if (openAddBtn) {
+            openAddBtn.addEventListener('click', function () {
+                openAddStudentModal(currentSelectedClassId);
+            });
+        }
+
+        // Add Student to Class Form Submission Handler (API Connected - Multi-Select Batch)
+        const addStudentForm = document.getElementById('admin-add-student-to-class-form');
+        if (addStudentForm) {
+            addStudentForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const submitBtn = document.getElementById('modal-s-submit-btn');
+                const origBtnText = submitBtn ? submitBtn.innerHTML : '';
+
+                if (selectedStudentIdsSet.size === 0) {
+                    alert('សូមជ្រើសរើសសិស្សយ៉ាងហោចណាស់ម្នាក់ (Please select at least one student)!');
+                    return;
+                }
+
+                const targetClassVal = document.getElementById('modal-select-class-target')?.value || currentSelectedClassId;
+                const numericClassId = parseInt(String(targetClassVal).replace(/\D/g, '')) || 0;
+                if (!numericClassId) {
+                    alert('សូមជ្រើសរើសថ្នាក់រៀនគោលដៅជាមុនសិន!');
+                    return;
+                }
+
+                const studentIdsArray = Array.from(selectedStudentIdsSet);
+
+                try {
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> កំពុងបញ្ចូលសិស្ស (${studentIdsArray.length}) នាក់...`;
+                    }
+
+                    const res = await fetch('/api/add_student_to_class', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            class_id: numericClassId,
+                            student_ids: studentIdsArray
+                        })
+                    });
+
+                    const resData = await res.json();
+                    if (resData.status !== 'success') {
+                        alert(resData.message || 'មានបញ្ហាក្នុងការបញ្ចូលសិស្សក្នុងថ្នាក់!');
+                        return;
+                    }
+
+                    const alertMessage = resData.message || `✅ បានបញ្ចូលសិស្សចំនួន ${resData.added_count || studentIdsArray.length} នាក់ទៅក្នុងថ្នាក់ដោយជោគជ័យ!`;
+
+                    // Reload class students & class boxes from Database
+                    if (currentSelectedClassId) {
+                        await loadStudentsForClass(currentSelectedClassId);
+                    }
+                    await fetchClassesFromAPI();
+
+                    // Hide Modal
+                    const modalElem = document.getElementById('addStudentToClassModal');
+                    if (modalElem && typeof bootstrap !== 'undefined') {
+                        const bsModal = bootstrap.Modal.getInstance(modalElem);
+                        if (bsModal) bsModal.hide();
+                    }
+
+                    // Show Success Toast Notification
+                    const toast = document.getElementById('class-student-alert-toast');
+                    if (toast) {
+                        const msgEl = document.getElementById('class-student-alert-msg');
+                        if (msgEl) msgEl.innerText = alertMessage;
+                        toast.classList.remove('d-none');
+                        setTimeout(() => {
+                            toast.classList.add('d-none');
+                        }, 5000);
+                    }
+                } catch (err) {
+                    console.error('Error adding students to class:', err);
+                    alert('បរាជ័យក្នុងការបញ្ចូលសិស្ស: ' + err.message);
+                } finally {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = origBtnText;
+                    }
+                }
+            });
+        }
+
+        // Fetch Academic Years to Populate Selector
+        let academicYearsList = [];
+        async function loadAcademicYearsSelector() {
+            try {
+                const res = await fetch('/api/academic_years');
+                const data = await res.json();
+                if (data.status === 'success' && Array.isArray(data.academic_years)) {
+                    academicYearsList = data.academic_years;
+                    const sel = document.getElementById('class-academic-year-filter');
+                    if (sel) {
+                        const curVal = sel.value;
+                        let html = `
+                            <option value="active" class="bg-dark text-warning">⚡ ឆ្នាំសិក្សាសកម្ម (បច្ចុប្បន្ន)</option>
+                            <option value="all" class="bg-dark text-white">📚 គ្រប់ឆ្នាំសិក្សាទាំងអស់</option>
+                        `;
+                        data.academic_years.forEach(y => {
+                            const isAct = y.status === 'Active' ? ' (សកម្ម)' : '';
+                            html += `<option value="${y.academic_year_id}" class="bg-dark text-white">🗓️ ឆ្នាំសិក្សា ${y.academic_year}${isAct}</option>`;
+                        });
+                        sel.innerHTML = html;
+                        if (curVal) sel.value = curVal;
+                    }
+                }
+            } catch (err) {
+                console.error('Fetch academic years error:', err);
+            }
+        }
+
+        // Fetch Classes from Database API
+        async function fetchClassesFromAPI(yearParam = 'active') {
+            try {
+                let url = '/api/classes';
+                if (yearParam === 'all') {
+                    url = '/api/classes?all=1';
+                } else if (yearParam && yearParam !== 'active') {
+                    url = `/api/classes?academic_year_id=${yearParam}`;
+                }
+
+                const res = await fetch(url);
+                const data = await res.json();
+                if (data.status === 'success' && Array.isArray(data.classes)) {
+                    const mappedClasses = data.classes.map(c => {
+                        const avatar = (c.instructor_gender && c.instructor_gender.toLowerCase().includes('fem'))
+                            ? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80'
+                            : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80';
+
+                        const studentsCount = parseInt(c.students_count) || 0;
+                        const femaleCount = parseInt(c.female_count) || 0;
+                        const maleCount = parseInt(c.male_count) || Math.max(0, studentsCount - femaleCount);
+                        const passed = studentsCount > 0 ? Math.round(studentsCount * 0.9) : 0;
+                        const failed = studentsCount > 0 ? (studentsCount - passed) : 0;
+                        const passRate = studentsCount > 0 ? "90%" : "0%";
+
+                        return {
+                            id: `class-${c.class_id}`,
+                            class_id: c.class_id,
+                            name: c.class_name || `ថ្នាក់ទី ${c.grade || ''}`,
+                            full_name: c.class_name || `ថ្នាក់ទី ${c.grade || ''}`,
+                            grade_level: c.grade || 'Grade 10',
+                            track: c.grade || 'Grade 10',
+                            academic_year: c.academic_year || '',
+                            academic_year_id: c.academic_year_id || null,
+                            room: c.room || 'បន្ទប់ ៣០២',
+                            instructor: c.instructor || 'មិនទាន់មានគ្រូបន្ទុក',
+                            teacher_id: c.teacher_id || null,
+                            specialty: c.specialty || c.instructor_specialty || '',
+                            instructor_avatar: avatar,
+                            students_count: studentsCount,
+                            female_count: femaleCount,
+                            male_count: maleCount,
+                            passed_count: passed,
+                            failed_count: failed,
+                            pass_rate: passRate,
+                            icon: "bi-bookmark-star"
+                        };
+                    });
+                    loadedClasses.length = 0;
+                    loadedClasses.push(...mappedClasses);
+                    filterAndRenderClasses();
+                }
+            } catch (err) {
+                console.error('Fetch classes error:', err);
+            }
+        }
+
+        // Initial Render & Load
         renderClassBoxes(loadedClasses);
+        loadAcademicYearsSelector();
+        fetchClassesFromAPI('active');
     })();
 </script>
 
 <!-- Modal: Add New Class Form Modal -->
 <div class="modal fade" id="addNewClassModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
             <div class="modal-header border-bottom border-dark p-4">
                 <div class="d-flex align-items-center gap-2.5">
-                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning"
+                        style="color:#d4af37 !important;">
                         <i class="bi bi-door-open-fill fs-5"></i>
                     </div>
                     <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">ប្រព័ន្ធគ្រប់គ្រងថ្នាក់រៀន</span>
+                        <span class="badge text-white fw-bold mb-1"
+                            style="background:#d4af37;">ប្រព័ន្ធគ្រប់គ្រងថ្នាក់រៀន</span>
                         <h4 class="fw-bold text-white mb-0">ទម្រង់បង្កើតថ្នាក់រៀនថ្មី (Create New Class Form)</h4>
                     </div>
                 </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
                 <form id="admin-add-class-form">
                     <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះថ្នាក់រៀន (Short Class Name)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-c-name" placeholder="ឧ. ១២-A, ១១-B, ១០-C" required>
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះថ្នាក់រៀន
+                                (Short Class Name)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-c-name"
+                                placeholder="ឧ. ១២-A, ១១-B, ១០-C" required>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះថ្នាក់ពេញ (Full Class Title)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-c-fullname" placeholder="ឧ. ថ្នាក់ទី ១២-A (វិទ្យាសាស្ត្រពិត)" required>
-                        </div>
-
                         <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">កម្រិតថ្នាក់ (Grade Level)</label>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កម្រិតថ្នាក់ (Grade
+                                Level)</label>
                             <select class="form-select bg-dark text-white border-secondary" id="adm-c-grade" required>
                                 <option value="Grade 12" selected>🏆 ថ្នាក់ទី ១២ (Grade 12)</option>
                                 <option value="Grade 11">📘 ថ្នាក់ទី ១១ (Grade 11)</option>
@@ -889,7 +2042,8 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ផ្នែកសិក្សា (Track)</label>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ផ្នែកសិក្សា
+                                (Track)</label>
                             <select class="form-select bg-dark text-white border-secondary" id="adm-c-track" required>
                                 <option value="Science" selected>🧪 វិទ្យាសាស្ត្រពិត (Science)</option>
                                 <option value="Social">📜 វិទ្យាសាស្ត្រសង្គម (Social)</option>
@@ -897,23 +2051,29 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">បន្ទប់រៀន (Room Number)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-c-room" placeholder="ឧ. បន្ទប់ ៣០២" required>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">បន្ទប់រៀន (Room
+                                Number)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-c-room"
+                                placeholder="ឧ. បន្ទប់ ៣០២" required>
                         </div>
 
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">គ្រូបន្ទុកថ្នាក់ (Homeroom Instructor)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-c-instructor" placeholder="ឧ. លោក សារ៉ា ជិនឃីន" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ចំនួនសិស្សកំណត់ (Student Capacity)</label>
-                            <input type="number" class="form-control bg-dark text-white border-secondary" id="adm-c-capacity" value="38" min="1" max="60" required>
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">
+                                គ្រូបន្ទុកថ្នាក់ (Homeroom Instructor) - <span
+                                    class="text-warning">គ្រូដែលមិនទាន់មានថ្នាក់</span>
+                            </label>
+                            <select class="form-select bg-dark text-white border-secondary" id="adm-c-instructor"
+                                required>
+                                <option value="">-- កំពុងទាញយកគ្រូដែលមិនទាន់មានថ្នាក់... --</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
-                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i> បង្កើតថ្នាក់រៀន</button>
+                        <button type="button" class="btn btn-outline-glass btn-sm"
+                            data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i>
+                            បង្កើតថ្នាក់រៀន</button>
                     </div>
                 </form>
             </div>
@@ -921,3 +2081,378 @@
     </div>
 </div>
 
+<!-- Modal: Add Student to Class (ជ្រើសរើសសិស្សដែលមិនទាន់មានថ្នាក់) -->
+<div class="modal fade" id="addStudentToClassModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <!-- Modal Header -->
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-person-plus-fill fs-4" id="modal-student-header-icon"></i>
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <span class="badge text-dark fw-bold" style="background:#d4af37;"
+                                id="modal-student-form-badge">ជ្រើសរើសសិស្ស</span>
+                            <span class="badge bg-secondary border border-secondary"
+                                id="modal-add-student-class-badge">ថ្នាក់ទី ១២-A</span>
+                        </div>
+                        <h4 class="fw-bold text-white mb-0" id="modal-student-form-title">
+                            ជ្រើសរើសសិស្សចូលក្នុងថ្នាក់ (Select Student for Class)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body p-4">
+                <form id="admin-add-student-to-class-form">
+                    <!-- Target Class Selector -->
+                    <div class="mb-3 p-3 rounded-3 border border-warning shadow-sm"
+                        style="background: rgba(212, 175, 55, 0.08);">
+                        <div class="d-flex justify-content-between align-items-center mb-1.5">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold mb-0">
+                                <i class="bi bi-door-open-fill text-warning me-1"></i> ១. ជ្រើសរើសថ្នាក់រៀនគោលដៅ (Target
+                                Class) *
+                            </label>
+                            <span class="badge text-dark fw-bold" style="background:#d4af37;"
+                                id="target-class-indicator-badge">ថ្នាក់បច្ចុប្បន្ន</span>
+                        </div>
+                        <select class="form-select bg-dark text-white border-warning fw-bold"
+                            id="modal-select-class-target" style="font-size: 0.94rem; cursor: pointer;">
+                            <option value="">-- កំពុងទាញយកបញ្ជីថ្នាក់រៀន... --</option>
+                        </select>
+                    </div>
+
+                    <!-- Live Search & Filter Mode Toolbar -->
+                    <div class="p-3 rounded-3 mb-3 border border-secondary shadow-sm"
+                        style="background: rgba(255, 255, 255, 0.03);">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center mb-2.5 gap-2">
+                            <div class="d-flex align-items-center gap-1.5" id="student-filter-mode-pills">
+                                <button type="button"
+                                    class="btn btn-warning btn-sm py-1 px-2.5 extra-small fw-bold text-dark active-filter-pill"
+                                    id="filter-all-students-btn">
+                                    <i class="bi bi-people-fill me-1"></i>សិស្សទាំងអស់
+                                </button>
+                                <button type="button"
+                                    class="btn btn-outline-secondary btn-sm py-1 px-2.5 extra-small text-white"
+                                    id="filter-unassigned-students-btn">
+                                    <i class="bi bi-person-dash me-1"></i>សិស្សមិនទាន់មានថ្នាក់
+                                </button>
+                            </div>
+                            <div class="d-flex align-items-center gap-1.5">
+                                <span class="badge bg-warning-subtle text-warning border border-warning extra-small"
+                                    id="available-students-count-badge">
+                                    កំពុងផ្ទុកទិន្នន័យ...
+                                </span>
+                                <button type="button"
+                                    class="btn btn-outline-warning btn-sm py-0.5 px-2 extra-small fw-bold"
+                                    id="btn-select-all-students">
+                                    <i class="bi bi-check-all me-1"></i>រើសទាំងអស់
+                                </button>
+                                <button type="button"
+                                    class="btn btn-outline-secondary btn-sm py-0.5 px-2 extra-small text-white"
+                                    id="btn-deselect-all-students-top">
+                                    <i class="bi bi-x-circle me-1"></i>ដកទាំងអស់
+                                </button>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text bg-dark border-secondary text-warning">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text"
+                                class="form-control form-control-lg bg-dark text-white border-secondary fw-bold"
+                                id="modal-s-search" placeholder="វាយឈ្មោះ ឬ អត្តលេខសិស្ស ដើម្បីស្វែងរក..."
+                                autocomplete="off">
+                            <button class="btn btn-outline-warning" type="button" id="btn-clear-student-search"
+                                title="ជម្រះ"><i class="bi bi-x-lg"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Multi-Select Dropdown Option -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold mb-0">
+                                <i class="bi bi-person-lines-fill text-warning me-1"></i> ២.
+                                ជ្រើសរើសសិស្សពីបញ្ជីទម្លាក់ចុះ (Multi-Select Dropdown)
+                            </label>
+                            <span class="text-white-50 extra-small">ចុច Ctrl ឬ ចុចលើប្រអប់ដើម្បីរើសច្រើន</span>
+                        </div>
+                        <select class="form-select bg-dark text-white border-secondary fw-semibold"
+                            id="modal-select-unassigned-student" multiple size="3"
+                            style="font-size: 0.88rem; min-height: 85px;">
+                            <option value="">-- កំពុងទាញយកបញ្ជីសិស្ស... --</option>
+                        </select>
+                    </div>
+
+                    <!-- Available Unassigned Students Interactive Card List with Checkboxes -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-muted extra-small fw-bold text-uppercase">
+                                <i class="bi bi-grid-fill text-warning me-1"></i> ឬ គូសធីកលើកាតសិស្សផ្ទាល់ (Click Cards
+                                / Checkboxes to Select)
+                            </span>
+                            <span class="text-warning extra-small" id="unassigned-list-filter-info"></span>
+                        </div>
+                        <div id="unassigned-students-card-list" class="row g-2.5"
+                            style="max-height: 250px; overflow-y: auto; padding-right: 4px;">
+                            <!-- Dynamically loaded cards with checkboxes -->
+                        </div>
+                    </div>
+
+                    <!-- Multi-Selected Students Chips Container -->
+                    <div id="selected-students-multi-container" class="p-3 rounded-3 mt-3 border border-warning d-none"
+                        style="background: rgba(212, 175, 55, 0.08);">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="bi bi-check2-circle text-warning fs-5"></i>
+                                <strong class="text-white" style="font-size: 0.92rem;">
+                                    សិស្សដែលបានជ្រើសរើស (<span id="multi-selected-count"
+                                        class="text-warning fw-bold">0</span> នាក់)
+                                </strong>
+                            </div>
+                            <button type="button" class="btn btn-outline-danger btn-sm py-0.5 px-2 extra-small"
+                                id="btn-deselect-all-students-bot">
+                                <i class="bi bi-trash3 me-1"></i>ដកការជ្រើសរើសទាំងអស់
+                            </button>
+                        </div>
+                        <div id="selected-students-pills-list" class="d-flex flex-wrap gap-2"
+                            style="max-height: 120px; overflow-y: auto;">
+                            <!-- Chips rendered here -->
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4 d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-glass btn-sm"
+                            data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm px-4 py-2" id="modal-s-submit-btn">
+                            <i class="bi bi-person-plus-fill me-1"></i> បញ្ចូលសិស្សក្នុងថ្នាក់
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2: Student Detail Profile Modal (កាលណា User ចុចលើ Button 'មើល ចាប់សិស្ស') -->
+<div class="modal fade" id="classStudentDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <!-- Modal Header -->
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning shadow"
+                        style="width: 58px; height: 58px; background: rgba(212, 175, 55, 0.15); flex-shrink: 0;">
+                        <i class="bi bi-person-fill fs-2" style="color:#d4af37;"></i>
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <span class="badge text-dark fw-bold" style="background:#d4af37;"
+                                id="view-m-id">STD-2026-001</span>
+                            <span class="badge bg-secondary border border-secondary" id="view-m-class-badge">ថ្នាក់ទី
+                                ១២-A</span>
+                            <span id="view-m-status"
+                                class="badge bg-success-subtle text-success border border-success px-2.5 py-1 fw-bold">
+                                <i class="bi bi-check-circle-fill me-1"></i> កំពុងសិក្សា (Active)</span>
+                        </div>
+                        <h4 class="fw-bold text-white mb-0" id="view-m-name">សុខ ចាន់ដារ៉ា</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body p-4">
+                <!-- Section 1: ព័ត៌មានផ្ទាល់ខ្លួន & ការចុះឈ្មោះ -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-warning mb-3 d-flex align-items-center gap-2"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-person-vcard-fill fs-5"></i> ១. ព័ត៌មានផ្ទាល់ខ្លួន & កម្រិតសិក្សា (Personal &
+                        Academic Info)
+                    </h6>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-muted extra-small d-block mb-1">🚻 ភេទ (Gender)</span>
+                                <h6 class="fw-bold text-white mb-0" id="view-m-gender">ប្រុស (Male)</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-muted extra-small d-block mb-1">🎂 ថ្ងៃខែឆ្នាំកំណើត (DOB)</span>
+                                <h6 class="fw-bold text-white mb-0" id="view-m-dob">2008-05-15</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-muted extra-small d-block mb-1">📞 លេខទូរស័ព្ទផ្ទាល់ខ្លួន
+                                    (Phone)</span>
+                                <h6 class="fw-bold text-info mb-0" id="view-m-phone">092 112 233</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-muted extra-small d-block mb-1">🏫 ថ្នាក់រៀន & គ្រូបន្ទុក (Class &
+                                    Teacher)</span>
+                                <h6 class="fw-bold text-white mb-0" id="view-m-class-info">ថ្នាក់ទី ១២-A (គ្រូបន្ទុក:
+                                    ស្រី ពេជ្រ)</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-muted extra-small d-block mb-1">📅 ថ្ងៃចុះឈ្មោះចូលរៀន (Enrollment
+                                    Date)</span>
+                                <h6 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;"
+                                    id="view-m-enroll-date">2025-10-01</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: ព័ត៌មានឪពុកម្តាយ & អាណាព្យាបាល -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-warning mb-3 d-flex align-items-center gap-2"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-people-fill fs-5"></i> ២. ព័ត៌មានឪពុកម្តាយ & អាណាព្យាបាល (Parents Info)
+                    </h6>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-muted extra-small d-block mb-1">👨 ឈ្មោះឪពុក (Father Name)</span>
+                                <h6 class="fw-bold text-white mb-1" id="view-m-father-name">សុខ ចាន់ថា</h6>
+                                <span class="text-muted extra-small">ទូរស័ព្ទ: </span><span
+                                    class="text-info small fw-bold" id="view-m-father-phone">012 345 678</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 rounded-3 bg-black border border-secondary h-100">
+                                <span class="text-muted extra-small d-block mb-1">👩 ឈ្មោះម្តាយ (Mother Name)</span>
+                                <h6 class="fw-bold text-white mb-1" id="view-m-mother-name">គឹម សុផល</h6>
+                                <span class="text-muted extra-small">ទូរស័ព្ទ: </span><span
+                                    class="text-info small fw-bold" id="view-m-mother-phone">098 765 432</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: អាសយដ្ឋានបច្ចុប្បន្ន -->
+                <div>
+                    <h6 class="fw-bold text-warning mb-3 d-flex align-items-center gap-2"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-geo-alt-fill fs-5"></i> ៣. អាសយដ្ឋានបច្ចុប្បន្ន (Current Address)
+                    </h6>
+                    <div class="p-3 rounded-3 bg-black border border-secondary">
+                        <span class="text-muted extra-small d-block mb-1">📍 អាសយដ្ឋានលម្អិត (Address)</span>
+                        <h6 class="fw-bold text-white mb-0" id="view-m-address">ផ្ទះលេខ ១២ ផ្លូវ ២០០៤ សង្កាត់ទឹកថ្លា
+                            ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ</h6>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer border-top border-dark p-3 px-4 d-flex justify-content-between align-items-center">
+                <button type="button" class="btn btn-outline-glass btn-sm" onclick="window.print()">
+                    <i class="bi bi-printer me-1" style="color:#ffd700;"></i> បោះពុម្ពប័ណ្ណសិស្ស (Print)
+                </button>
+                <button type="button" class="btn-gold-shimmer btn-sm px-4" data-bs-dismiss="modal">
+                    បិទ (Close)
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3: Assign Homeroom Teacher to Class Modal (ជ្រើសរើសគ្រូប្រចាំថ្នាក់) -->
+<div class="modal fade" id="assignTeacherToClassModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning shadow"
+                        style="width: 52px; height: 52px; background: rgba(212, 175, 55, 0.15); flex-shrink: 0;">
+                        <i class="bi bi-person-badge-fill fs-3" style="color:#d4af37;"></i>
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <span class="badge text-dark fw-bold" style="background:#d4af37;">ចាត់តាំងគ្រូបន្ទុកថ្នាក់</span>
+                            <span class="badge bg-secondary border border-secondary" id="assign-teacher-modal-class-badge">ថ្នាក់រៀន</span>
+                        </div>
+                        <h4 class="fw-bold text-white mb-0">ជ្រើសរើសគ្រូប្រចាំថ្នាក់ (Assign Homeroom Teacher)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-assign-teacher-form">
+                    <input type="hidden" id="assign-teacher-target-class-id">
+                    
+                    <!-- Class Target Info Alert -->
+                    <div class="p-3 rounded-3 mb-3 border border-warning shadow-sm" style="background: rgba(212, 175, 55, 0.08);">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="text-warning extra-small fw-bold text-uppercase d-block">
+                                    <i class="bi bi-door-open-fill me-1"></i> ថ្នាក់រៀនគោលដៅ:
+                                </span>
+                                <h5 class="fw-bold text-white mb-0" id="assign-teacher-modal-class-name">ថ្នាក់ទី...</h5>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge rounded-pill bg-warning text-dark fw-bold px-3 py-1.5 fs-6" id="assign-teacher-modal-students-count">
+                                    <i class="bi bi-people-fill me-1"></i> ០ នាក់
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Teacher -->
+                    <div class="mb-3">
+                        <label class="form-label text-white extra-small text-uppercase fw-bold">
+                            <i class="bi bi-search text-warning me-1"></i> ស្វែងរកគ្រូបង្រៀន (Search Teachers)
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-dark border-secondary text-warning">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" class="form-control form-control-lg bg-dark text-white border-secondary fw-bold"
+                                id="modal-teacher-search-input" placeholder="វាយឈ្មោះ, អត្តលេខ ឬ ឯកទេសគ្រូ ដើម្បីស្វែងរក..." autocomplete="off">
+                            <button class="btn btn-outline-warning" type="button" id="btn-clear-teacher-search" title="ជម្រះ">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter Mode & Count -->
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-muted extra-small fw-bold text-uppercase">
+                            <i class="bi bi-person-check-fill text-warning me-1"></i> បញ្ជីគ្រូដែលទំនេរ & អាចចាត់តាំងបាន:
+                        </span>
+                        <span class="badge bg-warning-subtle text-warning border border-warning extra-small" id="available-teachers-count-badge">
+                            កំពុងទាញយក...
+                        </span>
+                    </div>
+
+                    <!-- Available Teachers Cards / Radio List -->
+                    <div id="assign-teachers-list-container" class="row g-2.5" style="max-height: 280px; overflow-y: auto; padding-right: 4px;">
+                        <!-- Rendered dynamically -->
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4 d-flex justify-content-between">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm px-4 py-2" id="btn-save-assign-teacher">
+                            <i class="bi bi-check2-circle me-1"></i> រក្សាទុកការចាត់តាំងគ្រូ
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

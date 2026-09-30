@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Account</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .register-box {
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .register-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333333;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #555555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #28a745;
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 11px;
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-register:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-box">
+        <h2>Register Account</h2>
+
+        <div class="form-group">
+            <label for="username">Username / Name</label>
+            <input type="text" id="username" placeholder="Enter your username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password (min 4 chars)" required>
+        </div>
+
+        <div class="form-group">
+            <label for="role">Role</label>
+            <select id="role">
+                <option value="Teacher" selected>Teacher</option>
+                <option value="Admin">Admin</option>
+            </select>
+        </div>
+
+        <button type="button" class="btn-register" onclick="register()">Register Account</button>
+
+        <div style="text-align: center; margin-top: 15px; font-size: 14px;">
+            Already have an account? <a href="/Login"
+                style="color: #007bff; text-decoration: none; font-weight: bold;">Login</a>
+        </div>
+    </div>
+
+    <script>
+        async function register() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+
+            if (!username || !password) {
+                alert('Please fill in both username and password.');
+                return;
+            }
+
+            if (password.length < 4) {
+                alert('Password must be at least 4 characters long.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password, role })
+                });
+                const data = await response.json();
+
+                if (data.status === "success") {
+                    if (data.token) {
+                        localStorage.setItem('auth_token', data.token);
+                        localStorage.setItem('token', data.token);
+                    }
+                    if (data.user) {
+                        localStorage.setItem('user', JSON.stringify(data.user));
+                    }
+
+                    console.log('Registration successful! Token:', data.token);
+                    console.log("data" + data)
+                    alert(`Account created successfully!\n\nToken:\n${data.token}`);
+
+                    if (data.redirect_url) {
+                        window.location.href = data.redirect_url;
+                    } else if (role.toLowerCase() === 'admin') {
+                        window.location.href = '/admin-desbord';
+                    } else {
+                        window.location.href = '/teachers-desbord';
+                    }
+                } else {
+                    alert(data.message || "Registration failed. Please try again.");
+                }
+            } catch (error) {
+                console.error('Error during registration:', error);
+                alert("Server error occurred during registration. Please try again.");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = [document.getElementById('username'), document.getElementById('password')];
+            inputs.forEach(input => {
+                if (input) {
+                    input.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') register();
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

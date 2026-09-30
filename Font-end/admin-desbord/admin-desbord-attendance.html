@@ -43,7 +43,58 @@
         box-shadow: 0 14px 35px rgba(212, 175, 55, 0.2);
     }
 
-    /* Highest Absences Class List View Item */
+    /* Clickable KPI Cards */
+    .kpi-clickable {
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .kpi-clickable::after {
+        content: 'ចុចមើលលម្អិត ➔';
+        position: absolute;
+        bottom: 8px;
+        right: 14px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        opacity: 0;
+        transition: all 0.3s ease;
+        transform: translateX(10px);
+    }
+
+    .kpi-clickable:hover::after {
+        opacity: 0.85;
+        transform: translateX(0);
+        color: #ffd700;
+    }
+
+    /* Date Badges & Chips */
+    .date-badge-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        border-radius: 8px;
+        padding: 4px 9px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        margin: 2px 3px;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+    }
+
+    .date-badge-chip.leave {
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(245, 158, 11, 0.45);
+        color: #fbbf24;
+    }
+
+    .date-badge-chip.absent {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.45);
+        color: #f87171;
+    }
+
+    /* Highest Absences Class List View Item (ជួរដេក) */
     .absent-class-list-item {
         background: linear-gradient(145deg, #12121a, #181826);
         border: 1px solid rgba(239, 68, 68, 0.25);
@@ -53,6 +104,7 @@
         transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         position: relative;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
+        cursor: pointer;
     }
 
     .absent-class-list-item::before {
@@ -68,8 +120,8 @@
     }
 
     .absent-class-list-item:hover {
-        border-color: rgba(239, 68, 68, 0.75);
-        box-shadow: 0 14px 35px rgba(239, 68, 68, 0.22);
+        border-color: rgba(212, 175, 55, 0.75);
+        box-shadow: 0 14px 35px rgba(212, 175, 55, 0.25);
         transform: translateX(6px);
     }
 
@@ -125,6 +177,22 @@
         color: #ffd700;
         border-color: rgba(212, 175, 55, 0.85);
     }
+
+    .table-dark-custom th {
+        padding: 12px 14px !important;
+        font-size: 0.82rem;
+        white-space: nowrap;
+        background: rgba(16, 16, 26, 0.95) !important;
+        border-bottom: 2px solid rgba(212, 175, 55, 0.4) !important;
+        color: #d4af37 !important;
+    }
+
+    .table-dark-custom td {
+        padding: 12px 14px !important;
+        font-size: 0.88rem;
+        white-space: nowrap;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
 </style>
 
 <div class="p-4">
@@ -139,8 +207,8 @@
                     ព្រមទាំងបញ្ជីថ្នាក់ដែលមានសិស្សអវត្តមានច្រើនជាងគេ។</p>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-download me-1"></i> ទាញយករបាយការណ៍</button>
-                <button class="btn-gold-shimmer"><i class="bi bi-plus-lg me-1"></i> កត់ត្រាវត្តមានថ្មី</button>
+                <button class="btn btn-outline-glass btn-sm" id="btn-download-attendance-report"><i class="bi bi-download me-1"></i> ទាញយករបាយការណ៍</button>
+                <button class="btn-gold-shimmer" id="btn-open-record-attendance"><i class="bi bi-plus-lg me-1"></i> កត់ត្រាវត្តមានថ្មី</button>
             </div>
         </div>
     </div>
@@ -153,43 +221,43 @@
                     <span class="text-success extra-small fw-bold">✅ វត្តមានសរុប (Present)</span>
                     <i class="bi bi-person-check-fill text-success fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-success mb-0" id="kpi-attendance-present">១,២០១ នាក់</h3>
-                <span class="text-success extra-small"><i class="bi bi-graph-up me-1"></i>អត្រាវត្តមាន ៩៦.២%</span>
+                <h3 class="fw-bold text-success mb-0" id="kpi-attendance-present">០ នាក់</h3>
+                <span class="text-success extra-small" id="kpi-attendance-rate"><i class="bi bi-graph-up me-1"></i>អត្រាវត្តមាន ១០០%</span>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="glass-attendance-kpi" style="border-color: rgba(245, 158, 11, 0.4);">
+            <div class="glass-attendance-kpi kpi-clickable" id="kpi-card-excused" style="border-color: rgba(245, 158, 11, 0.4);" title="ចុចដើម្បីមើលបញ្ជីថ្នាក់អវត្តមានមានច្បាប់">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <span class="text-warning extra-small fw-bold" style="color:#f59e0b;">🟡 អវត្តមានមានច្បាប់</span>
                     <i class="bi bi-envelope-paper-fill text-warning fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-warning mb-0" style="color:#f59e0b;" id="kpi-attendance-excused">៣២ នាក់</h3>
-                <span class="text-warning extra-small">មានលិខិតច្បាប់ត្រឹមត្រូវ</span>
+                <h3 class="fw-bold text-warning mb-0" style="color:#f59e0b;" id="kpi-attendance-excused">០ នាក់</h3>
+                <span class="text-warning extra-small"><i class="bi bi-calendar-check me-1"></i>មានលិខិតច្បាប់ • ចុចមើល</span>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="glass-attendance-kpi" style="border-color: rgba(239, 68, 68, 0.4);">
+            <div class="glass-attendance-kpi kpi-clickable" id="kpi-card-unexcused" style="border-color: rgba(239, 68, 68, 0.4);" title="ចុចដើម្បីមើលបញ្ជីថ្នាក់អវត្តមានអត់ច្បាប់">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <span class="text-danger extra-small fw-bold">🔴 អវត្តមានអត់ច្បាប់</span>
                     <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-danger mb-0" id="kpi-attendance-unexcused">១៥ នាក់</h3>
-                <span class="text-danger extra-small">ផ្ញើសារជូនអាណាព្យាបាល</span>
+                <h3 class="fw-bold text-danger mb-0" id="kpi-attendance-unexcused">០ នាក់</h3>
+                <span class="text-danger extra-small"><i class="bi bi-calendar-x me-1"></i>ផ្ញើសារជូនអាណាព្យាបាល • ចុចមើល</span>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="glass-attendance-kpi">
+            <div class="glass-attendance-kpi kpi-clickable" id="kpi-card-risk" title="ចុចដើម្បីមើលថ្នាក់ត្រូវតាមដាន">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <span class="text-muted extra-small">🏫 ថ្នាក់ត្រូវតាមដាន</span>
                     <i class="bi bi-building-exclamation text-warning fs-5" style="color:#d4af37;"></i>
                 </div>
-                <h3 class="fw-bold text-white mb-0" id="kpi-attendance-risk-classes">៣ ថ្នាក់</h3>
-                <span class="text-muted extra-small">អវត្តមានច្រើនជាងគេ</span>
+                <h3 class="fw-bold text-white mb-0" id="kpi-attendance-risk-classes">០ ថ្នាក់</h3>
+                <span class="text-muted extra-small"><i class="bi bi-arrow-down-circle me-1 text-warning"></i>អវត្តមានច្រើនជាងគេ • ចុចមើល</span>
             </div>
         </div>
     </div>
 
-    <!-- STEP 1: GRAPH ANALYTICS SECTION (បង្ហាញពីចំនួនសិស្សដែលអវត្តមានមានច្បាប់ និង អវត្តមានអត់ច្បាប់ ជា ឆ្នាំ និង ខែ) -->
+    <!-- GRAPH ANALYTICS SECTION (បង្ហាញពីចំនួនសិស្សដែលអវត្តមានមានច្បាប់ និង អវត្តមានអត់ច្បាប់ ជា ឆ្នាំ និង ខែ) -->
     <div class="card-custom p-4 mb-4" style="border-color: rgba(212, 175, 55, 0.3) !important;">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
             <div>
@@ -226,53 +294,85 @@
         </div>
     </div>
 
-    <!-- STEP 2: HIGHEST ABSENT CLASSES LIST VIEW (បង្ហាញជា LIST ថ្នាក់ដែលមានសិស្សអវត្តមានច្រើនជាងគេ) -->
-    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-        <div>
-            <h5 class="fw-bold text-white mb-0"><i
-                    class="bi bi-exclamation-octagon-fill text-danger me-2"></i>បញ្ជីថ្នាក់រៀនដែលមានសិស្សអវត្តមានច្រើនជាងគេ
-                (Highest Absences Class List)</h5>
-            <p class="text-muted extra-small mb-0">រៀបតាមលំដាប់ថ្នាក់ដែលមានចំនួនថ្ងៃអវត្តមានសរុបច្រើនជាងគេបំផុតទៅតិច</p>
+    <!-- CLASS LIST IN HORIZONTAL ROWS (ធ្វើជាជួរដេកដដែលមក ហើយអត់បង្ហាញពីខាងក្រោមទេ) -->
+    <div class="mb-4">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+            <div>
+                <h5 class="fw-bold text-white mb-0">
+                    <i class="bi bi-exclamation-octagon-fill text-danger me-2"></i>បញ្ជីថ្នាក់រៀនដែលមានសិស្សអវត្តមានច្រើនជាងគេ (Highest Absences Class List)
+                </h5>
+                <p class="text-muted extra-small mb-0">រៀបតាមលំដាប់ថ្នាក់ដែលមានចំនួនថ្ងៃអវត្តមានសរុបច្រើនជាងគេបំផុតទៅតិច • ចុចលើជួរដេកថ្នាក់ណាមួយដើម្បីពិនិត្យបញ្ជីសិស្ស</p>
+            </div>
+            <div class="search-box" style="width: 280px;">
+                <i class="bi bi-search text-muted"></i>
+                <input type="text" id="absent-class-search-input" placeholder="ស្វែងរក ឈ្មោះថ្នាក់ ឬ គ្រូ...">
+            </div>
         </div>
-        <div class="search-box" style="width: 280px;">
-            <i class="bi bi-search text-muted"></i>
-            <input type="text" id="absent-class-search-input" placeholder="ស្វែងរក ឈ្មោះថ្នាក់ ឬ គ្រូ...">
-        </div>
-    </div>
 
-    <!-- Container for List View Items -->
-    <div id="highest-absent-classes-container" class="mb-4">
-        <!-- Dynamic List Items Rendered Here -->
+        <!-- Container for List View Items in Horizontal Rows (ជួរដេក) -->
+        <div id="highest-absent-classes-container" class="mb-4">
+            <!-- Dynamic Horizontal Rows Rendered Here -->
+        </div>
     </div>
 </div>
 
-<!-- Modal showing individual student absences inside clicked class -->
+<!-- MODAL 1: CLASS ABSENT STUDENTS TABLE (ចុចថ្នាក់វា នឹងបង្ហាញតារាងឈ្មោះសិស្សដែលបានខាន) -->
 <div class="modal fade" id="classAbsenceModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark text-white border border-danger shadow-lg rounded-4"
-            style="background: linear-gradient(145deg, #12121a, #181826) !important;">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
             <div class="modal-header border-bottom border-dark p-4">
-                <div>
-                    <span class="badge bg-danger text-white mb-1" id="modal-class-risk-badge">🔴 អាសន្នខ្ពស់</span>
-                    <h4 class="fw-bold text-white mb-0" id="modal-class-title">ថ្នាក់ទី ១២-C</h4>
-                    <span class="text-muted small" id="modal-class-teacher">គ្រូបន្ទុកថ្នាក់: លី ម៉េងហុង</span>
+                <div class="d-flex align-items-center justify-content-between w-100 flex-wrap gap-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning shadow overflow-hidden"
+                            style="width: 52px; height: 52px; background: rgba(212, 175, 55, 0.15); flex-shrink: 0;">
+                            <img id="modal-class-teacher-avatar" src="" class="w-100 h-100 object-fit-cover d-none" alt="">
+                            <i id="modal-class-teacher-icon" class="bi bi-door-open-fill fs-3" style="color:#ffd700;"></i>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <span class="badge bg-danger text-white extra-small fw-bold" id="modal-class-risk-badge">🔴 ខ្ពស់បំផុត</span>
+                                <code class="text-white-50 extra-small" id="modal-class-code">CLS-303</code>
+                                <span class="badge bg-dark border border-secondary text-white-50 extra-small" id="modal-class-room">សាលប្រជុំ ២០១</span>
+                            </div>
+                            <h4 class="fw-bold text-white mb-0" id="modal-class-title">ថ្នាក់ទី ១២-C</h4>
+                            <span class="text-white-50 extra-small" id="modal-class-teacher">គ្រូបន្ទុកថ្នាក់: លី ម៉េងហុង • អត្រាវត្តមាន ៨៤%</span>
+                        </div>
+                    </div>
+
+                    <!-- Search within modal -->
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="search-box" style="width: 260px;">
+                            <i class="bi bi-search text-muted"></i>
+                            <input type="text" id="modal-student-search-input" placeholder="ស្វែងរក ឈ្មោះ ឬ អត្តលេខ...">
+                        </div>
+                        <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                 </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
             </div>
+
             <div class="modal-body p-4">
-                <h6 class="fw-bold text-warning mb-3" style="color:#d4af37 !important;"><i
-                        class="bi bi-people me-2"></i>បញ្ជីឈ្មោះសិស្សដែលមានអវត្តមានក្នុងថ្នាក់នេះ</h6>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="fw-bold text-warning mb-0 d-flex align-items-center gap-2" style="color:#d4af37 !important;">
+                        <i class="bi bi-people-fill fs-5"></i>
+                        តារាងឈ្មោះសិស្សដែលមានអវត្តមានក្នុងថ្នាក់នេះ (<span id="modal-class-student-count" class="text-danger">២ នាក់</span>)
+                    </h6>
+                    <span class="text-white-50 extra-small">ចុចលើប៊ូតុង «មើលថ្ងៃខាន & លម្អិត» ដើម្បីពិនិត្យថ្ងៃខានជាក់លាក់</span>
+                </div>
+
                 <div class="table-responsive">
-                    <table class="table table-dark table-hover align-middle mb-0" style="background: transparent;">
+                    <table class="table table-dark table-hover align-middle mb-0 table-dark-custom" style="background: transparent;">
                         <thead>
-                            <tr class="text-muted extra-small text-uppercase border-bottom border-dark">
-                                <th>ឈ្មោះសិស្ស</th>
-                                <th>អត្តលេខ</th>
-                                <th>មានច្បាប់</th>
-                                <th>អត់ច្បាប់</th>
-                                <th>សរុប</th>
+                            <tr>
+                                <th style="width: 50px;">#</th>
+                                <th>ឈ្មោះសិស្ស (Full Name) & អត្តលេខ</th>
+                                <th>ភេទ</th>
+                                <th class="text-center">🟡 មានច្បាប់</th>
+                                <th class="text-center">🔴 អត់ច្បាប់</th>
+                                <th class="text-center">📅 ខានសរុប</th>
+                                <th>ថ្ងៃខានចុងក្រោយ</th>
                                 <th>ស្ថានភាព</th>
+                                <th class="text-end">សកម្មភាព</th>
                             </tr>
                         </thead>
                         <tbody id="modal-class-students-tbody">
@@ -281,8 +381,205 @@
                     </table>
                 </div>
             </div>
-            <div class="modal-footer border-top border-dark p-3">
-                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បិទផ្ទាំង</button>
+
+            <div class="modal-footer border-top border-dark p-3 d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-glass btn-sm" onclick="window.print()">
+                    <i class="bi bi-printer me-1" style="color:#ffd700;"></i> បោះពុម្ពតារាង
+                </button>
+                <button type="button" class="btn btn-outline-glass btn-sm px-4" data-bs-dismiss="modal">
+                    បិទផ្ទាំង (Close)
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL 2: STUDENT SPECIFIC DATES MISSED & DETAILS (ហើយបានយើងចុចមើលបន្តទៀតថាខានថ្ងៃណាខ្លះ និងព័ត៌មានលម្អិតទៀត) -->
+<div class="modal fade" id="studentAbsenceDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center justify-content-between w-100 flex-wrap gap-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning shadow overflow-hidden"
+                            style="width: 60px; height: 60px; background: rgba(212, 175, 55, 0.15); flex-shrink: 0;">
+                            <img id="modal-dt-student-avatar" src="" alt="" class="w-100 h-100 object-fit-cover d-none">
+                            <i id="modal-dt-student-avatar-icon" class="bi bi-person-fill fs-2" style="color:#d4af37;"></i>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2 mb-1">
+                                <span class="badge text-dark fw-bold" style="background:#d4af37;" id="modal-dt-student-code">STD-2026-001</span>
+                                <span class="badge bg-secondary border border-secondary" id="modal-dt-class-name">ថ្នាក់ទី ១២-A</span>
+                                <span class="badge bg-success-subtle text-success border border-success extra-small fw-bold" id="modal-dt-status">សកម្ម</span>
+                            </div>
+                            <h4 class="fw-bold text-white mb-0" id="modal-dt-student-name">សុខ ចាន់ដារ៉ា</h4>
+                            <span class="text-white-50 extra-small" id="modal-dt-student-meta">ភេទ: Male (ប្រុស) • ទូរស័ព្ទ: 092 112 233</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick KPI Counts -->
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="p-2 px-3 rounded-3 bg-black border border-secondary text-center">
+                            <span class="text-white-50 extra-small d-block mb-0.5">📅 ខានសរុប</span>
+                            <h5 class="fw-bold text-danger mb-0" id="modal-dt-total-days">៣ ថ្ងៃ</h5>
+                        </div>
+                        <div class="p-2 px-3 rounded-3 bg-black border border-warning text-center">
+                            <span class="text-warning extra-small d-block mb-0.5" style="color:#f59e0b !important;">🟡 មានច្បាប់</span>
+                            <h5 class="fw-bold text-warning mb-0" style="color:#f59e0b !important;" id="modal-dt-excused-days">២ ថ្ងៃ</h5>
+                        </div>
+                        <div class="p-2 px-3 rounded-3 bg-black border border-danger text-center">
+                            <span class="text-danger extra-small d-block mb-0.5">🔴 អត់ច្បាប់</span>
+                            <h5 class="fw-bold text-danger mb-0" id="modal-dt-unexcused-days">១ ថ្ងៃ</h5>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white ms-3" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4">
+                <!-- Guardian Contact Card -->
+                <div class="p-3 rounded-3 bg-black border border-secondary mb-4" style="background: rgba(16, 16, 26, 0.8) !important;">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-4">
+                            <span class="text-muted extra-small d-block mb-0.5"><i class="bi bi-person-heart text-warning me-1"></i>ឈ្មោះអាណាព្យាបាល (Parent):</span>
+                            <strong class="text-white small" id="modal-dt-parent-name">សុខ ចាន់ថា</strong>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="text-muted extra-small d-block mb-0.5"><i class="bi bi-telephone-fill text-warning me-1"></i>លេខទូរស័ព្ទអាណាព្យាបាល:</span>
+                            <strong class="text-warning small" id="modal-dt-parent-phone">012 345 678</strong>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <a href="#" id="modal-dt-call-btn" class="btn btn-outline-glass btn-sm">
+                                <i class="bi bi-telephone-outbound me-1" style="color:#ffd700;"></i> ទំនាក់ទំនងអាណាព្យាបាល
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table: Specific Dates Missed (ខានថ្ងៃណាខ្លះ និង ព័ត៌មានលម្អិត) -->
+                <div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold text-warning mb-0 d-flex align-items-center gap-2" style="color:#d4af37 !important;">
+                            <i class="bi bi-calendar-check-fill fs-5"></i>
+                            បញ្ជីកាលបរិច្ឆេទដែលសិស្សបានខាន (ខានថ្ងៃណាខ្លះ & មូលហេតុលម្អិត)
+                        </h6>
+                        <span class="badge bg-dark border border-secondary text-white-50 extra-small" id="modal-dt-table-count">
+                            សរុប ៣ កាលបរិច្ឆេទ
+                        </span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0 table-dark-custom" style="background: transparent;">
+                            <thead>
+                                <tr>
+                                    <th style="min-width: 170px;">កាលបរិច្ឆេទ (ថ្ងៃណាខ្លះ)</th>
+                                    <th style="width: 130px;" class="text-center">ប្រភេទ</th>
+                                    <th style="min-width: 180px;">វេនសិក្សា (Period)</th>
+                                    <th style="min-width: 260px;">មូលហេតុនៃការខាន (Reason)</th>
+                                    <th style="min-width: 240px;">ការបញ្ជាក់ពីអាណាព្យាបាល</th>
+                                    <th style="min-width: 140px;">ចំណាត់ការសាលា</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modal-dt-dates-table-body">
+                                <!-- Dynamic Date Rows Rendered Here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer border-top border-dark p-3 d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-glass btn-sm" id="modal-dt-back-to-class-btn">
+                    <i class="bi bi-arrow-left me-1"></i> ត្រឡប់ទៅបញ្ជីសិស្ស (Back to Class)
+                </button>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-outline-glass btn-sm" onclick="window.print()">
+                        <i class="bi bi-printer me-1" style="color:#ffd700;"></i> បោះពុម្ពលិខិតតាមដាន (Print Slip)
+                    </button>
+                    <button type="button" class="btn-gold-shimmer btn-sm px-4" data-bs-dismiss="modal">
+                        យល់ព្រម / បិទ (Close)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL 3: ADMIN RECORD / UPDATE ATTENDANCE FORM MODAL -->
+<div class="modal fade" id="adminRecordAttendanceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-calendar-plus-fill fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">ប្រព័ន្ធកត់ត្រាវត្តមាន</span>
+                        <h4 class="fw-bold text-white mb-0">ទម្រង់កត់ត្រាវត្តមានសិស្សថ្មី (Record Attendance)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-record-attendance-form">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្នាក់រៀន (Class) *</label>
+                            <select class="form-select bg-dark text-white border-warning fw-bold" id="att-form-class-select" required>
+                                <option value="">-- កំពុងទាញយកបញ្ជីថ្នាក់រៀន... --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">សិស្សគោលដៅ (Student) *</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="att-form-student-select" required>
+                                <option value="">-- សូមជ្រើសរើសថ្នាក់ជាមុនសិន --</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កាលបរិច្ឆេទ (Date) *</label>
+                            <input type="date" class="form-control bg-dark text-white border-secondary" id="att-form-date" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ស្ថានភាពវត្តមាន (Status) *</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="att-form-status" required>
+                                <option value="present">✅ មានវត្តមាន (Present)</option>
+                                <option value="leave" selected>🟡 អវត្តមានមានច្បាប់ (Excused Leave)</option>
+                                <option value="absent">🔴 អវត្តមានអត់ច្បាប់ (Unexcused Absent)</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">វេនសិក្សា (Period) *</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="att-form-period">
+                                <option value="ពេញមួយថ្ងៃ (07:00 - 16:30)">ពេញមួយថ្ងៃ (07:00 - 16:30)</option>
+                                <option value="ព្រឹក (07:00 - 11:00)">ព្រឹក (07:00 - 11:00)</option>
+                                <option value="រសៀល (01:00 - 04:30)">រសៀល (01:00 - 04:30)</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">មូលហេតុនៃការខាន (Reason)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="att-form-reason" placeholder="ឧ. ឈឺក្បាលក្តៅខ្លួន ឬ ធុរៈគ្រួសារ">
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ការបញ្ជាក់ពីអាណាព្យាបាល (Guardian Note)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="att-form-guardian" placeholder="ឧ. ម្ដាយបានផ្ញើសារ Telegram សុំច្បាប់">
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-top border-dark d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-outline-glass" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer" id="btn-submit-attendance-record">
+                            <i class="bi bi-check-circle-fill me-1"></i> រក្សាទុកកំណត់ត្រាវត្តមាន
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -290,90 +587,62 @@
 
 <script>
     (function () {
-        // Dataset of Classes with Highest Absences (Sorted by total absences descending)
-        const highestAbsentClassesDataset = [
-            {
-                "id": "CLS-303",
-                "class_name": "ថ្នាក់ទី ១២-C",
-                "teacher": "លី ម៉េងហុង",
-                "teacher_avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&auto=format&fit=crop&q=80",
-                "excused_days": 24,
-                "unexcused_days": 16,
-                "total_absent_days": 40,
-                "attendance_rate": "៨៤%",
-                "risk_level": "🔴 ខ្ពស់បំផុត",
-                "risk_badge_class": "bg-danger text-white",
-                "room": "សាលប្រជុំ ២០១",
-                "students": [
-                    { "name": "លី សុវណ្ណារ៉ា", "id": "STD-2026-003", "excused": 3, "unexcused": 1, "total": 4, "status": "សកម្ម" },
-                    { "name": "អ៊ុង វីរៈ", "id": "STD-2026-005", "excused": 4, "unexcused": 5, "total": 9, "status": "🚨 ត្រូវតាមដាន" }
-                ]
-            },
-            {
-                "id": "CLS-505",
-                "class_name": "ថ្នាក់ទី ១១-B",
-                "teacher": "អ៊ុង វីរៈ",
-                "teacher_avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80",
-                "excused_days": 20,
-                "unexcused_days": 12,
-                "total_absent_days": 32,
-                "attendance_rate": "៨៧%",
-                "risk_level": "🔴 ខ្ពស់",
-                "risk_badge_class": "bg-danger text-white",
-                "room": "បន្ទប់លេខ ៣០៣",
-                "students": [
-                    { "name": "ចាន់ ស្រីណេត", "id": "STD-2026-004", "excused": 2, "unexcused": 1, "total": 3, "status": "សកម្ម" }
-                ]
-            },
-            {
-                "id": "CLS-606",
-                "class_name": "ថ្នាក់ទី ១០-A",
-                "teacher": "ចាន់ សុភារម្យ",
-                "teacher_avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80",
-                "excused_days": 18,
-                "unexcused_days": 9,
-                "total_absent_days": 27,
-                "attendance_rate": "៩០%",
-                "risk_level": "🟡 មធ្យម",
-                "risk_badge_class": "bg-warning text-dark",
-                "room": "បន្ទប់លេខ ១០៥",
-                "students": [
-                    { "name": "ជា ពិសិដ្ឋ", "id": "STD-2026-006", "excused": 1, "unexcused": 0, "total": 1, "status": "សកម្ម" }
-                ]
-            },
-            {
-                "id": "CLS-404",
-                "class_name": "ថ្នាក់ទី ១១-A",
-                "teacher": "ម៉េង សុភ័ក្ត្រ",
-                "teacher_avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80",
-                "excused_days": 15,
-                "unexcused_days": 7,
-                "total_absent_days": 22,
-                "attendance_rate": "៩២%",
-                "risk_level": "🟡 មធ្យម",
-                "risk_badge_class": "bg-warning text-dark",
-                "room": "បន្ទប់លេខ ៣០១",
-                "students": []
-            },
-            {
-                "id": "CLS-101",
-                "class_name": "ថ្នាក់ទី ១២-A",
-                "teacher": "ស្រី ពេជ្រ",
-                "teacher_avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80",
-                "excused_days": 12,
-                "unexcused_days": 4,
-                "total_absent_days": 16,
-                "attendance_rate": "៩៥%",
-                "risk_level": "🟢 ធម្មតា",
-                "risk_badge_class": "bg-success text-white",
-                "room": "បន្ទប់លេខ ៣០២",
-                "students": []
-            }
-        ];
-
+        let highestAbsentClassesDataset = [];
+        let chartDataState = {
+            monthly: null,
+            yearly: null
+        };
         let absenceChartInstance = null;
+        let currentModalClass = null;
+        let modalStudentSearchQuery = "";
+        let loadedClassesList = [];
 
-        // Render Absences Chart (ជា ឆ្នាំ និង ខែ)
+        // ----------------------------------------------------
+        // 1. FETCH ATTENDANCE SUMMARY FROM LIVE BACKEND API
+        // ----------------------------------------------------
+        async function fetchAttendanceSummary() {
+            try {
+                const res = await fetch('/api/attendance/summary');
+                const data = await res.json();
+
+                if (data && data.status === 'success') {
+                    // 1. Update KPI Header Cards
+                    const kpi = data.kpi || {};
+                    const presentEl = document.getElementById('kpi-attendance-present');
+                    const rateEl = document.getElementById('kpi-attendance-rate');
+                    const excusedEl = document.getElementById('kpi-attendance-excused');
+                    const unexcusedEl = document.getElementById('kpi-attendance-unexcused');
+                    const riskEl = document.getElementById('kpi-attendance-risk-classes');
+
+                    if (presentEl) presentEl.innerText = `${(kpi.present_count || 0).toLocaleString()} នាក់`;
+                    if (rateEl) rateEl.innerHTML = `<i class="bi bi-graph-up me-1"></i>អត្រាវត្តមាន ${kpi.attendance_rate || '100%'}`;
+                    if (excusedEl) excusedEl.innerText = `${(kpi.excused_count || 0).toLocaleString()} នាក់`;
+                    if (unexcusedEl) unexcusedEl.innerText = `${(kpi.unexcused_count || 0).toLocaleString()} នាក់`;
+                    if (riskEl) riskEl.innerText = `${kpi.risk_classes_count || 0} ថ្នាក់`;
+
+                    // 2. Cache Charts Data
+                    if (data.charts) {
+                        chartDataState.monthly = data.charts.monthly;
+                        chartDataState.yearly = data.charts.yearly;
+                    }
+
+                    // 3. Cache Highest Absences Dataset
+                    highestAbsentClassesDataset = data.highest_absent_classes || [];
+                    renderHighestAbsentClassesList(highestAbsentClassesDataset);
+
+                    // 4. Render Chart (Default: Yearly)
+                    initStudentAbsenceChart('yearly');
+                } else {
+                    console.error('Attendance summary API returned non-success:', data);
+                }
+            } catch (err) {
+                console.error('Error fetching attendance summary:', err);
+            }
+        }
+
+        // ----------------------------------------------------
+        // 2. RENDER ABSENCES CHART (YEARLY VS MONTHLY)
+        // ----------------------------------------------------
         function initStudentAbsenceChart(mode = 'yearly') {
             const canvas = document.getElementById('studentAbsenceChart');
             if (!canvas) return;
@@ -383,17 +652,22 @@
             }
 
             const ctx = canvas.getContext('2d');
-            let labels, excusedData, unexcusedData;
+            let labels = [];
+            let excusedData = [];
+            let unexcusedData = [];
 
-            if (mode === 'monthly') {
-                labels = ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'];
-                excusedData = [18, 22, 25, 30, 35, 28, 32, 26, 24, 20, 22, 19];
-                unexcusedData = [8, 12, 10, 15, 18, 11, 14, 10, 9, 7, 10, 8];
+            if (mode === 'monthly' && chartDataState.monthly) {
+                labels = chartDataState.monthly.labels || ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'];
+                excusedData = chartDataState.monthly.excused || [];
+                unexcusedData = chartDataState.monthly.unexcused || [];
+            } else if (mode === 'yearly' && chartDataState.yearly) {
+                labels = chartDataState.yearly.labels || ['ឆ្នាំ ២០២៥', 'ឆ្នាំ ២០២៦'];
+                excusedData = chartDataState.yearly.excused || [];
+                unexcusedData = chartDataState.yearly.unexcused || [];
             } else {
-                // Default: Yearly Data (២០២១ - ២០២៧)
-                labels = ['ឆ្នាំ ២០២១', 'ឆ្នាំ ២០២២', 'ឆ្នាំ ២០២៣', 'ឆ្នាំ ២០២៤', 'ឆ្នាំ ២០២៥', 'ឆ្នាំ ២០២៦', 'ឆ្នាំ ២០២៧'];
-                excusedData = [210, 185, 240, 290, 310, 260, 220];
-                unexcusedData = [95, 80, 110, 145, 130, 105, 85];
+                labels = ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'];
+                excusedData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                unexcusedData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             }
 
             absenceChartInstance = new Chart(ctx, {
@@ -405,14 +679,14 @@
                             label: 'អវត្តមានមានច្បាប់',
                             data: excusedData,
                             backgroundColor: '#f59e0b',
-                            barThickness: mode === 'yearly' ? 18 : 10,
+                            barThickness: mode === 'yearly' ? 24 : 12,
                             borderRadius: 6
                         },
                         {
                             label: 'អវត្តមានអត់ច្បាប់',
                             data: unexcusedData,
                             backgroundColor: '#ef4444',
-                            barThickness: mode === 'yearly' ? 18 : 10,
+                            barThickness: mode === 'yearly' ? 24 : 12,
                             borderRadius: 6
                         }
                     ]
@@ -441,7 +715,9 @@
             });
         }
 
-        // Render List View of Classes with Highest Absences
+        // ----------------------------------------------------
+        // 3. RENDER HIGHEST ABSENT CLASSES (HORIZONTAL ROWS)
+        // ----------------------------------------------------
         function renderHighestAbsentClassesList(classList) {
             const container = document.getElementById('highest-absent-classes-container');
             if (!container) return;
@@ -450,13 +726,13 @@
                 container.innerHTML = `
                     <div class="card-custom p-4 text-center text-muted">
                         <i class="bi bi-inbox fs-2 d-block mb-2 text-warning"></i>
-                        <p class="mb-0">មិនមានទិន្នន័យថ្នាក់រៀនឡើយ។</p>
+                        <p class="mb-0">មិនមានទិន្នន័យថ្នាក់រៀនត្រូវនឹងលក្ខខណ្ឌស្វែងរកឡើយ។</p>
                     </div>`;
                 return;
             }
 
             container.innerHTML = classList.map((c, index) => `
-                <div class="absent-class-list-item d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <div class="absent-class-list-item d-flex flex-wrap justify-content-between align-items-center gap-3" data-class-id="${c.id}" title="ចុចដើម្បីមើលបញ្ជីសិស្សអវត្តមានក្នុង ${c.class_name}">
                     <!-- Left: Rank & Class Title -->
                     <div class="d-flex align-items-center gap-3" style="min-width: 260px; flex: 1;">
                         <div class="fw-bold text-center rounded-3 p-2.5 border" style="background:rgba(239, 68, 68, 0.15); border-color:rgba(239, 68, 68, 0.4); color:#ef4444; min-width:44px;">
@@ -465,7 +741,7 @@
                         <div>
                             <div class="d-flex align-items-center gap-2 mb-1">
                                 <span class="badge ${c.risk_badge_class} px-2.5 py-0.5 extra-small fw-bold">${c.risk_level}</span>
-                                <code>${c.id}</code>
+                                <code class="text-white-50 extra-small">${c.id}</code>
                             </div>
                             <h5 class="fw-bold text-white mb-0" style="font-size: 1.2rem;">${c.class_name}</h5>
                             <span class="text-muted extra-small"><i class="bi bi-geo-alt me-1 text-warning" style="color:#d4af37 !important;"></i>${c.room}</span>
@@ -474,7 +750,7 @@
 
                     <!-- Middle: Homeroom Teacher -->
                     <div class="d-flex align-items-center gap-2.5" style="min-width: 200px;">
-                        <img src="${c.teacher_avatar}" class="rounded-circle border border-warning" width="36" height="36" alt="">
+                        <img src="${c.teacher_avatar}" class="rounded-circle border border-warning object-fit-cover" width="38" height="38" alt="">
                         <div class="extra-small">
                             <span class="text-muted d-block">គ្រូបន្ទុកថ្នាក់:</span>
                             <strong class="text-white">${c.teacher}</strong>
@@ -490,59 +766,468 @@
 
                     <!-- Action Button -->
                     <div>
-                        <button class="btn-card-details open-class-absence-modal-btn" data-class-index="${index}">
+                        <button type="button" class="btn-card-details open-class-absence-modal-btn" data-class-id="${c.id}">
                             ពិនិត្យបញ្ជីសិស្ស ➔
                         </button>
                     </div>
                 </div>
             `).join('');
 
-            // Click listener to open modal details
-            document.querySelectorAll('.open-class-absence-modal-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const idx = parseInt(this.getAttribute('data-class-index'));
-                    const targetClass = classList[idx] || classList[0];
+            // Click listener on rows & buttons to open the class students modal
+            container.querySelectorAll('.absent-class-list-item').forEach(item => {
+                item.addEventListener('click', function () {
+                    const classId = this.getAttribute('data-class-id');
+                    const targetClass = classList.find(c => c.id === classId) || classList[0];
                     showClassAbsenceModal(targetClass);
                 });
             });
         }
 
-        // Show Modal Function
+        // ----------------------------------------------------
+        // 4. SHOW MODAL 1: CLASS ABSENT STUDENTS TABLE
+        // ----------------------------------------------------
         function showClassAbsenceModal(classObj) {
-            document.getElementById('modal-class-title').innerText = classObj.class_name;
-            document.getElementById('modal-class-teacher').innerText = `គ្រូបន្ទុកថ្នាក់: ${classObj.teacher} • ${classObj.room}`;
-            document.getElementById('modal-class-risk-badge').innerText = classObj.risk_level;
-            document.getElementById('modal-class-risk-badge').className = `badge ${classObj.risk_badge_class} mb-1`;
+            if (!classObj) return;
+            currentModalClass = classObj;
+            modalStudentSearchQuery = "";
 
-            const tbody = document.getElementById('modal-class-students-tbody');
-            if (tbody) {
-                const list = classObj.students && classObj.students.length > 0 ? classObj.students : [
-                    { "name": "សុខ ចាន់ដារ៉ា", "id": "STD-2026-001", "excused": 2, "unexcused": 0, "total": 2, "status": "សកម្ម" },
-                    { "name": "គឹម ស៊ាងហៃ", "id": "STD-2026-002", "excused": 1, "unexcused": 0, "total": 1, "status": "សកម្ម" }
-                ];
-                tbody.innerHTML = list.map(s => `
-                    <tr>
-                        <td class="fw-semibold text-white">${s.name}</td>
-                        <td><code>${s.id}</code></td>
-                        <td><span class="text-warning fw-bold" style="color:#f59e0b;">${s.excused} ថ្ងៃ</span></td>
-                        <td><span class="text-danger fw-bold">${s.unexcused} ថ្ងៃ</span></td>
-                        <td><span class="text-white fw-bold">${s.total} ថ្ងៃ</span></td>
-                        <td><span class="badge ${s.status.includes('🚨') ? 'bg-danger-subtle text-danger' : 'bg-success-subtle text-success'}">${s.status}</span></td>
-                    </tr>
-                `).join('');
+            const searchInput = document.getElementById('modal-student-search-input');
+            if (searchInput) searchInput.value = "";
+
+            document.getElementById('modal-class-title').innerText = classObj.class_name;
+            document.getElementById('modal-class-code').innerText = classObj.id;
+            document.getElementById('modal-class-room').innerText = classObj.room;
+            document.getElementById('modal-class-teacher').innerText = `គ្រូបន្ទុកថ្នាក់: ${classObj.teacher} • អត្រាវត្តមាន ${classObj.attendance_rate}`;
+            document.getElementById('modal-class-risk-badge').innerText = classObj.risk_level;
+            document.getElementById('modal-class-risk-badge').className = `badge ${classObj.risk_badge_class} extra-small fw-bold`;
+
+            const avatarImg = document.getElementById('modal-class-teacher-avatar');
+            const avatarIcon = document.getElementById('modal-class-teacher-icon');
+            if (avatarImg) {
+                if (classObj.teacher_avatar) {
+                    avatarImg.src = classObj.teacher_avatar;
+                    avatarImg.classList.remove('d-none');
+                    if (avatarIcon) avatarIcon.classList.add('d-none');
+                } else {
+                    avatarImg.classList.add('d-none');
+                    if (avatarIcon) avatarIcon.classList.remove('d-none');
+                }
             }
+
+            renderModalStudentsTable();
 
             const modalElem = document.getElementById('classAbsenceModal');
             if (modalElem && typeof bootstrap !== 'undefined') {
-                const bsModal = new bootstrap.Modal(modalElem);
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
                 bsModal.show();
             }
         }
 
-        // Event listeners for Chart Yearly vs Monthly switching
+        // ----------------------------------------------------
+        // 5. RENDER STUDENTS ROWS INSIDE CLASS MODAL
+        // ----------------------------------------------------
+        function renderModalStudentsTable() {
+            if (!currentModalClass) return;
+            const tbody = document.getElementById('modal-class-students-tbody');
+            if (!tbody) return;
+
+            const allStudents = currentModalClass.students || [];
+            const countDisplay = document.getElementById('modal-class-student-count');
+            if (countDisplay) {
+                countDisplay.innerText = `${allStudents.length} នាក់`;
+            }
+
+            const filteredStudents = allStudents.filter(s =>
+                !modalStudentSearchQuery ||
+                s.name.toLowerCase().includes(modalStudentSearchQuery) ||
+                s.student_id.toLowerCase().includes(modalStudentSearchQuery) ||
+                (s.phone && s.phone.includes(modalStudentSearchQuery))
+            );
+
+            if (filteredStudents.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="text-center py-4 text-muted">
+                            <i class="bi bi-check-circle text-success fs-3 d-block mb-1"></i>
+                            មិនមានសិស្សអវត្តមានក្នុងថ្នាក់នេះ ឬត្រូវនឹងលក្ខខណ្ឌស្វែងរកនេះទេ។
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            tbody.innerHTML = filteredStudents.map((s, index) => {
+                const isUrgent = s.status && s.status.includes('⚠️');
+                const statusBadge = isUrgent
+                    ? `<span class="badge bg-danger-subtle text-danger border border-danger px-2.5 py-1 fw-bold">⚠️ ${s.status}</span>`
+                    : `<span class="badge bg-success-subtle text-success border border-success px-2.5 py-1 fw-bold">${s.status}</span>`;
+
+                return `
+                <tr>
+                    <td><span class="text-white-50 fw-bold">${index + 1}</span></td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2.5">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning shadow-sm" style="width: 36px; height: 36px; background: rgba(212,175,55,0.15); flex-shrink: 0;">
+                                <i class="bi bi-person-fill fs-6"></i>
+                            </div>
+                            <div>
+                                <strong class="text-white d-block" style="font-size: 0.94rem;">${s.name}</strong>
+                                <code class="text-warning extra-small">${s.student_id}</code>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="badge ${s.gender === 'Female' || s.gender === 'ស្រី' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'} px-2 py-1 extra-small">
+                            ${s.gender === 'Female' || s.gender === 'ស្រី' ? '👩 ស្រី' : '👨 ប្រុស'}
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-warning-subtle text-warning border border-warning px-2 py-1 fw-bold">
+                            ${s.excused_count} ថ្ងៃ
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-danger-subtle text-danger border border-danger px-2 py-1 fw-bold">
+                            ${s.unexcused_count} ថ្ងៃ
+                        </span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge bg-danger text-white px-2.5 py-1.5 fw-bold fs-6 shadow-sm">
+                            ${s.total_days} ថ្ងៃ
+                        </span>
+                    </td>
+                    <td>
+                        <div class="extra-small text-white fw-semibold">
+                            <i class="bi bi-calendar-event text-warning me-1"></i>${s.latest_date || '-'}
+                        </div>
+                    </td>
+                    <td>${statusBadge}</td>
+                    <td class="text-end">
+                        <button type="button" class="btn-card-details btn-sm view-student-detail-dates-btn" data-student-id="${s.student_id}" title="ចុចមើលកាលបរិច្ឆេទខាន និងព័ត៌មានលម្អិត">
+                            <i class="bi bi-calendar-check me-1"></i> មើលថ្ងៃខាន & លម្អិត 👁️
+                        </button>
+                    </td>
+                </tr>
+                `;
+            }).join('');
+
+            // Click listener for each student's "មើលថ្ងៃខាន & លម្អិត" button
+            tbody.querySelectorAll('.view-student-detail-dates-btn').forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const studentId = this.getAttribute('data-student-id');
+                    const student = currentModalClass.students.find(s => s.student_id === studentId);
+                    if (student) {
+                        openStudentDetailsModal(student, currentModalClass);
+                    }
+                });
+            });
+        }
+
+        // ----------------------------------------------------
+        // 6. SHOW MODAL 2: STUDENT DETAILS MODAL
+        // ----------------------------------------------------
+        function openStudentDetailsModal(student, classObj) {
+            const classModalElem = document.getElementById('classAbsenceModal');
+            if (classModalElem) {
+                const bsClassModal = bootstrap.Modal.getInstance(classModalElem);
+                if (bsClassModal) {
+                    bsClassModal.hide();
+                }
+            }
+
+            setTimeout(() => {
+                showStudentAbsenceDetailsModal(student, classObj);
+            }, 250);
+        }
+
+        function showStudentAbsenceDetailsModal(student, classObj) {
+            if (!student) return;
+
+            // Student Header
+            document.getElementById('modal-dt-student-name').innerText = student.name;
+            document.getElementById('modal-dt-student-code').innerText = student.student_id;
+            document.getElementById('modal-dt-class-name').innerText = classObj.class_name;
+            document.getElementById('modal-dt-student-meta').innerText = `ភេទ: ${student.gender === 'Female' || student.gender === 'ស្រី' ? 'Female (ស្រី)' : 'Male (ប្រុស)'} • លេខទូរស័ព្ទ: ${student.phone || '-'}`;
+
+            // Status Badge
+            const statusBadge = document.getElementById('modal-dt-status');
+            if (statusBadge) {
+                statusBadge.innerText = student.status;
+                statusBadge.className = student.status.includes('⚠️')
+                    ? 'badge bg-danger text-white extra-small fw-bold'
+                    : 'badge bg-success-subtle text-success border border-success extra-small fw-bold';
+            }
+
+            // KPIs
+            document.getElementById('modal-dt-total-days').innerText = `${student.total_days} ថ្ងៃ`;
+            document.getElementById('modal-dt-excused-days').innerText = `${student.excused_count} ថ្ងៃ`;
+            document.getElementById('modal-dt-unexcused-days').innerText = `${student.unexcused_count} ថ្ងៃ`;
+
+            // Parent Info
+            document.getElementById('modal-dt-parent-name').innerText = student.parent_name || 'មិនមាន';
+            document.getElementById('modal-dt-parent-phone').innerText = student.parent_phone || 'មិនមាន';
+            const callBtn = document.getElementById('modal-dt-call-btn');
+            if (callBtn) {
+                if (student.parent_phone && student.parent_phone !== 'មិនមាន') {
+                    callBtn.href = `tel:${student.parent_phone.replace(/\s+/g, '')}`;
+                    callBtn.classList.remove('disabled');
+                } else {
+                    callBtn.removeAttribute('href');
+                    callBtn.classList.add('disabled');
+                }
+            }
+
+            // Specific Missed Dates Table
+            const datesTbody = document.getElementById('modal-dt-dates-table-body');
+            const datesCount = document.getElementById('modal-dt-table-count');
+            const datesList = student.dates || [];
+
+            if (datesCount) {
+                datesCount.innerText = `សរុប ${datesList.length} កាលបរិច្ឆេទ`;
+            }
+
+            if (datesTbody) {
+                if (datesList.length === 0) {
+                    datesTbody.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-muted">គ្មានទិន្នន័យកាលបរិច្ឆេទឡើយ</td>
+                        </tr>`;
+                } else {
+                    datesTbody.innerHTML = datesList.map(d => {
+                        const isLeave = d.type === 'leave';
+                        const typeBadge = isLeave
+                            ? `<span class="badge bg-warning-subtle text-warning border border-warning px-2.5 py-1 extra-small fw-bold">🟡 មានច្បាប់</span>`
+                            : `<span class="badge bg-danger-subtle text-danger border border-danger px-2.5 py-1 extra-small fw-bold">🔴 អត់ច្បាប់</span>`;
+
+                        return `
+                        <tr>
+                            <td>
+                                <div class="fw-bold text-white" style="font-size: 0.92rem;">
+                                    <i class="bi bi-calendar2-event text-warning me-1.5"></i>${d.dateKhmer || d.date}
+                                </div>
+                                <code class="text-white-50 extra-small">${d.date}</code>
+                            </td>
+                            <td class="text-center">${typeBadge}</td>
+                            <td>
+                                <span class="badge bg-black border border-secondary text-info px-2 py-1 extra-small">
+                                    <i class="bi bi-clock me-1"></i>${d.period}
+                                </span>
+                            </td>
+                            <td>
+                                <strong class="text-white small d-block">${d.reason}</strong>
+                            </td>
+                            <td>
+                                <span class="text-white-50 extra-small">
+                                    <i class="bi bi-chat-left-text me-1 text-warning"></i>${d.guardianNote}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge bg-dark border border-secondary text-white-50 extra-small">
+                                    <i class="bi bi-shield-check text-success me-1"></i>${d.action}
+                                </span>
+                            </td>
+                        </tr>
+                        `;
+                    }).join('');
+                }
+            }
+
+            // Back to class modal button handler
+            const backBtn = document.getElementById('modal-dt-back-to-class-btn');
+            if (backBtn) {
+                backBtn.onclick = function () {
+                    const studentModalElem = document.getElementById('studentAbsenceDetailsModal');
+                    if (studentModalElem) {
+                        const bsStudentModal = bootstrap.Modal.getInstance(studentModalElem);
+                        if (bsStudentModal) {
+                            bsStudentModal.hide();
+                        }
+                    }
+                    setTimeout(() => {
+                        if (currentModalClass) {
+                            showClassAbsenceModal(currentModalClass);
+                        }
+                    }, 250);
+                };
+            }
+
+            // Show Student Modal
+            const modalElem = document.getElementById('studentAbsenceDetailsModal');
+            if (modalElem && typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                bsModal.show();
+            }
+        }
+
+        // ----------------------------------------------------
+        // 7. RECORD ATTENDANCE MODAL LOGIC
+        // ----------------------------------------------------
+        async function loadClassesForAttendanceModal() {
+            try {
+                const res = await fetch('/api/classes');
+                const data = await res.json();
+                if (data && data.status === 'success' && Array.isArray(data.classes)) {
+                    loadedClassesList = data.classes;
+                    const selectEl = document.getElementById('att-form-class-select');
+                    if (selectEl) {
+                        selectEl.innerHTML = '<option value="">-- សូមជ្រើសរើសថ្នាក់រៀន --</option>' +
+                            loadedClassesList.map(c => `<option value="${c.class_id}">🏫 ${c.class_name} • ${c.room || ''}</option>`).join('');
+                    }
+                }
+            } catch (err) {
+                console.error('Error fetching classes for attendance modal:', err);
+            }
+        }
+
+        const classSelectEl = document.getElementById('att-form-class-select');
+        if (classSelectEl) {
+            classSelectEl.addEventListener('change', async function () {
+                const classId = this.value;
+                const studentSelectEl = document.getElementById('att-form-student-select');
+                if (!studentSelectEl) return;
+
+                if (!classId) {
+                    studentSelectEl.innerHTML = '<option value="">-- សូមជ្រើសរើសថ្នាក់ជាមុនសិន --</option>';
+                    return;
+                }
+
+                studentSelectEl.innerHTML = '<option value="">-- កំពុងទាញយកសិស្ស... --</option>';
+                try {
+                    const res = await fetch(`/api/class/${classId}/students`);
+                    const data = await res.json();
+                    if (data && data.status === 'success' && Array.isArray(data.students)) {
+                        studentSelectEl.innerHTML = '<option value="">-- ជ្រើសរើសសិស្ស --</option>' +
+                            data.students.map(st => `<option value="${st.student_id}">👤 ${st.full_name} (${st.student_code || st.student_id})</option>`).join('');
+                    } else {
+                        studentSelectEl.innerHTML = '<option value="">-- គ្មានសិស្សក្នុងថ្នាក់នេះទេ --</option>';
+                    }
+                } catch (err) {
+                    studentSelectEl.innerHTML = '<option value="">-- បរាជ័យក្នុងការទាញយក --</option>';
+                }
+            });
+        }
+
+        const btnOpenRecord = document.getElementById('btn-open-record-attendance');
+        if (btnOpenRecord) {
+            btnOpenRecord.addEventListener('click', function () {
+                const dateInput = document.getElementById('att-form-date');
+                if (dateInput) {
+                    dateInput.value = new Date().toISOString().split('T')[0];
+                }
+                loadClassesForAttendanceModal();
+
+                const modalElem = document.getElementById('adminRecordAttendanceModal');
+                if (modalElem && typeof bootstrap !== 'undefined') {
+                    const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                    bsModal.show();
+                }
+            });
+        }
+
+        const recordForm = document.getElementById('admin-record-attendance-form');
+        if (recordForm) {
+            recordForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const btnSubmit = document.getElementById('btn-submit-attendance-record');
+                if (btnSubmit) {
+                    btnSubmit.disabled = true;
+                    btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> កំពុងរក្សាទុក...';
+                }
+
+                const payload = {
+                    class_id: document.getElementById('att-form-class-select').value,
+                    student_id: document.getElementById('att-form-student-select').value,
+                    attendance_date: document.getElementById('att-form-date').value,
+                    status: document.getElementById('att-form-status').value,
+                    period: document.getElementById('att-form-period').value,
+                    reason: document.getElementById('att-form-reason').value,
+                    guardian_note: document.getElementById('att-form-guardian').value,
+                    recorded_by: "Admin"
+                };
+
+                try {
+                    const res = await fetch('/api/attendance', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+                    if (data && data.status === 'success') {
+                        alert('✅ ' + data.message);
+                        const modalElem = document.getElementById('adminRecordAttendanceModal');
+                        if (modalElem) {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+                        recordForm.reset();
+                        fetchAttendanceSummary();
+                    } else {
+                        alert('❌ បរាជ័យ: ' + (data.message || 'មិនអាចកត់ត្រាបានទេ'));
+                    }
+                } catch (err) {
+                    alert('❌ បរាជ័យ: ' + err.message);
+                } finally {
+                    if (btnSubmit) {
+                        btnSubmit.disabled = false;
+                        btnSubmit.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> រក្សាទុកកំណត់ត្រាវត្តមាន';
+                    }
+                }
+            });
+        }
+
+        // ----------------------------------------------------
+        // 8. EVENT LISTENERS & INITIALIZATION
+        // ----------------------------------------------------
+        const studentSearchInput = document.getElementById('modal-student-search-input');
+        if (studentSearchInput) {
+            studentSearchInput.addEventListener('input', function () {
+                modalStudentSearchQuery = this.value.toLowerCase().trim();
+                renderModalStudentsTable();
+            });
+        }
+
+        const searchInput = document.getElementById('absent-class-search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function () {
+                const q = this.value.toLowerCase().trim();
+                const filtered = highestAbsentClassesDataset.filter(c =>
+                    c.class_name.toLowerCase().includes(q) ||
+                    c.teacher.toLowerCase().includes(q) ||
+                    c.id.toLowerCase().includes(q)
+                );
+                renderHighestAbsentClassesList(filtered);
+            });
+        }
+
+        const kpiExcusedCard = document.getElementById('kpi-card-excused');
+        if (kpiExcusedCard) {
+            kpiExcusedCard.addEventListener('click', function () {
+                if (highestAbsentClassesDataset.length > 0) {
+                    showClassAbsenceModal(highestAbsentClassesDataset[0]);
+                }
+            });
+        }
+
+        const kpiUnexcusedCard = document.getElementById('kpi-card-unexcused');
+        if (kpiUnexcusedCard) {
+            kpiUnexcusedCard.addEventListener('click', function () {
+                if (highestAbsentClassesDataset.length > 0) {
+                    showClassAbsenceModal(highestAbsentClassesDataset[0]);
+                }
+            });
+        }
+
+        const kpiRiskCard = document.getElementById('kpi-card-risk');
+        if (kpiRiskCard) {
+            kpiRiskCard.addEventListener('click', function () {
+                if (highestAbsentClassesDataset.length > 0) {
+                    showClassAbsenceModal(highestAbsentClassesDataset[0]);
+                }
+            });
+        }
+
         const btnYearly = document.getElementById('att-chart-btn-yearly');
         const btnMonthly = document.getElementById('att-chart-btn-monthly');
-
         if (btnYearly && btnMonthly) {
             btnYearly.addEventListener('click', function () {
                 initStudentAbsenceChart('yearly');
@@ -557,22 +1242,14 @@
             });
         }
 
-        // Search Input Filter
-        const searchInput = document.getElementById('absent-class-search-input');
-        if (searchInput) {
-            searchInput.addEventListener('input', function () {
-                const q = this.value.toLowerCase().trim();
-                const filtered = highestAbsentClassesDataset.filter(c =>
-                    c.class_name.toLowerCase().includes(q) ||
-                    c.teacher.toLowerCase().includes(q) ||
-                    c.id.toLowerCase().includes(q)
-                );
-                renderHighestAbsentClassesList(filtered);
+        const btnDownloadReport = document.getElementById('btn-download-attendance-report');
+        if (btnDownloadReport) {
+            btnDownloadReport.addEventListener('click', function () {
+                window.print();
             });
         }
 
-        // Initial Render
-        initStudentAbsenceChart('yearly');
-        renderHighestAbsentClassesList(highestAbsentClassesDataset);
+        // Initial Data Fetch
+        fetchAttendanceSummary();
     })();
 </script>

@@ -12,10 +12,14 @@
     <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts (Plus Jakarta Sans & Kantumruy Pro) -->
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Auth Guard (Role & Token Verification) -->
+    <script src="/Font-end/js/auth-guard.js"></script>
+    <script>AuthGuard.checkAuth({ requiredRole: 'Admin' });</script>
 
     <style>
         :root {
@@ -37,6 +41,14 @@
             font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
+        }
+
+        /* Protect Icons from Font Overrides */
+        .bi, [class^="bi-"], [class*=" bi-"] {
+            font-family: 'bootstrap-icons' !important;
+        }
+        .fa, .fa-solid, .fa-regular, .fa-brands, .fas, .far, .fab, [class^="fa-"], [class*=" fa-"] {
+            font-family: "Font Awesome 6 Free", "FontAwesome" !important;
         }
 
         /* Sidebar Styling */
@@ -370,7 +382,7 @@
                         </div>
 
                         <!-- Business Section Navigation -->
-                        <div class="nav-section-title">Main Portal</div>
+                        <div class="nav-section-title" id="admin-nav-section-title">Main Portal</div>
                         <nav class="nav flex-column gap-1.5" id="sidebar-menu">
                             <a href="#" class="nav-link active" data-page="/admin-desbord-home.html" data-title="Home">
                                 <i class="fa-solid fa-house"></i> <span>Home</span>
@@ -384,17 +396,20 @@
                             <a href="#" class="nav-link" data-page="/admin-desbord-classes.html" data-title="Classes">
                                 <i class="fa-solid fa-chalkboard"></i> <span>Classes</span>
                             </a>
-                            <a href="#" class="nav-link" data-page="/admin-desbord-attendance.html" data-title="Attendance">
+                            <a href="#" class="nav-link" data-page="/admin-desbord-attendance.html"
+                                data-title="Attendance">
                                 <i class="fa-solid fa-clipboard-user"></i> <span>Attendance</span>
                             </a>
                             <a href="#" class="nav-link" data-page="/admin-desbord-exams.html" data-title="Exams">
                                 <i class="fa-solid fa-square-check"></i> <span>Exams</span>
                             </a>
-                            <a href="#" class="nav-link" data-page="/admin-desbord-library.html" data-title="Library & Book Loans">
+                            <a href="#" class="nav-link" data-page="/admin-desbord-library.html"
+                                data-title="Library & Book Loans">
                                 <i class="fa-solid fa-book"></i> <span>Library Loans</span>
                             </a>
-                            <a href="#" class="nav-link" data-page="/admin-desbord-projects.html" data-title="Projects">
-                                <i class="fa-solid fa-folder-closed"></i> <span>Projects</span>
+                            <a href="#" class="nav-link" data-page="/admin-desbord-projects.html"
+                                data-title="បើកឆ្នាំសិក្សា & បណ្ណាសារ">
+                                <i class="fa-solid fa-calendar-check"></i> <span>បើកឆ្នាំសិក្សា & បណ្ណាសារ</span>
                             </a>
                             <a href="#" class="nav-link" data-page="/admin-desbord-logs.html" data-title="Audit Logs">
                                 <i class="fa-solid fa-clock-rotate-left"></i> <span>Audit Logs</span>
@@ -404,17 +419,23 @@
 
                     <!-- User Profile Footer -->
                     <div class="pt-3 border-top border-dark-subtle">
-                        <div class="profile-pill d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center gap-2.5">
+                        <div class="profile-pill d-flex align-items-center justify-content-between p-2 rounded"
+                            style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);">
+                            <div class="d-flex align-items-center gap-2">
                                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-                                    class="rounded-circle border border-dark" width="36" height="36" alt="User">
+                                    class="rounded-circle border border-warning" width="34" height="34" alt="User">
                                 <div>
-                                    <div class="fw-bold text-white" style="font-size: 0.82rem;">Wrath Neon</div>
-                                    <a href="/" class="btn-signout d-inline-block"><i
-                                            class="fa-solid fa-right-from-bracket me-1"></i> Sign out</a>
+                                    <div class="fw-bold text-white auth-user-name" id="admin-user-name"
+                                        style="font-size: 0.82rem;">Admin User</div>
+                                    <div class="text-white-50 extra-small auth-user-role" id="admin-user-role"
+                                        style="font-size: 0.72rem;">Admin</div>
                                 </div>
                             </div>
-                            <i class="bi bi-chevron-down text-muted" style="font-size: 0.75rem;"></i>
+                            <button type="button" class="btn btn-sm btn-outline-danger btn-signout" onclick="logout()"
+                                style="font-size: 0.72rem; padding: 3px 8px; border-radius: 6px; cursor: pointer;"
+                                title="Sign out" id="admin-sidebar-signout">
+                                <i class="fa-solid fa-right-from-bracket me-1"></i> <span class="signout-text">Sign out</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -426,7 +447,7 @@
                 <header class="top-navbar d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center gap-2 text-muted small">
                         <i class="bi bi-layout-sidebar text-gold"></i>
-                        <span>Dashboard</span>
+                        <span id="admin-breadcrumb-portal">Dashboard</span>
                         <i class="bi bi-chevron-right" style="font-size: 0.7rem;"></i>
                         <span class="text-white fw-medium" id="breadcrumb-current">Home</span>
                     </div>
@@ -437,20 +458,51 @@
                             <input type="text" id="global-search" placeholder="Search resources, students...">
                             <span class="badge-shortcut">⌘F</span>
                         </div>
-                        <span class="badge bg-warning-subtle text-warning px-2.5 py-1.5 rounded-pill"
+                        <span class="badge bg-warning-subtle text-warning px-2.5 py-1.5 rounded-pill" id="admin-tasks-badge"
                             style="font-size: 0.75rem; font-weight: 600;">
                             <i class="bi bi-bell-fill me-1"></i> 12 New Tasks
                         </span>
+
+                        <!-- Quick Language Dropdown -->
+                        <div class="dropdown" id="admin-quick-lang-dropdown">
+                            <button class="btn btn-outline-glass btn-sm d-flex align-items-center gap-1.5 px-2.5 py-1.5 rounded-3 text-white border-secondary"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false" id="admin-quick-lang-btn"
+                                style="background: rgba(255,255,255,0.06); font-size: 0.78rem;">
+                                <span id="admin-lang-flag">🇰🇭</span> <span id="admin-lang-text">ភាសាខ្មែរ</span>
+                                <i class="bi bi-chevron-down ms-1" style="font-size: 0.65rem;"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg border border-secondary p-1 rounded-3"
+                                style="background: #14141e; min-width: 140px; font-size: 0.8rem;">
+                                <li>
+                                    <a class="dropdown-item text-white rounded-2 d-flex align-items-center justify-content-between py-1.5 px-2.5"
+                                        href="javascript:void(0)" onclick="applySystemLanguage('km')">
+                                        <span><span class="me-2">🇰🇭</span> ភាសាខ្មែរ</span>
+                                        <i class="bi bi-check-lg text-warning" id="admin-quick-chk-km"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-white rounded-2 d-flex align-items-center justify-content-between py-1.5 px-2.5"
+                                        href="javascript:void(0)" onclick="applySystemLanguage('en')">
+                                        <span><span class="me-2">🇬🇧</span> English</span>
+                                        <i class="bi bi-check-lg text-warning d-none" id="admin-quick-chk-en"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
                         <div class="d-flex gap-1">
-                            <button class="hover-icon-btn" title="Toggle Dark Theme" onclick="document.querySelector('#theme-buttons-grid .theme-option-btn').click();"><i
+                            <button class="hover-icon-btn" title="Toggle Dark Theme"
+                                onclick="document.querySelector('#theme-buttons-grid .theme-option-btn').click();"><i
                                     class="bi bi-moon fs-6"></i></button>
                             <button class="hover-icon-btn" title="Notifications"><i
                                     class="bi bi-bell fs-6"></i></button>
-                            <button class="hover-icon-btn" data-bs-toggle="modal" data-bs-target="#systemSettingsModal" title="ការកំណត់ប្រព័ន្ធ (Settings)"><i class="bi bi-gear fs-6"></i></button>
+                            <button class="hover-icon-btn" data-bs-toggle="modal" data-bs-target="#systemSettingsModal"
+                                title="ការកំណត់ប្រព័ន្ធ (Settings)"><i class="bi bi-gear fs-6"></i></button>
                         </div>
-                        <button class="btn btn-outline-dark-custom"><i class="bi bi-download me-1.5"></i> Export
-                            Data</button>
-                        <button class="btn btn-gold"><i class="bi bi-plus-lg me-1.5"></i> New Entry</button>
+                        <button class="btn btn-outline-dark-custom" id="admin-export-btn"><i class="bi bi-download me-1.5"></i> Export Data</button>
+                        <button class="btn btn-gold" id="admin-new-entry-btn"><i class="bi bi-plus-lg me-1.5"></i> New Entry</button>
+                        <button class="btn btn-outline-danger btn-sm rounded-3 px-2.5 py-1.5" onclick="logout()" id="admin-logout-btn"
+                            title="Logout account"><i class="fa-solid fa-right-from-bracket me-1"></i> Logout</button>
                     </div>
                 </header>
 
@@ -481,7 +533,7 @@
             }
 
             const ctx = chartCanvas.getContext('2d');
-            
+
             let labels, existingData, enrolledData, droppedData, barThicknessVal;
 
             if (mode === 'monthly') {
@@ -629,61 +681,80 @@
     <!-- Modal: Settings Modal (⚙️ ការកំណត់ប្រព័ន្ធ - System Settings) -->
     <div class="modal fade" id="systemSettingsModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
-                <div class="modal-header border-bottom border-dark p-4">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
-                            <i class="bi bi-gear-fill fs-4"></i>
-                        </div>
-                        <div>
-                            <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">ការកំណត់ប្រព័ន្ធ (System Settings)</span>
-                            <h4 class="fw-bold text-white mb-0">កែប្រែការកំណត់ភាសា និង ពណ៌ Background របស់ប្រព័ន្ធ</h4>
+            <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+                                   <div>
+                            <span class="badge text-white fw-bold mb-1" id="admin-settings-badge" style="background:#d4af37;">ការកំណត់ប្រព័ន្ធ (System Settings)</span>
+                            <h4 class="fw-bold text-white mb-0" id="admin-settings-title">កែប្រែការកំណត់ភាសា និង ពណ៌ផ្ទៃខាងក្រោយរបស់ប្រព័ន្ធ</h4>
                         </div>
                     </div>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
                     <!-- Section 1: Background Theme Selector (ប្តូរ Background ពណ៌) -->
-                    <div class="mb-4 p-3.5 rounded-3 border border-secondary" style="background: rgba(16, 16, 26, 0.85);">
-                        <h6 class="fw-bold text-white mb-3"><i class="bi bi-palette-fill text-warning me-2" style="color:#d4af37;"></i>១. ជ្រើសរើសពណ៌ Background របស់ប្រព័ន្ធ (Background Color Themes)</h6>
-                        
+                    <div class="mb-4 p-3.5 rounded-3 border border-secondary"
+                        style="background: rgba(16, 16, 26, 0.85);">
+                        <h6 class="fw-bold text-white mb-3" id="admin-settings-theme-title"><i class="bi bi-palette-fill text-warning me-2"
+                                style="color:#d4af37;"></i>១. ជ្រើសរើសពណ៌ផ្ទៃខាងក្រោយរបស់ប្រព័ន្ធ (Background Color Themes)</h6>
+
                         <div class="row g-3 mb-3" id="theme-buttons-grid">
                             <div class="col-md-4">
-                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn active-theme" data-theme="dark-gold" style="background: linear-gradient(135deg, #0a0a0c, #121218); border-color: #d4af37 !important;">
-                                    <div class="fw-bold text-white mb-1"><i class="bi bi-moon-stars-fill text-warning me-1"></i> Dark Gold</div>
+                                <button type="button"
+                                    class="btn w-100 text-start p-3 rounded-3 border theme-option-btn active-theme"
+                                    data-theme="dark-gold"
+                                    style="background: linear-gradient(135deg, #0a0a0c, #121218); border-color: #d4af37 !important;">
+                                    <div class="fw-bold text-white mb-1"><i
+                                            class="bi bi-moon-stars-fill text-warning me-1"></i> Dark Gold</div>
                                     <span class="extra-small text-white opacity-75">ពណ៌ខ្មៅមាស (Standard)</span>
                                 </button>
                             </div>
                             <div class="col-md-4">
-                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn" data-theme="midnight-blue" style="background: linear-gradient(135deg, #0b132b, #1c2541); border-color: rgba(255,255,255,0.2) !important;">
-                                    <div class="fw-bold text-white mb-1"><i class="bi bi-water text-info me-1"></i> Midnight Blue</div>
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn"
+                                    data-theme="midnight-blue"
+                                    style="background: linear-gradient(135deg, #0b132b, #1c2541); border-color: rgba(255,255,255,0.2) !important;">
+                                    <div class="fw-bold text-white mb-1"><i class="bi bi-water text-info me-1"></i>
+                                        Midnight Blue</div>
                                     <span class="extra-small text-white opacity-75">ពណ៌ខៀវ Midnight</span>
                                 </button>
                             </div>
                             <div class="col-md-4">
-                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn" data-theme="deep-purple" style="background: linear-gradient(135deg, #180a29, #2b1040); border-color: rgba(255,255,255,0.2) !important;">
-                                    <div class="fw-bold text-white mb-1"><i class="bi bi-gem text-danger me-1"></i> Royal Purple</div>
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn"
+                                    data-theme="deep-purple"
+                                    style="background: linear-gradient(135deg, #180a29, #2b1040); border-color: rgba(255,255,255,0.2) !important;">
+                                    <div class="fw-bold text-white mb-1"><i class="bi bi-gem text-danger me-1"></i>
+                                        Royal Purple</div>
                                     <span class="extra-small text-white opacity-75">ពណ៌ស្វាយ Royal</span>
                                 </button>
                             </div>
                             <div class="col-md-4">
-                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn" data-theme="emerald-green" style="background: linear-gradient(135deg, #051912, #0d3b2e); border-color: rgba(255,255,255,0.2) !important;">
-                                    <div class="fw-bold text-white mb-1"><i class="bi bi-tree-fill text-success me-1"></i> Emerald Green</div>
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn"
+                                    data-theme="emerald-green"
+                                    style="background: linear-gradient(135deg, #051912, #0d3b2e); border-color: rgba(255,255,255,0.2) !important;">
+                                    <div class="fw-bold text-white mb-1"><i
+                                            class="bi bi-tree-fill text-success me-1"></i> Emerald Green</div>
                                     <span class="extra-small text-white opacity-75">ពណ៌បៃតង Emerald</span>
                                 </button>
                             </div>
                             <div class="col-md-4">
-                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn" data-theme="pitch-black" style="background: linear-gradient(135deg, #000000, #141414); border-color: rgba(255,255,255,0.2) !important;">
-                                    <div class="fw-bold text-white mb-1"><i class="bi bi-circle-fill text-secondary me-1"></i> Pitch Black</div>
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border theme-option-btn"
+                                    data-theme="pitch-black"
+                                    style="background: linear-gradient(135deg, #000000, #141414); border-color: rgba(255,255,255,0.2) !important;">
+                                    <div class="fw-bold text-white mb-1"><i
+                                            class="bi bi-circle-fill text-secondary me-1"></i> Pitch Black</div>
                                     <span class="extra-small text-white opacity-75">ពណ៌ខ្មៅងងឹត</span>
                                 </button>
                             </div>
                             <div class="col-md-4">
-                                <div class="p-3 rounded-3 border border-secondary d-flex flex-column justify-content-center h-100" style="background: rgba(25, 25, 35, 0.9);">
-                                    <label class="form-label text-white extra-small fw-bold mb-1"><i class="bi bi-eyedropper text-warning me-1"></i> ពណ៌ផ្ទាល់ខ្លួន (Custom)</label>
+                                <div class="p-3 rounded-3 border border-secondary d-flex flex-column justify-content-center h-100"
+                                    style="background: rgba(25, 25, 35, 0.9);">
+                                    <label class="form-label text-white extra-small fw-bold mb-1" id="admin-settings-custom-lbl"><i
+                                            class="bi bi-eyedropper text-warning me-1"></i> ពណ៌ផ្ទាល់ខ្លួន (Custom)</label>
                                     <div class="d-flex align-items-center gap-2">
-                                        <input type="color" id="customBgColorPickerAdmin" class="form-control form-control-color bg-dark border-secondary w-100" value="#0a0a0c" title="ជ្រើសរើសពណ៌ Background">
-                                        <button type="button" class="btn btn-sm btn-outline-glass" id="applyCustomColorBtnAdmin">ប្រើ</button>
+                                        <input type="color" id="customBgColorPickerAdmin"
+                                            class="form-control form-control-color bg-dark border-secondary w-100"
+                                            value="#0a0a0c" title="ជ្រើសរើសពណ៌ Background">
+                                        <button type="button" class="btn btn-sm btn-outline-glass"
+                                            id="applyCustomColorBtnAdmin">ប្រើ</button>
                                     </div>
                                 </div>
                             </div>
@@ -692,10 +763,14 @@
 
                     <!-- Section 2: Language Selector (ប្តូរភាសា) -->
                     <div class="p-3.5 rounded-3 border border-secondary" style="background: rgba(16, 16, 26, 0.85);">
-                        <h6 class="fw-bold text-white mb-3"><i class="bi bi-translate text-warning me-2" style="color:#d4af37;"></i>២. ជ្រើសរើសភាសាប្រើប្រាស់ក្នុងប្រព័ន្ធ (System Language)</h6>
+                        <h6 class="fw-bold text-white mb-3" id="admin-settings-lang-title"><i class="bi bi-translate text-warning me-2"
+                                style="color:#d4af37;"></i>២. ជ្រើសរើសភាសាប្រើប្រាស់ក្នុងប្រព័ន្ធ (System Language)</h6>
                         <div class="row g-3" id="lang-buttons-grid-admin">
                             <div class="col-md-6">
-                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border lang-option-btn active-lang" data-lang="km" style="background: rgba(212, 175, 55, 0.15); border-color: #d4af37 !important;">
+                                <button type="button"
+                                    class="btn w-100 text-start p-3 rounded-3 border lang-option-btn active-lang"
+                                    data-lang="km"
+                                    style="background: rgba(212, 175, 55, 0.15); border-color: #d4af37 !important;">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="fw-bold text-white"><span class="fs-5 me-2">🇰🇭</span> ភាសាខ្មែរ (Khmer)</div>
                                         <i class="bi bi-check-circle-fill text-warning" id="admin-lang-chk-km"></i>
@@ -703,7 +778,9 @@
                                 </button>
                             </div>
                             <div class="col-md-6">
-                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border lang-option-btn" data-lang="en" style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2) !important;">
+                                <button type="button" class="btn w-100 text-start p-3 rounded-3 border lang-option-btn"
+                                    data-lang="en"
+                                    style="background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2) !important;">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="fw-bold text-white"><span class="fs-5 me-2">🇬🇧</span> English (អង់គ្លេស)</div>
                                         <i class="bi bi-circle text-muted" id="admin-lang-chk-en"></i>
@@ -714,8 +791,9 @@
                     </div>
                 </div>
                 <div class="modal-footer border-top border-dark p-3">
-                    <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បិទ</button>
-                    <button type="button" class="btn-gold-shimmer btn-sm" data-bs-dismiss="modal"><i class="bi bi-check-lg me-1"></i> រក្សាទុកការកំណត់</button>
+                    <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal" id="admin-settings-close-btn">បិទ</button>
+                    <button type="button" class="btn-gold-shimmer btn-sm" data-bs-dismiss="modal" id="admin-settings-save-btn"><i
+                            class="bi bi-check-lg me-1"></i> រក្សាទុកការកំណត់</button>
                 </div>
             </div>
         </div>
@@ -725,73 +803,309 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        (function() {
-            const themeGradientsMap = {
-                'dark-gold': 'linear-gradient(135deg, #0a0a0c 0%, #121218 100%)',
-                'midnight-blue': 'linear-gradient(135deg, #0b132b 0%, #1c2541 100%)',
-                'deep-purple': 'linear-gradient(135deg, #180a29 0%, #2b1040 100%)',
-                'emerald-green': 'linear-gradient(135deg, #051912 0%, #0d3b2e 100%)',
-                'pitch-black': 'linear-gradient(135deg, #000000 0%, #141414 100%)'
-            };
+        // System Theme Management
+        const themeGradientsMap = {
+            'dark-gold': 'linear-gradient(135deg, #0a0a0c 0%, #121218 100%)',
+            'midnight-blue': 'linear-gradient(135deg, #0b132b 0%, #1c2541 100%)',
+            'deep-purple': 'linear-gradient(135deg, #180a29 0%, #2b1040 100%)',
+            'emerald-green': 'linear-gradient(135deg, #051912 0%, #0d3b2e 100%)',
+            'pitch-black': 'linear-gradient(135deg, #000000 0%, #141414 100%)'
+        };
 
-            function applySystemBackground(themeVal) {
-                const bgStyle = themeGradientsMap[themeVal] || (themeVal.startsWith('#') ? themeVal : '#0a0a0c');
-                document.body.style.background = bgStyle;
-                document.body.style.backgroundColor = themeVal.startsWith('#') ? themeVal : '#0a0a0c';
-                localStorage.setItem('antigravity_bg_theme', themeVal);
+        function applySystemBackground(themeVal) {
+            const bgStyle = themeGradientsMap[themeVal] || (themeVal.startsWith('#') ? themeVal : '#0a0a0c');
+            document.body.style.background = bgStyle;
+            document.body.style.backgroundColor = themeVal.startsWith('#') ? themeVal : '#0a0a0c';
+            localStorage.setItem('antigravity_bg_theme', themeVal);
 
-                document.querySelectorAll('#theme-buttons-grid .theme-option-btn').forEach(btn => {
-                    if (btn.getAttribute('data-theme') === themeVal) {
-                        btn.style.borderColor = '#d4af37';
-                        btn.classList.add('active-theme');
-                    } else {
-                        btn.style.borderColor = 'rgba(255,255,255,0.2)';
-                        btn.classList.remove('active-theme');
-                    }
-                });
-            }
-
-            function applySystemLanguage(langCode) {
-                localStorage.setItem('antigravity_system_lang', langCode);
-                const kmChk = document.getElementById('admin-lang-chk-km');
-                const enChk = document.getElementById('admin-lang-chk-en');
-
-                if (langCode === 'en') {
-                    if (kmChk) kmChk.className = 'bi bi-circle text-muted';
-                    if (enChk) enChk.className = 'bi bi-check-circle-fill text-warning';
+            document.querySelectorAll('#theme-buttons-grid .theme-option-btn').forEach(btn => {
+                if (btn.getAttribute('data-theme') === themeVal) {
+                    btn.style.borderColor = '#d4af37';
+                    btn.classList.add('active-theme');
                 } else {
-                    if (kmChk) kmChk.className = 'bi bi-check-circle-fill text-warning';
-                    if (enChk) enChk.className = 'bi bi-circle text-muted';
+                    btn.style.borderColor = 'rgba(255,255,255,0.2)';
+                    btn.classList.remove('active-theme');
+                }
+            });
+        }
+
+        // Comprehensive Bilingual Dictionary for Admin Portal
+        const adminI18nDict = {
+            km: {
+                flag: '🇰🇭',
+                langName: 'ភាសាខ្មែរ',
+                portal_title: 'ផ្ទាំងគ្រប់គ្រងចម្បង',
+                breadcrumb_prefix: 'ផ្ទាំងគ្រប់គ្រង',
+                search_placeholder: 'ស្វែងរកធនធាន, សិស្ស...',
+                tasks_badge: '១២ ភារកិច្ចថ្មី',
+                btn_export: 'ទាញយកទិន្នន័យ',
+                btn_new_entry: 'បញ្ចូលថ្មី',
+                btn_logout: 'ចាកចេញ',
+                btn_signout: 'ចាកចេញ',
+                // Navigation links mapping
+                nav_pages: {
+                    '/admin-desbord-home.html': 'ទំព័រដើម',
+                    '/admin-desbord-tacher.html': 'គ្រូបង្រៀន',
+                    '/admin-desbord-students.html': 'សិស្ស',
+                    '/admin-desbord-classes.html': 'ថ្នាក់រៀន',
+                    '/admin-desbord-attendance.html': 'វត្តមាន',
+                    '/admin-desbord-exams.html': 'ការប្រឡង',
+                    '/admin-desbord-library.html': 'ខ្ចីសៀវភៅ',
+                    '/admin-desbord-projects.html': 'បើកឆ្នាំសិក្សា & បណ្ណាសារ',
+                    '/admin-desbord-logs.html': 'កំណត់ហេតុប្រព័ន្ធ'
+                },
+                // Settings modal
+                settings_badge: 'ការកំណត់ប្រព័ន្ធ (System Settings)',
+                settings_title: 'កែប្រែការកំណត់ភាសា និង ពណ៌ផ្ទៃខាងក្រោយរបស់ប្រព័ន្ធ',
+                settings_theme_title: '១. ជ្រើសរើសពណ៌ផ្ទៃខាងក្រោយរបស់ប្រព័ន្ធ (Background Color Themes)',
+                settings_custom_lbl: 'ពណ៌ផ្ទាល់ខ្លួន (Custom)',
+                settings_custom_apply: 'ប្រើ',
+                settings_lang_title: '២. ជ្រើសរើសភាសាប្រើប្រាស់ក្នុងប្រព័ន្ធ (System Language)',
+                settings_btn_close: 'បិទ',
+                settings_btn_save: 'រក្សាទុកការកំណត់'
+            },
+            en: {
+                flag: '🇬🇧',
+                langName: 'English',
+                portal_title: 'Main Portal',
+                breadcrumb_prefix: 'Dashboard',
+                search_placeholder: 'Search resources, students...',
+                tasks_badge: '12 New Tasks',
+                btn_export: 'Export Data',
+                btn_new_entry: 'New Entry',
+                btn_logout: 'Logout',
+                btn_signout: 'Sign out',
+                // Navigation links mapping
+                nav_pages: {
+                    '/admin-desbord-home.html': 'Home',
+                    '/admin-desbord-tacher.html': 'Teachers',
+                    '/admin-desbord-students.html': 'Students',
+                    '/admin-desbord-classes.html': 'Classes',
+                    '/admin-desbord-attendance.html': 'Attendance',
+                    '/admin-desbord-exams.html': 'Exams',
+                    '/admin-desbord-library.html': 'Library Loans',
+                    '/admin-desbord-projects.html': 'Academic Year & Archives',
+                    '/admin-desbord-logs.html': 'Audit Logs'
+                },
+                // Settings modal
+                settings_badge: 'System Settings',
+                settings_title: 'Customize System Language and Background Themes',
+                settings_theme_title: '1. Select Background Color Theme',
+                settings_custom_lbl: 'Custom Color',
+                settings_custom_apply: 'Apply',
+                settings_lang_title: '2. Select System Interface Language',
+                settings_btn_close: 'Close',
+                settings_btn_save: 'Save Settings'
+            }
+        };
+
+        // Global function to switch & apply system language
+        window.applySystemLanguage = function (langCode) {
+            langCode = (langCode === 'en') ? 'en' : 'km';
+            localStorage.setItem('antigravity_system_lang', langCode);
+
+            const dict = adminI18nDict[langCode] || adminI18nDict.km;
+
+            // 1. Update Top Navbar Quick Language Selector
+            const langFlag = document.getElementById('admin-lang-flag');
+            const langText = document.getElementById('admin-lang-text');
+            const quickChkKm = document.getElementById('admin-quick-chk-km');
+            const quickChkEn = document.getElementById('admin-quick-chk-en');
+
+            if (langFlag) langFlag.textContent = dict.flag;
+            if (langText) langText.textContent = dict.langName;
+            if (quickChkKm) quickChkKm.classList.toggle('d-none', langCode !== 'km');
+            if (quickChkEn) quickChkEn.classList.toggle('d-none', langCode !== 'en');
+
+            // 2. Update Settings Modal Checkmarks & Active Styles
+            const kmChk = document.getElementById('admin-lang-chk-km');
+            const enChk = document.getElementById('admin-lang-chk-en');
+
+            if (kmChk) kmChk.className = (langCode === 'km') ? 'bi bi-check-circle-fill text-warning' : 'bi bi-circle text-muted';
+            if (enChk) enChk.className = (langCode === 'en') ? 'bi bi-check-circle-fill text-warning' : 'bi bi-circle text-muted';
+
+            document.querySelectorAll('#lang-buttons-grid-admin .lang-option-btn').forEach(btn => {
+                const bLang = btn.getAttribute('data-lang');
+                if (bLang === langCode) {
+                    btn.classList.add('active-lang');
+                    btn.style.background = 'rgba(212, 175, 55, 0.15)';
+                    btn.style.setProperty('border-color', '#d4af37', 'important');
+                } else {
+                    btn.classList.remove('active-lang');
+                    btn.style.background = 'rgba(255, 255, 255, 0.05)';
+                    btn.style.setProperty('border-color', 'rgba(255, 255, 255, 0.2)', 'important');
+                }
+            });
+
+            // 3. Update Sidebar Navigation Links
+            document.querySelectorAll('#sidebar-menu .nav-link').forEach(link => {
+                const pageUrl = link.getAttribute('data-page');
+                if (pageUrl && dict.nav_pages[pageUrl]) {
+                    const textLabel = dict.nav_pages[pageUrl];
+                    link.setAttribute('data-title', textLabel);
+                    const spanElem = link.querySelector('span');
+                    if (spanElem) {
+                        spanElem.textContent = textLabel;
+                    }
+                }
+            });
+
+            // 4. Update Current Active Breadcrumb Title
+            const activeNav = document.querySelector('#sidebar-menu .nav-link.active');
+            const currentBreadcrumb = document.getElementById('breadcrumb-current');
+            if (activeNav && currentBreadcrumb) {
+                const pageUrl = activeNav.getAttribute('data-page');
+                if (pageUrl && dict.nav_pages[pageUrl]) {
+                    currentBreadcrumb.textContent = dict.nav_pages[pageUrl];
                 }
             }
 
-            document.querySelectorAll('#theme-buttons-grid .theme-option-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const theme = this.getAttribute('data-theme');
-                    if (theme) applySystemBackground(theme);
-                });
-            });
+            // 5. Update Navbar & Top Controls
+            const portalBreadcrumb = document.getElementById('admin-breadcrumb-portal');
+            if (portalBreadcrumb) portalBreadcrumb.textContent = dict.breadcrumb_prefix;
 
-            const applyCustomBtn = document.getElementById('applyCustomColorBtnAdmin');
-            const customPicker = document.getElementById('customBgColorPickerAdmin');
-            if (applyCustomBtn && customPicker) {
-                applyCustomBtn.addEventListener('click', function () {
-                    applySystemBackground(customPicker.value);
-                });
+            const searchInput = document.getElementById('global-search');
+            if (searchInput) searchInput.placeholder = dict.search_placeholder;
+
+            const tasksBadge = document.getElementById('admin-tasks-badge');
+            if (tasksBadge) tasksBadge.innerHTML = `<i class="bi bi-bell-fill me-1"></i> ${dict.tasks_badge}`;
+
+            const exportBtn = document.getElementById('admin-export-btn');
+            if (exportBtn) exportBtn.innerHTML = `<i class="bi bi-download me-1.5"></i> ${dict.btn_export}`;
+
+            const newEntryBtn = document.getElementById('admin-new-entry-btn');
+            if (newEntryBtn) newEntryBtn.innerHTML = `<i class="bi bi-plus-lg me-1.5"></i> ${dict.btn_new_entry}`;
+
+            const logoutBtn = document.getElementById('admin-logout-btn');
+            if (logoutBtn) logoutBtn.innerHTML = `<i class="fa-solid fa-right-from-bracket me-1"></i> ${dict.btn_logout}`;
+
+            // 6. Update Sidebar Profile & Section Title
+            const navSectionTitle = document.getElementById('admin-nav-section-title');
+            if (navSectionTitle) navSectionTitle.textContent = dict.portal_title;
+
+            const sidebarSignout = document.querySelector('#admin-sidebar-signout .signout-text');
+            if (sidebarSignout) sidebarSignout.textContent = dict.btn_signout;
+
+            // 7. Update Settings Modal Labels
+            const sBadge = document.getElementById('admin-settings-badge');
+            if (sBadge) sBadge.textContent = dict.settings_badge;
+
+            const sTitle = document.getElementById('admin-settings-title');
+            if (sTitle) sTitle.textContent = dict.settings_title;
+
+            const sThemeTitle = document.getElementById('admin-settings-theme-title');
+            if (sThemeTitle) sThemeTitle.innerHTML = `<i class="bi bi-palette-fill text-warning me-2" style="color:#d4af37;"></i>${dict.settings_theme_title}`;
+
+            const sCustomLbl = document.getElementById('admin-settings-custom-lbl');
+            if (sCustomLbl) sCustomLbl.innerHTML = `<i class="bi bi-eyedropper text-warning me-1"></i> ${dict.settings_custom_lbl}`;
+
+            const sCustomApply = document.getElementById('applyCustomColorBtnAdmin');
+            if (sCustomApply) sCustomApply.textContent = dict.settings_custom_apply;
+
+            const sLangTitle = document.getElementById('admin-settings-lang-title');
+            if (sLangTitle) sLangTitle.innerHTML = `<i class="bi bi-translate text-warning me-2" style="color:#d4af37;"></i>${dict.settings_lang_title}`;
+
+            const sCloseBtn = document.getElementById('admin-settings-close-btn');
+            if (sCloseBtn) sCloseBtn.textContent = dict.settings_btn_close;
+
+            const sSaveBtn = document.getElementById('admin-settings-save-btn');
+            if (sSaveBtn) sSaveBtn.innerHTML = `<i class="bi bi-check-lg me-1"></i> ${dict.settings_btn_save}`;
+
+            // Dispatch event for any embedded views
+            window.dispatchEvent(new CustomEvent('system_language_changed', { detail: { lang: langCode } }));
+        };
+
+        // Settings Modal event listeners
+        document.querySelectorAll('#theme-buttons-grid .theme-option-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const theme = this.getAttribute('data-theme');
+                if (theme) applySystemBackground(theme);
+            });
+        });
+
+        const applyCustomBtn = document.getElementById('applyCustomColorBtnAdmin');
+        const customPicker = document.getElementById('customBgColorPickerAdmin');
+        if (applyCustomBtn && customPicker) {
+            applyCustomBtn.addEventListener('click', function () {
+                applySystemBackground(customPicker.value);
+            });
+        }
+
+        document.querySelectorAll('#lang-buttons-grid-admin .lang-option-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const lang = this.getAttribute('data-lang');
+                if (lang) window.applySystemLanguage(lang);
+            });
+        });
+
+        // Listen for cross-tab or cross-page language changes
+        window.addEventListener('storage', function (e) {
+            if (e.key === 'antigravity_system_lang' && e.newValue) {
+                window.applySystemLanguage(e.newValue);
+            }
+            if (e.key === 'antigravity_bg_theme' && e.newValue) {
+                applySystemBackground(e.newValue);
+            }
+        });
+
+        // Initialize Theme and Language on page ready
+        const savedTheme = localStorage.getItem('antigravity_bg_theme') || 'dark-gold';
+        const savedLang = localStorage.getItem('antigravity_system_lang') || 'km';
+        applySystemBackground(savedTheme);
+        window.applySystemLanguage(savedLang);
+
+
+        async function vftoken() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('token');
+            if (!token) {
+                console.warn("No token found in localStorage! Redirecting to login...");
+                window.location.href = "/";
+                return;
             }
 
-            document.querySelectorAll('#lang-buttons-grid-admin .lang-option-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const lang = this.getAttribute('data-lang');
-                    if (lang) applySystemLanguage(lang);
+            try {
+                const response = await fetch("/api/verify_token", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + token,
+                    },
+                    body: JSON.stringify({ token })
                 });
-            });
+                const account = await response.json();
+                console.log("Verified Account / User Data:", account);
 
-            const savedTheme = localStorage.getItem('antigravity_bg_theme') || 'dark-gold';
-            const savedLang = localStorage.getItem('antigravity_system_lang') || 'km';
-            applySystemBackground(savedTheme);
-            applySystemLanguage(savedLang);
-        })();
+                if (account && account.status === "success" && account.user) {
+                    console.log("Current Logged In User:", account.user.username, "| Role:", account.user.role);
+
+                    // Render username on Admin Dashboard
+                    document.querySelectorAll('.auth-user-name, #admin-user-name').forEach(el => {
+                        if (el) el.textContent = account.user.username;
+                    });
+
+                    // Render role on Admin Dashboard
+                    document.querySelectorAll('.auth-user-role, #admin-user-role').forEach(el => {
+                        if (el) el.textContent = account.user.role;
+                    });
+
+                    // Update localStorage
+                    localStorage.setItem('user', JSON.stringify(account.user));
+                } else {
+                    console.warn("Token verification failed:", account);
+                }
+
+                return account;
+            } catch (err) {
+                console.error("Token verification error:", err);
+            }
+        }
+
+        // Call vftoken automatically on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', vftoken);
+        } else {
+            vftoken();
+        }
     </script>
 </body>
 

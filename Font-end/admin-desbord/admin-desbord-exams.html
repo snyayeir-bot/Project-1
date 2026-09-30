@@ -1,7 +1,20 @@
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
     /* Premium Ultra-Modern Dark & Gold Clean Khmer Exams System Architecture */
     * {
         font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Clear Extra Small text styling */
+    .extra-small {
+        font-size: 0.8rem !important;
+        line-height: 1.4;
+    }
+
+    /* High-contrast readable muted text */
+    .text-muted {
+        color: #a8a8b8 !important;
     }
 
     /* Executive Hero Header Banner */
@@ -30,7 +43,7 @@
     .glass-exam-kpi {
         background: rgba(18, 18, 26, 0.85);
         backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 20px;
         padding: 18px;
         transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -59,7 +72,7 @@
     .filter-pill-btn {
         background: transparent;
         border: 1px solid transparent;
-        color: #a0a0be;
+        color: #b0b0cc;
         border-radius: 40px;
         padding: 9px 22px;
         font-size: 0.88rem;
@@ -264,8 +277,15 @@
         border-radius: 8px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         display: inline-block;
-        min-width: 48px;
+        min-width: 44px;
         text-align: center;
+    }
+
+    .card-custom {
+        background: linear-gradient(145deg, #12121a, #181826);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 </style>
 
@@ -278,19 +298,19 @@
                 <div>
                     <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;"><i
                             class="bi bi-award-fill me-1"></i> ប្រព័ន្ធគ្រប់គ្រងការប្រឡង</span>
-                    <h2 class="fw-bold text-white mb-1">គ្រប់គ្រងបញ្ជីថ្នាក់រៀនប្រឡង</h2>
-                    <p class="text-muted small mb-0">ចុចលើថ្នាក់រៀននីមួយៗក្នុងបញ្ជី
-                        ដើម្បីមើលព័ត៌មានលម្អិតការប្រឡងប្រចាំខែ និង ប្រចាំឆ្នាំក្នុងថ្នាក់នោះ។</p>
+                    <h2 class="fw-bold text-white mb-1">គ្រប់គ្រងបញ្ជីថ្នាក់រៀន និងពិន្ទុប្រឡង</h2>
+                    <p class="text-white-50 small mb-0">ចុចលើថ្នាក់រៀននីមួយៗក្នុងបញ្ជី ដើម្បីមើលបញ្ជីការប្រឡង និងលទ្ធផលពិន្ទុសិស្សជាក់ស្តែង។</p>
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center gap-2 bg-dark px-3 py-2 rounded-3 border border-secondary">
                         <i class="bi bi-calendar-check text-warning fs-5" style="color:#d4af37 !important;"></i>
                         <div>
-                            <span class="text-muted extra-small d-block">ឆ្នាំសិក្សា:</span>
+                            <span class="text-white-50 extra-small d-block">ឆ្នាំសិក្សា:</span>
                             <span class="text-white extra-small fw-bold">២០២៦ - ២០២៧</span>
                         </div>
                     </div>
-                    <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#adminAddNewExamModal"><i class="bi bi-plus-lg me-1"></i> ➕ បង្កើតកាលវិភាគប្រឡងថ្មី</button>
+                    <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#adminAddNewExamModal"><i
+                            class="bi bi-plus-lg me-1"></i> ➕ បង្កើតកាលវិភាគប្រឡងថ្មី</button>
                 </div>
             </div>
         </div>
@@ -298,12 +318,12 @@
         <!-- Top Statistics KPI Row -->
         <div class="row g-3 mb-4">
             <div class="col-md-3">
-                <div class="glass-exam-kpi">
+                <div class="glass-exam-kpi" style="border-color: rgba(59, 130, 246, 0.4);">
                     <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="text-muted extra-small">🏫 ថ្នាក់ប្រឡងសរុប</span>
-                        <i class="bi bi-grid-3x3-gap-fill text-warning fs-5" style="color:#d4af37;"></i>
+                        <span class="text-info extra-small fw-bold">🏫 ថ្នាក់ប្រឡងសរុប</span>
+                        <i class="bi bi-grid-3x3-gap-fill text-info fs-5"></i>
                     </div>
-                    <h3 class="fw-bold text-white mb-0" id="stat-total-classes">៦ ថ្នាក់</h3>
+                    <h3 class="fw-bold text-white mb-0" id="stat-total-classes">០ ថ្នាក់</h3>
                     <span class="text-success extra-small"><i class="bi bi-check-circle me-1"></i>ដំណើរការប្រឡង</span>
                 </div>
             </div>
@@ -313,29 +333,28 @@
                         <span class="text-success extra-small fw-bold">📅 ប្រឡងប្រចាំខែ</span>
                         <i class="bi bi-calendar-check-fill text-success fs-5"></i>
                     </div>
-                    <h3 class="fw-bold text-success mb-0" id="stat-total-monthly">២៤ ការប្រឡង</h3>
+                    <h3 class="fw-bold text-success mb-0" id="stat-total-monthly">០ ការប្រឡង</h3>
                     <span class="text-success extra-small"><i class="bi bi-graph-up me-1"></i>គ្រប់ខែទាំងអស់</span>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="glass-exam-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
                     <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="text-warning extra-small fw-bold" style="color:#d4af37;">🏆
-                            ប្រឡងប្រចាំឆ្នាំ/ឆមាស</span>
+                        <span class="text-warning extra-small fw-bold" style="color:#d4af37;">🏆 ប្រឡងប្រចាំឆ្នាំ/ឆមាស</span>
                         <i class="bi bi-trophy-fill text-warning fs-5" style="color:#d4af37;"></i>
                     </div>
-                    <h3 class="fw-bold text-warning mb-0" style="color:#d4af37;" id="stat-total-annual">១២ ការប្រឡង</h3>
-                    <span class="text-warning extra-small" style="color:#d4af37;">អត្រាជាប់សរុប ៩២%</span>
+                    <h3 class="fw-bold text-warning mb-0" style="color:#d4af37;" id="stat-total-annual">០ ការប្រឡង</h3>
+                    <span class="text-warning extra-small" style="color:#d4af37;">គ្រប់ឆមាសទាំងអស់</span>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="glass-exam-kpi">
+                <div class="glass-exam-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
                     <div class="d-flex justify-content-between align-items-center mb-1">
-                        <span class="text-muted extra-small">👥 សិស្សប្រឡងសរុប</span>
-                        <i class="bi bi-people-fill text-warning fs-5" style="color:#d4af37;"></i>
+                        <span class="text-warning extra-small fw-bold" style="color:#ffd700;">👥 សិស្សសរុប</span>
+                        <i class="bi bi-people-fill text-warning fs-5" style="color:#ffd700;"></i>
                     </div>
-                    <h3 class="fw-bold text-white mb-0" id="stat-total-examinees">២១៨ នាក់</h3>
-                    <span class="text-muted extra-small">សិស្សសរុបគ្រប់ថ្នាក់</span>
+                    <h3 class="fw-bold text-white mb-0" id="stat-total-examinees">០ នាក់</h3>
+                    <span class="extra-small text-white-50">សិស្សគ្រប់ថ្នាក់</span>
                 </div>
             </div>
         </div>
@@ -343,16 +362,13 @@
         <!-- Filter Track Pills & Live Search -->
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
             <div class="filter-capsule-bar flex-wrap" id="class-track-filter-pills">
-                <button class="filter-pill-btn active" data-track="All"><i class="bi bi-grid-fill me-1"></i>
-                    គ្រប់ថ្នាក់ទាំងអស់</button>
-                <button class="filter-pill-btn" data-track="Science"><i class="bi bi-calculator me-1"></i>
-                    ថ្នាក់វិទ្យាសាស្ត្រ (Science)</button>
-                <button class="filter-pill-btn" data-track="Social"><i class="bi bi-globe me-1"></i>
-                    ថ្នាក់វិទ្យាសាស្ត្រសង្គម (Social)</button>
+                <button class="filter-pill-btn active" data-track="All"><i class="bi bi-grid-fill me-1"></i> គ្រប់ថ្នាក់ទាំងអស់</button>
+                <button class="filter-pill-btn" data-track="12"><i class="bi bi-calculator me-1"></i> ថ្នាក់ទី ១២</button>
+                <button class="filter-pill-btn" data-track="11"><i class="bi bi-globe me-1"></i> ថ្នាក់ទី ១១</button>
+                <button class="filter-pill-btn" data-track="10"><i class="bi bi-book me-1"></i> ថ្នាក់ទី ១០</button>
             </div>
             <div class="search-box" style="width: 320px;">
-                <i class="bi bi-search text-muted"></i>
-                <input type="text" id="class-exam-search-input" placeholder="ស្វែងរក ឈ្មោះថ្នាក់ ឬ គ្រូ...">
+                <input type="text" id="class-exam-search-input" class="form-control bg-dark text-white border-secondary" placeholder="🔍 ស្វែងរក ឈ្មោះថ្នាក់ ឬ គ្រូ...">
             </div>
         </div>
 
@@ -360,8 +376,8 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="fw-bold text-white mb-0"><i class="bi bi-list-task text-warning me-2"
                     style="color:#d4af37 !important;"></i>បញ្ជីថ្នាក់រៀនសម្រាប់ប្រឡង</h5>
-            <span class="badge text-dark px-3 py-1.5" style="background:#d4af37; font-weight:700;"
-                id="total-class-count">៦ ថ្នាក់កំពុងដំណើរការ</span>
+            <span class="badge text-dark px-3 py-1.5 fw-bold" style="background:#d4af37;"
+                id="total-class-count">កំពុងផ្ទុកទិន្នន័យ...</span>
         </div>
         <div id="class-list-container" class="mb-4">
             <!-- Dynamic Class List View Items Rendered Here -->
@@ -375,22 +391,9 @@
                     class="bi bi-arrow-left me-1.5"></i> ត្រឡប់ទៅបញ្ជីថ្នាក់រៀន</button>
 
             <div class="d-flex align-items-center gap-2">
-                <div class="d-flex align-items-center gap-1.5 bg-dark px-3 py-1.5 rounded-3 border border-secondary">
-                    <i class="bi bi-calendar-range text-warning fs-6" style="color:#d4af37 !important;"></i>
-                    <span class="text-muted extra-small me-1">តម្រងខែប្រឡង:</span>
-                    <select id="inside-class-month-filter"
-                        class="bg-transparent text-white border-0 extra-small fw-semibold outline-none"
-                        style="cursor: pointer;">
-                        <option value="All" class="bg-dark">គ្រប់ខែទាំងអស់</option>
-                        <option value="Aug" class="bg-dark" selected>ខែសីហា ២០២៦ (សម័យប្រឡង)</option>
-                        <option value="Jul" class="bg-dark">ខែកក្កដា ២០២៦</option>
-                        <option value="Jun" class="bg-dark">ខែមិថុនា ២០២៦</option>
-                        <option value="Annual" class="bg-dark">ប្រចាំឆមាស / ប្រចាំឆ្នាំ</option>
-                    </select>
-                </div>
-                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-download me-1"></i>
-                    ទាញយកបញ្ជីពិន្ទុ</button>
-                <button class="btn-gold-shimmer"><i class="bi bi-plus-lg me-1"></i> បញ្ចូលកាលវិភាគប្រឡងថ្មី</button>
+                <button class="btn btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#adminAddNewExamModal">
+                    <i class="bi bi-plus-lg me-1"></i> + បង្កើតការប្រឡងក្នុងថ្នាក់នេះ
+                </button>
             </div>
         </div>
 
@@ -398,17 +401,17 @@
         <div class="exams-hero-banner p-4 mb-4">
             <div class="d-flex justify-content-between align-items-start mb-3">
                 <div>
-                    <span id="selected-class-track" class="track-badge mb-2">ថ្នាក់វិទ្យាសាស្ត្រ</span>
+                    <span id="selected-class-track" class="track-badge mb-2">ថ្នាក់រៀន</span>
                     <div class="extra-small fw-bold mb-1" style="color:#d4af37;"><i class="bi bi-door-open me-1"></i>
                         ឈ្មោះថ្នាក់រៀន:</div>
-                    <h2 id="selected-class-title" class="fw-bold text-white mb-1">ថ្នាក់ទី ១២-A</h2>
-                    <p id="selected-class-details" class="text-muted small mb-0"><i class="bi bi-geo-alt me-1"
-                            style="color:#d4af37;"></i>ទីតាំង: បន្ទប់លេខ ៣០២ • គ្រូបន្ទុកថ្នាក់: ស្រី ពេជ្រ</p>
+                    <h2 id="selected-class-title" class="fw-bold text-white mb-1">ថ្នាក់រៀន</h2>
+                    <p id="selected-class-details" class="text-white-50 small mb-0"><i class="bi bi-geo-alt me-1"
+                            style="color:#d4af37;"></i>ទីតាំង: បន្ទប់... • គ្រូបន្ទុកថ្នាក់: ...</p>
                 </div>
                 <div class="text-end">
                     <span class="badge bg-secondary-subtle text-light mb-1 px-3 py-1.5">បញ្ជីការប្រឡងក្នុងថ្នាក់</span>
                     <div class="fw-bold text-warning fs-2 mb-0" style="color:#d4af37;" id="selected-class-pass-rate">
-                        អត្រាជាប់ ៩២%</div>
+                        អត្រាជាប់ 100%</div>
                 </div>
             </div>
 
@@ -416,29 +419,29 @@
             <div class="row g-3 pt-3 border-top border-dark">
                 <div class="col-md-3">
                     <div class="glass-exam-kpi">
-                        <span class="extra-small d-block fw-bold text-muted"><i class="bi bi-person-badge me-1"
+                        <span class="extra-small d-block fw-bold text-white-50"><i class="bi bi-person-badge me-1"
                                 style="color:#d4af37;"></i> គ្រូបន្ទុកថ្នាក់</span>
-                        <div class="fw-bold text-white fs-6 mt-1" id="kpi-homeroom-teacher">ស្រី ពេជ្រ</div>
+                        <div class="fw-bold text-white fs-6 mt-1" id="kpi-homeroom-teacher">លោកគ្រូ/អ្នកគ្រូ</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="glass-exam-kpi">
-                        <span class="text-muted extra-small d-block"><i class="bi bi-people me-1"></i> សិស្សសរុប</span>
-                        <div class="fw-bold text-white fs-5 mt-1" id="kpi-total-students">៣៨ នាក់</div>
+                        <span class="text-white-50 extra-small d-block"><i class="bi bi-people me-1"></i> សិស្សសរុប</span>
+                        <div class="fw-bold text-white fs-5 mt-1" id="kpi-total-students">០ នាក់</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="glass-exam-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
                         <span class="text-success extra-small d-block fw-bold"><i class="bi bi-calendar-check me-1"></i>
                             ការប្រឡងប្រចាំខែ</span>
-                        <div class="fw-bold text-success fs-5 mt-1" id="kpi-monthly-count">៤ ការប្រឡង</div>
+                        <div class="fw-bold text-success fs-5 mt-1" id="kpi-monthly-count">០ ការប្រឡង</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="glass-exam-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
                         <span class="extra-small d-block fw-bold" style="color:#d4af37;"><i
                                 class="bi bi-trophy me-1"></i> ការប្រឡងប្រចាំឆ្នាំ/ឆមាស</span>
-                        <div class="fw-bold fs-5 mt-1" style="color:#d4af37;" id="kpi-annual-count">២ ការប្រឡង</div>
+                        <div class="fw-bold fs-5 mt-1" style="color:#d4af37;" id="kpi-annual-count">០ ការប្រឡង</div>
                     </div>
                 </div>
             </div>
@@ -449,66 +452,51 @@
             <div class="filter-capsule-bar flex-wrap" id="inside-class-type-filter-pills">
                 <button class="filter-pill-btn active" data-type="All"><i class="bi bi-grid-fill me-1"></i>
                     ការប្រឡងទាំងអស់</button>
-                <button class="filter-pill-btn" data-type="Monthly"><i class="bi bi-calendar-event me-1"></i> 📅
-                    ការប្រឡងប្រចាំខែ</button>
-                <button class="filter-pill-btn" data-type="Annual"><i class="bi bi-trophy me-1"></i> 🏆
-                    ការប្រឡងប្រចាំឆមាស & ប្រចាំឆ្នាំ</button>
+                <button class="filter-pill-btn" data-type="Monthly"><i class="bi bi-calendar-check me-1"></i>
+                    ប្រឡងប្រចាំខែ</button>
+                <button class="filter-pill-btn" data-type="Annual"><i class="bi bi-trophy-fill me-1"></i>
+                    ប្រឡងប្រចាំឆ្នាំ/ឆមាស</button>
             </div>
-            <span class="badge text-dark px-3 py-1.5" style="background:#d4af37; font-weight:700;"
-                id="inside-class-exam-count">៦ ព័ត៌មានប្រឡង</span>
+            <div class="badge bg-dark border border-secondary text-white-50 px-3 py-2" id="inside-class-exam-count">
+                ០ ព័ត៌មានប្រឡង
+            </div>
         </div>
 
-        <!-- LIST VIEW CONTAINER FOR SELECTED CLASS EXAMS -->
-        <h5 class="fw-bold text-white mb-3"><i class="bi bi-list-stars text-warning me-2"
-                style="color:#d4af37 !important;"></i>បញ្ជីការប្រឡងប្រចាំខែ និង ប្រចាំឆ្នាំ ក្នុងថ្នាក់រៀននេះ</h5>
+        <!-- Class Exam Items List Container -->
         <div id="class-exam-list-container" class="mb-4">
-            <!-- Dynamic List Items Rendered Here -->
+            <!-- Dynamic Exam Items Rendered Here -->
         </div>
     </div>
 
-    <!-- LEVEL 3: INDIVIDUAL STUDENT SCORES GRADEBOOK PANEL BY TRACK (តារាងពិន្ទុសិស្សតាមមុខវិជ្ជាថ្នាក់វិទ្យាសាស្ត្រ/វិទ្យាសាស្ត្រសង្គម) -->
+    <!-- LEVEL 3: INDIVIDUAL STUDENT SCORES VIEW (តារាងពិន្ទុសិស្សប្រឡងផ្លូវការ) (INITIALLY HIDDEN) -->
     <div id="exam-student-scores-panel" style="display: none;">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-3">
             <button id="back-to-class-exams-btn" class="btn btn-outline-glass btn-sm"><i
                     class="bi bi-arrow-left me-1.5"></i> ត្រឡប់ទៅបញ្ជីការប្រឡង</button>
 
             <div class="d-flex align-items-center gap-2">
-                <div class="d-flex align-items-center gap-1.5 bg-dark px-3 py-1.5 rounded-3 border border-secondary">
-                    <i class="bi bi-calendar-month text-warning fs-6" style="color:#d4af37 !important;"></i>
-                    <span class="text-muted extra-small me-1">ខែប្រឡង:</span>
-                    <select id="scores-month-filter"
-                        class="bg-transparent text-white border-0 extra-small fw-semibold outline-none"
-                        style="cursor: pointer;">
-                        <option value="Aug" class="bg-dark" selected>ខែសីហា ២០២៦</option>
-                        <option value="Jul" class="bg-dark">ខែកក្កដា ២០២៦</option>
-                        <option value="Jun" class="bg-dark">ខែមិថុនា ២០២៦</option>
-                        <option value="May" class="bg-dark">ខែឧសភា ២០២៦</option>
-                        <option value="Annual" class="bg-dark">ប្រចាំឆមាស / ប្រចាំឆ្នាំ</option>
-                    </select>
-                </div>
-                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-download me-1"></i>
-                    ទាញយកបញ្ជីពិន្ទុ</button>
-                <button class="btn-gold-shimmer"><i class="bi bi-plus-lg me-1"></i> បញ្ចូលពិន្ទុសិស្សថ្មី</button>
+                <button class="btn btn-outline-glass btn-sm" onclick="window.print()"><i
+                        class="bi bi-printer me-1" style="color:#ffd700;"></i> បោះពុម្ពតារាងពិន្ទុ</button>
+                <button class="btn-gold-shimmer" id="btn-open-add-score-modal"><i class="bi bi-plus-lg me-1"></i> + បញ្ចូលពិន្ទុសិស្ស</button>
             </div>
         </div>
 
-        <!-- Selected Exam Gradebook Hero Banner -->
+        <!-- Student Scores Main Header Banner -->
         <div class="exams-hero-banner p-4 mb-4">
             <div class="d-flex justify-content-between align-items-start mb-3">
                 <div>
-                    <span id="target-exam-category-badge" class="exam-badge-monthly mb-2">📅 ប្រឡងប្រចាំខែសីហា</span>
+                    <span id="target-exam-category-badge" class="exam-badge-monthly mb-2">📅 ប្រឡងប្រចាំខែ</span>
                     <div class="extra-small fw-bold mb-1" style="color:#d4af37;"><i
                             class="bi bi-journal-check me-1"></i> ឈ្មោះការប្រឡង និង ថ្នាក់រៀន:</div>
-                    <h2 id="target-exam-title" class="fw-bold text-white mb-1">ប្រឡងប្រចាំខែសីហា ២០២៦</h2>
-                    <p id="target-exam-subdetails" class="text-muted small mb-0"><i
-                            class="bi bi-mortarboard text-warning me-1" style="color:#d4af37 !important;"></i>ថ្នាក់រៀន:
-                        ថ្នាក់ទី ១២-A • ពិន្ទុតាមមុខវិជ្ជាផ្លូវការ</p>
+                    <h2 id="target-exam-title" class="fw-bold text-white mb-1">ប្រឡងប្រចាំខែ</h2>
+                    <p id="target-exam-subdetails" class="text-white-50 small mb-0"><i
+                            class="bi bi-mortarboard text-warning me-1" style="color:#d4af37 !important;"></i>ថ្នាក់រៀន: ... • ពិន្ទុតាមមុខវិជ្ជាផ្លូវការ</p>
                 </div>
                 <div class="text-end">
                     <span class="badge bg-success-subtle text-success mb-1 px-3 py-1.5"
-                        id="target-exam-month-badge">ប្រចាំខែសីហា ២០២៦</span>
+                        id="target-exam-month-badge">២០២៦</span>
                     <div class="fw-bold text-warning fs-2 mb-0" style="color:#d4af37;" id="target-exam-pass-rate">
-                        អត្រាជាប់ ៩២%</div>
+                        អត្រាជាប់ 100%</div>
                 </div>
             </div>
 
@@ -518,52 +506,51 @@
                     <div class="glass-exam-kpi">
                         <span class="extra-small d-block fw-bold" style="color:#d4af37;"><i
                                 class="bi bi-mortarboard me-1"></i> ឈ្មោះថ្នាក់</span>
-                        <div class="fw-bold text-white fs-6 mt-1" id="score-kpi-class-name">ថ្នាក់ទី ១២-A</div>
+                        <div class="fw-bold text-white fs-6 mt-1" id="score-kpi-class-name">ថ្នាក់រៀន</div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="glass-exam-kpi">
-                        <span class="text-muted extra-small d-block"><i class="bi bi-person-badge me-1"
+                        <span class="text-white-50 extra-small d-block"><i class="bi bi-person-badge me-1"
                                 style="color:#d4af37;"></i> គ្រូបន្ទុកថ្នាក់</span>
-                        <div class="fw-bold text-white fs-6 mt-1" id="score-kpi-teacher">ស្រី ពេជ្រ</div>
+                        <div class="fw-bold text-white fs-6 mt-1" id="score-kpi-teacher">លោកគ្រូ/អ្នកគ្រូ</div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="glass-exam-kpi">
-                        <span class="text-muted extra-small d-block"><i class="bi bi-people me-1"></i> សិស្សសរុប</span>
-                        <div class="fw-bold text-white fs-5 mt-1" id="score-kpi-total-students">៣៨ នាក់</div>
+                        <span class="text-white-50 extra-small d-block"><i class="bi bi-people me-1"></i> សិស្សសរុប</span>
+                        <div class="fw-bold text-white fs-5 mt-1" id="score-kpi-total-students">០ នាក់</div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="glass-exam-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
                         <span class="text-success extra-small d-block fw-bold"><i
                                 class="bi bi-check-circle-fill me-1"></i> សិស្សជាប់</span>
-                        <div class="fw-bold text-success fs-5 mt-1" id="score-kpi-passed">៣៥ នាក់</div>
+                        <div class="fw-bold text-success fs-5 mt-1" id="score-kpi-passed">០ នាក់</div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="glass-exam-kpi" style="border-color: rgba(239, 68, 68, 0.4);">
                         <span class="text-danger extra-small d-block fw-bold"><i class="bi bi-x-circle-fill me-1"></i>
                             សិស្សធ្លាក់</span>
-                        <div class="fw-bold text-danger fs-5 mt-1" id="score-kpi-failed">៣ នាក់</div>
+                        <div class="fw-bold text-danger fs-5 mt-1" id="score-kpi-failed">០ នាក់</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Student Exam Scores Master Gradebook Table (Compact & Track Responsive) -->
+        <!-- Student Exam Scores Master Gradebook Table -->
         <div class="card-custom p-3.5 mb-4">
             <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
                 <div>
                     <h5 class="fw-bold text-white mb-0" id="gradebook-table-title"><i class="bi bi-award-fill me-2"
-                            style="color:#d4af37 !important;"></i>តារាងពិន្ទុសិស្សប្រឡងប្រចាំខែ (ថ្នាក់វិទ្យាសាស្ត្រ)
+                            style="color:#d4af37 !important;"></i>តារាងពិន្ទុសិស្សប្រឡងផ្លូវការ
                     </h5>
-                    <span class="text-muted extra-small"
-                        id="gradebook-table-subtitle">គណនាពិន្ទុតាមមេគុណមុខវិជ្ជាផ្លូវការ (សរុប ៥០៤ ពិន្ទុ)</span>
+                    <span class="text-white-50 extra-small"
+                        id="gradebook-table-subtitle">គណនាពិន្ទុតាមមុខវិជ្ជា និងចំណាត់ថ្នាក់ស្វ័យប្រវត្តិ</span>
                 </div>
-                <div class="search-box" style="width: 260px;">
-                    <i class="bi bi-search text-muted"></i>
-                    <input type="text" id="student-scores-search-input" placeholder="ស្វែងរក ឈ្មោះសិស្ស ឬ អត្តលេខ...">
+                <div style="width: 280px;">
+                    <input type="text" id="student-scores-search-input" class="form-control bg-dark text-white border-secondary" placeholder="🔍 ស្វែងរក ឈ្មោះ ឬ អត្តលេខ...">
                 </div>
             </div>
 
@@ -571,7 +558,7 @@
                 <table class="table table-dark table-hover align-middle mb-0 compact-score-table"
                     style="background: transparent;">
                     <thead id="gradebook-table-header">
-                        <!-- Dynamic Header Rendered by Track -->
+                        <!-- Dynamic Header Rendered by Subjects -->
                     </thead>
                     <tbody id="student-scores-table-body">
                         <!-- Dynamic Student Exam Score Rows Rendered Here -->
@@ -582,285 +569,298 @@
     </div>
 </div>
 
+<!-- Modal 1: Admin Add New Exam Form Modal -->
+<div class="modal fade" id="adminAddNewExamModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-award-fill fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-white fw-bold mb-1"
+                            style="background:#d4af37;">ប្រព័ន្ធប្រឡងសិស្ស</span>
+                        <h4 class="fw-bold text-white mb-0">ទម្រង់បង្កើតកាលវិភាគប្រឡងថ្មី (Create Exam Schedule Form)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-add-exam-form">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្នាក់រៀនគោលដៅ (Target Class) *</label>
+                            <select class="form-select bg-dark text-white border-warning fw-bold" id="adm-ex-class-select" required>
+                                <option value="">-- កំពុងទាញយកបញ្ជីថ្នាក់រៀន... --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ប្រភេទប្រឡង (Exam Category) *</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="adm-ex-type" required>
+                                <option value="monthly" selected>📅 ប្រឡងប្រចាំខែ (Monthly Exam)</option>
+                                <option value="semester">🏆 ប្រឡងឆមាស (Semester Exam)</option>
+                                <option value="annual">🎓 ប្រឡងប្រចាំឆ្នាំ / បាក់ឌុប (Annual/Mock Exam)</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះកម្មវិធីប្រឡង (Exam Title) *</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="adm-ex-title" placeholder="ឧ. ការប្រឡងប្រចាំខែកុម្ភៈ ២០២៦" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កូដសប្តាហ៍ / ខែប្រឡង (Week/Code)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-ex-week"
+                                placeholder="ឧ. 2026-02 ឬ 2026-S1" value="2026-08" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">បន្ទប់ប្រឡង (Room)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-ex-room"
+                                value="បន្ទប់ប្រឡង ៣០១">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm"
+                            data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i>
+                            រក្សាទុកកាលវិភាគប្រឡង</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2: Admin Enter / Edit Student Score Modal -->
+<div class="modal fade" id="adminStudentScoreEntryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-pencil-square fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">បញ្ចូលពិន្ទុ</span>
+                        <h4 class="fw-bold text-white mb-0" id="modal-score-entry-title">ទម្រង់បញ្ចូលពិន្ទុសិស្ស (Enter Student Score)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-student-score-entry-form">
+                    <input type="hidden" id="score-entry-exam-id">
+                    <input type="hidden" id="score-entry-class-id">
+                    <input type="hidden" id="score-entry-student-id">
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">សិស្ស (Student) *</label>
+                            <select class="form-select bg-dark text-white border-warning fw-bold" id="score-entry-student-select" required>
+                                <option value="">-- សូមជ្រើសរើសសិស្ស --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ការប្រឡង (Examination)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="score-entry-exam-name-display" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Subject Inputs -->
+                    <div class="p-3 rounded-3 border border-secondary mb-3" style="background: rgba(255,255,255,0.02);">
+                        <label class="form-label text-warning extra-small text-uppercase fw-bold mb-3 d-block">
+                            <i class="bi bi-journal-check me-1"></i> ពិន្ទុតាមមុខវិជ្ជា (Subject Scores)
+                        </label>
+                        <div class="row g-3" id="score-entry-subjects-container">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center p-3 rounded-3 border border-warning" style="background: rgba(212,175,55,0.08);">
+                        <div>
+                            <span class="text-white-50 extra-small d-block">ពិន្ទុសរុប និងភាគរយ:</span>
+                            <span class="fw-bold text-white fs-5" id="score-entry-total-preview">0 ពិន្ទុ (0%)</span>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge bg-warning text-dark fw-bold px-3 py-1.5" id="score-entry-grade-preview">Grade -</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm" id="btn-submit-score-entry">
+                            <i class="bi bi-save me-1"></i> រក្សាទុកពិន្ទុក្នុង Database
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3: Student Past Scores History Modal (ប្រវត្តិពិន្ទុសិស្សកន្លងមក) -->
+<div class="modal fade" id="studentPastScoresHistoryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="p-2.5 bg-warning-subtle rounded-circle text-warning border border-warning"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-mortarboard-fill fs-4"></i>
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <span class="badge text-dark fw-bold" style="background:#d4af37;">ប្រវត្តិពិន្ទុប្រឡងកន្លងមក</span>
+                            <span class="badge bg-dark border border-secondary text-warning" id="history-modal-student-code">STD-000</span>
+                        </div>
+                        <h4 class="fw-bold text-white mb-0" id="history-modal-student-name">ឈ្មោះសិស្ស</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <!-- Summary KPI Row inside Modal -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-3">
+                        <div class="glass-exam-kpi p-3" style="border-color: rgba(212, 175, 55, 0.3);">
+                            <span class="text-white-50 extra-small d-block"><i class="bi bi-journal-check text-warning me-1"></i> ការប្រឡងបានចូលរួម</span>
+                            <h4 class="fw-bold text-white mb-0 mt-1" id="history-modal-total-exams">0 ការប្រឡង</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="glass-exam-kpi p-3" style="border-color: rgba(16, 185, 129, 0.4);">
+                            <span class="text-success extra-small d-block fw-bold"><i class="bi bi-check-circle-fill me-1"></i> ប្រឡងជាប់</span>
+                            <h4 class="fw-bold text-success mb-0 mt-1" id="history-modal-passed-exams">0 ការប្រឡង</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="glass-exam-kpi p-3" style="border-color: rgba(239, 68, 68, 0.4);">
+                            <span class="text-danger extra-small d-block fw-bold"><i class="bi bi-x-circle-fill me-1"></i> ប្រឡងធ្លាក់</span>
+                            <h4 class="fw-bold text-danger mb-0 mt-1" id="history-modal-failed-exams">0 ការប្រឡង</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="glass-exam-kpi p-3" style="border-color: rgba(59, 130, 246, 0.4);">
+                            <span class="text-info extra-small d-block fw-bold"><i class="bi bi-award-fill me-1"></i> មធ្យមភាគពិន្ទុ</span>
+                            <h4 class="fw-bold text-info mb-0 mt-1" id="history-modal-avg-pct">0%</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Past Examinations List Container -->
+                <h6 class="fw-bold text-white mb-3"><i class="bi bi-clock-history text-warning me-2"></i>ព័ត៌មានលម្អិតការប្រឡងនីមួយៗកន្លងមក</h6>
+                <div id="history-modal-records-container">
+                    <!-- Dynamic Exam Cards Rendered Here -->
+                </div>
+            </div>
+            <div class="modal-footer border-top border-dark p-3">
+                <button type="button" class="btn btn-outline-glass btn-sm" onclick="window.print()">
+                    <i class="bi bi-printer me-1" style="color:#ffd700;"></i> បោះពុម្ពព្រឹត្តិបត្រពិន្ទុ
+                </button>
+                <button type="button" class="btn btn-gold-shimmer btn-sm px-4" data-bs-dismiss="modal">បិទ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     (function () {
-        // Dataset of Active Classes with Specific Track System
-        const classesDataset = [
-            {
-                "id": "CLS-101",
-                "name": "ថ្នាក់ទី ១២-A",
-                "full_name": "ថ្នាក់ទី ១២-A",
-                "track": "Science",
-                "track_title": "ថ្នាក់វិទ្យាសាស្ត្រ",
-                "instructor": "ស្រី ពេជ្រ",
-                "instructor_avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់លេខ ៣០២",
-                "students_count": 38,
-                "passed_count": 35,
-                "failed_count": 3,
-                "pass_rate": "៩២%",
-                "monthly_exams_count": 4,
-                "annual_exams_count": 2,
-                "icon": "bi-calculator"
-            },
-            {
-                "id": "CLS-202",
-                "name": "ថ្នាក់ទី ១២-B",
-                "full_name": "ថ្នាក់ទី ១២-B",
-                "track": "Science",
-                "track_title": "ថ្នាក់វិទ្យាសាស្ត្រ",
-                "instructor": "ឈឹម វិចិត្រ",
-                "instructor_avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់ពិសោធន៍ ២",
-                "students_count": 32,
-                "passed_count": 30,
-                "failed_count": 2,
-                "pass_rate": "៩៤%",
-                "monthly_exams_count": 4,
-                "annual_exams_count": 2,
-                "icon": "bi-lightning-charge"
-            },
-            {
-                "id": "CLS-303",
-                "name": "ថ្នាក់ទី ១២-C",
-                "full_name": "ថ្នាក់ទី ១២-C",
-                "track": "Social",
-                "track_title": "ថ្នាក់វិទ្យាសាស្ត្រសង្គម",
-                "instructor": "លី ម៉េងហុង",
-                "instructor_avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&auto=format&fit=crop&q=80",
-                "room": "សាលប្រជុំ ២០១",
-                "students_count": 35,
-                "passed_count": 31,
-                "failed_count": 4,
-                "pass_rate": "៨៨%",
-                "monthly_exams_count": 4,
-                "annual_exams_count": 2,
-                "icon": "bi-globe"
-            },
-            {
-                "id": "CLS-404",
-                "name": "ថ្នាក់ទី ១១-A",
-                "full_name": "ថ្នាក់ទី ១១-A",
-                "track": "Science",
-                "track_title": "ថ្នាក់វិទ្យាសាស្ត្រ",
-                "instructor": "ម៉េង សុភ័ក្ត្រ",
-                "instructor_avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់លេខ ៣០១",
-                "students_count": 28,
-                "passed_count": 24,
-                "failed_count": 4,
-                "pass_rate": "៨៥%",
-                "monthly_exams_count": 4,
-                "annual_exams_count": 2,
-                "icon": "bi-flask"
-            },
-            {
-                "id": "CLS-505",
-                "name": "ថ្នាក់ទី ១០-A",
-                "full_name": "ថ្នាក់ទី ១០-A",
-                "track": "Social",
-                "track_title": "ថ្នាក់វិទ្យាសាស្ត្រសង្គម",
-                "instructor": "ចាន់ សុភារម្យ",
-                "instructor_avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80",
-                "room": "បន្ទប់លេខ ១០៥",
-                "students_count": 40,
-                "passed_count": 36,
-                "failed_count": 4,
-                "pass_rate": "៩០%",
-                "monthly_exams_count": 4,
-                "annual_exams_count": 2,
-                "icon": "bi-book"
-            }
-        ];
+        // App State
+        const loadedClasses = [];
+        const loadedExaminations = [];
+        const loadedScores = [];
+        const loadedSubjects = [];
+        let currentClassStudents = [];
+        let selectedClassId = null;
+        let selectedExamId = null;
+        let insideClassTypeFilter = 'All';
 
-        // Detailed Monthly & Annual Exams List inside Each Class
-        const classExamsListMap = {
-            "CLS-101": [
-                {
-                    "exam_id": "EXM-AUG-101",
-                    "title": "ប្រឡងប្រចាំខែសីហា ២០២៦",
-                    "category": "Monthly",
-                    "month": "Aug",
-                    "date": "១២ សីហា ២០២៦ (០៨:៣០ ព្រឹក)",
-                    "subject": "ប្រឡងគ្រប់មុខវិជ្ជា (វិទ្យាសាស្ត្រ)",
-                    "room": "បន្ទប់លេខ ៣០២",
-                    "total_students": 38,
-                    "passed": 35,
-                    "failed": 3,
-                    "pass_rate": "៩២%",
-                    "status": "Completed"
-                },
-                {
-                    "exam_id": "EXM-JUL-101",
-                    "title": "ប្រឡងប្រចាំខែកក្កដា ២០២៦",
-                    "category": "Monthly",
-                    "month": "Jul",
-                    "date": "១៤ កក្កដា ២០២៦ (០៨:៣០ ព្រឹក)",
-                    "subject": "ប្រឡងគ្រប់មុខវិជ្ជា (វិទ្យាសាស្ត្រ)",
-                    "room": "បន្ទប់លេខ ៣០២",
-                    "total_students": 38,
-                    "passed": 36,
-                    "failed": 2,
-                    "pass_rate": "៩៥%",
-                    "status": "Completed"
+        // ----------------------------------------------------
+        // 1. DATA FETCHING FROM BACKEND APIS
+        // ----------------------------------------------------
+        async function fetchInitialData() {
+            try {
+                // 1. Fetch Classes
+                const classRes = await fetch('/api/classes');
+                const classData = await classRes.json();
+                if (classData && classData.status === 'success' && Array.isArray(classData.classes)) {
+                    loadedClasses.length = 0;
+                    loadedClasses.push(...classData.classes.map(c => ({
+                        id: c.class_id,
+                        class_id: c.class_id,
+                        name: c.class_name || `ថ្នាក់ទី ${c.grade || ''}`,
+                        full_name: c.class_name || `ថ្នាក់ទី ${c.grade || ''}`,
+                        grade: c.grade || 'Grade 12',
+                        track_title: c.grade || 'ចំណេះទូទៅ',
+                        instructor: c.instructor || 'មិនទាន់មានគ្រូបន្ទុក',
+                        instructor_avatar: (c.instructor_gender && c.instructor_gender.toLowerCase().includes('fem'))
+                            ? 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&auto=format&fit=crop&q=80'
+                            : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80',
+                        room: c.room || 'បន្ទប់ ៣០២',
+                        students_count: parseInt(c.students_count) || 0,
+                        female_count: parseInt(c.female_count) || 0,
+                        male_count: parseInt(c.male_count) || 0,
+                        icon: 'bi-door-open'
+                    })));
                 }
-            ],
-            "CLS-303": [
-                {
-                    "exam_id": "EXM-AUG-303",
-                    "title": "ប្រឡងប្រចាំខែសីហា ២០២៦",
-                    "category": "Monthly",
-                    "month": "Aug",
-                    "date": "១២ សីហា ២០២៦ (០៨:៣០ ព្រឹក)",
-                    "subject": "ប្រឡងគ្រប់មុខវិជ្ជា (វិទ្យាសាស្ត្រសង្គម)",
-                    "room": "សាលប្រជុំ ២០១",
-                    "total_students": 35,
-                    "passed": 31,
-                    "failed": 4,
-                    "pass_rate": "៨៨%",
-                    "status": "Completed"
+
+                // 2. Fetch Examinations
+                const examRes = await fetch('/api/examinations');
+                const examData = await examRes.json();
+                if (examData && examData.status === 'success' && Array.isArray(examData.examinations)) {
+                    loadedExaminations.length = 0;
+                    loadedExaminations.push(...examData.examinations);
                 }
-            ]
-        };
 
-        // Science Track Student Scores Dataset ( គណិត១២៥, រូប៧៥, គីមី៧៥, ជីវ៧៥, ខ្មែរ៧៥, ប្រវត្តិ៥០, អង់គ្លេស២៩ = ៥០៤ ពិន្ទុ )
-        const scienceStudentScores = [
-            {
-                "id": "STD-2026-001",
-                "name": "សុខ ចាន់ដារ៉ា",
-                "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
-                "month_name": "ខែសីហា ២០២៦",
-                "s1": 118, // Math /125
-                "s2": 71,  // Physics /75
-                "s3": 69,  // Chem /75
-                "s4": 72,  // Bio /75
-                "s5": 68,  // Khmer /75
-                "s6": 46,  // History /50
-                "s7": 27,  // English /29
-                "total_score": 471, // Total /504
-                "percentage": "៩៣.៤%",
-                "rank": "លេខ ១",
-                "grade": "A",
-                "status": "Passed"
-            },
-            {
-                "id": "STD-2026-002",
-                "name": "គឹម ស៊ាងហៃ",
-                "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80",
-                "month_name": "ខែសីហា ២០២៦",
-                "s1": 110,
-                "s2": 68,
-                "s3": 65,
-                "s4": 67,
-                "s5": 64,
-                "s6": 42,
-                "s7": 25,
-                "total_score": 441,
-                "percentage": "៨៧.៥%",
-                "rank": "លេខ ២",
-                "grade": "B",
-                "status": "Passed"
-            },
-            {
-                "id": "STD-2026-003",
-                "name": "លី សុវណ្ណារ៉ា",
-                "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
-                "month_name": "ខែសីហា ២០២៦",
-                "s1": 105,
-                "s2": 62,
-                "s3": 60,
-                "s4": 64,
-                "s5": 60,
-                "s6": 40,
-                "s7": 23,
-                "total_score": 414,
-                "percentage": "៨២.១%",
-                "rank": "លេខ ៣",
-                "grade": "C",
-                "status": "Passed"
-            },
-            {
-                "id": "STD-2026-004",
-                "name": "ចាន់ ស្រីណេត",
-                "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80",
-                "month_name": "ខែសីហា ២០២៦",
-                "s1": 98,
-                "s2": 58,
-                "s3": 55,
-                "s4": 59,
-                "s5": 58,
-                "s6": 38,
-                "s7": 22,
-                "total_score": 388,
-                "percentage": "៧៦.៩%",
-                "rank": "លេខ ៤",
-                "grade": "C",
-                "status": "Passed"
-            },
-            {
-                "id": "STD-2026-005",
-                "name": "អ៊ុង វីរៈ",
-                "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80",
-                "month_name": "ខែសីហា ២០២៦",
-                "s1": 45,
-                "s2": 30,
-                "s3": 28,
-                "s4": 32,
-                "s5": 35,
-                "s6": 20,
-                "s7": 12,
-                "total_score": 202,
-                "percentage": "៤០.០%",
-                "rank": "លេខ ៣៨",
-                "grade": "F",
-                "status": "Failed"
+                // 3. Fetch Scores
+                const scoreRes = await fetch('/api/scores');
+                const scoreData = await scoreRes.json();
+                if (scoreData && scoreData.status === 'success' && Array.isArray(scoreData.scores)) {
+                    loadedScores.length = 0;
+                    loadedScores.push(...scoreData.scores);
+                }
+
+                // 4. Fetch Subjects
+                const subjRes = await fetch('/api/scores/subjects');
+                const subjData = await subjRes.json();
+                if (subjData && subjData.status === 'success' && Array.isArray(subjData.subjects)) {
+                    loadedSubjects.length = 0;
+                    loadedSubjects.push(...subjData.subjects);
+                }
+
+                // Render Views
+                populateClassSelectInModal();
+                renderClassList(loadedClasses);
+            } catch (err) {
+                console.error('Error fetching initial exam data:', err);
             }
-        ];
+        }
 
-        // Social Studies Track Student Scores Dataset ( ខ្មែរ១២៥, គណិត៧៥, ប្រវត្តិ៧៥, ភូមិ៧៥, ពលរដ្ឋ៧៥, ផែនដី៥០, អង់គ្លេស២៩ = ៥០៤ ពិន្ទុ )
-        const socialStudentScores = [
-            {
-                "id": "STD-2026-101",
-                "name": "ជា ពិសិដ្ឋ",
-                "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
-                "month_name": "ខែសីហា ២០២៦",
-                "s1": 116, // Khmer /125
-                "s2": 69,  // Math /75
-                "s3": 70,  // History /75
-                "s4": 71,  // Geography /75
-                "s5": 72,  // Civics /75
-                "s6": 45,  // Earth Science /50
-                "s7": 26,  // English /29
-                "total_score": 469,
-                "percentage": "៩៣.០%",
-                "rank": "លេខ ១",
-                "grade": "A",
-                "status": "Passed"
-            },
-            {
-                "id": "STD-2026-102",
-                "name": "មាស ស្រីលក្ខណ៍",
-                "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80",
-                "month_name": "ខែសីហា ២០២៦",
-                "s1": 108,
-                "s2": 65,
-                "s3": 66,
-                "s4": 68,
-                "s5": 69,
-                "s6": 42,
-                "s7": 24,
-                "total_score": 442,
-                "percentage": "៨៧.៦%",
-                "rank": "លេខ ២",
-                "grade": "B",
-                "status": "Passed"
+        function populateClassSelectInModal() {
+            const selectEl = document.getElementById('adm-ex-class-select');
+            if (!selectEl) return;
+            if (loadedClasses.length === 0) {
+                selectEl.innerHTML = '<option value="">-- គ្មានថ្នាក់រៀនទេ --</option>';
+                return;
             }
-        ];
+            selectEl.innerHTML = loadedClasses.map(c => `
+                <option value="${c.id}">🏫 ${c.full_name || c.name} • ${c.room}</option>
+            `).join('');
+        }
 
-        let selectedClassId = "CLS-101";
-        let insideClassTypeFilter = "All";
-
-        // LEVEL 1: Render Class List View (បញ្ជីថ្នាក់រៀន)
+        // ----------------------------------------------------
+        // 2. LEVEL 1: RENDER CLASS LIST VIEW
+        // ----------------------------------------------------
         function renderClassList(classList) {
             const container = document.getElementById('class-list-container');
             const totalCountBadge = document.getElementById('total-class-count');
@@ -870,38 +870,94 @@
                 totalCountBadge.innerText = `${classList.length} ថ្នាក់កំពុងដំណើរការ`;
             }
 
-            container.innerHTML = classList.map(c => `
+            // Top Summary Stats
+            let totalStudents = 0;
+            let totalMonthly = 0;
+            let totalAnnual = 0;
+
+            loadedExaminations.forEach(e => {
+                const name = (e.exam_name || '').toLowerCase();
+                if (name.includes('ឆមាស') || name.includes('ឆ្នាំ') || name.includes('semester') || name.includes('annual')) {
+                    totalAnnual++;
+                } else {
+                    totalMonthly++;
+                }
+            });
+
+            classList.forEach(c => {
+                totalStudents += c.students_count || 0;
+            });
+
+            const statClasses = document.getElementById('stat-total-classes');
+            if (statClasses) statClasses.innerText = `${classList.length} ថ្នាក់`;
+            const statMonthly = document.getElementById('stat-total-monthly');
+            if (statMonthly) statMonthly.innerText = `${totalMonthly} ការប្រឡង`;
+            const statAnnual = document.getElementById('stat-total-annual');
+            if (statAnnual) statAnnual.innerText = `${totalAnnual} ការប្រឡង`;
+            const statExaminees = document.getElementById('stat-total-examinees');
+            if (statExaminees) statExaminees.innerText = `${totalStudents} នាក់`;
+
+            if (classList.length === 0) {
+                container.innerHTML = `
+                    <div class="card-custom p-5 text-center text-muted">
+                        <i class="bi bi-door-open fs-1 d-block mb-3 text-warning"></i>
+                        <h5 class="text-white fw-bold">មិនទាន់មានទិន្នន័យថ្នាក់រៀននៅឡើយទេ</h5>
+                        <p class="small">សូមបង្កើតថ្នាក់រៀននៅក្នុងផ្នែក "Classes" ជាមុនសិន។</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = classList.map(c => {
+                // Calculate exams for this class
+                const classExams = loadedExaminations.filter(e => String(e.class_id) === String(c.id) || !e.class_id);
+                let monthlyCount = 0;
+                let annualCount = 0;
+                classExams.forEach(e => {
+                    const n = (e.exam_name || '').toLowerCase();
+                    if (n.includes('ឆមាស') || n.includes('ឆ្នាំ') || n.includes('semester') || n.includes('annual')) {
+                        annualCount++;
+                    } else {
+                        monthlyCount++;
+                    }
+                });
+
+                // Calculate pass rate for this class
+                const classScores = loadedScores.filter(s => String(s.class_id) === String(c.id));
+                const passCount = classScores.filter(s => s.result === 'pass' || parseFloat(s.average_pct) >= 50).length;
+                const passRate = classScores.length > 0 ? Math.round((passCount / classScores.length) * 100) + '%' : '100%';
+
+                return `
                 <div class="exam-class-list-item d-flex flex-wrap justify-content-between align-items-center gap-3 open-class-exams-btn" data-class-id="${c.id}">
                     <!-- Left: Class Name & Track -->
                     <div class="d-flex align-items-center gap-3" style="min-width: 280px; flex: 1;">
                         <div class="p-3 bg-dark rounded-3 border border-secondary text-warning" style="color:#d4af37 !important;">
-                            <i class="bi ${c.icon || 'bi-door-open'} fs-4"></i>
+                            <i class="bi bi-mortarboard-fill fs-4"></i>
                         </div>
                         <div>
                             <div class="d-flex align-items-center gap-2 mb-1">
-                                <span class="track-badge"><i class="bi ${c.icon || 'bi-bookmark-star'} me-1"></i>${c.track_title}</span>
-                                <code>${c.id}</code>
+                                <span class="track-badge"><i class="bi bi-bookmark-star me-1"></i>${c.grade}</span>
+                                <code class="text-white-50 extra-small">ID-${c.id}</code>
                             </div>
                             <h5 class="fw-bold text-white mb-0" style="font-size: 1.2rem;">${c.full_name || c.name}</h5>
-                            <span class="text-muted extra-small"><i class="bi bi-geo-alt me-1 text-warning" style="color:#d4af37 !important;"></i>${c.room}</span>
+                            <span class="text-white-50 extra-small"><i class="bi bi-geo-alt me-1 text-warning" style="color:#d4af37 !important;"></i>${c.room}</span>
                         </div>
                     </div>
 
                     <!-- Middle: Homeroom Teacher & Students -->
                     <div class="d-flex align-items-center gap-3" style="min-width: 220px;">
-                        <img src="${c.instructor_avatar}" class="rounded-circle border border-warning" width="36" height="36" alt="">
+                        <img src="${c.instructor_avatar}" class="rounded-circle border border-warning" width="38" height="38" alt="">
                         <div class="extra-small">
-                            <span class="text-muted d-block">គ្រូបន្ទុកថ្នាក់:</span>
+                            <span class="text-white-50 d-block">គ្រូបន្ទុកថ្នាក់:</span>
                             <strong class="text-white">${c.instructor}</strong>
-                            <span class="text-muted d-block">សិស្សសរុប: <strong class="text-white">${c.students_count} នាក់</strong></span>
+                            <span class="text-white-50 d-block">សិស្សសរុប: <strong class="text-white">${c.students_count} នាក់</strong></span>
                         </div>
                     </div>
 
                     <!-- Exam Counts & Pass Rate -->
                     <div class="extra-small text-end" style="min-width: 180px;">
-                        <div><span class="text-success fw-bold me-1">📅 ប្រឡងប្រចាំខែ: ${c.monthly_exams_count}</span></div>
-                        <div><span class="text-warning fw-bold" style="color:#d4af37;">🏆 ប្រឡងប្រចាំឆ្នាំ: ${c.annual_exams_count}</span></div>
-                        <div class="text-success extra-small fw-semibold mt-0.5">អត្រាជាប់ ${c.pass_rate}</div>
+                        <div><span class="text-success fw-bold me-1">📅 ប្រឡងប្រចាំខែ: ${monthlyCount}</span></div>
+                        <div><span class="text-warning fw-bold" style="color:#d4af37;">🏆 ប្រឡងប្រចាំឆ្នាំ: ${annualCount}</span></div>
+                        <div class="text-success extra-small fw-semibold mt-0.5">អត្រាជាប់ ${passRate}</div>
                     </div>
 
                     <!-- Action Button -->
@@ -911,10 +967,11 @@
                         </button>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
 
             // Click listener for Class List Items
-            document.querySelectorAll('.open-class-exams-btn').forEach(item => {
+            container.querySelectorAll('.open-class-exams-btn').forEach(item => {
                 item.addEventListener('click', function () {
                     const classId = this.getAttribute('data-class-id');
                     openClassExamsList(classId);
@@ -922,25 +979,44 @@
             });
         }
 
-        // LEVEL 2: Open List View for Selected Class Exams
-        function openClassExamsList(classId) {
+        // ----------------------------------------------------
+        // 3. LEVEL 2: OPEN & RENDER EXAMS FOR A SPECIFIC CLASS
+        // ----------------------------------------------------
+        async function openClassExamsList(classId) {
             selectedClassId = classId;
-            const targetClass = classesDataset.find(c => c.id === classId) || classesDataset[0];
+            const targetClass = loadedClasses.find(c => String(c.id) === String(classId)) || loadedClasses[0] || {
+                full_name: 'ថ្នាក់រៀន',
+                grade: 'Grade 12',
+                room: 'បន្ទប់ ៣០២',
+                instructor: 'លោកគ្រូ/អ្នកគ្រូ',
+                students_count: 0
+            };
 
             // Set Header details
             document.getElementById('selected-class-title').innerText = targetClass.full_name || targetClass.name;
-            document.getElementById('selected-class-track').innerText = targetClass.track_title;
+            document.getElementById('selected-class-track').innerText = targetClass.grade || 'ថ្នាក់រៀន';
             document.getElementById('selected-class-details').innerText = `ទីតាំង: ${targetClass.room} • គ្រូបន្ទុកថ្នាក់: ${targetClass.instructor}`;
-            document.getElementById('selected-class-pass-rate').innerText = `អត្រាជាប់ ${targetClass.pass_rate}`;
 
             // Set KPI Cards
             document.getElementById('kpi-homeroom-teacher').innerText = targetClass.instructor;
             document.getElementById('kpi-total-students').innerText = `${targetClass.students_count} នាក់`;
-            document.getElementById('kpi-monthly-count').innerText = `${targetClass.monthly_exams_count} ការប្រឡង`;
-            document.getElementById('kpi-annual-count').innerText = `${targetClass.annual_exams_count} ការប្រឡង`;
 
-            // Fetch Exams List for this class
-            const examsList = classExamsListMap[classId] || classExamsListMap["CLS-101"];
+            // Filter exams for this class
+            const examsList = loadedExaminations.filter(e => String(e.class_id) === String(classId) || !e.class_id);
+            let monthlyCount = 0;
+            let annualCount = 0;
+            examsList.forEach(e => {
+                const n = (e.exam_name || '').toLowerCase();
+                if (n.includes('ឆមាស') || n.includes('ឆ្នាំ') || n.includes('semester') || n.includes('annual')) {
+                    annualCount++;
+                } else {
+                    monthlyCount++;
+                }
+            });
+
+            document.getElementById('kpi-monthly-count').innerText = `${monthlyCount} ការប្រឡង`;
+            document.getElementById('kpi-annual-count').innerText = `${annualCount} ការប្រឡង`;
+
             renderInsideClassExamsList(examsList);
 
             // Toggle Panels
@@ -949,7 +1025,6 @@
             document.getElementById('class-exam-details-panel').style.display = 'block';
         }
 
-        // LEVEL 2: Render List View Items inside Selected Class
         function renderInsideClassExamsList(items) {
             const container = document.getElementById('class-exam-list-container');
             const countBadge = document.getElementById('inside-class-exam-count');
@@ -957,7 +1032,11 @@
 
             let filtered = items;
             if (insideClassTypeFilter !== 'All') {
-                filtered = items.filter(e => e.category.toLowerCase() === insideClassTypeFilter.toLowerCase());
+                filtered = items.filter(e => {
+                    const n = (e.exam_name || '').toLowerCase();
+                    const isAnnual = n.includes('ឆមាស') || n.includes('ឆ្នាំ') || n.includes('semester') || n.includes('annual');
+                    return insideClassTypeFilter === 'Annual' ? isAnnual : !isAnnual;
+                });
             }
 
             if (countBadge) {
@@ -966,85 +1045,113 @@
 
             if (filtered.length === 0) {
                 container.innerHTML = `
-                    <div class="card-custom p-4 text-center text-muted">
+                    <div class="card-custom p-5 text-center text-muted">
                         <i class="bi bi-inbox fs-2 d-block mb-2 text-warning"></i>
-                        <p class="mb-0">មិនមានទិន្នន័យប្រឡងក្នុងប្រភេទដែលបានជ្រើសរើសឡើយ។</p>
+                        <h5 class="text-white fw-bold">មិនទាន់មានការប្រឡងសម្រាប់ថ្នាក់នេះនៅឡើយទេ</h5>
+                        <p class="small mb-3">សូមចុចប៊ូតុងខាងក្រោមដើម្បីបង្កើតកាលវិភាគប្រឡងសម្រាប់ថ្នាក់នេះ។</p>
+                        <button class="btn-gold-shimmer btn-sm px-3" data-bs-toggle="modal" data-bs-target="#adminAddNewExamModal">
+                            <i class="bi bi-plus-lg me-1"></i> + បង្កើតការប្រឡងដំបូង
+                        </button>
                     </div>`;
                 return;
             }
 
-            container.innerHTML = filtered.map((e, index) => `
+            container.innerHTML = filtered.map((e, index) => {
+                const n = (e.exam_name || '').toLowerCase();
+                const isAnnual = n.includes('ឆមាស') || n.includes('ឆ្នាំ') || n.includes('semester') || n.includes('annual');
+                const categoryBadgeClass = isAnnual ? 'exam-badge-annual' : 'exam-badge-monthly';
+                const categoryTitle = isAnnual ? '🏆 ប្រឡងប្រចាំឆ្នាំ/ឆមាស' : '📅 ប្រឡងប្រចាំខែ';
+
+                // Calculate scored students for this exam & class
+                const examScores = loadedScores.filter(s => String(s.exam_id) === String(e.exam_id) && (String(s.class_id) === String(selectedClassId) || !selectedClassId));
+                const scoredCount = examScores.length;
+                const passedCount = examScores.filter(s => s.result === 'pass' || parseFloat(s.average_pct) >= 50).length;
+                const failedCount = Math.max(0, scoredCount - passedCount);
+                const passRate = scoredCount > 0 ? Math.round((passedCount / scoredCount) * 100) + '%' : '100%';
+
+                return `
                 <div class="class-exam-list-item d-flex flex-wrap justify-content-between align-items-center gap-3">
                     <!-- Left: Title & Badge -->
                     <div class="d-flex align-items-center gap-3" style="min-width: 280px; flex: 1;">
                         <div class="p-3 bg-dark rounded-3 border border-secondary text-warning" style="color:#d4af37 !important;">
-                            <i class="bi ${e.category === 'Annual' ? 'bi-trophy-fill' : 'bi-calendar-check'} fs-4"></i>
+                            <i class="bi ${isAnnual ? 'bi-trophy-fill' : 'bi-calendar-check'} fs-4"></i>
                         </div>
                         <div>
                             <div class="d-flex align-items-center gap-2 mb-1">
-                                <span class="${e.category === 'Annual' ? 'exam-badge-annual' : 'exam-badge-monthly'}">
-                                    <i class="bi ${e.category === 'Annual' ? 'bi-trophy-fill' : 'bi-calendar-check'} me-1"></i> ${e.category === 'Annual' ? 'ប្រឡងប្រចាំឆ្នាំ/ឆមាស' : 'ប្រឡងប្រចាំខែ'}
+                                <span class="${categoryBadgeClass}">${categoryTitle}</span>
+                                <span class="badge ${scoredCount > 0 ? 'bg-success-subtle text-success' : 'bg-warning-subtle text-warning'} px-2.5 py-0.5 extra-small">
+                                    ${scoredCount > 0 ? `✅ មានពិន្ទុ (${scoredCount} នាក់)` : '⏳ មិនទាន់បញ្ចូលពិន្ទុ'}
                                 </span>
-                                <span class="badge ${e.status === 'Completed' ? 'bg-success-subtle text-success' : 'bg-warning-subtle text-warning'} px-2.5 py-0.5 extra-small">${e.status === 'Completed' ? '✅ រួចរាល់' : '⏳ រៀបចំប្រឡង'}</span>
                             </div>
-                            <h5 class="fw-bold text-white mb-0" style="font-size: 1.15rem;">${e.title}</h5>
-                            <span class="text-warning extra-small fw-semibold"><i class="bi bi-journal-text me-1"></i>${e.subject}</span>
+                            <h5 class="fw-bold text-white mb-0" style="font-size: 1.15rem;">${e.exam_name}</h5>
+                            <span class="text-warning extra-small fw-semibold"><i class="bi bi-clock-history me-1"></i>សប្តាហ៍/កូដ: ${e.week || '2026'}</span>
                         </div>
                     </div>
 
-                    <!-- Middle: Date & Room -->
-                    <div class="extra-small text-muted" style="min-width: 230px;">
-                        <div class="text-white mb-1"><i class="bi bi-clock text-warning me-1.5" style="color:#d4af37 !important;"></i><strong>កាលបរិច្ឆេទ:</strong> ${e.date}</div>
-                        <div><i class="bi bi-geo-alt text-warning me-1.5" style="color:#d4af37 !important;"></i><strong>បន្ទប់ប្រឡង:</strong> ${e.room}</div>
+                    <!-- Middle: Date & Academic Year -->
+                    <div class="extra-small" style="min-width: 200px;">
+                        <div class="text-white mb-1"><i class="bi bi-calendar text-warning me-1.5" style="color:#d4af37 !important;"></i><strong class="text-white-50">ឆ្នាំសិក្សា:</strong> ${e.academic_year || '២០២៦'}</div>
+                        <div class="text-white-50"><i class="bi bi-tag text-warning me-1.5" style="color:#d4af37 !important;"></i><strong>លេខកូដប្រឡង:</strong> <code class="text-warning">EXM-${e.exam_id}</code></div>
                     </div>
 
                     <!-- Right: Stats & Action Buttons -->
-                    <div class="d-flex align-items-center gap-4">
-                        <div class="text-end extra-small">
-                            <div class="text-muted">សិស្សប្រឡង: <strong class="text-white">${e.total_students} នាក់</strong></div>
-                            <div><span class="text-success fw-bold me-1">ជាប់: ${e.passed}</span> | <span class="text-danger fw-bold ms-1">ធ្លាក់: ${e.failed}</span></div>
-                            <div class="text-warning fw-bold mt-0.5" style="color:#d4af37;">អត្រាជាប់ ${e.pass_rate}</div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="text-end extra-small" style="min-width: 140px;">
+                            <div class="text-white-50">បានបញ្ចូល: <strong class="text-white">${scoredCount} នាក់</strong></div>
+                            <div><span class="text-success fw-bold me-1">ជាប់: ${passedCount}</span> | <span class="text-danger fw-bold ms-1">ធ្លាក់: ${failedCount}</span></div>
+                            <div class="text-warning fw-bold mt-0.5" style="color:#d4af37;">អត្រាជាប់ ${passRate}</div>
                         </div>
-                        <div class="d-flex gap-2">
-                            <button class="btn-outline-glass btn-sm"><i class="bi bi-pencil-square me-1"></i> កែប្រែ</button>
-                            <button class="btn-card-results btn-sm open-student-scores-btn" data-exam-index="${index}">
+                        <div>
+                            <button class="btn-card-results btn-sm open-student-scores-btn" data-exam-id="${e.exam_id}">
                                 <i class="bi bi-award-fill me-1"></i> មើលពិន្ទុសិស្ស 📊
                             </button>
                         </div>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
 
             // Click listener for "មើលពិន្ទុសិស្ស" (Open Level 3)
-            document.querySelectorAll('.open-student-scores-btn').forEach(btn => {
+            container.querySelectorAll('.open-student-scores-btn').forEach(btn => {
                 btn.addEventListener('click', function (e) {
                     e.stopPropagation();
-                    const examIdx = parseInt(this.getAttribute('data-exam-index'));
-                    const selectedExam = items[examIdx] || items[0];
-                    openStudentExamScoresPanel(selectedExam);
+                    const examId = this.getAttribute('data-exam-id');
+                    openStudentExamScoresPanel(examId);
                 });
             });
         }
 
-        // LEVEL 3: Open Individual Student Scores Panel for Specific Exam & Month (Track Responsive)
-        function openStudentExamScoresPanel(examObj) {
-            const targetClass = classesDataset.find(c => c.id === selectedClassId) || classesDataset[0];
+        // ----------------------------------------------------
+        // 4. LEVEL 3: OPEN STUDENT SCORES GRADEBOOK (REAL DATA)
+        // ----------------------------------------------------
+        async function openStudentExamScoresPanel(examId) {
+            selectedExamId = examId;
+            const targetClass = loadedClasses.find(c => String(c.id) === String(selectedClassId)) || { full_name: 'ថ្នាក់រៀន', instructor: 'លោកគ្រូ/អ្នកគ្រូ', students_count: 0 };
+            const selectedExam = loadedExaminations.find(e => String(e.exam_id) === String(examId)) || { exam_name: 'ការប្រឡង', week: '2026' };
 
             // Set Header details
-            document.getElementById('target-exam-title').innerText = examObj.title;
-            document.getElementById('target-exam-subdetails').innerText = `ថ្នាក់រៀន: ${targetClass.full_name || targetClass.name} (${targetClass.track_title}) • កាលបរិច្ឆេទ: ${examObj.date}`;
-            document.getElementById('target-exam-pass-rate').innerText = `អត្រាជាប់ ${examObj.pass_rate}`;
-            document.getElementById('target-exam-month-badge').innerText = `ប្រចាំខែ${examObj.month} ២០២៦`;
-
-            // Set KPI Cards
+            document.getElementById('target-exam-title').innerText = selectedExam.exam_name;
+            document.getElementById('target-exam-subdetails').innerText = `ថ្នាក់រៀន: ${targetClass.full_name || targetClass.name} • ឆ្នាំសិក្សា: ${selectedExam.academic_year || '២០២៦'}`;
             document.getElementById('score-kpi-class-name').innerText = targetClass.full_name || targetClass.name;
             document.getElementById('score-kpi-teacher').innerText = targetClass.instructor;
-            document.getElementById('score-kpi-total-students').innerText = `${examObj.total_students} នាក់`;
-            document.getElementById('score-kpi-passed').innerText = `${examObj.passed} នាក់ (អត្រាជាប់ ${examObj.pass_rate})`;
-            document.getElementById('score-kpi-failed').innerText = `${examObj.failed} នាក់`;
 
-            // Render Dynamic Track Based Table Headers and Rows
-            renderTrackResponsiveScoresTable(targetClass.track);
+            // Fetch Class Students & Real Scores
+            try {
+                const [studentsRes, scoresRes] = await Promise.all([
+                    fetch(`/api/class/${selectedClassId}/students`),
+                    fetch(`/api/scores?exam_id=${examId}&class_id=${selectedClassId}`)
+                ]);
+
+                const studentsData = await studentsRes.json();
+                const scoresData = await scoresRes.json();
+
+                currentClassStudents = (studentsData && studentsData.status === 'success' && Array.isArray(studentsData.students)) ? studentsData.students : [];
+                const classScores = (scoresData && scoresData.status === 'success' && Array.isArray(scoresData.scores)) ? scoresData.scores : [];
+
+                renderRealGradebookTable(currentClassStudents, classScores, selectedExam);
+            } catch (err) {
+                console.error('Error loading class students and scores:', err);
+            }
 
             // Toggle Panels
             document.getElementById('exam-class-boxes-view').style.display = 'none';
@@ -1052,109 +1159,594 @@
             document.getElementById('exam-student-scores-panel').style.display = 'block';
         }
 
-        // LEVEL 3: Render Track Responsive Table Headers & Data (Compact & Official Khmer Curriculum)
-        function renderTrackResponsiveScoresTable(track) {
+        function renderRealGradebookTable(students, scoresList, examObj) {
             const thead = document.getElementById('gradebook-table-header');
             const tbody = document.getElementById('student-scores-table-body');
             const title = document.getElementById('gradebook-table-title');
-            const subtitle = document.getElementById('gradebook-table-subtitle');
             if (!thead || !tbody) return;
 
-            const isScience = track === 'Science';
-            const dataset = isScience ? scienceStudentScores : socialStudentScores;
+            // Collect all unique subjects across all score records or fallback to loaded subjects or defaults
+            const subjectMap = new Map();
+            scoresList.forEach(s => {
+                if (Array.isArray(s.scores)) {
+                    s.scores.forEach(sub => {
+                        const name = sub.subject_name || sub.name || 'Subject';
+                        const maxVal = parseFloat(sub.max || sub.max_score || 100);
+                        if (!subjectMap.has(name)) {
+                            subjectMap.set(name, maxVal);
+                        }
+                    });
+                }
+            });
 
-            // Set Title & Subtitle
-            if (title) title.innerHTML = `<i class="bi bi-award-fill me-2" style="color:#d4af37 !important;"></i>តារាងពិន្ទុសិស្សប្រឡងប្រចាំខែ (${isScience ? 'ថ្នាក់វិទ្យាសាស្ត្រ' : 'ថ្នាក់វិទ្យាសាស្ត្រសង្គម'})`;
-            if (subtitle) subtitle.innerText = isScience ?
-                "មុខវិជ្ជា៖ គណិតវិទ្យា(១២៥) | រូបវិទ្យា(៧៥) | គីមីវិទ្យា(៧៥) | ជីវវិទ្យា(៧៥) | ភាសាខ្មែរ(៧៥) | ប្រវត្តិវិទ្យា(៥០) | ភាសាបរទេស(២៩)" :
-                "មុខវិជ្ជា៖ ភាសាខ្មែរ(១២៥) | គណិតវិទ្យា(៧៥) | ប្រវត្តិវិទ្យា(៧៥) | ភូមិវិទ្យា(៧៥) | ពលរដ្ឋវិទ្យា(៧៥) | ផែនដី&បរិស្ថាន(៥០) | ភាសាបរទេស(២៩)";
-
-            // Render Table Header
-            if (isScience) {
-                thead.innerHTML = `
-                    <tr class="border-bottom border-dark">
-                        <th>ឈ្មោះសិស្ស</th>
-                        <th>អត្តលេខ</th>
-                        <th>ខែប្រឡង</th>
-                        <th>គណិត (១២៥)</th>
-                        <th>រូបវិទ្យា (៧៥)</th>
-                        <th>គីមីវិទ្យា (៧៥)</th>
-                        <th>ជីវវិទ្យា (៧៥)</th>
-                        <th>ភាសាខ្មែរ (៧៥)</th>
-                        <th>ប្រវត្តិវិទ្យា (៥០)</th>
-                        <th>អង់គ្លេស (២៩)</th>
-                        <th>ពិន្ទុសរុប (៥០៤)</th>
-                        <th>ចំណាត់ថ្នាក់</th>
-                        <th>លទ្ធផល</th>
-                        <th class="text-end">សកម្មភាព</th>
-                    </tr>`;
-            } else {
-                thead.innerHTML = `
-                    <tr class="border-bottom border-dark">
-                        <th>ឈ្មោះសិស្ស</th>
-                        <th>អត្តលេខ</th>
-                        <th>ខែប្រឡង</th>
-                        <th>ភាសាខ្មែរ (១២៥)</th>
-                        <th>គណិត (៧៥)</th>
-                        <th>ប្រវត្តិវិទ្យា (៧៥)</th>
-                        <th>ភូមិវិទ្យា (៧៥)</th>
-                        <th>ពលរដ្ឋវិទ្យា (៧៥)</th>
-                        <th>ផែនដី&បរិស្ថាន (៥០)</th>
-                        <th>អង់គ្លេស (២៩)</th>
-                        <th>ពិន្ទុសរុប (៥០៤)</th>
-                        <th>ចំណាត់ថ្នាក់</th>
-                        <th>លទ្ធផល</th>
-                        <th class="text-end">សកម្មភាព</th>
-                    </tr>`;
+            if (subjectMap.size === 0) {
+                if (loadedSubjects && loadedSubjects.length > 0) {
+                    loadedSubjects.forEach(sub => {
+                        subjectMap.set(sub.subject_name, parseFloat(sub.max_score || 100));
+                    });
+                } else {
+                    const defaultKhmerSubjects = [
+                        { subject_name: 'ភាសាខ្មែរ', max_score: 100 },
+                        { subject_name: 'គណិតវិទ្យា', max_score: 100 },
+                        { subject_name: 'រូបវិទ្យា', max_score: 100 },
+                        { subject_name: 'គីមីវិទ្យា', max_score: 100 },
+                        { subject_name: 'ជីវវិទ្យា', max_score: 100 },
+                        { subject_name: 'ប្រវត្តិវិទ្យា', max_score: 100 },
+                        { subject_name: 'ភាសាអង់គ្លេស', max_score: 100 }
+                    ];
+                    defaultKhmerSubjects.forEach(sub => {
+                        subjectMap.set(sub.subject_name, sub.max_score);
+                    });
+                }
             }
 
-            // Render Compact Table Rows
-            tbody.innerHTML = dataset.map(s => `
+            const subjectHeaders = Array.from(subjectMap.entries());
+
+            // Build student score rows
+            const combinedRows = [];
+            students.forEach(st => {
+                const scoreRecord = scoresList.find(s => String(s.student_id) === String(st.student_id));
+                const studentSubjects = new Map();
+                let totalScore = 0;
+                let totalMax = 0;
+
+                if (scoreRecord && Array.isArray(scoreRecord.scores)) {
+                    scoreRecord.scores.forEach(sub => {
+                        const name = sub.subject_name || sub.name || 'Subject';
+                        const scoreVal = parseFloat(sub.score || 0);
+                        const maxVal = parseFloat(sub.max || 100);
+                        studentSubjects.set(name, scoreVal);
+                        totalScore += scoreVal;
+                    });
+                }
+
+                subjectHeaders.forEach(([name, maxV]) => {
+                    totalMax += maxV;
+                });
+
+                const avgPct = totalMax > 0 ? Math.round((totalScore / totalMax) * 100) : 0;
+                const gpa = avgPct >= 90 ? 'Grade A+' : avgPct >= 80 ? 'Grade A' : avgPct >= 70 ? 'Grade B' : avgPct >= 60 ? 'Grade C' : avgPct >= 50 ? 'Grade D' : 'Grade F';
+                const isPassed = avgPct >= 50;
+
+                combinedRows.push({
+                    student_id: st.student_id,
+                    student_code: st.student_code || `STD-${st.student_id}`,
+                    full_name: st.full_name,
+                    gender: st.gender || 'ប្រុស',
+                    has_score: !!scoreRecord,
+                    scores_map: studentSubjects,
+                    total_score: totalScore,
+                    total_max: totalMax,
+                    avg_pct: avgPct,
+                    gpa: gpa,
+                    is_passed: isPassed,
+                    score_id: scoreRecord ? scoreRecord.score_id : null
+                });
+            });
+
+            // Sort by total score to calculate Rank
+            combinedRows.sort((a, b) => b.total_score - a.total_score);
+            combinedRows.forEach((r, idx) => {
+                r.rank = r.has_score ? `លេខ ${idx + 1}` : '-';
+            });
+
+            // Update KPI summary cards
+            const totalCount = combinedRows.length;
+            const scoredCount = combinedRows.filter(r => r.has_score).length;
+            const passedCount = combinedRows.filter(r => r.has_score && r.is_passed).length;
+            const failedCount = scoredCount - passedCount;
+            const passRateStr = scoredCount > 0 ? Math.round((passedCount / scoredCount) * 100) + '%' : '100%';
+
+            document.getElementById('score-kpi-total-students').innerText = `${totalCount} នាក់`;
+            document.getElementById('score-kpi-passed').innerText = `${passedCount} នាក់`;
+            document.getElementById('score-kpi-failed').innerText = `${failedCount} នាក់`;
+            document.getElementById('target-exam-pass-rate').innerText = `អត្រាជាប់ ${passRateStr}`;
+
+            // Render Table Header: ឈ្មោះសិស្ស, អត្តលេខ, [មុខវិជ្ជានីមួយៗ...], ពិន្ទុសរុប, និទ្ទេស, ចំណាត់ថ្នាក់, លទ្ធផល, សកម្មភាព
+            thead.innerHTML = `
+                <tr class="border-bottom border-dark">
+                    <th style="min-width: 170px;">ឈ្មោះសិស្ស</th>
+                    <th style="min-width: 90px;">អត្តលេខ</th>
+                    ${subjectHeaders.map(([name, maxV]) => `
+                        <th class="text-center" style="min-width: 85px;">
+                            <span class="d-block text-warning">${name}</span>
+                            <span class="text-white-50 extra-small">(${maxV}ពិន្ទុ)</span>
+                        </th>
+                    `).join('')}
+                    <th class="text-center" style="min-width: 95px;">ពិន្ទុសរុប</th>
+                    <th class="text-center" style="min-width: 85px;">និទ្ទេស</th>
+                    <th class="text-center" style="min-width: 95px;">ចំណាត់ថ្នាក់</th>
+                    <th class="text-center" style="min-width: 90px;">លទ្ធផល</th>
+                    <th class="text-end" style="min-width: 180px;">សកម្មភាព</th>
+                </tr>`;
+
+            // Render Table Body
+            if (combinedRows.length === 0) {
+                const totalCols = 6 + subjectHeaders.length;
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="${totalCols}" class="text-center py-5 text-muted">
+                            <i class="bi bi-people fs-2 d-block mb-2 text-warning"></i>
+                            មិនទាន់មានសិស្សនៅក្នុងថ្នាក់នេះនៅឡើយទេ។ សូមចាប់សិស្សចូលក្នុងថ្នាក់ជាមុនសិន។
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            tbody.innerHTML = combinedRows.map(s => {
+                const subjectCells = subjectHeaders.map(([name, _]) => {
+                    const score = s.scores_map.get(name);
+                    if (score !== undefined) {
+                        return `<td class="text-center fw-bold text-white fs-6">${score}</td>`;
+                    }
+                    return `<td class="text-center text-white-50 extra-small">-</td>`;
+                }).join('');
+
+                return `
                 <tr>
                     <td>
                         <div class="d-flex align-items-center gap-2">
-                            <img src="${s.avatar}" class="rounded-circle border border-secondary" width="30" height="30" alt="${s.name}">
-                            <span class="fw-semibold text-white">${s.name}</span>
+                            <div class="rounded-circle d-flex align-items-center justify-content-center border border-secondary text-warning" style="width: 32px; height: 32px; background: rgba(212,175,55,0.1); flex-shrink: 0;">
+                                <i class="bi bi-person-fill fs-6"></i>
+                            </div>
+                            <div>
+                                <span class="fw-semibold text-white d-block">${s.full_name}</span>
+                                <span class="text-white-50 extra-small">${s.gender}</span>
+                            </div>
                         </div>
                     </td>
-                    <td><code>${s.id}</code></td>
-                    <td><span class="badge bg-dark border border-secondary text-warning" style="color:#d4af37 !important;">${s.month_name}</span></td>
-                    <td><span class="score-num-badge">${s.s1}</span></td>
-                    <td><span class="score-num-badge">${s.s2}</span></td>
-                    <td><span class="score-num-badge">${s.s3}</span></td>
-                    <td><span class="score-num-badge">${s.s4}</span></td>
-                    <td><span class="score-num-badge">${s.s5}</span></td>
-                    <td><span class="score-num-badge">${s.s6}</span></td>
-                    <td><span class="score-num-badge">${s.s7}</span></td>
-                    <td>
-                        <span class="fw-bold" style="color:#d4af37;">${s.total_score} / ៥០៤</span> 
-                        <span class="badge text-dark ms-1" style="background:#d4af37; font-weight:700;">${s.grade}</span>
+                    <td><code class="text-warning">${s.student_code}</code></td>
+                    ${subjectCells}
+                    <td class="text-center">
+                        <span class="fw-bold fs-6" style="color:#d4af37;">${s.has_score ? s.total_score : 0}</span> 
+                        <span class="text-white-50 extra-small d-block">/ ${s.total_max}</span>
                     </td>
-                    <td>
-                        <span class="badge text-warning border border-warning px-2 py-0.5 fw-bold" style="background:rgba(212,175,55,0.15); color:#ffd700 !important;">
-                            ${s.rank}
+                    <td class="text-center">
+                        <span class="badge text-dark fw-bold px-2 py-1" style="background:#d4af37; font-size: 0.82rem;">${s.gpa}</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="badge text-warning border border-warning px-2.5 py-1 fw-bold" style="background:rgba(212,175,55,0.15); color:#ffd700 !important; font-size: 0.85rem;">
+                            <i class="bi bi-trophy-fill me-1"></i>${s.rank}
                         </span>
                     </td>
-                    <td>
-                        <span class="badge ${s.status === 'Passed' ? 'bg-success-subtle text-success px-2 py-0.5' : 'bg-danger-subtle text-danger px-2 py-0.5'}">
-                            ${s.status === 'Passed' ? '✅ ជាប់' : '❌ ធ្លាក់'}
+                    <td class="text-center">
+                        <span class="badge ${!s.has_score ? 'bg-secondary text-white' : s.is_passed ? 'bg-success-subtle text-success px-2.5 py-1' : 'bg-danger-subtle text-danger px-2.5 py-1'}">
+                            ${!s.has_score ? '⏳ មិនទាន់បញ្ចូល' : s.is_passed ? '✅ ជាប់' : '❌ ធ្លាក់'}
                         </span>
                     </td>
                     <td class="text-end">
-                        <button class="btn btn-outline-glass btn-sm py-1 px-2 me-1" title="កែប្រែពិន្ទុ"><i class="bi bi-pencil-square"></i></button>
-                        <button class="btn-card-results btn-sm py-1 px-2" title="មើលប័ណ្ណសរសើរ"><i class="bi bi-award"></i></button>
+                        <button class="btn-card-results btn-sm py-1 px-2.5 btn-view-student-score-history" 
+                            data-student-id="${s.student_id}" 
+                            data-student-name="${s.full_name}" 
+                            data-student-code="${s.student_code}">
+                            <i class="bi bi-clock-history me-1"></i> មើលពិន្ទុកន្លងមក 📊
+                        </button>
+                        <button class="btn btn-outline-glass btn-sm py-1 px-2 ms-1 btn-open-score-entry-for-student" 
+                            data-student-id="${s.student_id}" 
+                            title="បញ្ចូល ឬ កែប្រែពិន្ទុ">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
                     </td>
                 </tr>
-            `).join('');
+                `;
+            }).join('');
+
+            // Click listener for viewing student past scores history
+            tbody.querySelectorAll('.btn-view-student-score-history').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const studentId = this.getAttribute('data-student-id');
+                    const studentName = this.getAttribute('data-student-name');
+                    const studentCode = this.getAttribute('data-student-code');
+                    openStudentPastScoresHistoryModal(studentId, studentName, studentCode);
+                });
+            });
+
+            // Click listener for entering score for specific student
+            tbody.querySelectorAll('.btn-open-score-entry-for-student').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const studentId = this.getAttribute('data-student-id');
+                    openScoreEntryModal(studentId);
+                });
+            });
         }
 
-        // Back Button Listeners
+        // ----------------------------------------------------
+        // 5. SCORE ENTRY MODAL LOGIC
+        // ----------------------------------------------------
+        function openScoreEntryModal(preSelectedStudentId = null) {
+            const studentSelect = document.getElementById('score-entry-student-select');
+            const examNameDisplay = document.getElementById('score-entry-exam-name-display');
+            const subjectsContainer = document.getElementById('score-entry-subjects-container');
+            const selectedExam = loadedExaminations.find(e => String(e.exam_id) === String(selectedExamId)) || { exam_name: 'ការប្រឡង' };
+
+            if (examNameDisplay) examNameDisplay.value = selectedExam.exam_name;
+            document.getElementById('score-entry-exam-id').value = selectedExamId;
+            document.getElementById('score-entry-class-id').value = selectedClassId;
+
+            // Populate Student Dropdown
+            if (studentSelect) {
+                studentSelect.innerHTML = currentClassStudents.map(st => `
+                    <option value="${st.student_id}" ${String(st.student_id) === String(preSelectedStudentId) ? 'selected' : ''}>
+                        👨‍🎓 ${st.full_name} (${st.student_code || `STD-${st.student_id}`})
+                    </option>
+                `).join('');
+            }
+
+            // Populate Subjects Form Inputs
+            let subjectsToRender = loadedSubjects.length > 0 ? loadedSubjects : [
+                { subject_name: 'គណិតវិទ្យា (Mathematics)', max_score: 100 },
+                { subject_name: 'រូបវិទ្យា (Physics)', max_score: 75 },
+                { subject_name: 'គីមីវិទ្យា (Chemistry)', max_score: 75 },
+                { subject_name: 'ភាសាខ្មែរ (Khmer)', max_score: 100 },
+                { subject_name: 'ភាសាអង់គ្លេស (English)', max_score: 50 }
+            ];
+
+            // If this student already has scores, pre-fill them
+            const studentScore = loadedScores.find(s => String(s.student_id) === String(preSelectedStudentId) && String(s.exam_id) === String(selectedExamId));
+            const existingScoresMap = new Map();
+            if (studentScore && Array.isArray(studentScore.scores)) {
+                studentScore.scores.forEach(sub => {
+                    existingScoresMap.set(sub.subject_name || sub.name, sub.score);
+                });
+            }
+
+            if (subjectsContainer) {
+                subjectsContainer.innerHTML = subjectsToRender.map((sub, idx) => {
+                    const name = sub.subject_name || `Subject ${idx+1}`;
+                    const maxScore = sub.max_score || 100;
+                    const val = existingScoresMap.has(name) ? existingScoresMap.get(name) : '';
+
+                    return `
+                    <div class="col-md-6">
+                        <label class="form-label text-white extra-small fw-bold mb-1">${name} (Max: ${maxScore})</label>
+                        <input type="number" step="0.5" min="0" max="${maxScore}" 
+                            class="form-control bg-dark text-white border-secondary subject-score-input" 
+                            data-subject-name="${name}" 
+                            data-max-score="${maxScore}" 
+                            value="${val}" 
+                            placeholder="0 - ${maxScore}">
+                    </div>
+                    `;
+                }).join('');
+
+                // Live total preview listener
+                subjectsContainer.querySelectorAll('.subject-score-input').forEach(input => {
+                    input.addEventListener('input', updateScoreEntryTotalPreview);
+                });
+            }
+
+            updateScoreEntryTotalPreview();
+
+            // Open Modal
+            const modalEl = document.getElementById('adminStudentScoreEntryModal');
+            if (modalEl && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(modalEl);
+                bsModal.show();
+            }
+        }
+
+        function updateScoreEntryTotalPreview() {
+            const inputs = document.querySelectorAll('#score-entry-subjects-container .subject-score-input');
+            let total = 0;
+            let maxTotal = 0;
+
+            inputs.forEach(input => {
+                const val = parseFloat(input.value) || 0;
+                const maxVal = parseFloat(input.getAttribute('data-max-score')) || 100;
+                total += val;
+                maxTotal += maxVal;
+            });
+
+            const pct = maxTotal > 0 ? Math.round((total / maxTotal) * 100) : 0;
+            const gpa = pct >= 90 ? 'Grade A+' : pct >= 80 ? 'Grade A' : pct >= 70 ? 'Grade B' : pct >= 60 ? 'Grade C' : pct >= 50 ? 'Grade D' : 'Grade F';
+
+            const previewEl = document.getElementById('score-entry-total-preview');
+            if (previewEl) previewEl.innerText = `${total} / ${maxTotal} ពិន្ទុ (${pct}%)`;
+
+            const gradeEl = document.getElementById('score-entry-grade-preview');
+            if (gradeEl) gradeEl.innerText = `${gpa}`;
+        }
+
+        // Form Submission: Add / Save Score
+        const scoreEntryForm = document.getElementById('admin-student-score-entry-form');
+        if (scoreEntryForm) {
+            scoreEntryForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const studentId = document.getElementById('score-entry-student-select').value;
+                const examId = document.getElementById('score-entry-exam-id').value;
+                const classId = document.getElementById('score-entry-class-id').value;
+                const submitBtn = document.getElementById('btn-submit-score-entry');
+
+                if (!studentId || !examId) {
+                    alert('សូមជ្រើសរើសសិស្ស និងការប្រឡង!');
+                    return;
+                }
+
+                const inputs = document.querySelectorAll('#score-entry-subjects-container .subject-score-input');
+                const scoresArray = [];
+                inputs.forEach(input => {
+                    scoresArray.append || scoresArray.push({
+                        subject_name: input.getAttribute('data-subject-name'),
+                        score: parseFloat(input.value) || 0,
+                        max: parseFloat(input.getAttribute('data-max-score')) || 100
+                    });
+                });
+
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> កំពុងរក្សាទុក...';
+                }
+
+                try {
+                    const res = await fetch('/api/scores', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            student_id: parseInt(studentId),
+                            exam_id: parseInt(examId),
+                            class_id: parseInt(classId),
+                            scores: scoresArray
+                        })
+                    });
+
+                    const resData = await res.json();
+                    if (resData.status === 'success') {
+                        // Refresh scores
+                        const scoreRes = await fetch('/api/scores');
+                        const scoreData = await scoreRes.json();
+                        if (scoreData && scoreData.status === 'success' && Array.isArray(scoreData.scores)) {
+                            loadedScores.length = 0;
+                            loadedScores.push(...scoreData.scores);
+                        }
+
+                        // Close Modal
+                        const modalEl = document.getElementById('adminStudentScoreEntryModal');
+                        if (modalEl && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalEl);
+                            if (bsModal) bsModal.hide();
+                        }
+
+                        // Re-render Level 3
+                        openStudentExamScoresPanel(examId);
+                    } else {
+                        alert(resData.message || 'មានបញ្ហាក្នុងការរក្សាទុកពិន្ទុ');
+                    }
+                } catch (err) {
+                    console.error('Error saving scores:', err);
+                    alert('បរាជ័យក្នុងការរក្សាទុកពិន្ទុ: ' + err.message);
+                } finally {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="bi bi-save me-1"></i> រក្សាទុកពិន្ទុក្នុង Database';
+                    }
+                }
+            });
+        }
+
+        // Top button "+ បញ្ចូលពិន្ទុសិស្សថ្មី" in Level 3
+        const btnOpenAddScore = document.getElementById('btn-open-add-score-modal');
+        if (btnOpenAddScore) {
+            btnOpenAddScore.addEventListener('click', function () {
+                openScoreEntryModal();
+            });
+        }
+
+        // ----------------------------------------------------
+        // 5.1 OPEN STUDENT PAST SCORES HISTORY MODAL
+        // ----------------------------------------------------
+        async function openStudentPastScoresHistoryModal(studentId, studentName, studentCode) {
+            document.getElementById('history-modal-student-name').innerText = studentName || 'ឈ្មោះសិស្ស';
+            document.getElementById('history-modal-student-code').innerText = studentCode || `STD-${studentId}`;
+
+            const container = document.getElementById('history-modal-records-container');
+            if (container) {
+                container.innerHTML = `
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-warning mb-2" role="status"></div>
+                        <div class="text-white-50 small">កំពុងទាញយកប្រវត្តិពិន្ទុប្រឡង...</div>
+                    </div>`;
+            }
+
+            const modalEl = document.getElementById('studentPastScoresHistoryModal');
+            if (modalEl && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(modalEl);
+                bsModal.show();
+            }
+
+            try {
+                const res = await fetch(`/api/scores?student_id=${studentId}`);
+                const data = await res.json();
+                const scoresList = (data && data.status === 'success' && Array.isArray(data.scores)) ? data.scores : [];
+
+                // KPI calculations
+                const totalExams = scoresList.length;
+                const passedExams = scoresList.filter(s => s.result === 'pass' || parseFloat(s.average_pct) >= 50).length;
+                const failedExams = totalExams - passedExams;
+                let sumPct = 0;
+                scoresList.forEach(s => sumPct += (parseFloat(s.average_pct) || 0));
+                const avgPctOverall = totalExams > 0 ? Math.round(sumPct / totalExams) : 0;
+
+                document.getElementById('history-modal-total-exams').innerText = `${totalExams} ការប្រឡង`;
+                document.getElementById('history-modal-passed-exams').innerText = `${passedExams} ការប្រឡង`;
+                document.getElementById('history-modal-failed-exams').innerText = `${failedExams} ការប្រឡង`;
+                document.getElementById('history-modal-avg-pct').innerText = `${avgPctOverall}%`;
+
+                if (scoresList.length === 0) {
+                    container.innerHTML = `
+                        <div class="card-custom p-4 text-center text-muted">
+                            <i class="bi bi-clock-history fs-2 d-block mb-2 text-warning"></i>
+                            <h6 class="text-white fw-bold">មិនទាន់មានប្រវត្តិពិន្ទុប្រឡងកន្លងមកទេ</h6>
+                            <p class="small mb-0">សិស្សនេះមិនទាន់មានកំណត់ត្រាពិន្ទុក្នុងការប្រឡងណាមួយនៅឡើយ។</p>
+                        </div>`;
+                    return;
+                }
+
+                container.innerHTML = `
+                    <div class="table-responsive">
+                        <table class="table table-dark table-hover align-middle mb-0 compact-score-table" style="background: transparent;">
+                            <thead>
+                                <tr class="border-bottom border-dark">
+                                    <th>ឈ្មោះការប្រឡង</th>
+                                    <th>ខែប្រឡង</th>
+                                    <th>ប្រភេទនៃការប្រឡង</th>
+                                    <th>លំដាប់ថ្នាក់</th>
+                                    <th>ពិន្ទុសរុប</th>
+                                    <th>និទ្ទេស</th>
+                                    <th>លទ្ធផល</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${scoresList.map((s, idx) => {
+                                    const isPass = s.result === 'pass' || parseFloat(s.average_pct) >= 50;
+                                    const n = (s.exam_name || '').toLowerCase();
+                                    const isAnnual = n.includes('ឆមាស') || n.includes('ឆ្នាំ') || n.includes('semester') || n.includes('annual');
+                                    const categoryBadge = isAnnual 
+                                        ? '<span class="badge exam-badge-annual">🏆 ប្រឡងឆមាស/ប្រចាំឆ្នាំ</span>' 
+                                        : '<span class="badge exam-badge-monthly">📅 ប្រឡងប្រចាំខែ</span>';
+
+                                    return `
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="p-2 bg-dark rounded border border-secondary text-warning" style="color:#d4af37 !important;">
+                                                    <i class="bi ${isAnnual ? 'bi-trophy-fill' : 'bi-calendar-check'}"></i>
+                                                </div>
+                                                <div>
+                                                    <span class="fw-bold text-white d-block">${s.exam_name || 'ការប្រឡង'}</span>
+                                                    <span class="text-white-50 extra-small">${s.class_name ? `ថ្នាក់: ${s.class_name}` : ''}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-dark border border-secondary text-warning">${s.week || '2026'}</span></td>
+                                        <td>${categoryBadge}</td>
+                                        <td>
+                                            <span class="badge text-warning border border-warning px-2.5 py-1 fw-bold" style="background:rgba(212,175,55,0.15); color:#ffd700 !important;">
+                                                <i class="bi bi-trophy-fill me-1"></i>លេខ ${idx + 1}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold fs-6" style="color:#d4af37;">${s.total_score}</span> 
+                                            <span class="text-white-50 extra-small">/ ${s.total_max_points}</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge text-dark fw-bold px-2.5 py-1" style="background:#d4af37;">${s.gpa || 'Grade'}</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge ${isPass ? 'bg-success-subtle text-success px-2.5 py-1' : 'bg-danger-subtle text-danger px-2.5 py-1'}">
+                                                ${isPass ? '✅ ជាប់' : '❌ ធ្លាក់'}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    `;
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            } catch (err) {
+                console.error('Error fetching student past scores:', err);
+                container.innerHTML = `
+                    <div class="alert alert-danger mb-0">
+                        បរាជ័យក្នុងការទាញយកប្រវត្តិពិន្ទុ: ${err.message}
+                    </div>`;
+            }
+        }
+
+        // ----------------------------------------------------
+        // 6. FORM SUBMISSION: CREATE NEW EXAMINATION
+        // ----------------------------------------------------
+        const addExamForm = document.getElementById('admin-add-exam-form');
+        if (addExamForm) {
+            addExamForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const classId = document.getElementById('adm-ex-class-select').value;
+                const type = document.getElementById('adm-ex-type').value;
+                const title = document.getElementById('adm-ex-title').value.trim();
+                const week = document.getElementById('adm-ex-week').value.trim();
+                const room = document.getElementById('adm-ex-room').value.trim();
+
+                if (!title) {
+                    alert('សូមបញ្ចូលឈ្មោះកម្មវិធីប្រឡង!');
+                    return;
+                }
+
+                try {
+                    const res = await fetch('/api/examinations', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            class_id: classId ? parseInt(classId) : null,
+                            exam_name: title,
+                            week: week,
+                            academic_year: '2026'
+                        })
+                    });
+
+                    const resData = await res.json();
+                    if (resData.status === 'success') {
+                        // Refresh exams list
+                        const examRes = await fetch('/api/examinations');
+                        const examData = await examRes.json();
+                        if (examData && examData.status === 'success' && Array.isArray(examData.examinations)) {
+                            loadedExaminations.length = 0;
+                            loadedExaminations.push(...examData.examinations);
+                        }
+
+                        // Close Modal
+                        const modalElem = document.getElementById('adminAddNewExamModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+                        addExamForm.reset();
+
+                        // Refresh current view
+                        if (selectedClassId) {
+                            openClassExamsList(selectedClassId);
+                        } else {
+                            renderClassList(loadedClasses);
+                        }
+                    } else {
+                        alert(resData.message || 'មានបញ្ហាក្នុងការបង្កើតការប្រឡង');
+                    }
+                } catch (err) {
+                    console.error('Error creating exam:', err);
+                    alert('បរាជ័យក្នុងការបង្កើតការប្រឡង: ' + err.message);
+                }
+            });
+        }
+
+        // ----------------------------------------------------
+        // 7. NAVIGATION & SEARCH EVENT LISTENERS
+        // ----------------------------------------------------
         const backToClassBoxesBtn = document.getElementById('back-to-class-boxes-btn');
         if (backToClassBoxesBtn) {
             backToClassBoxesBtn.addEventListener('click', function () {
                 document.getElementById('class-exam-details-panel').style.display = 'none';
                 document.getElementById('exam-student-scores-panel').style.display = 'none';
                 document.getElementById('exam-class-boxes-view').style.display = 'block';
+                renderClassList(loadedClasses);
             });
         }
 
@@ -1163,73 +1755,38 @@
             backToClassExamsBtn.addEventListener('click', function () {
                 document.getElementById('exam-student-scores-panel').style.display = 'none';
                 document.getElementById('class-exam-details-panel').style.display = 'block';
+                if (selectedClassId) openClassExamsList(selectedClassId);
             });
         }
 
-        // Filter Selectors & Search Inputs
-        const scoresMonthFilter = document.getElementById('scores-month-filter');
-        if (scoresMonthFilter) {
-            scoresMonthFilter.addEventListener('change', function () {
-                const targetClass = classesDataset.find(c => c.id === selectedClassId) || classesDataset[0];
-                renderTrackResponsiveScoresTable(targetClass.track);
+        // Live Search Input for Classes
+        const classExamSearchInput = document.getElementById('class-exam-search-input');
+        if (classExamSearchInput) {
+            classExamSearchInput.addEventListener('input', function () {
+                const q = this.value.toLowerCase().trim();
+                const filtered = loadedClasses.filter(c =>
+                    (c.name || '').toLowerCase().includes(q) ||
+                    (c.full_name || '').toLowerCase().includes(q) ||
+                    (c.instructor || '').toLowerCase().includes(q) ||
+                    String(c.id).includes(q)
+                );
+                renderClassList(filtered);
             });
         }
 
+        // Search Input in Gradebook Table
         const studentScoresSearchInput = document.getElementById('student-scores-search-input');
         if (studentScoresSearchInput) {
             studentScoresSearchInput.addEventListener('input', function () {
                 const q = this.value.toLowerCase().trim();
-                const targetClass = classesDataset.find(c => c.id === selectedClassId) || classesDataset[0];
-                const isScience = targetClass.track === 'Science';
-                const dataset = isScience ? scienceStudentScores : socialStudentScores;
-                const filtered = dataset.filter(s =>
-                    s.name.toLowerCase().includes(q) ||
-                    s.id.toLowerCase().includes(q)
-                );
-                const tbody = document.getElementById('student-scores-table-body');
-                if (tbody) {
-                    tbody.innerHTML = filtered.map(s => `
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center gap-2">
-                                    <img src="${s.avatar}" class="rounded-circle border border-secondary" width="30" height="30" alt="${s.name}">
-                                    <span class="fw-semibold text-white">${s.name}</span>
-                                </div>
-                            </td>
-                            <td><code>${s.id}</code></td>
-                            <td><span class="badge bg-dark border border-secondary text-warning" style="color:#d4af37 !important;">${s.month_name}</span></td>
-                            <td><span class="score-num-badge">${s.s1}</span></td>
-                            <td><span class="score-num-badge">${s.s2}</span></td>
-                            <td><span class="score-num-badge">${s.s3}</span></td>
-                            <td><span class="score-num-badge">${s.s4}</span></td>
-                            <td><span class="score-num-badge">${s.s5}</span></td>
-                            <td><span class="score-num-badge">${s.s6}</span></td>
-                            <td><span class="score-num-badge">${s.s7}</span></td>
-                            <td>
-                                <span class="fw-bold" style="color:#d4af37;">${s.total_score} / ៥០៤</span> 
-                                <span class="badge text-dark ms-1" style="background:#d4af37; font-weight:700;">${s.grade}</span>
-                            </td>
-                            <td>
-                                <span class="badge text-warning border border-warning px-2 py-0.5 fw-bold" style="background:rgba(212,175,55,0.15); color:#ffd700 !important;">
-                                    ${s.rank}
-                                </span>
-                            </td>
-                            <td>
-                                <span class="badge ${s.status === 'Passed' ? 'bg-success-subtle text-success px-2 py-0.5' : 'bg-danger-subtle text-danger px-2 py-0.5'}">
-                                    ${s.status === 'Passed' ? '✅ ជាប់' : '❌ ធ្លាក់'}
-                                </span>
-                            </td>
-                            <td class="text-end">
-                                <button class="btn btn-outline-glass btn-sm py-1 px-2 me-1" title="កែប្រែពិន្ទុ"><i class="bi bi-pencil-square"></i></button>
-                                <button class="btn-card-results btn-sm py-1 px-2" title="មើលប័ណ្ណសរសើរ"><i class="bi bi-award"></i></button>
-                            </td>
-                        </tr>
-                    `).join('');
-                }
+                document.querySelectorAll('#student-scores-table-body tr').forEach(row => {
+                    const text = row.innerText.toLowerCase();
+                    row.style.display = text.includes(q) ? '' : 'none';
+                });
             });
         }
 
-        // Track Filter Pills Listener (View 1)
+        // Track Filter Pills (Level 1)
         document.querySelectorAll('#class-track-filter-pills .filter-pill-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('#class-track-filter-pills .filter-pill-btn').forEach(b => b.classList.remove('active'));
@@ -1237,108 +1794,27 @@
 
                 const track = this.getAttribute('data-track');
                 if (track === 'All') {
-                    renderClassList(classesDataset);
+                    renderClassList(loadedClasses);
                 } else {
-                    const filtered = classesDataset.filter(c => c.track.toLowerCase() === track.toLowerCase());
+                    const filtered = loadedClasses.filter(c => (c.grade || '').includes(track) || (c.full_name || '').includes(track));
                     renderClassList(filtered);
                 }
             });
         });
 
-        // Filter Type Pills inside Selected Class (View 2)
+        // Filter Type Pills inside Selected Class (Level 2)
         document.querySelectorAll('#inside-class-type-filter-pills .filter-pill-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('#inside-class-type-filter-pills .filter-pill-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
 
                 insideClassTypeFilter = this.getAttribute('data-type');
-                const examsList = classExamsListMap[selectedClassId] || classExamsListMap["CLS-101"];
+                const examsList = loadedExaminations.filter(e => String(e.class_id) === String(selectedClassId) || !e.class_id);
                 renderInsideClassExamsList(examsList);
             });
         });
 
-        // Add Exam Submission Handler
-        const addExamForm = document.getElementById('admin-add-exam-form');
-        if (addExamForm) {
-            addExamForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const title = document.getElementById('adm-ex-title').value.trim();
-                const type = document.getElementById('adm-ex-type').value;
-                const date = document.getElementById('adm-ex-date').value;
-                const room = document.getElementById('adm-ex-room').value.trim();
-
-                if (title) {
-                    alert(`បានបង្កើតកាលវិភាគប្រឡងថ្មី "${title}" (${type}) កាលបរិច្ឆេទ ${date} ដោយជោគជ័យ!`);
-
-                    const modalElem = document.getElementById('adminAddNewExamModal');
-                    if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = bootstrap.Modal.getInstance(modalElem);
-                        if (bsModal) bsModal.hide();
-                    }
-                    addExamForm.reset();
-                }
-            });
-        }
-
-        // Initial Render
-        renderClassList(classesDataset);
+        // Initialize Fetch
+        fetchInitialData();
     })();
 </script>
-
-<!-- Modal: Admin Add New Exam Form Modal -->
-<div class="modal fade" id="adminAddNewExamModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
-            <div class="modal-header border-bottom border-dark p-4">
-                <div class="d-flex align-items-center gap-2.5">
-                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
-                        <i class="bi bi-award-fill fs-5"></i>
-                    </div>
-                    <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">ប្រព័ន្ធប្រឡងសិស្ស</span>
-                        <h4 class="fw-bold text-white mb-0">ទម្រង់បង្កើតកាលវិភាគប្រឡងថ្មី (Create Exam Schedule Form)</h4>
-                    </div>
-                </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4">
-                <form id="admin-add-exam-form">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះកម្មវិធីប្រឡង (Exam Title)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-ex-title" placeholder="ឧ. ការប្រឡងប្រចាំខែកុម្ភៈ ២០២៦" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ប្រភេទប្រឡង (Exam Category)</label>
-                            <select class="form-select bg-dark text-white border-secondary" id="adm-ex-type" required>
-                                <option value=" monthly" selected>📅 ប្រឡងប្រចាំខែ (Monthly Exam)</option>
-                                <option value="semester">🏆 ប្រឡងឆមាស (Semester Exam)</option>
-                                <option value="national">🎓 ប្រឡងសាកល្បងបាក់ឌុប (Mock Exam)</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">កាលបរិច្ឆេទប្រឡង (Exam Date)</label>
-                            <input type="date" class="form-control bg-dark text-white border-secondary" id="adm-ex-date" value="2026-08-20" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ម៉ោងប្រឡង (Time)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-ex-time" value="08:00 AM - 11:00 AM" required>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">បន្ទប់ប្រឡង (Room)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-ex-room" value="បន្ទប់ប្រឡង ៣០១" required>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
-                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-plus-lg me-1"></i> រក្សាទុកកាលវិភាគប្រឡង</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>

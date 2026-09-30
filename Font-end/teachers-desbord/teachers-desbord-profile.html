@@ -95,11 +95,27 @@
     }
 
     /* FORCED ALL TEXT TO WHITE ACROSS ENTIRE PAGE & MODALS */
-    body, p, span, label, h1, h2, h3, h4, h5, h6, th, td, div, button, input, select {
+    body,
+    p,
+    span,
+    label,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    th,
+    td,
+    div,
+    button,
+    input,
+    select {
         color: #ffffff !important;
     }
 
-    .text-muted, .extra-small {
+    .text-muted,
+    .extra-small {
         color: #e0e0e0 !important;
     }
 </style>
@@ -110,22 +126,26 @@
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-4">
             <div class="d-flex align-items-center gap-4">
                 <div class="profile-avatar-wrapper">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&auto=format&fit=crop&q=80"
-                         class="rounded-circle" width="100" height="100" alt="Prof. Sarah Jenkins">
+                    <img id="prof-avatar-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&auto=format&fit=crop&q=80"
+                        class="rounded-circle" width="100" height="100" alt="Teacher Avatar">
                     <div class="profile-status-badge"></div>
                 </div>
                 <div>
                     <div class="d-flex align-items-center gap-2 mb-1">
-                        <h2 class="fw-bold text-white mb-0">Prof. Sarah Jenkins</h2>
-                        <span class="badge text-white fw-bold px-2.5 py-1" style="background:#d4af37;">Homeroom Teacher 12-A</span>
+                        <h2 id="prof-hero-name" class="fw-bold text-white mb-0">Prof. Sarah Jenkins</h2>
+                        <span id="prof-hero-status" class="badge text-white fw-bold px-2.5 py-1" style="background:#d4af37;">Active Teacher</span>
                     </div>
-                    <p class="text-white small mb-2"><i class="bi bi-briefcase-fill me-1 text-warning" style="color:#d4af37 !important;"></i>Mathematics & Physics Teacher • Science Department</p>
+                    <p id="prof-hero-specialty" class="text-white small mb-2"><i class="bi bi-briefcase-fill me-1 text-warning"
+                            style="color:#d4af37 !important;"></i>Mathematics & Physics Teacher • Science Department</p>
                     <div class="d-flex flex-wrap align-items-center gap-3 text-white extra-small">
-                        <span><i class="bi bi-person-badge me-1 text-warning" style="color:#d4af37 !important;"></i>Teacher ID: <code>TCH-2026-001</code></span>
+                        <span><i class="bi bi-person-badge me-1 text-warning"
+                                style="color:#d4af37 !important;"></i>Teacher ID: <code id="prof-hero-code">TCH-2026-001</code></span>
                         <span>•</span>
-                        <span><i class="bi bi-envelope-fill me-1 text-warning" style="color:#d4af37 !important;"></i>sarah.jenkins@school.edu.kh</span>
+                        <span><i class="bi bi-envelope-fill me-1 text-warning"
+                                style="color:#d4af37 !important;"></i><span id="prof-hero-email">sarah.jenkins@school.edu.kh</span></span>
                         <span>•</span>
-                        <span><i class="bi bi-telephone-fill me-1 text-warning" style="color:#d4af37 !important;"></i>+855 12 889 900</span>
+                        <span><i class="bi bi-telephone-fill me-1 text-warning"
+                                style="color:#d4af37 !important;"></i><span id="prof-hero-phone">+855 12 889 900</span></span>
                     </div>
                 </div>
             </div>
@@ -179,7 +199,7 @@
                     <i class="bi bi-award-fill text-warning fs-5" style="color:#d4af37 !important;"></i>
                 </div>
                 <h3 class="fw-bold text-white mb-0">8 Years</h3>
-                <span class="text-white extra-small">Master's in Mathematics</span>
+                <span id="prof-stat-spec" class="text-white extra-small">Master's in Education</span>
             </div>
         </div>
     </div>
@@ -189,36 +209,55 @@
         <!-- Left: Teacher Detailed Info -->
         <div class="col-lg-7">
             <div class="card-custom p-4 mb-4">
-                <h5 class="fw-bold text-white mb-3"><i class="bi bi-person-lines-fill me-2" style="color:#d4af37 !important;"></i>Personal Details & Qualifications</h5>
+                <h5 class="fw-bold text-white mb-3"><i class="bi bi-person-lines-fill me-2"
+                        style="color:#d4af37 !important;"></i>Personal Details & Qualifications</h5>
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">Full Name</span>
-                            <h6 class="fw-bold text-white mb-0">Sarah Jenkins</h6>
+                            <span class="text-white extra-small d-block mb-1">Full Name (ឈ្មោះពេញ)</span>
+                            <h6 id="prof-det-name" class="fw-bold text-white mb-0">—</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">Date of Birth</span>
-                            <h6 class="fw-bold text-white mb-0">14 May 1990 (Age 35)</h6>
+                            <span class="text-white extra-small d-block mb-1">Gender (ភេទ)</span>
+                            <h6 id="prof-det-gender" class="fw-bold text-white mb-0">—</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">Highest Degree</span>
-                            <h6 class="fw-bold text-white mb-0">Master's Degree (M.Sc.)</h6>
+                            <span class="text-white extra-small d-block mb-1">Date of Birth (ថ្ងៃខែឆ្នាំកំណើត)</span>
+                            <h6 id="prof-det-dob" class="fw-bold text-white mb-0">—</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">Specialization</span>
-                            <h6 class="fw-bold text-white mb-0">Advanced Mathematics & Physics</h6>
+                            <span class="text-white extra-small d-block mb-1">Status (ស្ថានភាព)</span>
+                            <h6 id="prof-det-status" class="fw-bold text-white mb-0">—</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-3 bg-black border border-secondary">
+                            <span class="text-white extra-small d-block mb-1">Specialization / Subject (ជំនាញ/មុខវិជ្ជា)</span>
+                            <h6 id="prof-det-specialty" class="fw-bold text-white mb-0">—</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-3 bg-black border border-secondary">
+                            <span class="text-white extra-small d-block mb-1">Phone Number (លេខទូរស័ព្ទ)</span>
+                            <h6 id="prof-det-phone" class="fw-bold text-white mb-0">—</h6>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">Current Address</span>
-                            <h6 class="fw-bold text-white mb-0">#45, St 271, Boeng Tumpun, Meanchey, Phnom Penh</h6>
+                            <span class="text-white extra-small d-block mb-1">Email Address (អ៊ីមែល)</span>
+                            <h6 id="prof-det-email" class="fw-bold text-white mb-0">—</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="p-3 rounded-3 bg-black border border-secondary">
+                            <span class="text-white extra-small d-block mb-1">Current Address (អាសយដ្ឋានបច្ចុប្បន្ន)</span>
+                            <h6 id="prof-det-address" class="fw-bold text-white mb-0">—</h6>
                         </div>
                     </div>
                 </div>
@@ -227,26 +266,30 @@
             <!-- Assigned Homeroom Class Details -->
             <div class="card-custom p-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="fw-bold text-white mb-0"><i class="bi bi-mortarboard-fill me-2" style="color:#d4af37 !important;"></i>Homeroom Class Details (Class 12-A)</h5>
+                    <h5 class="fw-bold text-white mb-0"><i class="bi bi-mortarboard-fill me-2"
+                            style="color:#d4af37 !important;"></i>Homeroom Class Details (Class 12-A)</h5>
                     <span class="badge text-white fw-bold px-2.5 py-1" style="background:#d4af37;">Room 302</span>
                 </div>
-                <p class="text-white small mb-3">Prof. Sarah Jenkins serves as the homeroom teacher for Class 12-A, supervising 38 students (18 Female, 20 Male).</p>
-                
+                <p class="text-white small mb-3">Supervising 38 students (18 Female, 20 Male).</p>
+
                 <div class="row g-3">
                     <div class="col-md-4">
-                        <div class="p-3 rounded-3 text-center border border-warning" style="background: rgba(212,175,55,0.08);">
+                        <div class="p-3 rounded-3 text-center border border-warning"
+                            style="background: rgba(212,175,55,0.08);">
                             <span class="text-white extra-small d-block mb-1">Class Average Score</span>
                             <h4 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;">86.5%</h4>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="p-3 rounded-3 text-center border border-success" style="background: rgba(16,185,129,0.08);">
+                        <div class="p-3 rounded-3 text-center border border-success"
+                            style="background: rgba(16,185,129,0.08);">
                             <span class="text-white extra-small d-block mb-1">Average Attendance</span>
                             <h4 class="fw-bold text-success mb-0">96.2%</h4>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="p-3 rounded-3 text-center border border-info" style="background: rgba(56,189,248,0.08);">
+                        <div class="p-3 rounded-3 text-center border border-info"
+                            style="background: rgba(56,189,248,0.08);">
                             <span class="text-white extra-small d-block mb-1">Passing Rate</span>
                             <h4 class="fw-bold text-info mb-0">92%</h4>
                         </div>
@@ -259,17 +302,21 @@
         <div class="col-lg-5">
             <!-- Weekly Teaching Schedule -->
             <div class="card-custom p-4 mb-4">
-                <h5 class="fw-bold text-white mb-3"><i class="bi bi-calendar3 me-2" style="color:#d4af37 !important;"></i>Weekly Teaching Schedule</h5>
+                <h5 class="fw-bold text-white mb-3"><i class="bi bi-calendar3 me-2"
+                        style="color:#d4af37 !important;"></i>Weekly Teaching Schedule</h5>
                 <div class="d-flex flex-column gap-2.5">
-                    <div class="p-2.5 rounded-3 bg-black border border-secondary d-flex justify-content-between align-items-center">
+                    <div
+                        class="p-2.5 rounded-3 bg-black border border-secondary d-flex justify-content-between align-items-center">
                         <div>
-                            <span class="badge bg-warning-subtle text-warning border border-warning me-2">Mon - Morning</span>
+                            <span class="badge bg-warning-subtle text-warning border border-warning me-2">Mon -
+                                Morning</span>
                             <span class="fw-bold text-white">Mathematics (Class 12-A)</span>
                         </div>
                         <span class="text-white extra-small">07:30 - 09:00</span>
                     </div>
 
-                    <div class="p-2.5 rounded-3 bg-black border border-secondary d-flex justify-content-between align-items-center">
+                    <div
+                        class="p-2.5 rounded-3 bg-black border border-secondary d-flex justify-content-between align-items-center">
                         <div>
                             <span class="badge bg-info-subtle text-info border border-info me-2">Tue - Morning</span>
                             <span class="fw-bold text-white">Physics (Class 12-B)</span>
@@ -277,17 +324,21 @@
                         <span class="text-white extra-small">09:15 - 10:45</span>
                     </div>
 
-                    <div class="p-2.5 rounded-3 bg-black border border-secondary d-flex justify-content-between align-items-center">
+                    <div
+                        class="p-2.5 rounded-3 bg-black border border-secondary d-flex justify-content-between align-items-center">
                         <div>
-                            <span class="badge bg-success-subtle text-success border border-success me-2">Wed - Afternoon</span>
+                            <span class="badge bg-success-subtle text-success border border-success me-2">Wed -
+                                Afternoon</span>
                             <span class="fw-bold text-white">Mathematics (Class 11-A)</span>
                         </div>
                         <span class="text-white extra-small">13:30 - 15:00</span>
                     </div>
 
-                    <div class="p-2.5 rounded-3 bg-black border border-secondary d-flex justify-content-between align-items-center">
+                    <div
+                        class="p-2.5 rounded-3 bg-black border border-secondary d-flex justify-content-between align-items-center">
                         <div>
-                            <span class="badge bg-warning-subtle text-warning border border-warning me-2">Thu - Morning</span>
+                            <span class="badge bg-warning-subtle text-warning border border-warning me-2">Thu -
+                                Morning</span>
                             <span class="fw-bold text-white">Advanced Mathematics (12-A)</span>
                         </div>
                         <span class="text-white extra-small">07:30 - 09:00</span>
@@ -297,16 +348,19 @@
 
             <!-- Badges & Certifications -->
             <div class="card-custom p-4">
-                <h5 class="fw-bold text-white mb-3"><i class="bi bi-patch-check-fill me-2" style="color:#d4af37 !important;"></i>Honors & Certifications</h5>
+                <h5 class="fw-bold text-white mb-3"><i class="bi bi-patch-check-fill me-2"
+                        style="color:#d4af37 !important;"></i>Honors & Certifications</h5>
                 <div class="d-flex flex-column gap-2">
-                    <div class="d-flex align-items-center gap-3 p-2 rounded-3" style="background: rgba(255,255,255,0.03);">
+                    <div class="d-flex align-items-center gap-3 p-2 rounded-3"
+                        style="background: rgba(255,255,255,0.03);">
                         <i class="bi bi-award text-warning fs-3" style="color:#d4af37 !important;"></i>
                         <div>
                             <h6 class="fw-bold text-white mb-0">Outstanding Teacher Award 2025</h6>
                             <span class="text-white extra-small">Ministry of Education, Youth and Sport</span>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center gap-3 p-2 rounded-3" style="background: rgba(255,255,255,0.03);">
+                    <div class="d-flex align-items-center gap-3 p-2 rounded-3"
+                        style="background: rgba(255,255,255,0.03);">
                         <i class="bi bi-star text-warning fs-3" style="color:#d4af37 !important;"></i>
                         <div>
                             <h6 class="fw-bold text-white mb-0">National Math Olympiad Mentorship</h6>
@@ -318,3 +372,141 @@
         </div>
     </div>
 </div>
+
+<script>
+    function calculateTeacherAge(dob) {
+        if (!dob) return '';
+        try {
+            const birth = new Date(dob);
+            if (isNaN(birth.getTime())) return '';
+            const today = new Date();
+            let age = today.getFullYear() - birth.getFullYear();
+            const m = today.getMonth() - birth.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+                age--;
+            }
+            return age > 0 ? ` (Age ${age})` : '';
+        } catch(e) {
+            return '';
+        }
+    }
+
+    async function aeccunt() {
+        const token = localStorage.getItem('auth_token') || localStorage.getItem('token') || localStorage.getItem('auth');
+        
+        // 1. Get logged-in user details from localStorage
+        let currentUser = null;
+        try {
+            const userStr = localStorage.getItem('user');
+            if (userStr) currentUser = JSON.parse(userStr);
+        } catch (e) {
+            console.error("Error reading user from localStorage:", e);
+        }
+
+        let teacherObj = null;
+        try {
+            const teacherStr = localStorage.getItem('teacher');
+            if (teacherStr) teacherObj = JSON.parse(teacherStr);
+        } catch(e) {}
+
+        const teacherName = currentUser ? (currentUser.full_name || currentUser.name || currentUser.username || '') : '';
+        const teacherId = (teacherObj && teacherObj.teacher_id) || (currentUser && (currentUser.teacher_id || currentUser.id)) || null;
+        console.log("Logged-in Teacher Info:", { teacherName, teacherId, currentUser });
+
+        try {
+            // 2. Fetch Teacher account info using teacher name / teacher_id
+            const response = await fetch('/api/aeccunt_teachers', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token ? `Bearer ${token}` : ''
+                },
+                body: JSON.stringify({ 
+                    name: teacherName,
+                    username: teacherName,
+                    full_name: teacherName,
+                    teacher_id: teacherId 
+                })
+            });
+
+            const accountData = await response.json();
+            console.log("Teacher Account Data from Database (SELECT):", accountData);
+
+            if (accountData && accountData.status === "success" && accountData.teacher) {
+                const teacher = accountData.teacher;
+                console.log("Selected Teacher Details:", teacher);
+
+                // Populate Hero Header
+                const fullName = teacher.full_name || teacher.name || teacherName || 'Teacher';
+                const teacherCode = teacher.teacher_code || (teacher.teacher_id ? `TCH-2026-${String(teacher.teacher_id).padStart(3, '0')}` : 'TCH-2026-001');
+                const specialty = teacher.specialty || 'General Subject';
+                const email = teacher.email || 'N/A';
+                const phone = teacher.phone || 'N/A';
+                const gender = teacher.gender || 'N/A';
+                const status = teacher.status || 'Active';
+                const dob = teacher.date_of_birth || '';
+                const address = teacher.address || 'Phnom Penh, Cambodia';
+
+                const heroName = document.getElementById('prof-hero-name');
+                if (heroName) heroName.textContent = fullName;
+
+                const heroStatus = document.getElementById('prof-hero-status');
+                if (heroStatus) heroStatus.textContent = status === 'Active' ? 'Active Teacher' : status;
+
+                const heroSpec = document.getElementById('prof-hero-specialty');
+                if (heroSpec) heroSpec.innerHTML = `<i class="bi bi-briefcase-fill me-1 text-warning" style="color:#d4af37 !important;"></i>${specialty} Teacher • Department of Education`;
+
+                const heroCode = document.getElementById('prof-hero-code');
+                if (heroCode) heroCode.textContent = teacherCode;
+
+                const heroEmail = document.getElementById('prof-hero-email');
+                if (heroEmail) heroEmail.textContent = email;
+
+                const heroPhone = document.getElementById('prof-hero-phone');
+                if (heroPhone) heroPhone.textContent = phone;
+
+                // Populate Personal Details Card
+                const detName = document.getElementById('prof-det-name');
+                if (detName) detName.textContent = fullName;
+
+                const detGender = document.getElementById('prof-det-gender');
+                if (detGender) detGender.textContent = gender;
+
+                const detDob = document.getElementById('prof-det-dob');
+                if (detDob) detDob.textContent = dob ? `${dob}${calculateTeacherAge(dob)}` : 'N/A';
+
+                const detStatus = document.getElementById('prof-det-status');
+                if (detStatus) detStatus.textContent = status;
+
+                const detSpec = document.getElementById('prof-det-specialty');
+                if (detSpec) detSpec.textContent = specialty;
+
+                const detPhone = document.getElementById('prof-det-phone');
+                if (detPhone) detPhone.textContent = phone;
+
+                const detEmail = document.getElementById('prof-det-email');
+                if (detEmail) detEmail.textContent = email;
+
+                const detAddress = document.getElementById('prof-det-address');
+                if (detAddress) detAddress.textContent = address;
+
+                const statSpec = document.getElementById('prof-stat-spec');
+                if (statSpec) statSpec.textContent = specialty;
+
+                // Adjust Avatar based on Gender
+                const avatarImg = document.getElementById('prof-avatar-img');
+                if (avatarImg) {
+                    if (gender && (gender.toLowerCase().includes('fem') || gender.includes('ស្រី'))) {
+                        avatarImg.src = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&auto=format&fit=crop&q=80';
+                    } else {
+                        avatarImg.src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&auto=format&fit=crop&q=80';
+                    }
+                }
+            }
+        } catch (err) {
+            console.error("Error fetching teacher account:", err);
+        }
+    }
+
+    aeccunt();
+</script>

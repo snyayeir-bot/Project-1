@@ -4,6 +4,17 @@
         font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
     }
 
+    body {
+        background: #0c0c14;
+    }
+
+    .card-custom {
+        background: rgba(18, 18, 26, 0.95);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 20px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
     .attendance-hero-banner {
         background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(20, 20, 30, 0.96) 60%, rgba(12, 12, 18, 0.98) 100%);
         border: 1px solid rgba(212, 175, 55, 0.4);
@@ -116,6 +127,42 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
+    /* Custom Badges & Detail Styles */
+    .badge-leave-custom {
+        background: rgba(56, 189, 248, 0.2) !important;
+        color: #38bdf8 !important;
+        border: 1px solid rgba(56, 189, 248, 0.5) !important;
+    }
+
+    .badge-absent-custom {
+        background: rgba(239, 68, 68, 0.2) !important;
+        color: #f87171 !important;
+        border: 1px solid rgba(239, 68, 68, 0.5) !important;
+    }
+
+    .badge-present-custom {
+        background: rgba(34, 197, 94, 0.2) !important;
+        color: #4ade80 !important;
+        border: 1px solid rgba(34, 197, 94, 0.5) !important;
+    }
+
+    .btn-view-absence {
+        background: rgba(212, 175, 55, 0.15) !important;
+        border: 1px solid rgba(212, 175, 55, 0.55) !important;
+        color: #ffd700 !important;
+        font-weight: 700 !important;
+        border-radius: 10px !important;
+        transition: all 0.25s ease !important;
+    }
+
+    .btn-view-absence:hover {
+        background: rgba(212, 175, 55, 0.35) !important;
+        color: #ffffff !important;
+        border-color: #ffd700 !important;
+        box-shadow: 0 0 14px rgba(212, 175, 55, 0.5) !important;
+        transform: translateY(-1px);
+    }
+
     /* FORCED ALL TEXT TO WHITE ACROSS ENTIRE PAGE & MODALS */
     body, p, span, label, h1, h2, h3, h4, h5, h6, th, td, div, button, input, select {
         color: #ffffff !important;
@@ -134,13 +181,13 @@
     <div class="attendance-hero-banner p-4 mb-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div>
-                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;"><i class="bi bi-calendar-check-fill me-1"></i> Student Attendance System</span>
-                <h2 class="fw-bold text-white mb-1">Class 12-A Attendance Management</h2>
-                <p class="text-white small mb-0">Record daily student attendance, track leave requests, and analyze absences by <strong>hour, day, month, and year</strong>.</p>
+                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;" id="att-class-badge"><i class="bi bi-calendar-check-fill me-1"></i> Student Attendance System</span>
+                <h2 class="fw-bold text-white mb-1" id="att-hero-title">ការគ្រប់គ្រងវត្តមានសិស្ស</h2>
+                <p class="text-white small mb-0">កត់ត្រាវត្តមានសិស្សប្រចាំថ្ងៃ សុំច្បាប់ និងវិភាគអវត្តមានតាម <strong>ម៉ោង, ថ្ងៃ, ខែ និងឆ្នាំសិក្សា</strong>។</p>
             </div>
             <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-file-earmark-spreadsheet me-1"></i> Export Attendance Report</button>
-                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#addNewAttendanceModal"><i class="bi bi-plus-circle-fill me-1"></i> ➕ Record Daily Attendance</button>
+                <button class="btn btn-outline-glass btn-sm" id="btnExportAttendance"><i class="bi bi-file-earmark-spreadsheet me-1"></i> ទាញយករបាយការណ៍វត្តមាន</button>
+                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#addNewAttendanceModal"><i class="bi bi-plus-circle-fill me-1"></i> ➕ កត់ត្រាវត្តមានប្រចាំថ្ងៃ</button>
             </div>
         </div>
     </div>
@@ -149,7 +196,7 @@
     <div id="att-alert-toast" class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between" role="alert">
         <div>
             <i class="bi bi-check-circle-fill me-2 fs-5"></i>
-            <span class="fw-bold text-white" id="att-alert-msg">Daily attendance records saved successfully!</span>
+            <span class="fw-bold text-white" id="att-alert-msg">បានរក្សាទុកកំណត់ត្រាវត្តមានសិស្សដោយជោគជ័យ!</span>
         </div>
         <button type="button" class="btn-close" onclick="document.getElementById('att-alert-toast').classList.add('d-none');"></button>
     </div>
@@ -159,44 +206,44 @@
         <div class="col-md-3">
             <div class="glass-attendance-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">🟢 Present Today</span>
+                    <span class="text-white extra-small fw-bold">🟢 វត្តមានថ្ងៃនេះ (Present)</span>
                     <i class="bi bi-check-circle-fill text-success fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-success mb-0">36 Students</h3>
-                <span class="text-white extra-small">94.7% Attendance Rate</span>
+                <h3 class="fw-bold text-success mb-0" id="kpi-present-count">0 នាក់</h3>
+                <span class="text-white extra-small" id="kpi-present-rate">100% អត្រាវត្តមាន</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="glass-attendance-kpi" style="border-color: rgba(56, 189, 248, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">🟡 Permission Leave</span>
+                    <span class="text-white extra-small fw-bold">🟡 មានច្បាប់ (Permission Leave)</span>
                     <i class="bi bi-envelope-open-fill text-info fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-info mb-0">1 Student</h3>
-                <span class="text-white extra-small">Excused with Leave Note</span>
+                <h3 class="fw-bold text-info mb-0" id="kpi-leave-count">0 នាក់</h3>
+                <span class="text-white extra-small">មានលិខិតសុំច្បាប់ត្រឹមត្រូវ</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="glass-attendance-kpi" style="border-color: rgba(239, 68, 68, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">🔴 Unexcused Absence</span>
+                    <span class="text-white extra-small fw-bold">🔴 ឥតច្បាប់ (Unexcused Absence)</span>
                     <i class="bi bi-x-circle-fill text-danger fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-danger mb-0">1 Student</h3>
-                <span class="text-white extra-small">Unexcused Absence</span>
+                <h3 class="fw-bold text-danger mb-0" id="kpi-absent-count">0 នាក់</h3>
+                <span class="text-white extra-small">អវត្តមានគ្មានការអនុញ្ញាត</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="glass-attendance-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold" style="color:#d4af37 !important;">📅 Date Recorded</span>
+                    <span class="text-white extra-small fw-bold" style="color:#d4af37 !important;">📅 កាលបរិច្ឆេទ & ថ្នាក់បន្ទុក</span>
                     <i class="bi bi-calendar-event text-warning fs-5" style="color:#d4af37;"></i>
                 </div>
-                <h3 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;">12 Feb 2026</h3>
-                <span class="text-white extra-small" style="color:#d4af37 !important;">Class 12-A (38 Students)</span>
+                <h3 class="fw-bold text-warning mb-0" id="kpi-date-label" style="color:#d4af37 !important;">Today</h3>
+                <span class="text-white extra-small" id="kpi-class-summary" style="color:#d4af37 !important;">ថ្នាក់បន្ទុក (0 នាក់)</span>
             </div>
         </div>
     </div>
@@ -205,23 +252,23 @@
     <div class="chart-card-box mb-4">
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-3">
             <div>
-                <h5 class="fw-bold text-white mb-1"><i class="bi bi-bar-chart-line-fill me-2" style="color:#d4af37;"></i>Class 12-A Absence Analytics Chart</h5>
-                <span class="text-white extra-small" id="chart-subtitle-text">Showing excused and unexcused absence data by <strong>"Class Period"</strong></span>
+                <h5 class="fw-bold text-white mb-1" id="chart-main-title"><i class="bi bi-bar-chart-line-fill me-2" style="color:#d4af37;"></i>តារាងវិភាគអវត្តមានសិស្សក្នុងថ្នាក់</h5>
+                <span class="text-white extra-small" id="chart-subtitle-text">បង្ហាញទិន្នន័យអវត្តមានមានច្បាប់ និងឥតច្បាប់តាម <strong>"ម៉ោងសិក្សា"</strong></span>
             </div>
 
             <!-- Chart Filter Buttons -->
             <div class="d-flex flex-wrap align-items-center gap-2" id="attendance-chart-filters">
                 <button class="chart-filter-btn active-chart-btn" data-filter="hourly">
-                    ⏰ By Class Period
+                    ⏰ តាមម៉ោងសិក្សា
                 </button>
                 <button class="chart-filter-btn" data-filter="daily">
-                    📅 By Day of Week
+                    📅 តាមថ្ងៃនៃសប្ដាហ៍
                 </button>
                 <button class="chart-filter-btn" data-filter="monthly">
-                    📆 By Month
+                    📆 តាមបណ្ដាខែ
                 </button>
                 <button class="chart-filter-btn" data-filter="yearly">
-                    🎓 By Academic Year
+                    🎓 តាមឆ្នាំសិក្សា
                 </button>
             </div>
         </div>
@@ -236,12 +283,12 @@
     <div class="card-custom p-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
             <div>
-                <h5 class="fw-bold text-white mb-0"><i class="bi bi-calendar-check me-2" style="color:#d4af37;"></i>Class 12-A Daily Attendance Roster</h5>
-                <span class="text-white extra-small">Date: February 12, 2026</span>
+                <h5 class="fw-bold text-white mb-0" id="table-title-header"><i class="bi bi-calendar-check me-2" style="color:#d4af37;"></i>បញ្ជីឈ្មោះ និងវត្តមានសិស្សប្រចាំថ្ងៃ</h5>
+                <span class="text-white extra-small" id="table-date-header">កាលបរិច្ឆេទ៖ ថ្ងៃនេះ</span>
             </div>
             <div class="search-box" style="width: 320px;">
                 <i class="bi bi-search text-white"></i>
-                <input type="text" id="att-search-input" placeholder="Search student name...">
+                <input type="text" id="att-search-input" placeholder="ស្វែងរកឈ្មោះ ឬអត្តលេខសិស្ស...">
             </div>
         </div>
 
@@ -250,15 +297,13 @@
                 <thead>
                     <tr class="text-white border-bottom border-dark">
                         <th>#</th>
-                        <th>Student Name</th>
-                        <th>Student ID</th>
-                        <th>Gender</th>
-                        <th>Class</th>
-                        <th>Total Present (Month)</th>
-                        <th>Total Leave</th>
-                        <th>Unexcused Absences</th>
-                        <th>Today's Status</th>
-                        <th class="text-end">Actions</th>
+                        <th>ឈ្មោះសិស្ស (Student Name)</th>
+                        <th>អត្តលេខ (ID)</th>
+                        <th>ភេទ (Gender)</th>
+                        <th>ថ្នាក់ (Class)</th>
+                        <th class="text-center">អវត្តមានសរុប (Total Absences)</th>
+                        <th>ស្ថានភាពថ្ងៃនេះ</th>
+                        <th class="text-end">សកម្មភាព (Actions)</th>
                     </tr>
                 </thead>
                 <tbody id="attendance-tbody">
@@ -279,8 +324,8 @@
                         <i class="bi bi-calendar-check-fill fs-5"></i>
                     </div>
                     <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">Class 12-A</span>
-                        <h4 class="fw-bold text-white mb-0">Daily Attendance Entry Form</h4>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;" id="modal-add-class-badge">Class</span>
+                        <h4 class="fw-bold text-white mb-0">កត់ត្រាវត្តមានសិស្សប្រចាំថ្ងៃ</h4>
                     </div>
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -289,34 +334,38 @@
                 <form id="add-attendance-form">
                     <div class="row g-3 mb-3">
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Select Date</label>
-                            <input type="date" class="form-control bg-dark text-white border-secondary" id="att-date" value="2026-02-12" required>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កាលបរិច្ឆេទ (Date)</label>
+                            <input type="date" class="form-control bg-dark text-white border-secondary" id="att-date" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Student Name</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="att-student-name" placeholder="e.g. Sok Chandara" required>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ជ្រើសរើសសិស្សក្នុងថ្នាក់ (Select Student)</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="att-student-select" required>
+                                <option value="" disabled selected>-- ជ្រើសរើសសិស្សក្នុងថ្នាក់ --</option>
+                            </select>
+                            <input type="hidden" id="att-student-name">
+                            <input type="hidden" id="att-student-id">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Student ID</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="att-student-id" value="STD-2026-001" required>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អត្តលេខសិស្ស (Student ID)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="att-student-id-display" placeholder="STD-XXXX" readonly>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Today's Attendance Status</label>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ស្ថានភាពវត្តមាន (Today's Status)</label>
                             <select class="form-select bg-dark text-white border-secondary" id="att-status" required>
-                                <option value="present" selected>🟢 Present</option>
-                                <option value="leave">🟡 Permission Leave</option>
-                                <option value="absent">🔴 Unexcused</option>
+                                <option value="present" selected>🟢 មកវត្តមាន (Present)</option>
+                                <option value="leave">🟡 សុំច្បាប់ (Permission Leave)</option>
+                                <option value="absent">🔴 ឥតច្បាប់ (Unexcused Absence)</option>
                             </select>
                         </div>
                         <div class="col-md-12">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">Notes / Reason</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="att-notes" placeholder="e.g. Sick leave with parental note">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">មូលហេតុ / កំណត់ចំណាំ (Notes / Reason)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="att-notes" placeholder="ឧទាហរណ៍៖ ឈឺផ្ដាសាយ, ធុរៈគ្រួសារ, មានលិខិតសុំច្បាប់...">
                         </div>
                     </div>
 
                     <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
-                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-check2-circle me-1"></i> Save Attendance</button>
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់ (Cancel)</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-check2-circle me-1"></i> រក្សាទុកវត្តមាន (Save Attendance)</button>
                     </div>
                 </form>
             </div>
@@ -324,114 +373,576 @@
     </div>
 </div>
 
+<!-- Modal: Detailed Student Absence History (មើលលម្អិតអវត្តមានសិស្ស) -->
+<div class="modal fade" id="studentAbsenceDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <!-- Modal Header -->
+            <div class="modal-header border-bottom border-dark p-4 d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning shadow" style="width: 52px; height: 52px; background: rgba(212, 175, 55, 0.15); flex-shrink: 0;">
+                        <i class="bi bi-person-fill fs-3" style="color:#d4af37;"></i>
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <span class="badge text-white fw-bold" style="background:#d4af37;">Class 12-A</span>
+                            <span class="badge bg-secondary-subtle" id="detail-student-id">STD-2026-001</span>
+                            <span class="badge bg-info-subtle" id="detail-student-gender" style="color:#38bdf8 !important;">Male</span>
+                        </div>
+                        <h4 class="fw-bold text-white mb-0" id="detail-student-name">Student Name</h4>
+                        <span class="text-white extra-small" style="color:#ffd700 !important;">
+                            <i class="bi bi-calendar2-check-fill me-1" style="color:#ffd700;"></i> កំណត់ត្រាអវត្តមានលម្អិត៖ ខានថ្ងៃណាខ្លះ • ម៉ោងទីប៉ុន្មានខ្លះ • មូលហេតុអ្វីខ្លះ
+                        </span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <button type="button" class="btn btn-outline-glass btn-sm" id="btn-print-absence-record" title="បោះពុម្ពរបាយការណ៍អវត្តមាន">
+                        <i class="bi bi-printer me-1" style="color:#ffd700;"></i> បោះពុម្ព (Print)
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body p-4">
+                <!-- Top Summary Cards inside Modal -->
+                <div class="row g-3 mb-4">
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 rounded-3" style="background: rgba(22, 22, 32, 0.85); border: 1px solid rgba(212, 175, 55, 0.4);">
+                            <div class="extra-small text-white mb-1"><i class="bi bi-calendar-x me-1" style="color:#ffd700;"></i> អវត្តមានសរុប (Total)</div>
+                            <h4 class="fw-bold mb-0" id="detail-total-absent-count" style="color:#ffd700 !important;">0 លើក</h4>
+                            <span class="extra-small" style="color:#a0a0b0 !important;">គិតក្នុងឆមាសនេះ</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 rounded-3" style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.4);">
+                            <div class="extra-small text-white mb-1"><i class="bi bi-envelope-paper-fill me-1" style="color:#38bdf8;"></i> សុំច្បាប់ (Leave)</div>
+                            <h4 class="fw-bold mb-0" id="detail-leave-days-count" style="color:#38bdf8 !important;">0 ថ្ងៃ</h4>
+                            <span class="extra-small" style="color:#a0a0b0 !important;">មានការអនុញ្ញាតត្រឹមត្រូវ</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 rounded-3" style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.4);">
+                            <div class="extra-small text-white mb-1"><i class="bi bi-exclamation-octagon-fill me-1" style="color:#f87171;"></i> ឥតច្បាប់ (Unexcused)</div>
+                            <h4 class="fw-bold mb-0" id="detail-unexcused-days-count" style="color:#f87171 !important;">0 ថ្ងៃ</h4>
+                            <span class="extra-small" style="color:#a0a0b0 !important;">គ្មានការអនុញ្ញាត / គេចម៉ោង</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 rounded-3" style="background: rgba(34, 197, 94, 0.08); border: 1px solid rgba(34, 197, 94, 0.4);">
+                            <div class="extra-small text-white mb-1"><i class="bi bi-pie-chart-fill me-1" style="color:#4ade80;"></i> អត្រាវត្តមាន (Rate)</div>
+                            <h4 class="fw-bold mb-0" id="detail-attendance-rate" style="color:#4ade80 !important;">100%</h4>
+                            <span class="extra-small" style="color:#a0a0b0 !important;">វត្តមានទៀងទាត់</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Controls & Add Absence Button -->
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                    <div class="d-flex gap-2" id="absence-modal-filter-buttons">
+                        <button type="button" class="chart-filter-btn active-chart-btn py-1 px-3" data-filter="all" id="btn-modal-filter-all">
+                            📋 បង្ហាញទាំងអស់ (<span id="filter-all-badge">0</span>)
+                        </button>
+                        <button type="button" class="chart-filter-btn py-1 px-3" data-filter="leave" id="btn-modal-filter-leave">
+                            🟡 មានច្បាប់ (<span id="filter-leave-badge">0</span>)
+                        </button>
+                        <button type="button" class="chart-filter-btn py-1 px-3" data-filter="absent" id="btn-modal-filter-absent">
+                            🔴 ឥតច្បាប់ (<span id="filter-absent-badge">0</span>)
+                        </button>
+                    </div>
+
+                    <button type="button" class="btn btn-outline-glass btn-sm" id="btn-toggle-add-record">
+                        <i class="bi bi-plus-circle me-1" style="color:#ffd700;"></i> ➕ កត់ត្រាការខានថ្មី (Add Record)
+                    </button>
+                </div>
+
+                <!-- Collapsible Form for Adding Absence Record Directly to Student -->
+                <div id="inline-add-absence-box" class="card-custom p-3 mb-3 border border-warning d-none" style="background: rgba(22, 22, 32, 0.95); border-color: rgba(212,175,55,0.5) !important;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fw-bold text-white mb-0" style="color:#ffd700 !important;">
+                            <i class="bi bi-calendar-plus me-1" style="color:#ffd700;"></i> បញ្ចូលកំណត់ត្រាខកខានចូលរៀនថ្មី (Add Absence Entry)
+                        </h6>
+                        <button type="button" class="btn-close btn-close-white" id="btn-close-inline-form" aria-label="Close"></button>
+                    </div>
+                    <form id="inline-add-absence-form">
+                        <div class="row g-2 mb-2">
+                            <div class="col-md-3">
+                                <label class="form-label extra-small text-white fw-bold">📅 ខានថ្ងៃណា (Date)</label>
+                                <input type="date" class="form-control bg-dark text-white border-secondary form-control-sm" id="new-abs-date" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label extra-small text-white fw-bold">⏰ ម៉ោងទីប៉ុន្មាន / វេនណា (Period)</label>
+                                <select class="form-select bg-dark text-white border-secondary form-select-sm" id="new-abs-period" required>
+                                    <option value="ម៉ោងទី 1 - 2 (07:00 - 08:30 ព្រឹក)">ម៉ោងទី 1 - 2 (07:00 - 08:30 ព្រឹក)</option>
+                                    <option value="ម៉ោងទី 3 - 4 (09:00 - 10:30 ព្រឹក)">ម៉ោងទី 3 - 4 (09:00 - 10:30 ព្រឹក)</option>
+                                    <option value="ម៉ោងទី 5 - 6 (01:00 - 03:00 រសៀល)">ម៉ោងទី 5 - 6 (01:00 - 03:00 រសៀល)</option>
+                                    <option value="ម៉ោងទី 7 (03:00 - 04:00 រសៀល)">ម៉ោងទី 7 (03:00 - 04:00 រសៀល)</option>
+                                    <option value="ពេញមួយថ្ងៃ (07:00 - 16:30)">ពេញមួយថ្ងៃ (07:00 - 16:30)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label extra-small text-white fw-bold">ប្រភេទ (Status)</label>
+                                <select class="form-select bg-dark text-white border-secondary form-select-sm" id="new-abs-type" required>
+                                    <option value="leave">🟡 មានច្បាប់ (Permission Leave)</option>
+                                    <option value="absent">🔴 ឥតច្បាប់ (Unexcused Absence)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label extra-small text-white fw-bold">អ្នកបញ្ជាក់ / អាណាព្យាបាល</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary form-control-sm" id="new-abs-guardian" placeholder="e.g. ម្ដាយសុំតាម Telegram, មានវេជ្ជបញ្ជា...">
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <label class="form-label extra-small text-white fw-bold">📝 មូលហេតុនៃការខាន (Reason for Absence)</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary form-control-sm" id="new-abs-reason" placeholder="e.g. ឈឺផ្ដាសាយក្ដៅខ្លួនខ្លាំង, ធុរៈគ្រួសារបន្ទាន់, គេចម៉ោងរៀន..." required>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2 mt-3">
+                            <button type="button" class="btn btn-outline-glass btn-sm" id="btn-cancel-inline-form">បោះបង់ (Cancel)</button>
+                            <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-check2-circle me-1"></i> រក្សាទុកកំណត់ត្រា (Save Entry)</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Absence Detailed Table -->
+                <div class="table-responsive rounded-3 border border-dark" id="absence-table-wrapper" style="background: rgba(14, 14, 20, 0.75);">
+                    <table class="table table-dark table-hover align-middle mb-0" style="background: transparent;">
+                        <thead>
+                            <tr style="background: rgba(22, 22, 32, 0.95); border-bottom: 2px solid rgba(212, 175, 55, 0.4);">
+                                <th class="text-white py-3 ps-3" style="width: 45px; color:#d4af37 !important;">#</th>
+                                <th class="text-white py-3" style="color:#d4af37 !important;">📅 ខានថ្ងៃណាខ្លះ (Date Missed)</th>
+                                <th class="text-white py-3" style="color:#d4af37 !important;">⏰ ទីប៉ុន្មានខ្លះ (Period / Session)</th>
+                                <th class="text-white py-3" style="color:#d4af37 !important;">ស្ថានភាព (Status)</th>
+                                <th class="text-white py-3" style="color:#d4af37 !important;">📝 មូលហេតុអីខ្លះ (Reason for Absence)</th>
+                                <th class="text-white py-3" style="color:#d4af37 !important;">🔍 អ្នកបញ្ជាក់ / អាណាព្យាបាល</th>
+                                <th class="text-white py-3 pe-3 text-end" style="color:#d4af37 !important;">សកម្មភាព</th>
+                            </tr>
+                        </thead>
+                        <tbody id="absence-detail-tbody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State (if 0 absences) -->
+                <div id="absence-empty-state" class="text-center p-5 d-none">
+                    <div class="mb-3">
+                        <span class="p-3 rounded-circle d-inline-flex" style="background: rgba(34, 197, 94, 0.15); border: 2px solid rgba(34, 197, 94, 0.4);">
+                            <i class="bi bi-shield-check text-success" style="font-size: 2.5rem; color:#4ade80 !important;"></i>
+                        </span>
+                    </div>
+                    <h5 class="fw-bold text-white mb-2">🎉 គ្មានកំណត់ត្រាអវត្តមានទេ!</h5>
+                    <p class="text-white extra-small mb-0" style="max-width: 480px; margin: 0 auto; color:#b0b0c0 !important;">
+                        សិស្សនេះមានប្រវត្តិវត្តមានល្អឥតខ្ចោះ 100% មិនធ្លាប់ខកខាន ឬសុំច្បាប់ឡើយនៅក្នុងឆមាសនេះ។
+                    </p>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer border-top border-dark p-3 px-4 d-flex justify-content-between align-items-center">
+                <span class="extra-small text-white" style="color:#a0a0b0 !important;">
+                    <i class="bi bi-shield-lock-fill me-1" style="color:#d4af37;"></i> កំណត់ត្រានេះត្រូវបានផ្ទៀងផ្ទាត់ និងកត់ត្រាសម្រាប់ថ្នាក់របស់គ្រូបន្ទុក
+                </span>
+                <button type="button" class="btn btn-outline-glass btn-sm px-4" data-bs-dismiss="modal">
+                    បិទ (Close)
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     (function () {
-        const class12AAttendanceList = [
-            { id: "STD-2026-001", name: "Sok Chandara", gender: "Male", avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80", presentDays: 28, leaveDays: 1, absentDays: 0, statusToday: "present" },
-            { id: "STD-2026-002", name: "Kim Seanghai", gender: "Female", avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80", presentDays: 29, leaveDays: 0, absentDays: 0, statusToday: "present" },
-            { id: "STD-2026-003", name: "Ly Sovannara", gender: "Male", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80", presentDays: 26, leaveDays: 2, absentDays: 1, statusToday: "leave" },
-            { id: "STD-2026-004", name: "Chan Sreynet", gender: "Female", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80", presentDays: 28, leaveDays: 1, absentDays: 0, statusToday: "present" },
-            { id: "STD-2026-005", name: "Oung Vireak", gender: "Male", avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&auto=format&fit=crop&q=80", presentDays: 21, leaveDays: 3, absentDays: 5, statusToday: "absent" }
-        ];
-
-        // Datasets for Chart filtering (Hourly, Daily, Monthly, Yearly)
-        const chartDatasetsConfig = {
-            hourly: {
-                subtitle: 'Showing absence data by <strong>"Class Period"</strong>',
-                labels: ['Period 1 (07-08)', 'Period 2 (08-09)', 'Period 3 (09-10)', 'Period 4 (10-11)', 'Period 5 (01-02)', 'Period 6 (02-03)', 'Period 7 (03-04)'],
-                excused: [1, 2, 0, 1, 3, 1, 0],
-                unexcused: [3, 1, 0, 2, 4, 2, 1]
-            },
-            daily: {
-                subtitle: 'Showing absence data by <strong>"Day of Week"</strong>',
-                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-                excused: [4, 2, 3, 1, 5, 2],
-                unexcused: [6, 3, 2, 4, 7, 3]
-            },
-            monthly: {
-                subtitle: 'Showing absence data by <strong>"Month"</strong>',
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-                excused: [12, 10, 15, 8, 14, 11, 9, 6],
-                unexcused: [8, 5, 9, 4, 11, 7, 5, 3]
-            },
-            yearly: {
-                subtitle: 'Showing total absence data by <strong>"Academic Year"</strong>',
-                labels: ['2023', '2024', '2025', '2026'],
-                excused: [140, 125, 110, 95],
-                unexcused: [85, 70, 62, 45]
-            }
-        };
-
+        // App State
+        let teacherHomeroomClass = null;
+        let currentSelectedClassId = null;
+        let classStudentsAttendanceList = [];
+        let currentSearchQuery = '';
         let attendanceChartInstance = null;
+        let currentChartFilter = 'hourly';
+        let currentSelectedDate = getTodayDateStr();
 
+        // Helper to format today's date in YYYY-MM-DD
+        function getTodayDateStr() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // Format Date to Khmer localized display string
+        function formatKhmerDate(dateStr) {
+            if (!dateStr) return '';
+            try {
+                const parts = dateStr.split('-');
+                if (parts.length === 3) {
+                    const d = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+                    const dayNames = ['ថ្ងៃអាទិត្យ', 'ថ្ងៃចន្ទ', 'ថ្ងៃអង្គារ', 'ថ្ងៃពុធ', 'ថ្ងៃព្រហស្បតិ៍', 'ថ្ងៃសុក្រ', 'ថ្ងៃសៅរ៍'];
+                    const monthNames = ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'];
+                    const dayName = dayNames[d.getDay()] || '';
+                    const dayNum = String(parts[2]).padStart(2, '0');
+                    const monthName = monthNames[parseInt(parts[1]) - 1] || '';
+                    const year = parts[0];
+                    return `${dayName} ${dayNum}-${monthName}-${year}`;
+                }
+                return dateStr;
+            } catch (e) {
+                return dateStr;
+            }
+        }
+
+        // 1. Fetch Teacher's Assigned Homeroom Class
+        async function fetchTeacherClass() {
+            const token = localStorage.getItem('auth_token') || localStorage.getItem('token');
+            let currentUser = null;
+            try {
+                const userStr = localStorage.getItem('user');
+                if (userStr) currentUser = JSON.parse(userStr);
+            } catch (e) { }
+
+            const teacherName = currentUser ? (currentUser.full_name || currentUser.name || currentUser.username || '') : '';
+
+            try {
+                const res = await fetch('/api/teacher/my_class', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token ? `Bearer ${token}` : ''
+                    },
+                    body: JSON.stringify({ name: teacherName })
+                });
+                const data = await res.json();
+                if (data.status === 'success') {
+                    if (data.homeroom_class) {
+                        teacherHomeroomClass = data.homeroom_class;
+                        if (data.teacher && !teacherHomeroomClass.teacher_id) {
+                            teacherHomeroomClass.teacher_id = data.teacher.teacher_id;
+                        }
+                        if (!teacherHomeroomClass.teacher_id && currentUser) {
+                            teacherHomeroomClass.teacher_id = currentUser.teacher_id || currentUser.id;
+                        }
+                        currentSelectedClassId = teacherHomeroomClass.class_id;
+                        localStorage.setItem('teacher_class', JSON.stringify(teacherHomeroomClass));
+                    } else {
+                        teacherHomeroomClass = null;
+                        currentSelectedClassId = null;
+                        localStorage.removeItem('teacher_class');
+                    }
+                }
+            } catch (err) {
+                console.log('Error checking teacher class in attendance:', err);
+            }
+
+            // Fallback from localStorage
+            if (!teacherHomeroomClass) {
+                try {
+                    const saved = localStorage.getItem('teacher_class');
+                    if (saved) {
+                        teacherHomeroomClass = JSON.parse(saved);
+                        currentSelectedClassId = teacherHomeroomClass.class_id;
+                    }
+                } catch (e) { }
+            }
+
+            updateClassHeaderLabels();
+        }
+
+        function updateClassHeaderLabels() {
+            const className = teacherHomeroomClass
+                ? (teacherHomeroomClass.display_name || `${teacherHomeroomClass.class_name} (${teacherHomeroomClass.grade || 'Grade'}${teacherHomeroomClass.room ? ' - ' + teacherHomeroomClass.room : ''})`)
+                : 'ថ្នាក់រៀនបន្ទុក';
+
+            const heroTitle = document.getElementById('att-hero-title');
+            if (heroTitle) heroTitle.innerText = `ការគ្រប់គ្រងវត្តមានសិស្ស ${className}`;
+
+            const classBadge = document.getElementById('att-class-badge');
+            if (classBadge) classBadge.innerHTML = `<i class="bi bi-mortarboard-fill me-1"></i> ថ្នាក់បន្ទុក៖ ${className}`;
+
+            const modalBadge = document.getElementById('modal-add-class-badge');
+            if (modalBadge) modalBadge.innerText = className;
+
+            const chartTitle = document.getElementById('chart-main-title');
+            if (chartTitle) chartTitle.innerHTML = `<i class="bi bi-bar-chart-line-fill me-2" style="color:#d4af37;"></i>តារាងវិភាគអវត្តមាន ${className}`;
+
+            const tableTitle = document.getElementById('table-title-header');
+            if (tableTitle) tableTitle.innerHTML = `<i class="bi bi-calendar-check me-2" style="color:#d4af37;"></i>បញ្ជីឈ្មោះ និងវត្តមានសិស្ស ${className}`;
+
+            const todayStr = currentSelectedDate || getTodayDateStr();
+            const tableDate = document.getElementById('table-date-header');
+            if (tableDate) tableDate.innerText = `កាលបរិច្ឆេទ៖ ${formatKhmerDate(todayStr)}`;
+
+            const dateInput = document.getElementById('att-date');
+            if (dateInput && !dateInput.value) dateInput.value = todayStr;
+        }
+
+        // 2. Fetch Students and Attendance strictly for the Active Homeroom Class
+        async function fetchClassStudents() {
+            if (!currentSelectedClassId) {
+                renderAttendanceTable([]);
+                updateKPIsAndChart();
+                return;
+            }
+
+            try {
+                const dateQuery = currentSelectedDate || getTodayDateStr();
+                const teacherIdParam = teacherHomeroomClass ? (teacherHomeroomClass.teacher_id || '') : '';
+                const res = await fetch(`/api/attendance?class_id=${currentSelectedClassId}&date=${dateQuery}&teacher_id=${teacherIdParam}`);
+                const data = await res.json();
+
+                if (data.status === 'success' && Array.isArray(data.students)) {
+                    classStudentsAttendanceList = data.students.map(st => {
+                        const sCode = st.id || st.student_code || `STD-${st.student_id}`;
+                        const history = (st.absenceHistory || []).map(r => ({
+                            ...r,
+                            dateKhmer: formatKhmerDate(r.date)
+                        }));
+
+                        return {
+                            student_id: st.student_id,
+                            id: sCode,
+                            name: st.name || st.full_name || 'សិស្ស',
+                            gender: st.gender || 'Male',
+                            statusToday: st.statusToday || 'present',
+                            leaveDays: st.leaveDays || 0,
+                            absentDays: st.absentDays || 0,
+                            totalAbsences: st.totalAbsences || history.length,
+                            absenceHistory: history
+                        };
+                    });
+                } else {
+                    // Fallback to fetch students directly
+                    const fallbackRes = await fetch(`/api/students?class_id=${currentSelectedClassId}`);
+                    const fallbackData = await fallbackRes.json();
+                    if (fallbackData.status === 'success' && Array.isArray(fallbackData.students)) {
+                        classStudentsAttendanceList = fallbackData.students.map((st, idx) => ({
+                            student_id: st.student_id,
+                            id: st.student_code || `STD-${st.student_id}`,
+                            name: st.full_name || 'សិស្ស',
+                            gender: st.gender || 'Male',
+                            statusToday: 'present',
+                            leaveDays: 0,
+                            absentDays: 0,
+                            totalAbsences: 0,
+                            absenceHistory: []
+                        }));
+                    }
+                }
+
+                populateStudentDropdown();
+                renderAttendanceTable(classStudentsAttendanceList);
+                updateKPIsAndChart();
+
+            } catch (err) {
+                console.error('Error fetching class students for attendance:', err);
+            }
+        }
+
+        // 3. Populate Student Select in Modal
+        function populateStudentDropdown() {
+            const selectElem = document.getElementById('att-student-select');
+            const nameHidden = document.getElementById('att-student-name');
+            const idHidden = document.getElementById('att-student-id');
+            const idDisplay = document.getElementById('att-student-id-display');
+            if (!selectElem) return;
+
+            selectElem.innerHTML = `
+                <option value="" disabled selected>-- ជ្រើសរើសសិស្សក្នុងថ្នាក់ (${classStudentsAttendanceList.length} នាក់) --</option>
+                ${classStudentsAttendanceList.map(s => `
+                    <option value="${s.id}" data-id="${s.student_id}" data-name="${s.name}" data-gender="${s.gender}">
+                        ${s.name} (${s.id})
+                    </option>
+                `).join('')}
+            `;
+
+            selectElem.onchange = function () {
+                const selId = this.value;
+                const opt = this.options[this.selectedIndex];
+                const sName = opt ? opt.getAttribute('data-name') : '';
+
+                if (nameHidden) nameHidden.value = sName;
+                if (idHidden) idHidden.value = selId;
+                if (idDisplay) idDisplay.value = selId;
+            };
+        }
+
+        // 4. Update KPI Cards & Analytics Chart
+        function updateKPIsAndChart() {
+            const total = classStudentsAttendanceList.length;
+            const presentCount = classStudentsAttendanceList.filter(s => s.statusToday === 'present').length;
+            const leaveCount = classStudentsAttendanceList.filter(s => s.statusToday === 'leave').length;
+            const absentCount = classStudentsAttendanceList.filter(s => s.statusToday === 'absent').length;
+            const rate = total > 0 ? ((presentCount / total) * 100).toFixed(1) : '100.0';
+
+            const presentElem = document.getElementById('kpi-present-count');
+            const rateElem = document.getElementById('kpi-present-rate');
+            const leaveElem = document.getElementById('kpi-leave-count');
+            const absentElem = document.getElementById('kpi-absent-count');
+            const dateLabel = document.getElementById('kpi-date-label');
+            const classSummary = document.getElementById('kpi-class-summary');
+
+            const todayStr = currentSelectedDate || getTodayDateStr();
+            const className = teacherHomeroomClass ? teacherHomeroomClass.class_name : 'ថ្នាក់បន្ទុក';
+
+            if (presentElem) presentElem.innerText = `${presentCount} នាក់`;
+            if (rateElem) rateElem.innerText = `${rate}% អត្រាវត្តមាន`;
+            if (leaveElem) leaveElem.innerText = `${leaveCount} នាក់`;
+            if (absentElem) absentElem.innerText = `${absentCount} នាក់`;
+            if (dateLabel) dateLabel.innerText = todayStr;
+            if (classSummary) classSummary.innerText = `${className} (${total} នាក់)`;
+
+            renderAttendanceAnalyticsChart(currentChartFilter);
+        }
+
+        // 5. Dynamic Analytics Chart
         function renderAttendanceAnalyticsChart(filterKey) {
-            const config = chartDatasetsConfig[filterKey] || chartDatasetsConfig.hourly;
-            const subtitleElem = document.getElementById('chart-subtitle-text');
-            if (subtitleElem) subtitleElem.innerHTML = config.subtitle;
-
+            currentChartFilter = filterKey;
             const ctx = document.getElementById('attendanceAnalyticsChart');
-            if (!ctx) return;
+            if (!ctx || typeof Chart === 'undefined') return;
+
+            let labels = [];
+            let excusedData = [];
+            let unexcusedData = [];
+            let subtitle = '';
+
+            // Aggregate absences from all students
+            const allAbsences = [];
+            classStudentsAttendanceList.forEach(s => {
+                (s.absenceHistory || []).forEach(r => {
+                    allAbsences.push(r);
+                });
+            });
+
+            if (filterKey === 'hourly') {
+                subtitle = 'បង្ហាញទិន្នន័យអវត្តមានមានច្បាប់ និងឥតច្បាប់តាម <strong>"ម៉ោងសិក្សា"</strong>';
+                labels = ['ម៉ោង 1-2 (ព្រឹក)', 'ម៉ោង 3-4 (ព្រឹក)', 'ម៉ោង 5-6 (រសៀល)', 'ម៉ោង 7 (រសៀល)', 'ពេញមួយថ្ងៃ'];
+                excusedData = [0, 0, 0, 0, 0];
+                unexcusedData = [0, 0, 0, 0, 0];
+
+                allAbsences.forEach(r => {
+                    let idx = 4; // default whole day
+                    if (r.period && r.period.includes('1 - 2')) idx = 0;
+                    else if (r.period && r.period.includes('3 - 4')) idx = 1;
+                    else if (r.period && r.period.includes('5 - 6')) idx = 2;
+                    else if (r.period && r.period.includes('7')) idx = 3;
+
+                    if (r.type === 'leave') excusedData[idx]++;
+                    else unexcusedData[idx]++;
+                });
+
+            } else if (filterKey === 'daily') {
+                subtitle = 'បង្ហាញទិន្នន័យអវត្តមានតាម <strong>"ថ្ងៃនៃសប្ដាហ៍"</strong>';
+                labels = ['ថ្ងៃចន្ទ', 'ថ្ងៃអង្គារ', 'ថ្ងៃពុធ', 'ថ្ងៃព្រហស្បតិ៍', 'ថ្ងៃសុក្រ', 'ថ្ងៃសៅរ៍'];
+                excusedData = [0, 0, 0, 0, 0, 0];
+                unexcusedData = [0, 0, 0, 0, 0, 0];
+
+                allAbsences.forEach(r => {
+                    if (r.date) {
+                        const d = new Date(r.date);
+                        const dayIdx = d.getDay(); // 1=Mon, ..., 6=Sat
+                        const targetIdx = (dayIdx >= 1 && dayIdx <= 6) ? dayIdx - 1 : 0;
+                        if (r.type === 'leave') excusedData[targetIdx]++;
+                        else unexcusedData[targetIdx]++;
+                    }
+                });
+
+            } else if (filterKey === 'monthly') {
+                subtitle = 'បង្ហាញទិន្នន័យអវត្តមានតាម <strong>"បណ្ដាខែ"</strong>';
+                labels = ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'];
+                excusedData = new Array(12).fill(0);
+                unexcusedData = new Array(12).fill(0);
+
+                allAbsences.forEach(r => {
+                    if (r.date) {
+                        const mIdx = parseInt(r.date.split('-')[1], 10) - 1;
+                        if (mIdx >= 0 && mIdx < 12) {
+                            if (r.type === 'leave') excusedData[mIdx]++;
+                            else unexcusedData[mIdx]++;
+                        }
+                    }
+                });
+
+            } else if (filterKey === 'yearly') {
+                subtitle = 'បង្ហាញទិន្នន័យអវត្តមានតាម <strong>"ឆ្នាំសិក្សា"</strong>';
+                labels = ['2024', '2025', '2026', '2027'];
+                excusedData = [0, 0, 0, 0];
+                unexcusedData = [0, 0, 0, 0];
+
+                allAbsences.forEach(r => {
+                    if (r.date) {
+                        const y = r.date.split('-')[0];
+                        const yIdx = labels.indexOf(y);
+                        if (yIdx !== -1) {
+                            if (r.type === 'leave') excusedData[yIdx]++;
+                            else unexcusedData[yIdx]++;
+                        } else {
+                            if (r.type === 'leave') excusedData[2]++;
+                            else unexcusedData[2]++;
+                        }
+                    }
+                });
+            }
+
+            const subtitleElem = document.getElementById('chart-subtitle-text');
+            if (subtitleElem) subtitleElem.innerHTML = subtitle;
 
             if (attendanceChartInstance) {
                 attendanceChartInstance.destroy();
             }
 
-            if (typeof Chart !== 'undefined') {
-                attendanceChartInstance = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: config.labels,
-                        datasets: [
-                            {
-                                label: '🟡 Permission Leave',
-                                data: config.excused,
-                                backgroundColor: 'rgba(56, 189, 248, 0.75)',
-                                borderColor: '#38bdf8',
-                                borderWidth: 2,
-                                borderRadius: 8
-                            },
-                            {
-                                label: '🔴 Unexcused Absences',
-                                data: config.unexcused,
-                                backgroundColor: 'rgba(239, 68, 68, 0.75)',
-                                borderColor: '#ef4444',
-                                borderWidth: 2,
-                                borderRadius: 8
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                labels: {
-                                    color: '#ffffff',
-                                    font: { family: 'Plus Jakarta Sans', size: 13, weight: 'bold' }
-                                }
-                            },
-                            tooltip: {
-                                backgroundColor: 'rgba(18, 18, 26, 0.95)',
-                                titleColor: '#ffd700',
-                                bodyColor: '#ffffff',
-                                borderColor: 'rgba(212, 175, 55, 0.5)',
-                                borderWidth: 1,
-                                padding: 12
+            attendanceChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '🟡 មានច្បាប់ (Permission Leave)',
+                            data: excusedData,
+                            backgroundColor: 'rgba(56, 189, 248, 0.75)',
+                            borderColor: '#38bdf8',
+                            borderWidth: 2,
+                            borderRadius: 8
+                        },
+                        {
+                            label: '🔴 ឥតច្បាប់ (Unexcused Absences)',
+                            data: unexcusedData,
+                            backgroundColor: 'rgba(239, 68, 68, 0.75)',
+                            borderColor: '#ef4444',
+                            borderWidth: 2,
+                            borderRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: '#ffffff',
+                                font: { family: 'Kantumruy Pro', size: 13, weight: 'bold' }
                             }
                         },
-                        scales: {
-                            x: {
-                                ticks: { color: '#ffffff', font: { family: 'Plus Jakarta Sans', size: 12 } },
-                                grid: { color: 'rgba(255, 255, 255, 0.08)' }
-                            },
-                            y: {
-                                ticks: { color: '#ffffff', font: { family: 'Plus Jakarta Sans', size: 12 } },
-                                grid: { color: 'rgba(255, 255, 255, 0.08)' }
-                            }
+                        tooltip: {
+                            backgroundColor: 'rgba(18, 18, 26, 0.95)',
+                            titleColor: '#ffd700',
+                            bodyColor: '#ffffff',
+                            borderColor: 'rgba(212, 175, 55, 0.5)',
+                            borderWidth: 1,
+                            padding: 12
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#ffffff', font: { family: 'Kantumruy Pro', size: 12 } },
+                            grid: { color: 'rgba(255, 255, 255, 0.08)' }
+                        },
+                        y: {
+                            ticks: { color: '#ffffff', font: { family: 'Kantumruy Pro', size: 12 }, beginAtZero: true, stepSize: 1 },
+                            grid: { color: 'rgba(255, 255, 255, 0.08)' }
                         }
                     }
-                });
-            }
+                }
+            });
         }
 
         // Chart Filter Buttons Click Handlers
@@ -445,59 +956,586 @@
             });
         });
 
+        // 6. Student Absence Details Modal
+        let activeStudentDetailId = null;
+        let activeAbsenceFilter = 'all';
+
+        function openStudentAbsenceModal(studentId) {
+            activeStudentDetailId = studentId;
+            activeAbsenceFilter = 'all';
+
+            const s = classStudentsAttendanceList.find(item => item.id === studentId);
+            if (!s) return;
+
+            const nameElem = document.getElementById('detail-student-name');
+            const idElem = document.getElementById('detail-student-id');
+            const genderElem = document.getElementById('detail-student-gender');
+
+            if (nameElem) nameElem.innerText = s.name;
+            if (idElem) idElem.innerText = s.id;
+            if (genderElem) genderElem.innerText = s.gender === 'Female' ? '👩 ស្រី' : '👨 ប្រុស';
+
+            const inlineBox = document.getElementById('inline-add-absence-box');
+            if (inlineBox) inlineBox.classList.add('d-none');
+
+            document.querySelectorAll('#absence-modal-filter-buttons .chart-filter-btn').forEach(btn => {
+                btn.classList.remove('active-chart-btn');
+                if (btn.getAttribute('data-filter') === 'all') btn.classList.add('active-chart-btn');
+            });
+
+            const dateInput = document.getElementById('new-abs-date');
+            if (dateInput) dateInput.value = getTodayDateStr();
+
+            updateModalStatsAndTable(s);
+
+            const modalElem = document.getElementById('studentAbsenceDetailModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const modal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                modal.show();
+            }
+        }
+
+        function updateModalStatsAndTable(s) {
+            const records = s.absenceHistory || [];
+            const leaveCount = records.filter(r => r.type === 'leave').length;
+            const absentCount = records.filter(r => r.type === 'absent').length;
+            const totalAbsences = records.length;
+
+            s.leaveDays = leaveCount;
+            s.absentDays = absentCount;
+
+            const totalSessions = 30; // standard benchmark
+            const presentDays = Math.max(0, totalSessions - totalAbsences);
+            const rate = totalSessions > 0 ? ((presentDays / totalSessions) * 100).toFixed(1) : '100.0';
+
+            const totalAbsCountElem = document.getElementById('detail-total-absent-count');
+            const leaveCountElem = document.getElementById('detail-leave-days-count');
+            const unexcusedCountElem = document.getElementById('detail-unexcused-days-count');
+            const attRateElem = document.getElementById('detail-attendance-rate');
+
+            if (totalAbsCountElem) totalAbsCountElem.innerText = `${totalAbsences} លើក`;
+            if (leaveCountElem) leaveCountElem.innerText = `${leaveCount} ថ្ងៃ`;
+            if (unexcusedCountElem) unexcusedCountElem.innerText = `${absentCount} ថ្ងៃ`;
+            if (attRateElem) attRateElem.innerText = `${rate}%`;
+
+            const filterAllBadge = document.getElementById('filter-all-badge');
+            const filterLeaveBadge = document.getElementById('filter-leave-badge');
+            const filterAbsentBadge = document.getElementById('filter-absent-badge');
+
+            if (filterAllBadge) filterAllBadge.innerText = totalAbsences;
+            if (filterLeaveBadge) filterLeaveBadge.innerText = leaveCount;
+            if (filterAbsentBadge) filterAbsentBadge.innerText = absentCount;
+
+            renderAbsenceDetailTable(records, activeAbsenceFilter);
+        }
+
+        function renderAbsenceDetailTable(records, filter) {
+            const tbody = document.getElementById('absence-detail-tbody');
+            const tableWrapper = document.getElementById('absence-table-wrapper');
+            const emptyState = document.getElementById('absence-empty-state');
+            if (!tbody) return;
+
+            if (records.length === 0) {
+                if (tableWrapper) tableWrapper.classList.add('d-none');
+                if (emptyState) emptyState.classList.remove('d-none');
+                return;
+            }
+
+            if (tableWrapper) tableWrapper.classList.remove('d-none');
+            if (emptyState) emptyState.classList.add('d-none');
+
+            const filtered = records.filter(r => {
+                if (filter === 'all') return true;
+                return r.type === filter;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center py-4 text-white">
+                            <i class="bi bi-info-circle me-1" style="color:#ffd700;"></i> គ្មានកំណត់ត្រាអវត្តមានក្នុងប្រភេទ "${filter === 'leave' ? 'មានច្បាប់' : 'ឥតច្បាប់'}" នេះទេ
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map((r, idx) => `
+                <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+                    <td class="ps-3"><span class="text-white extra-small">${idx + 1}</span></td>
+                    <td>
+                        <div class="fw-bold" style="color: #ffd700 !important; font-size: 0.92rem;">
+                            <i class="bi bi-calendar-event me-1" style="color: #ffd700;"></i> ${r.date}
+                        </div>
+                        <div class="extra-small" style="color: #b0b0c0 !important;">${r.dateKhmer || ''}</div>
+                    </td>
+                    <td>
+                        <span class="badge" style="background: rgba(212, 175, 55, 0.15); color: #ffd700 !important; border: 1px solid rgba(212, 175, 55, 0.45); font-weight: 600; padding: 6px 10px;">
+                            <i class="bi bi-clock me-1"></i> ${r.period}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge ${r.type === 'leave' ? 'badge-leave-custom' : 'badge-absent-custom'} px-2.5 py-1.5 fw-bold">
+                            ${r.type === 'leave' ? '🟡 មានច្បាប់ (Leave)' : '🔴 ឥតច្បាប់ (Unexcused)'}
+                        </span>
+                    </td>
+                    <td style="max-width: 260px; white-space: normal;">
+                        <span class="text-white fw-medium" style="line-height: 1.4;">${r.reason}</span>
+                    </td>
+                    <td>
+                        <div class="extra-small" style="color: #e0e0e0 !important;">
+                            <i class="bi bi-shield-check me-1" style="color: #d4af37;"></i>
+                            ${r.guardianNote || 'គ្មានឯកសារបញ្ជាក់'}
+                        </div>
+                        <div class="extra-small mt-0.5" style="color: #a0a0b0 !important; font-size: 0.74rem;">
+                            <i class="bi bi-person-check me-1" style="color:#ffd700;"></i>
+                            គ្រូកត់ត្រា៖ ${r.teacher_name || r.recorded_by || 'គ្រូបន្ទុកថ្នាក់'}${r.teacher_id ? ` (ID: ${r.teacher_id})` : ''}
+                        </div>
+                    </td>
+                    <td class="pe-3 text-end">
+                        <button type="button" class="btn btn-outline-danger btn-sm py-0.5 px-2 btn-delete-record" data-id="${r.attendance_id || ''}" data-rec-id="${r.id || ''}" title="លុបកំណត់ត្រានេះ">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Delete Record Click Handlers
+            tbody.querySelectorAll('.btn-delete-record').forEach(btn => {
+                btn.addEventListener('click', async function () {
+                    const attId = this.getAttribute('data-id');
+                    const s = classStudentsAttendanceList.find(item => item.id === activeStudentDetailId);
+                    if (!s) return;
+
+                    if (!confirm('តើអ្នកពិតជាចង់លុបកំណត់ត្រាអវត្តមាននេះមែនទេ?')) return;
+
+                    if (window.isAcademicYearLocked) {
+                        alert('⚠️ មិនអាចលុប ឬកែប្រែទិន្នន័យបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                        return;
+                    }
+
+                    // 1. INSTANT OPTIMISTIC UI REMOVAL
+                    const delIdx = s.absenceHistory.findIndex(r => String(r.attendance_id) === String(attId) || r.id === attId);
+                    let deletedRec = null;
+                    if (delIdx !== -1) {
+                        deletedRec = s.absenceHistory.splice(delIdx, 1)[0];
+                    }
+
+                    const todayStr = currentSelectedDate || getTodayDateStr();
+                    const hasTodayAbs = s.absenceHistory.some(r => r.date === todayStr);
+                    if (!hasTodayAbs) {
+                        s.statusToday = 'present';
+                    }
+
+                    updateModalStatsAndTable(s);
+                    renderAttendanceTable(classStudentsAttendanceList);
+                    updateKPIsAndChart();
+
+                    // 2. BACKEND SYNC
+                    if (attId && !attId.startsWith('TEMP-')) {
+                        try {
+                            const delRes = await fetch(`/api/attendance/${attId}`, { method: 'DELETE' });
+                            const delData = await delRes.json();
+                            if (delData.status !== 'success') {
+                                console.warn('Sync delete notice:', delData.message);
+                            }
+                        } catch (e) {
+                            console.error('Error deleting attendance:', e);
+                        }
+                    }
+                });
+            });
+        }
+
+        // Modal Filter Buttons Setup
+        document.querySelectorAll('#absence-modal-filter-buttons .chart-filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('#absence-modal-filter-buttons .chart-filter-btn').forEach(b => b.classList.remove('active-chart-btn'));
+                this.classList.add('active-chart-btn');
+
+                activeAbsenceFilter = this.getAttribute('data-filter');
+                const s = classStudentsAttendanceList.find(item => item.id === activeStudentDetailId);
+                if (s) {
+                    renderAbsenceDetailTable(s.absenceHistory || [], activeAbsenceFilter);
+                }
+            });
+        });
+
+        // Inline Add Absence Handlers
+        const toggleAddBtn = document.getElementById('btn-toggle-add-record');
+        const inlineBox = document.getElementById('inline-add-absence-box');
+        const closeInlineBtn = document.getElementById('btn-close-inline-form');
+        const cancelInlineBtn = document.getElementById('btn-cancel-inline-form');
+        const inlineForm = document.getElementById('inline-add-absence-form');
+
+        if (toggleAddBtn && inlineBox) {
+            toggleAddBtn.addEventListener('click', function () {
+                inlineBox.classList.toggle('d-none');
+            });
+        }
+        if (closeInlineBtn && inlineBox) {
+            closeInlineBtn.addEventListener('click', function () {
+                inlineBox.classList.add('d-none');
+            });
+        }
+        if (cancelInlineBtn && inlineBox) {
+            cancelInlineBtn.addEventListener('click', function () {
+                inlineBox.classList.add('d-none');
+            });
+        }
+
+        if (inlineForm) {
+            inlineForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                if (window.isAcademicYearLocked) {
+                    alert('⚠️ មិនអាចកត់ត្រាវត្តមាន ឬអវត្តមានបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                    return;
+                }
+                const s = classStudentsAttendanceList.find(item => item.id === activeStudentDetailId);
+                if (!s) return;
+
+                const dateVal = document.getElementById('new-abs-date').value;
+                const periodVal = document.getElementById('new-abs-period').value;
+                const typeVal = document.getElementById('new-abs-type').value;
+                const guardianVal = document.getElementById('new-abs-guardian').value.trim();
+                const reasonVal = document.getElementById('new-abs-reason').value.trim();
+
+                if (!dateVal || !reasonVal) return;
+
+                let teacherUser = {};
+                try {
+                    teacherUser = JSON.parse(localStorage.getItem('user') || '{}');
+                } catch (e) { }
+
+                const teacherId = (teacherHomeroomClass && teacherHomeroomClass.teacher_id)
+                    ? teacherHomeroomClass.teacher_id
+                    : (teacherUser.teacher_id || teacherUser.id || null);
+
+                const recordedByName = teacherUser.full_name || teacherUser.name || (teacherHomeroomClass ? teacherHomeroomClass.teacher_name : 'គ្រូបន្ទុកថ្នាក់');
+
+                // 1. INSTANT OPTIMISTIC UI UPDATE (បង្ហាញភ្លាមៗ គ្មានរង់ចាំ)
+                const tempId = 'TEMP-' + Date.now();
+                const optimisticRecord = {
+                    id: tempId,
+                    attendance_id: tempId,
+                    teacher_id: teacherId,
+                    teacher_name: recordedByName,
+                    recorded_by: recordedByName,
+                    date: dateVal,
+                    dateKhmer: formatKhmerDate(dateVal),
+                    period: periodVal,
+                    type: typeVal,
+                    reason: reasonVal,
+                    guardianNote: guardianVal || (typeVal === 'leave' ? 'មានការសុំច្បាប់ត្រឹមត្រូវ' : 'គ្មានលិខិតបញ្ជាក់')
+                };
+
+                if (!s.absenceHistory) s.absenceHistory = [];
+                s.absenceHistory.unshift(optimisticRecord);
+
+                const todayStr = currentSelectedDate || getTodayDateStr();
+                if (dateVal === todayStr) {
+                    s.statusToday = typeVal;
+                }
+
+                inlineForm.reset();
+                inlineBox.classList.add('d-none');
+
+                updateModalStatsAndTable(s);
+                renderAttendanceTable(classStudentsAttendanceList);
+                updateKPIsAndChart();
+
+                const toast = document.getElementById('att-alert-toast');
+                if (toast) {
+                    document.getElementById('att-alert-msg').innerText = `បានកត់ត្រាអវត្តមានរបស់ "${s.name}" នៅថ្ងៃ ${dateVal} ដោយជោគជ័យ!`;
+                    toast.classList.remove('d-none');
+                    setTimeout(() => { toast.classList.add('d-none'); }, 4000);
+                }
+
+                // 2. BACKEND DATABASE SYNC
+                try {
+                    const postRes = await fetch('/api/attendance', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            student_id: s.student_id,
+                            student_code: s.id,
+                            class_id: currentSelectedClassId,
+                            teacher_id: teacherId,
+                            date: dateVal,
+                            period: periodVal,
+                            status: typeVal,
+                            reason: reasonVal,
+                            guardian_note: guardianVal || (typeVal === 'leave' ? 'មានការសុំច្បាប់ត្រឹមត្រូវ' : 'គ្មានលិខិតបញ្ជាក់'),
+                            recorded_by: recordedByName
+                        })
+                    });
+
+                    const postData = await postRes.json();
+                    if (postData.status === 'success' && postData.attendance_id) {
+                        optimisticRecord.attendance_id = postData.attendance_id;
+                    }
+                } catch (err) {
+                    console.error('Error saving inline attendance in background:', err);
+                }
+            });
+        }
+
+        // Print Absence Record
+        const printBtn = document.getElementById('btn-print-absence-record');
+        if (printBtn) {
+            printBtn.addEventListener('click', function () {
+                window.print();
+            });
+        }
+
+        // Quick Mark Attendance Directly
+        async function quickMarkStudentAttendance(studentId, newStatus) {
+            if (window.isAcademicYearLocked) {
+                alert('⚠️ មិនអាចកត់ត្រាវត្តមាន ឬអវត្តមានបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                return;
+            }
+            const s = classStudentsAttendanceList.find(item => item.id === studentId || String(item.student_id) === String(studentId));
+            if (!s) return;
+
+            const dateStr = currentSelectedDate || getTodayDateStr();
+            const prevStatus = s.statusToday;
+            s.statusToday = newStatus;
+
+            let teacherUser = {};
+            try {
+                teacherUser = JSON.parse(localStorage.getItem('user') || '{}');
+            } catch (e) { }
+
+            const teacherId = (teacherHomeroomClass && teacherHomeroomClass.teacher_id)
+                ? teacherHomeroomClass.teacher_id
+                : (teacherUser.teacher_id || teacherUser.id || null);
+
+            const recordedByName = teacherUser.full_name || teacherUser.name || (teacherHomeroomClass ? teacherHomeroomClass.teacher_name : 'គ្រូបន្ទុកថ្នាក់');
+
+            // 1. Optimistic Local Update
+            if (!s.absenceHistory) s.absenceHistory = [];
+
+            if (newStatus === 'present') {
+                s.absenceHistory = s.absenceHistory.filter(r => r.date !== dateStr);
+            } else {
+                const existToday = s.absenceHistory.find(r => r.date === dateStr);
+                if (existToday) {
+                    existToday.type = newStatus;
+                } else {
+                    s.absenceHistory.unshift({
+                        id: 'TEMP-' + Date.now(),
+                        attendance_id: 'TEMP-' + Date.now(),
+                        teacher_id: teacherId,
+                        teacher_name: recordedByName,
+                        recorded_by: recordedByName,
+                        date: dateStr,
+                        dateKhmer: formatKhmerDate(dateStr),
+                        period: 'ពេញមួយថ្ងៃ (07:00 - 16:30)',
+                        type: newStatus,
+                        reason: newStatus === 'leave' ? 'សុំច្បាប់សម្រាក' : 'អវត្តមានឥតច្បាប់',
+                        guardianNote: 'កត់ត្រាផ្ទាល់ដោយគ្រូបន្ទុកថ្នាក់'
+                    });
+                }
+            }
+
+            renderAttendanceTable(classStudentsAttendanceList);
+            updateKPIsAndChart();
+
+            // 2. Background Sync
+            try {
+                await fetch('/api/attendance', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        student_id: s.student_id,
+                        student_code: s.id,
+                        class_id: currentSelectedClassId,
+                        teacher_id: teacherId,
+                        date: dateStr,
+                        status: newStatus,
+                        reason: newStatus === 'leave' ? 'សុំច្បាប់សម្រាក' : (newStatus === 'absent' ? 'អវត្តមានឥតច្បាប់' : ''),
+                        guardian_note: 'កត់ត្រាផ្ទាល់ដោយគ្រូបន្ទុកថ្នាក់',
+                        recorded_by: recordedByName
+                    })
+                });
+            } catch (e) {
+                console.error('Error in quick mark attendance:', e);
+            }
+        }
+
+        // 7. Main Attendance Table Rendering
         function renderAttendanceTable(list) {
             const tbody = document.getElementById('attendance-tbody');
             if (!tbody) return;
 
-            tbody.innerHTML = list.map((s, index) => `
+            const className = teacherHomeroomClass ? teacherHomeroomClass.class_name : 'ថ្នាក់បន្ទុក';
+
+            if (list.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="p-4 text-center text-white">
+                            <i class="bi bi-people text-warning fs-3 d-block mb-2" style="color:#d4af37 !important;"></i>
+                            មិនទាន់មានទិន្នន័យសិស្សក្នុងថ្នាក់នេះ ឬមិនត្រូវនឹងលក្ខខណ្ឌស្វែងរកឡើយ។
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = list.map((s, index) => {
+                const totalAbs = (s.absenceHistory && s.absenceHistory.length > 0)
+                    ? s.absenceHistory.length
+                    : ((s.leaveDays || 0) + (s.absentDays || 0));
+
+                const absBadge = totalAbs === 0
+                    ? `<span class="badge bg-success-subtle text-success border border-success px-2.5 py-1 fw-bold" style="color: #4ade80 !important;"><i class="bi bi-check-circle-fill me-1"></i> 0 លើក (100%)</span>`
+                    : `<span class="badge px-2.5 py-1 fw-bold" style="background: rgba(239, 68, 68, 0.18) !important; color: #f87171 !important; border: 1px solid rgba(239, 68, 68, 0.45) !important;"><i class="bi bi-exclamation-circle-fill me-1"></i> ${totalAbs} លើក</span>`;
+
+                return `
                 <tr>
                     <td><span class="text-white extra-small">${index + 1}</span></td>
                     <td>
                         <div class="d-flex align-items-center gap-2.5">
-                            <img src="${s.avatar}" class="rounded-circle border border-warning" width="36" height="36" alt="${s.name}">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning" style="width: 36px; height: 36px; background: rgba(212,175,55,0.1); flex-shrink: 0;">
+                                <i class="bi bi-person-fill fs-6"></i>
+                            </div>
                             <span class="fw-semibold text-white">${s.name}</span>
                         </div>
                     </td>
                     <td><code>${s.id}</code></td>
-                    <td><span class="badge ${s.gender === 'Female' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'}">${s.gender}</span></td>
-                    <td><span class="badge text-warning border border-warning px-2.5 py-1 fw-bold" style="background:rgba(212,175,55,0.15); color:#ffd700 !important;">Class 12-A</span></td>
-                    <td><span class="fw-bold text-success">${s.presentDays} days</span></td>
-                    <td><span class="fw-bold text-info">${s.leaveDays} days</span></td>
-                    <td><span class="fw-bold text-danger">${s.absentDays} days</span></td>
+                    <td><span class="badge ${s.gender === 'Female' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'}">${s.gender === 'Female' ? '👩 ស្រី' : '👨 ប្រុស'}</span></td>
+                    <td><span class="badge text-warning border border-warning px-2.5 py-1 fw-bold" style="background:rgba(212,175,55,0.15); color:#ffd700 !important;">${className}</span></td>
+                    <td class="text-center">${absBadge}</td>
                     <td>
-                        <span class="badge ${s.statusToday === 'present' ? 'bg-success-subtle text-success border border-success' : s.statusToday === 'leave' ? 'bg-info-subtle text-info border border-info' : 'bg-danger-subtle text-danger border border-danger'} px-2.5 py-1 fw-bold">
-                            ${s.statusToday === 'present' ? '🟢 Present' : s.statusToday === 'leave' ? '🟡 Permission Leave' : '🔴 Unexcused'}
-                        </span>
+                        <div class="d-flex align-items-center gap-1">
+                            <button type="button" class="btn btn-sm py-1 px-2 btn-quick-status ${s.statusToday === 'present' ? 'btn-success' : 'btn-outline-secondary text-white'}" data-student-id="${s.id}" data-status="present" title="ចុចដើម្បីដាក់វត្តមាន">
+                                🟢 វត្តមាន
+                            </button>
+                            <button type="button" class="btn btn-sm py-1 px-2 btn-quick-status ${s.statusToday === 'leave' ? 'btn-warning text-dark fw-bold' : 'btn-outline-secondary text-white'}" data-student-id="${s.id}" data-status="leave" title="ចុចដើម្បីដាក់សុំច្បាប់">
+                                🟡 ច្បាប់
+                            </button>
+                            <button type="button" class="btn btn-sm py-1 px-2 btn-quick-status ${s.statusToday === 'absent' ? 'btn-danger' : 'btn-outline-secondary text-white'}" data-student-id="${s.id}" data-status="absent" title="ចុចដើម្បីដាក់ឥតច្បាប់">
+                                🔴 ឥតច្បាប់
+                            </button>
+                        </div>
                     </td>
-                    <td class="text-end">
-                        <button class="btn btn-outline-glass btn-sm py-1 px-2.5 me-1">✏️ Edit</button>
+                    <td class="text-end text-nowrap">
+                        <button type="button" class="btn btn-sm py-1 px-2.5 me-1 btn-view-absence" data-student-id="${s.id}" title="មើលលម្អិតអវត្តមានសិស្ស">
+                            <i class="bi bi-clock-history me-1" style="color:#ffd700 !important;"></i> លម្អិតអវត្តមាន
+                        </button>
+                        <button type="button" class="btn btn-outline-glass btn-sm py-1 px-2.5 btn-edit-att" data-student-id="${s.id}" title="កែប្រែវត្តមានថ្ងៃនេះ">
+                            ✏️ កត់ត្រា
+                        </button>
                     </td>
                 </tr>
-            `).join('');
+            `;
+            }).join('');
+
+            // Quick Status Pill Click Handlers
+            tbody.querySelectorAll('.btn-quick-status').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const studentId = this.getAttribute('data-student-id');
+                    const status = this.getAttribute('data-status');
+                    quickMarkStudentAttendance(studentId, status);
+                });
+            });
+
+            // Attach Click Listeners
+            tbody.querySelectorAll('.btn-view-absence').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const id = this.getAttribute('data-student-id');
+                    openStudentAbsenceModal(id);
+                });
+            });
+
+            tbody.querySelectorAll('.btn-edit-att').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const id = this.getAttribute('data-student-id');
+                    const student = classStudentsAttendanceList.find(s => s.id === id || String(s.student_id) === String(id));
+                    if (student) {
+                        const selectElem = document.getElementById('att-student-select');
+                        const nameHidden = document.getElementById('att-student-name');
+                        const idHidden = document.getElementById('att-student-id');
+                        const idDisplay = document.getElementById('att-student-id-display');
+                        const statusInput = document.getElementById('att-status');
+
+                        if (selectElem) selectElem.value = student.id;
+                        if (nameHidden) nameHidden.value = student.name;
+                        if (idHidden) idHidden.value = student.id;
+                        if (idDisplay) idDisplay.value = student.id;
+                        if (statusInput) statusInput.value = student.statusToday || 'present';
+
+                        const modalElem = document.getElementById('addNewAttendanceModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const modal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                            modal.show();
+                        }
+                    }
+                });
+            });
         }
 
+        // 8. Add / Edit Attendance Form Handler
         const addAttForm = document.getElementById('add-attendance-form');
         if (addAttForm) {
-            addAttForm.addEventListener('submit', function (e) {
+            addAttForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
 
-                const name = document.getElementById('att-student-name').value.trim();
-                const id = document.getElementById('att-student-id').value.trim();
+                if (window.isAcademicYearLocked) {
+                    alert('⚠️ មិនអាចកត់ត្រាវត្តមាន ឬអវត្តមានបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                    return;
+                }
+
+                const selectElem = document.getElementById('att-student-select');
+                const id = document.getElementById('att-student-id').value.trim() || (selectElem ? selectElem.value : '');
+                const name = document.getElementById('att-student-name').value.trim() || (selectElem && selectElem.selectedOptions[0] ? selectElem.selectedOptions[0].getAttribute('data-name') : '');
                 const status = document.getElementById('att-status').value;
+                const notes = document.getElementById('att-notes').value.trim();
+                const date = document.getElementById('att-date').value || getTodayDateStr();
 
-                if (name && id) {
-                    class12AAttendanceList.unshift({
-                        id: id,
-                        name: name,
-                        gender: "Male",
-                        avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
-                        presentDays: status === 'present' ? 29 : 28,
-                        leaveDays: status === 'leave' ? 2 : 1,
-                        absentDays: status === 'absent' ? 1 : 0,
-                        statusToday: status
-                    });
+                let existing = classStudentsAttendanceList.find(s => s.id === id || String(s.student_id) === String(id));
+                if (existing) {
+                    let teacherUser = {};
+                    try {
+                        teacherUser = JSON.parse(localStorage.getItem('user') || '{}');
+                    } catch (e) { }
 
-                    renderAttendanceTable(class12AAttendanceList);
+                    const teacherId = (teacherHomeroomClass && teacherHomeroomClass.teacher_id)
+                        ? teacherHomeroomClass.teacher_id
+                        : (teacherUser.teacher_id || teacherUser.id || null);
+
+                    const recordedByName = teacherUser.full_name || teacherUser.name || (teacherHomeroomClass ? teacherHomeroomClass.teacher_name : 'គ្រូបន្ទុកថ្នាក់');
+
+                    // 1. INSTANT OPTIMISTIC UI UPDATE
+                    existing.statusToday = status;
+                    if (!existing.absenceHistory) existing.absenceHistory = [];
+
+                    if (status === 'leave' || status === 'absent') {
+                        const existRecord = existing.absenceHistory.find(r => r.date === date);
+                        if (existRecord) {
+                            existRecord.type = status;
+                            existRecord.reason = notes || existRecord.reason;
+                        } else {
+                            existing.absenceHistory.unshift({
+                                id: 'TEMP-' + Date.now(),
+                                attendance_id: 'TEMP-' + Date.now(),
+                                teacher_id: teacherId,
+                                teacher_name: recordedByName,
+                                recorded_by: recordedByName,
+                                date: date,
+                                dateKhmer: formatKhmerDate(date),
+                                period: 'ពេញមួយថ្ងៃ (07:00 - 16:30)',
+                                type: status,
+                                reason: notes || (status === 'leave' ? 'សុំច្បាប់សម្រាក' : 'អវត្តមានឥតច្បាប់'),
+                                guardianNote: notes ? 'កត់ត្រាដោយគ្រូបន្ទុកថ្នាក់' : 'គ្មានលិខិត'
+                            });
+                        }
+                    } else if (status === 'present') {
+                        existing.absenceHistory = existing.absenceHistory.filter(r => r.date !== date);
+                    }
+
+                    renderAttendanceTable(classStudentsAttendanceList);
+                    updateKPIsAndChart();
 
                     const modalElem = document.getElementById('addNewAttendanceModal');
                     if (modalElem && typeof bootstrap !== 'undefined') {
@@ -508,18 +1546,41 @@
 
                     const toast = document.getElementById('att-alert-toast');
                     if (toast) {
-                        document.getElementById('att-alert-msg').innerText = `Successfully recorded attendance for "${name}"!`;
+                        document.getElementById('att-alert-msg').innerText = `បានរក្សាទុកវត្តមានសម្រាប់ "${name}" (${id}) ដោយជោគជ័យ!`;
                         toast.classList.remove('d-none');
+                        setTimeout(() => { toast.classList.add('d-none'); }, 4000);
+                    }
+
+                    // 2. BACKEND DATABASE SYNC
+                    try {
+                        await fetch('/api/attendance', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                student_id: existing.student_id,
+                                student_code: existing.id,
+                                class_id: currentSelectedClassId,
+                                teacher_id: teacherId,
+                                date: date,
+                                status: status,
+                                reason: notes || (status === 'leave' ? 'សុំច្បាប់សម្រាក' : (status === 'absent' ? 'អវត្តមានឥតច្បាប់' : '')),
+                                guardian_note: notes ? 'កត់ត្រាដោយគ្រូបន្ទុកថ្នាក់' : 'គ្មានលិខិត',
+                                recorded_by: recordedByName
+                            })
+                        });
+                    } catch (err) {
+                        console.error('Error saving attendance in background:', err);
                     }
                 }
             });
         }
 
+        // 9. Search Filter
         const searchInput = document.getElementById('att-search-input');
         if (searchInput) {
             searchInput.addEventListener('input', function () {
                 const q = this.value.toLowerCase().trim();
-                const filtered = class12AAttendanceList.filter(s =>
+                const filtered = classStudentsAttendanceList.filter(s =>
                     s.name.toLowerCase().includes(q) ||
                     s.id.toLowerCase().includes(q)
                 );
@@ -527,8 +1588,85 @@
             });
         }
 
-        // Initial Renders
-        renderAttendanceAnalyticsChart('hourly');
-        renderAttendanceTable(class12AAttendanceList);
+        // 10. Export Attendance Report
+        const exportBtn = document.getElementById('btnExportAttendance');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', function () {
+                if (classStudentsAttendanceList.length === 0) {
+                    alert('មិនមានទិន្នន័យសិស្សសម្រាប់ Export ឡើយ!');
+                    return;
+                }
+
+                const className = teacherHomeroomClass ? teacherHomeroomClass.class_name : 'Class';
+                let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
+                csvContent += "លេខរៀង,ឈ្មោះសិស្ស,អត្តលេខ,ភេទ,ថ្នាក់,ស្ថានភាពថ្ងៃនេះ,សុំច្បាប់(ថ្ងៃ),ឥតច្បាប់(ថ្ងៃ),អវត្តមានសរុប(ថ្ងៃ)\n";
+
+                classStudentsAttendanceList.forEach((s, idx) => {
+                    const totalAbs = (s.absenceHistory || []).length;
+                    const statusText = s.statusToday === 'present' ? 'វត្តមាន' : (s.statusToday === 'leave' ? 'សុំច្បាប់' : 'ឥតច្បាប់');
+                    csvContent += `${idx + 1},"${s.name}","${s.id}","${s.gender}","${className}","${statusText}",${s.leaveDays || 0},${s.absentDays || 0},${totalAbs}\n`;
+                });
+
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `Attendance_Report_${className}_${getTodayDateStr()}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        }
+
+        async function checkAcademicYearStatus() {
+            try {
+                const res = await fetch('/api/academic_years/active');
+                const data = await res.json();
+                if (data.status === 'success') {
+                    if (!data.has_active_year || (data.active_year && (data.active_year.status === 'Closed' || data.active_year.status === 'Archived'))) {
+                        window.isAcademicYearLocked = true;
+                        applyLockUI();
+                    } else {
+                        window.isAcademicYearLocked = false;
+                    }
+                }
+            } catch (e) {
+                console.log('Error checking year status:', e);
+            }
+        }
+
+        function applyLockUI() {
+            const btnAddAtt = document.querySelector('button[data-bs-target="#addNewAttendanceModal"]');
+            if (btnAddAtt) {
+                btnAddAtt.classList.add('opacity-50');
+                btnAddAtt.setAttribute('title', '🔒 មិនទាន់មានឆ្នាំសិក្សាបើកដំណើរការ (View Only)');
+                btnAddAtt.addEventListener('click', function(e) {
+                    if (window.isAcademicYearLocked) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        alert('⚠️ មិនអាចធ្វើប្រតិបត្តិការនេះបានទេ! បច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)។ ផ្ទាំងនេះស្ថិតក្នុងទម្រង់ "មើលតែប៉ុណ្ណោះ (View Only)"');
+                    }
+                }, true);
+            }
+        }
+
+        const addNewAttModalElem = document.getElementById('addNewAttendanceModal');
+        if (addNewAttModalElem) {
+            addNewAttModalElem.addEventListener('show.bs.modal', function (e) {
+                if (window.isAcademicYearLocked) {
+                    e.preventDefault();
+                    alert('⚠️ មិនអាចកត់ត្រាវត្តមានបានឡើយ ដោយសារបច្ចុប្បន្នមិនទាន់មានឆ្នាំសិក្សាសកម្មដែលបានបើកដំណើរការ (No Active Academic Year)!');
+                    return false;
+                }
+            });
+        }
+
+        // 11. Main Init
+        async function initAttendancePage() {
+            await checkAcademicYearStatus();
+            await fetchTeacherClass();
+            await fetchClassStudents();
+        }
+
+        initAttendancePage();
     })();
 </script>

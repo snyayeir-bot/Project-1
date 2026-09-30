@@ -64,19 +64,55 @@
     .btn-card-details {
         background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%);
         color: #ffffff;
-        font-weight: 800;
+        font-weight: 700;
         border: 1px solid rgba(255, 215, 0, 0.5);
-        border-radius: 12px;
-        padding: 7px 16px;
-        font-size: 0.82rem;
-        box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
-        transition: all 0.28s ease;
+        border-radius: 8px;
+        padding: 4px 11px;
+        font-size: 0.78rem;
+        box-shadow: 0 3px 12px rgba(212, 175, 55, 0.3);
+        transition: all 0.25s ease;
     }
 
     .btn-card-details:hover {
-        box-shadow: 0 8px 28px rgba(212, 175, 55, 0.75);
-        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.7);
+        transform: translateY(-1px);
         color: #ffffff;
+    }
+
+    .btn-card-delete {
+        background: linear-gradient(135deg, #e63946 0%, #c1121f 100%);
+        color: #ffffff !important;
+        font-weight: 800;
+        border: 1px solid rgba(255, 107, 107, 0.5);
+        border-radius: 12px;
+        padding: 7px 14px;
+        font-size: 0.82rem;
+        box-shadow: 0 4px 18px rgba(230, 57, 70, 0.35);
+        transition: all 0.28s ease;
+    }
+
+    .btn-card-delete:hover {
+        box-shadow: 0 8px 28px rgba(230, 57, 70, 0.75);
+        transform: translateY(-2px);
+        color: #ffffff !important;
+    }
+
+    .btn-card-edit {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+        color: #ffffff !important;
+        font-weight: 800;
+        border: 1px solid rgba(13, 110, 253, 0.5);
+        border-radius: 12px;
+        padding: 7px 14px;
+        font-size: 0.82rem;
+        box-shadow: 0 4px 18px rgba(13, 110, 253, 0.35);
+        transition: all 0.28s ease;
+    }
+
+    .btn-card-edit:hover {
+        box-shadow: 0 8px 28px rgba(13, 110, 253, 0.75);
+        transform: translateY(-2px);
+        color: #ffffff !important;
     }
 
     .btn-outline-glass {
@@ -96,29 +132,62 @@
         border-color: rgba(212, 175, 55, 0.85);
     }
 
+    .student-table {
+        font-size: 0.82rem;
+        margin-bottom: 0;
+    }
+
     .student-table th {
-        padding: 12px 14px !important;
-        font-size: 0.84rem;
+        padding: 9px 10px !important;
+        font-size: 0.76rem !important;
+        font-weight: 700;
         white-space: nowrap;
         background: rgba(16, 16, 26, 0.95) !important;
         border-bottom: 2px solid rgba(212, 175, 55, 0.4) !important;
         color: #d4af37 !important;
-        letter-spacing: 0.3px;
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
     }
 
     .student-table td {
-        padding: 12px 14px !important;
-        font-size: 0.88rem;
+        padding: 8px 10px !important;
+        font-size: 0.80rem !important;
         white-space: nowrap;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        vertical-align: middle;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .student-table .table-ellipsis {
+        max-width: 135px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        vertical-align: middle;
     }
 
     /* FORCED ALL TEXT TO WHITE ACROSS ENTIRE PAGE & MODALS */
-    body, p, span, label, h1, h2, h3, h4, h5, h6, th, td, div, button, input, select {
+    body,
+    p,
+    span,
+    label,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    th,
+    td,
+    div,
+    button,
+    input,
+    select {
         color: #ffffff !important;
     }
 
-    .text-muted, .extra-small {
+    .text-muted,
+    .extra-small {
         color: #e0e0e0 !important;
     }
 </style>
@@ -128,24 +197,29 @@
     <div class="students-hero-banner p-4 mb-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div>
-                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;"><i class="bi bi-mortarboard-fill me-1"></i> ប្រព័ន្ធគ្រប់គ្រងព័ត៌មានសិស្ស</span>
+                <span class="badge text-white mb-2" style="background:#d4af37; font-weight:700;"><i
+                        class="bi bi-mortarboard-fill me-1"></i> ប្រព័ន្ធគ្រប់គ្រងព័ត៌មានសិស្ស</span>
                 <h2 class="fw-bold text-white mb-1">បញ្ជីឈ្មោះសិស្សសរុប (Student Directory)</h2>
-                <p class="text-white small mb-0">គ្រប់គ្រងឈ្មោះសិស្ស, អត្តលេខសិស្ស, ភេទ, អាយុ, ថ្នាក់រៀន, និង ការចុះឈ្មោះសិស្សថ្មីចូលសាលា។</p>
+                <p class="text-white small mb-0">គ្រប់គ្រងឈ្មោះសិស្ស, អត្តលេខសិស្ស, ភេទ, ថ្ងៃកំណើត, អាណាព្យាបាល, និងការកែប្រែ/លុបទិន្នន័យ។</p>
             </div>
             <div class="d-flex align-items-center gap-3">
                 <button class="btn btn-outline-glass btn-sm"><i class="bi bi-download me-1"></i> ទាញយកបញ្ជីសិស្ស</button>
-                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#adminAddNewStudentModal"><i class="bi bi-person-plus-fill me-1"></i> ➕ បញ្ចូលទិន្នន័យសិស្សថ្មី</button>
+                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#adminAddNewStudentModal"><i
+                        class="bi bi-person-plus-fill me-1"></i> ➕ បញ្ចូលទិន្នន័យសិស្សថ្មី</button>
             </div>
         </div>
     </div>
 
     <!-- Alert Toast Notification -->
-    <div id="admin-student-toast" class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between" role="alert">
+    <div id="admin-student-toast"
+        class="alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-none d-flex align-items-center justify-content-between"
+        role="alert">
         <div>
             <i class="bi bi-check-circle-fill me-2 fs-5"></i>
             <span class="fw-bold text-white" id="admin-student-toast-msg">បានបន្ថែមទិន្នន័យសិស្សថ្មីដោយជោគជ័យ!</span>
         </div>
-        <button type="button" class="btn-close" onclick="document.getElementById('admin-student-toast').classList.add('d-none');"></button>
+        <button type="button" class="btn-close"
+            onclick="document.getElementById('admin-student-toast').classList.add('d-none');"></button>
     </div>
 
     <!-- Top Statistics KPI Row -->
@@ -156,38 +230,38 @@
                     <span class="text-white extra-small">🎓 សិស្សសរុប</span>
                     <i class="bi bi-people-fill text-warning fs-5" style="color:#d4af37;"></i>
                 </div>
-                <h3 class="fw-bold text-white mb-0" id="kpi-total-students">១,២៤៨ នាក់</h3>
-                <span class="text-white extra-small"><i class="bi bi-check-circle me-1"></i>កំពុងសិក្សាសកម្ម</span>
+                <h3 class="fw-bold text-white mb-0" id="kpi-total-students">0 នាក់</h3>
+                <span class="text-white extra-small"><i class="bi bi-check-circle me-1"></i>ក្នុងប្រព័ន្ធទិន្នន័យ</span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="glass-student-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold" style="color:#d4af37 !important;">🏆 ថ្នាក់ទី ១២</span>
-                    <i class="bi bi-award-fill text-warning fs-5" style="color:#d4af37;"></i>
+                    <span class="text-white extra-small fw-bold" style="color:#d4af37 !important;">⚡ សិស្សសកម្ម</span>
+                    <i class="bi bi-person-check-fill text-warning fs-5" style="color:#d4af37;"></i>
                 </div>
-                <h3 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;" id="kpi-grade12-count">៤១៥ នាក់</h3>
-                <span class="text-white extra-small" style="color:#d4af37 !important;">សិស្សប្រឡងបាក់ឌុប</span>
+                <h3 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;" id="kpi-active-students">0 នាក់</h3>
+                <span class="text-white extra-small" style="color:#d4af37 !important;">កំពុងសិក្សាសកម្ម</span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="glass-student-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">📘 ថ្នាក់ទី ១១</span>
-                    <i class="bi bi-book-fill text-success fs-5"></i>
+                    <span class="text-white extra-small fw-bold">👩 សិស្សស្រី</span>
+                    <i class="bi bi-gender-female text-success fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-success mb-0" id="kpi-grade11-count">៤២០ នាក់</h3>
-                <span class="text-white extra-small"><i class="bi bi-graph-up me-1"></i>ថ្នាក់មធ្យមសិក្សា</span>
+                <h3 class="fw-bold text-success mb-0" id="kpi-female-students">0 នាក់</h3>
+                <span class="text-white extra-small"><i class="bi bi-percent me-1"></i>សិស្សនារី</span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="glass-student-kpi" style="border-color: rgba(56, 189, 248, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-white extra-small fw-bold">📗 ថ្នាក់ទី ១០</span>
-                    <i class="bi bi-journal-bookmark-fill text-info fs-5"></i>
+                    <span class="text-white extra-small fw-bold">👨 សិស្សប្រុស</span>
+                    <i class="bi bi-gender-male text-info fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-info mb-0" id="kpi-grade10-count">៤១៣ នាក់</h3>
-                <span class="text-white extra-small"><i class="bi bi-bookmark me-1"></i>ថ្នាក់កម្រិតដំបូង</span>
+                <h3 class="fw-bold text-info mb-0" id="kpi-male-students">0 នាក់</h3>
+                <span class="text-white extra-small"><i class="bi bi-percent me-1"></i>សិស្សបុរស</span>
             </div>
         </div>
     </div>
@@ -195,24 +269,27 @@
     <!-- Data Table Card -->
     <div class="card-custom p-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-            <h5 class="fw-bold text-white mb-0"><i class="bi bi-list-stars me-2" style="color:#d4af37 !important;"></i>តារាងឈ្មោះសិស្សទាំងអស់</h5>
+            <h5 class="fw-bold text-white mb-0"><i class="bi bi-list-stars me-2"
+                    style="color:#d4af37 !important;"></i>តារាងឈ្មោះសិស្សទាំងអស់</h5>
             <div class="search-box" style="width: 300px;">
                 <i class="bi bi-search text-white"></i>
-                <input type="text" id="student-search-input" placeholder="ស្វែងរក ឈ្មោះសិស្ស, អត្តលេខ, ឬ ថ្នាក់...">
+                <input type="text" id="student-search-input" placeholder="ស្វែងរក ឈ្មោះសិស្ស, អត្តលេខ, ឬ ទូរស័ព្ទ...">
             </div>
         </div>
 
         <div class="table-responsive">
-            <table class="table table-dark table-hover align-middle mb-0 student-table" style="background: transparent;">
+            <table class="table table-dark table-hover align-middle mb-0 student-table"
+                style="background: transparent;">
                 <thead>
                     <tr class="text-white extra-small text-uppercase border-bottom border-dark">
-                        <th>អត្តលេខ (Student Code)</th>
-                        <th>ឈ្មោះសិស្ស (Full Name)</th>
-                        <th>ភេទ (Gender)</th>
-                        <th>ថ្ងៃកំណើត (Date of Birth)</th>
-                        <th>ទំនាក់ទំនង (Phone & Email)</th>
-                        <th>ព័ត៌មានអាណាព្យាបាល (Parents Info)</th>
-                        <th>ស្ថានភាព (Status)</th>
+                        <th>អត្តលេខ</th>
+                        <th>ឈ្មោះសិស្ស</th>
+                        <th>ភេទ</th>
+                        <th>ថ្ងៃកំណើត</th>
+                        <th>ទំនាក់ទំនង</th>
+                        <th>ព័ត៌មានអាណាព្យាបាល</th>
+                        <th>អាសយដ្ឋាន</th>
+                        <th>ស្ថានភាព</th>
                         <th class="text-end">សកម្មភាព</th>
                     </tr>
                 </thead>
@@ -227,30 +304,38 @@
 <!-- Modal 1: Admin Add New Student Form Modal (Matched to Database Table school_management.students) -->
 <div class="modal fade" id="adminAddNewStudentModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
             <div class="modal-header border-bottom border-dark p-4">
                 <div class="d-flex align-items-center gap-2.5">
-                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning"
+                        style="color:#d4af37 !important;">
                         <i class="bi bi-database-fill-add fs-5"></i>
                     </div>
                     <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">school_management.students</span>
+                        <span class="badge text-white fw-bold mb-1"
+                            style="background:#d4af37;">school_management.students</span>
                         <h4 class="fw-bold text-white mb-0">ទម្រង់បញ្ចូលទិន្នន័យសិស្សថ្មី (Insert Student Data)</h4>
                     </div>
                 </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
                 <form id="admin-add-student-form">
                     <div class="row g-3">
                         <!-- student_code & full_name -->
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">អត្តលេខសិស្ស (student_code)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="adm-s-code" value="STD-2026-005" required>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អត្តលេខសិស្ស
+                                (student_code)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold"
+                                id="adm-s-code" value="STD-2026-007" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះសិស្សពេញ (full_name)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-s-fullname" placeholder="ឧ. សុខ ពិសិដ្ឋ" required>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះសិស្សពេញ
+                                (full_name)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="adm-s-fullname" placeholder="ឧ. សុខ ពិសិដ្ឋ" required>
                         </div>
 
                         <!-- gender, date_of_birth, status -->
@@ -262,57 +347,70 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្ងៃខែឆ្នាំកំណើត (date_of_birth)</label>
-                            <input type="date" class="form-control bg-dark text-white border-secondary" id="adm-s-dob" value="2008-05-15" required>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្ងៃខែឆ្នាំកំណើត
+                                (date_of_birth)</label>
+                            <input type="date" class="form-control bg-dark text-white border-secondary" id="adm-s-dob"
+                                value="2008-05-15" required>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ស្ថានភាព (status)</label>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ស្ថានភាព
+                                (status)</label>
                             <select class="form-select bg-dark text-white border-secondary" id="adm-s-status" required>
                                 <option value="Active" selected>✅ Active (សកម្ម)</option>
                                 <option value="Inactive">⛔ Inactive (អសកម្ម)</option>
                             </select>
                         </div>
 
-                        <!-- phone & email -->
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទសិស្ស (phone)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-s-phone" placeholder="ឧ. 092 112 233" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">អ៊ីមែលសិស្ស (email)</label>
-                            <input type="email" class="form-control bg-dark text-white border-secondary" id="adm-s-email" placeholder="ឧ. student@school.edu" required>
+                        <!-- phone -->
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទសិស្ស
+                                (phone)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-s-phone"
+                                placeholder="ឧ. 092 112 233">
                         </div>
 
                         <!-- father_name & father_phone -->
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះឪពុក (father_name)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-s-father-name" placeholder="ឧ. សុខ ចាន់ថា">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះឪពុក
+                                (father_name)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="adm-s-father-name" placeholder="ឧ. សុខ ចាន់ថា">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទឪពុក (father_phone)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-s-father-phone" placeholder="ឧ. 012 345 678">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទឪពុក
+                                (father_phone)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="adm-s-father-phone" placeholder="ឧ. 012 345 678">
                         </div>
 
                         <!-- mother_name & mother_phone -->
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះម្តាយ (mother_name)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-s-mother-name" placeholder="ឧ. គឹម សុផល">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះម្តាយ
+                                (mother_name)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="adm-s-mother-name" placeholder="ឧ. គឹម សុផល">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទម្តាយ (mother_phone)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-s-mother-phone" placeholder="ឧ. 098 765 432">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទម្តាយ
+                                (mother_phone)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="adm-s-mother-phone" placeholder="ឧ. 098 765 432">
                         </div>
 
                         <!-- address -->
                         <div class="col-md-12">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">អាសយដ្ឋាន (address)</label>
-                            <textarea class="form-control bg-dark text-white border-secondary" id="adm-s-address" rows="2" placeholder="ឧ. រាជធានីភ្នំពេញ" required></textarea>
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អាសយដ្ឋាន
+                                (address)</label>
+                            <textarea class="form-control bg-dark text-white border-secondary" id="adm-s-address"
+                                rows="2" placeholder="ឧ. រាជធានីភ្នំពេញ"></textarea>
                         </div>
                     </div>
 
                     <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
-                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-database-fill-add me-1"></i> រក្សាទុកទិន្នន័យក្នុង Database</button>
+                        <button type="button" class="btn btn-outline-glass btn-sm"
+                            data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm" id="btn-submit-add-student"><i
+                                class="bi bi-database-fill-add me-1"></i> រក្សាទុកទិន្នន័យក្នុង Database</button>
                     </div>
                 </form>
             </div>
@@ -323,16 +421,22 @@
 <!-- Modal 2: Student Detail Profile Modal -->
 <div class="modal fade" id="studentDetailModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
             <div class="modal-header border-bottom border-dark p-4">
                 <div class="d-flex align-items-center gap-3">
-                    <img id="modal-student-avatar" src="" class="rounded-circle border border-warning" width="65" height="65" alt="Student Profile">
+                    <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning shadow-sm"
+                        style="width: 55px; height: 55px; background: rgba(212,175,55,0.15); flex-shrink: 0;">
+                        <i class="bi bi-person-fill fs-3" style="color:#d4af37;"></i>
+                    </div>
                     <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;" id="modal-student-code">STD-2026-001</span>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;"
+                            id="modal-student-code">STD-2026-001</span>
                         <h4 class="fw-bold text-white mb-0" id="modal-student-fullname">សុខ ចាន់ដារ៉ា</h4>
                     </div>
                 </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
                 <div class="row g-3">
@@ -344,7 +448,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">🎂 ថ្ងៃកំណើត (Date of Birth)</span>
+                            <span class="text-white extra-small d-block mb-1">🎂 ថ្ងៃកំណើត (DOB)</span>
                             <h6 class="fw-bold text-white mb-0" id="modal-student-dob">2008-05-15</h6>
                         </div>
                     </div>
@@ -362,12 +466,6 @@
                     </div>
                     <div class="col-md-6">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-white extra-small d-block mb-1">📧 អ៊ីមែលសិស្ស (Email)</span>
-                            <h6 class="fw-bold text-white mb-0" id="modal-student-email">s.chandara@school.edu</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="p-3 rounded-3 bg-black border border-secondary">
                             <span class="text-white extra-small d-block mb-1">👨 ព័ត៌មានឪពុក (Father Name & Phone)</span>
                             <h6 class="fw-bold text-white mb-0" id="modal-student-father">សុខ ចាន់ថា • 012 345 678</h6>
                         </div>
@@ -378,7 +476,7 @@
                             <h6 class="fw-bold text-white mb-0" id="modal-student-mother">គឹម សុផល • 098 765 432</h6>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
                             <span class="text-white extra-small d-block mb-1">📍 អាសយដ្ឋាន (Address)</span>
                             <h6 class="fw-bold text-white mb-0" id="modal-student-address">រាជធានីភ្នំពេញ</h6>
@@ -386,9 +484,136 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer border-top border-dark p-3">
-                <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
-                <button type="button" class="btn-gold-shimmer btn-sm"><i class="bi bi-printer me-1"></i> បោះពុម្ពកាតសិស្ស</button>
+            <div class="modal-footer border-top border-dark p-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn-card-edit btn-sm" id="detail-modal-edit-btn">
+                        <i class="bi bi-pencil-square me-1"></i> កែប្រែទិន្នន័យ (Edit)
+                    </button>
+                    <button type="button" class="btn-card-delete btn-sm" id="detail-modal-delete-btn">
+                        <i class="bi bi-trash3-fill me-1"></i> លុបទិន្នន័យ (Delete)
+                    </button>
+                </div>
+                <button type="button" class="btn btn-outline-glass btn-sm px-3" data-bs-dismiss="modal">បិទ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3: Delete Student Confirmation Modal -->
+<div class="modal fade" id="deleteStudentConfirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 440px;">
+        <div class="modal-content bg-dark text-white border border-danger shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #181216, #241318) !important; border-color: rgba(230, 57, 70, 0.5) !important;">
+            <div class="modal-body p-4 text-center">
+                <div class="p-3 bg-danger-subtle rounded-circle text-danger border border-danger d-inline-flex mb-3" style="color: #ff6b6b !important;">
+                    <i class="bi bi-exclamation-triangle-fill fs-2"></i>
+                </div>
+                <h4 class="fw-bold text-white mb-2">តើអ្នកពិតជាចង់លុបទិន្នន័យនេះមែនទេ?</h4>
+                <p class="text-white opacity-75 small mb-3">
+                    តើលោកអ្នកចង់លុបទិន្នន័យសិស្ស <br>
+                    <span class="badge bg-danger text-white fs-6 mt-2 px-3 py-1.5" id="delete-student-confirm-name">...</span>
+                </p>
+                <p class="text-danger small mb-0"><i class="bi bi-info-circle me-1"></i> សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ!</p>
+            </div>
+            <div class="modal-footer border-top border-dark justify-content-center p-3 gap-2">
+                <button type="button" class="btn btn-outline-glass btn-sm px-4" data-bs-dismiss="modal">បោះបង់</button>
+                <button type="button" class="btn-card-delete btn-sm px-4 m-0" id="confirm-delete-student-btn">
+                    <i class="bi bi-trash3-fill me-1"></i> បញ្ជាក់ការលុប
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 4: Admin Edit Student Form Modal -->
+<div class="modal fade" id="adminEditStudentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-info shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #161a28) !important; border-color: rgba(56, 189, 248, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-info-subtle rounded-circle text-info border border-info" style="color: #38bdf8 !important;">
+                        <i class="bi bi-pencil-square fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge bg-info text-white fw-bold mb-1">Update Student Profile</span>
+                        <h4 class="fw-bold text-white mb-0">ទម្រង់កែប្រែព័ត៌មានសិស្ស (Edit Student Data)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-edit-student-form">
+                    <input type="hidden" id="edit-s-id">
+                    <div class="row g-3">
+                        <!-- student_code & full_name -->
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អត្តលេខសិស្ស (student_code)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary fw-bold" id="edit-s-code" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះសិស្សពេញ (full_name)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-s-fullname" required>
+                        </div>
+
+                        <!-- gender, date_of_birth, status -->
+                        <div class="col-md-4">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ភេទ (gender)</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="edit-s-gender" required>
+                                <option value="Male">👨 Male (ប្រុស)</option>
+                                <option value="Female">👩 Female (ស្រី)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ថ្ងៃខែឆ្នាំកំណើត (date_of_birth)</label>
+                            <input type="date" class="form-control bg-dark text-white border-secondary" id="edit-s-dob" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ស្ថានភាព (status)</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="edit-s-status" required>
+                                <option value="Active">✅ Active (សកម្ម)</option>
+                                <option value="Inactive">⛔ Inactive (អសកម្ម)</option>
+                            </select>
+                        </div>
+
+                        <!-- phone -->
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទ (phone)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-s-phone">
+                        </div>
+
+                        <!-- father_name & father_phone -->
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះឪពុក (father_name)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-s-father-name">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទឪពុក (father_phone)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-s-father-phone">
+                        </div>
+
+                        <!-- mother_name & mother_phone -->
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ឈ្មោះម្តាយ (mother_name)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-s-mother-name">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">លេខទូរស័ព្ទម្តាយ (mother_phone)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="edit-s-mother-phone">
+                        </div>
+
+                        <!-- address -->
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អាសយដ្ឋាន (address)</label>
+                            <textarea class="form-control bg-dark text-white border-secondary" id="edit-s-address" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-card-edit btn-sm" id="btn-save-edit-student"><i class="bi bi-check-circle-fill me-1"></i> រក្សាទុកការកែប្រែ (Save Changes)</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -396,138 +621,118 @@
 
 <script>
     (function () {
-        const studentsDataset = [
-            {
-                "student_id": 1,
-                "student_code": "STD-2026-001",
-                "full_name": "សុខ ចាន់ដារ៉ា",
-                "gender": "Male",
-                "date_of_birth": "2008-03-12",
-                "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
-                "phone": "092 112 233",
-                "email": "s.chandara@school.edu",
-                "address": "រាជធានីភ្នំពេញ",
-                "father_name": "សុខ ចាន់ថា",
-                "father_phone": "012 345 678",
-                "mother_name": "គឹម សុផល",
-                "mother_phone": "098 765 432",
-                "status": "Active"
-            },
-            {
-                "student_id": 2,
-                "student_code": "STD-2026-002",
-                "full_name": "គឹម ស៊ាងហៃ",
-                "gender": "Female",
-                "date_of_birth": "2008-07-24",
-                "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80",
-                "phone": "098 445 566",
-                "email": "k.seanghai@school.edu",
-                "address": "ខេត្តកណ្តាល",
-                "father_name": "គឹម ហេង",
-                "father_phone": "011 223 344",
-                "mother_name": "ម៉ែន ស្រីអូន",
-                "mother_phone": "077 889 900",
-                "status": "Active"
-            },
-            {
-                "student_id": 3,
-                "student_code": "STD-2026-003",
-                "full_name": "លី សុវណ្ណារ៉ា",
-                "gender": "Male",
-                "date_of_birth": "2009-01-10",
-                "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80",
-                "phone": "012 334 455",
-                "email": "l.sovannara@school.edu",
-                "address": "រាជធានីភ្នំពេញ",
-                "father_name": "លី ប៊ុនធឿន",
-                "father_phone": "012 990 011",
-                "mother_name": "ចាន់ សុគន្ធា",
-                "mother_phone": "089 112 233",
-                "status": "Active"
-            },
-            {
-                "student_id": 4,
-                "student_code": "STD-2026-004",
-                "full_name": "ចាន់ ស្រីណេត",
-                "gender": "Female",
-                "date_of_birth": "2010-11-05",
-                "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80",
-                "phone": "016 556 677",
-                "email": "c.sreynet@school.edu",
-                "address": "ខេត្តសៀមរាប",
-                "father_name": "ចាន់ សុខា",
-                "father_phone": "015 334 422",
-                "mother_name": "អ៊ុង ផល្លី",
-                "mother_phone": "097 554 433",
-                "status": "Inactive"
-            }
-        ];
+        let studentsDataset = [];
+        let studentToDelete = null;
+        let activeStudentProfile = null;
+
+        function updateKpis() {
+            const total = studentsDataset.length;
+            const female = studentsDataset.filter(s => s.gender === 'Female').length;
+            const male = studentsDataset.filter(s => s.gender === 'Male').length;
+            const active = studentsDataset.filter(s => s.status === 'Active').length;
+
+            const totalElem = document.getElementById('kpi-total-students');
+            const activeElem = document.getElementById('kpi-active-students');
+            const femaleElem = document.getElementById('kpi-female-students');
+            const maleElem = document.getElementById('kpi-male-students');
+
+            if (totalElem) totalElem.innerText = `${total} នាក់`;
+            if (activeElem) activeElem.innerText = `${active} នាក់`;
+            if (femaleElem) femaleElem.innerText = `${female} នាក់`;
+            if (maleElem) maleElem.innerText = `${male} នាក់`;
+        }
 
         function renderStudentsTableRows(list) {
             const tbody = document.getElementById('student-table-body');
             if (!tbody) return;
 
-            tbody.innerHTML = list.map((s, index) => `
+            if (!list || list.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="text-center py-4 text-white opacity-75">
+                            <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                            មិនទាន់មានទិន្នន័យសិស្សនៅឡើយទេ
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = list.map((s, index) => {
+                return `
                 <tr>
-                    <td><code>${s.student_code}</code></td>
+                    <td><code class="px-1.5 py-0.5" style="font-size:0.75rem; background:rgba(255,255,255,0.06); border-radius:4px;">${s.student_code || ''}</code></td>
                     <td>
-                        <div class="d-flex align-items-center gap-2.5">
-                            <img src="${s.avatar}" class="rounded-circle border border-warning" width="38" height="38" alt="${s.full_name}">
-                            <span class="fw-semibold text-white" style="font-size: 0.96rem;">${s.full_name}</span>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center border border-warning text-warning shadow-sm" style="width: 28px; height: 28px; background: rgba(212,175,55,0.15); flex-shrink: 0;">
+                                <i class="bi bi-person-fill" style="font-size:0.75rem;"></i>
+                            </div>
+                            <span class="fw-semibold text-white" style="font-size: 0.83rem;">${s.full_name || ''}</span>
                         </div>
                     </td>
                     <td>
-                        <span class="badge ${s.gender === 'Female' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'} px-2.5 py-1">
+                        <span class="badge ${s.gender === 'Female' ? 'bg-info-subtle text-info' : 'bg-secondary-subtle text-light'} px-2 py-0.5" style="font-size:0.72rem;">
                             ${s.gender === 'Female' ? '👩 Female' : '👨 Male'}
                         </span>
                     </td>
-                    <td><span class="fw-medium text-white">${s.date_of_birth}</span></td>
+                    <td><span class="text-white opacity-90" style="font-size:0.78rem;">${s.date_of_birth || ''}</span></td>
                     <td>
-                        <div class="extra-small">
-                            <div class="fw-bold text-white"><i class="bi bi-telephone-fill me-1 text-warning"></i>${s.phone}</div>
-                            <div class="text-white opacity-75">${s.email}</div>
+                        <div style="font-size:0.75rem; line-height:1.25;">
+                            <div class="fw-bold text-white"><i class="bi bi-telephone-fill me-1 text-warning" style="font-size:0.70rem;"></i>${s.phone || '-'}</div>
                         </div>
                     </td>
                     <td>
-                        <div class="extra-small">
-                            <div>👨 ${s.father_name || 'N/A'} (${s.father_phone || '-'})</div>
-                            <div>👩 ${s.mother_name || 'N/A'} (${s.mother_phone || '-'})</div>
+                        <div class="extra-small" style="font-size:0.75rem; line-height:1.25;">
+                            <div class="table-ellipsis" style="max-width:140px;" title="ឪពុក: ${s.father_name || '-'} (${s.father_phone || '-'})">👨 ${s.father_name || '-'}</div>
+                            <div class="text-white opacity-75 table-ellipsis" style="max-width:140px;" title="ម្តាយ: ${s.mother_name || '-'} (${s.mother_phone || '-'})">👩 ${s.mother_name || '-'}</div>
                         </div>
                     </td>
+                    <td><span class="text-white extra-small table-ellipsis" style="max-width:120px;" title="${s.address || ''}">${s.address || '-'}</span></td>
                     <td>
-                        <span class="badge ${s.status === 'Active' ? 'bg-success text-white' : 'bg-danger text-white'} px-2.5 py-1 fw-bold">
+                        <span class="badge ${s.status === 'Active' ? 'bg-success text-white' : 'bg-danger text-white'} px-2 py-0.5 fw-bold" style="font-size:0.72rem;">
                             ${s.status === 'Active' ? '✅ Active' : '⛔ Inactive'}
                         </span>
                     </td>
                     <td class="text-end">
-                        <button class="btn-card-details view-student-detail-btn" data-student-index="${index}">
+                        <button class="btn-card-details view-student-detail-btn" data-student-index="${index}" title="មើលព័ត៌មានលម្អិត">
                             <i class="bi bi-eye-fill me-1"></i> មើល 👁️
                         </button>
                     </td>
                 </tr>
-            `).join('');
+                `;
+            }).join('');
 
+            // View Student details handler
             document.querySelectorAll('.view-student-detail-btn').forEach(btn => {
                 btn.addEventListener('click', function () {
                     const idx = parseInt(this.getAttribute('data-student-index'));
-                    const student = list[idx] || list[0];
-                    showStudentDetailModal(student);
+                    const student = list[idx];
+                    if (student) showStudentDetailModal(student);
                 });
             });
         }
 
         function showStudentDetailModal(student) {
-            document.getElementById('modal-student-avatar').src = student.avatar;
-            document.getElementById('modal-student-code').innerText = student.student_code;
-            document.getElementById('modal-student-fullname').innerText = student.full_name;
+            activeStudentProfile = student;
+
+            document.getElementById('modal-student-code').innerText = student.student_code || '';
+            document.getElementById('modal-student-fullname').innerText = student.full_name || '';
             document.getElementById('modal-student-gender').innerText = student.gender === 'Female' ? 'Female (ស្រី)' : 'Male (ប្រុស)';
-            document.getElementById('modal-student-dob').innerText = student.date_of_birth;
-            document.getElementById('modal-student-status').innerText = student.status;
-            document.getElementById('modal-student-phone').innerText = student.phone;
-            document.getElementById('modal-student-email').innerText = student.email;
-            document.getElementById('modal-student-father').innerText = `${student.father_name || 'N/A'} • ${student.father_phone || 'N/A'}`;
-            document.getElementById('modal-student-mother').innerText = `${student.mother_name || 'N/A'} • ${student.mother_phone || 'N/A'}`;
-            document.getElementById('modal-student-address').innerText = student.address;
+            document.getElementById('modal-student-dob').innerText = student.date_of_birth || '';
+            document.getElementById('modal-student-status').innerText = student.status || 'Active';
+            document.getElementById('modal-student-phone').innerText = student.phone || '—';
+
+            const fatherStr = (student.father_name || student.father_phone) 
+                ? `${student.father_name || 'N/A'} • ${student.father_phone || 'N/A'}` 
+                : '—';
+            document.getElementById('modal-student-father').innerText = fatherStr;
+
+            const motherStr = (student.mother_name || student.mother_phone) 
+                ? `${student.mother_name || 'N/A'} • ${student.mother_phone || 'N/A'}` 
+                : '—';
+            document.getElementById('modal-student-mother').innerText = motherStr;
+
+            document.getElementById('modal-student-address').innerText = student.address || '—';
 
             const modalElem = document.getElementById('studentDetailModal');
             if (modalElem && typeof bootstrap !== 'undefined') {
@@ -536,81 +741,291 @@
             }
         }
 
-        // Add Student Form Submission Handler (Inserting into school_management.students schema)
-        const addStudentForm = document.getElementById('admin-add-student-form');
-        if (addStudentForm) {
-            addStudentForm.addEventListener('submit', function (e) {
-                e.preventDefault();
+        function triggerDeleteConfirm(student) {
+            studentToDelete = student;
+            const nameElem = document.getElementById('delete-student-confirm-name');
+            if (nameElem) nameElem.innerText = `${student.full_name} (${student.student_code})`;
 
-                const studentCode = document.getElementById('adm-s-code').value.trim();
-                const fullName = document.getElementById('adm-s-fullname').value.trim();
-                const gender = document.getElementById('adm-s-gender').value;
-                const dob = document.getElementById('adm-s-dob').value;
-                const status = document.getElementById('adm-s-status').value;
-                const phone = document.getElementById('adm-s-phone').value.trim();
-                const email = document.getElementById('adm-s-email').value.trim();
-                const fatherName = document.getElementById('adm-s-father-name').value.trim();
-                const fatherPhone = document.getElementById('adm-s-father-phone').value.trim();
-                const motherName = document.getElementById('adm-s-mother-name').value.trim();
-                const motherPhone = document.getElementById('adm-s-mother-phone').value.trim();
-                const address = document.getElementById('adm-s-address').value.trim();
+            const modalElem = document.getElementById('deleteStudentConfirmModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(modalElem);
+                bsModal.show();
+            }
+        }
 
-                if (fullName && studentCode) {
-                    const newStudent = {
-                        student_id: studentsDataset.length + 1,
-                        student_code: studentCode,
-                        full_name: fullName,
-                        gender: gender,
-                        date_of_birth: dob,
-                        avatar: gender === 'Female' ? "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80" : "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80",
-                        phone: phone,
-                        email: email,
-                        address: address,
-                        father_name: fatherName,
-                        father_phone: fatherPhone,
-                        mother_name: motherName,
-                        mother_phone: motherPhone,
-                        status: status
-                    };
+        function openEditStudentModal(student) {
+            document.getElementById('edit-s-id').value = student.student_id || '';
+            document.getElementById('edit-s-code').value = student.student_code || '';
+            document.getElementById('edit-s-fullname').value = student.full_name || '';
+            document.getElementById('edit-s-gender').value = student.gender || 'Male';
+            document.getElementById('edit-s-dob').value = student.date_of_birth || '';
+            document.getElementById('edit-s-status').value = student.status || 'Active';
+            document.getElementById('edit-s-phone').value = student.phone || '';
+            document.getElementById('edit-s-father-name').value = student.father_name || '';
+            document.getElementById('edit-s-father-phone').value = student.father_phone || '';
+            document.getElementById('edit-s-mother-name').value = student.mother_name || '';
+            document.getElementById('edit-s-mother-phone').value = student.mother_phone || '';
+            document.getElementById('edit-s-address').value = student.address || '';
 
-                    studentsDataset.unshift(newStudent);
-                    renderStudentsTableRows(studentsDataset);
+            const editModalElem = document.getElementById('adminEditStudentModal');
+            if (editModalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = new bootstrap.Modal(editModalElem);
+                bsModal.show();
+            }
+        }
 
-                    const modalElem = document.getElementById('adminAddNewStudentModal');
-                    if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = bootstrap.Modal.getInstance(modalElem);
-                        if (bsModal) bsModal.hide();
+        // Inside Detail Modal: Delete & Edit buttons
+        const detailDeleteBtn = document.getElementById('detail-modal-delete-btn');
+        if (detailDeleteBtn) {
+            detailDeleteBtn.addEventListener('click', function () {
+                if (!activeStudentProfile) return;
+                const detailModalElem = document.getElementById('studentDetailModal');
+                if (detailModalElem && typeof bootstrap !== 'undefined') {
+                    const bsDetailModal = bootstrap.Modal.getInstance(detailModalElem);
+                    if (bsDetailModal) bsDetailModal.hide();
+                }
+                triggerDeleteConfirm(activeStudentProfile);
+            });
+        }
+
+        const detailEditBtn = document.getElementById('detail-modal-edit-btn');
+        if (detailEditBtn) {
+            detailEditBtn.addEventListener('click', function () {
+                if (!activeStudentProfile) return;
+                const detailModalElem = document.getElementById('studentDetailModal');
+                if (detailModalElem && typeof bootstrap !== 'undefined') {
+                    const bsDetailModal = bootstrap.Modal.getInstance(detailModalElem);
+                    if (bsDetailModal) bsDetailModal.hide();
+                }
+                openEditStudentModal(activeStudentProfile);
+            });
+        }
+
+        // Handle Confirm Delete Button Click
+        const confirmDeleteBtn = document.getElementById('confirm-delete-student-btn');
+        if (confirmDeleteBtn) {
+            confirmDeleteBtn.addEventListener('click', async function () {
+                if (!studentToDelete) return;
+
+                confirmDeleteBtn.disabled = true;
+                confirmDeleteBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> កំពុងលុប...';
+
+                const studentId = studentToDelete.student_id;
+                const studentCode = studentToDelete.student_code;
+                const studentName = studentToDelete.full_name;
+
+                try {
+                    if (studentId) {
+                        const res = await fetch(`/api/deletestudent/${studentId}`, {
+                            method: 'DELETE'
+                        });
+                        const data = await res.json();
+                        console.log('Delete Student API Response:', data);
                     }
-                    addStudentForm.reset();
+                } catch (err) {
+                    console.error('API delete student error:', err);
+                }
 
-                    // Generate next student code
-                    document.getElementById('adm-s-code').value = `STD-2026-00${studentsDataset.length + 1}`;
+                // Remove from local dataset
+                studentsDataset = studentsDataset.filter(s => s.student_id != studentId && s.student_code !== studentCode);
+                renderStudentsTableRows(studentsDataset);
+                updateKpis();
 
-                    const toast = document.getElementById('admin-student-toast');
-                    if (toast) {
-                        document.getElementById('admin-student-toast-msg').innerText = `បានបន្ថែមទិន្នន័យសិស្ស "${fullName}" (student_code: ${studentCode}) ទៅក្នុង Database ដោយជោគជ័យ!`;
-                        toast.classList.remove('d-none');
-                    }
+                // Close delete confirm modal
+                const modalElem = document.getElementById('deleteStudentConfirmModal');
+                if (modalElem && typeof bootstrap !== 'undefined') {
+                    const bsModal = bootstrap.Modal.getInstance(modalElem);
+                    if (bsModal) bsModal.hide();
+                }
+
+                confirmDeleteBtn.disabled = false;
+                confirmDeleteBtn.innerHTML = '<i class="bi bi-trash3-fill me-1"></i> បញ្ជាក់ការលុប';
+
+                // Show toast
+                const toast = document.getElementById('admin-student-toast');
+                if (toast) {
+                    toast.className = 'alert alert-danger bg-danger-subtle text-danger border border-danger rounded-4 mb-4 d-flex align-items-center justify-content-between';
+                    document.getElementById('admin-student-toast-msg').innerText = `បានលុបទិន្នន័យសិស្ស "${studentName}" (${studentCode}) ចេញពី Database ដោយជោគជ័យ!`;
+                    toast.classList.remove('d-none');
                 }
             });
         }
 
+        // Handle Edit Form Submission
+        const editStudentForm = document.getElementById('admin-edit-student-form');
+        if (editStudentForm) {
+            editStudentForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const submitBtn = document.getElementById('btn-save-edit-student');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> កំពុងរក្សាទុក...';
+                }
+
+                const studentId = document.getElementById('edit-s-id').value;
+                const updatedData = {
+                    student_id: studentId,
+                    student_code: document.getElementById('edit-s-code').value.trim(),
+                    full_name: document.getElementById('edit-s-fullname').value.trim(),
+                    gender: document.getElementById('edit-s-gender').value,
+                    date_of_birth: document.getElementById('edit-s-dob').value,
+                    status: document.getElementById('edit-s-status').value,
+                    phone: document.getElementById('edit-s-phone').value.trim(),
+                    address: document.getElementById('edit-s-address').value.trim(),
+                    father_name: document.getElementById('edit-s-father-name').value.trim(),
+                    father_phone: document.getElementById('edit-s-father-phone').value.trim(),
+                    mother_name: document.getElementById('edit-s-mother-name').value.trim(),
+                    mother_phone: document.getElementById('edit-s-mother-phone').value.trim()
+                };
+
+                try {
+                    const res = await fetch(`/api/editstudent/${studentId}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(updatedData)
+                    });
+                    const result = await res.json();
+                    console.log('Edit Student API Response:', result);
+                } catch (err) {
+                    console.error('Edit student error:', err);
+                }
+
+                // Update local dataset
+                const idx = studentsDataset.findIndex(s => s.student_id == studentId);
+                if (idx !== -1) {
+                    studentsDataset[idx] = { ...studentsDataset[idx], ...updatedData };
+                }
+                renderStudentsTableRows(studentsDataset);
+                updateKpis();
+
+                // Close edit modal
+                const editModalElem = document.getElementById('adminEditStudentModal');
+                if (editModalElem && typeof bootstrap !== 'undefined') {
+                    const bsEditModal = bootstrap.Modal.getInstance(editModalElem);
+                    if (bsEditModal) bsEditModal.hide();
+                }
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> រក្សាទុកការកែប្រែ (Save Changes)';
+                }
+
+                // Show toast
+                const toast = document.getElementById('admin-student-toast');
+                if (toast) {
+                    toast.className = 'alert alert-info bg-info-subtle text-info border border-info rounded-4 mb-4 d-flex align-items-center justify-content-between';
+                    document.getElementById('admin-student-toast-msg').innerText = `បានកែប្រែទិន្នន័យសិស្ស "${updatedData.full_name}" ដោយជោគជ័យ!`;
+                    toast.classList.remove('d-none');
+                }
+            });
+        }
+
+        // Add Student Form Submission Handler
+        const addStudentForm = document.getElementById('admin-add-student-form');
+        if (addStudentForm) {
+            addStudentForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const submitBtn = document.getElementById('btn-submit-add-student');
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> កំពុងបញ្ចូល...';
+                }
+
+                const newStudentData = {
+                    student_code: document.getElementById('adm-s-code').value.trim(),
+                    full_name: document.getElementById('adm-s-fullname').value.trim(),
+                    gender: document.getElementById('adm-s-gender').value,
+                    date_of_birth: document.getElementById('adm-s-dob').value,
+                    status: document.getElementById('adm-s-status').value,
+                    phone: document.getElementById('adm-s-phone').value.trim(),
+                    address: document.getElementById('adm-s-address').value.trim(),
+                    father_name: document.getElementById('adm-s-father-name').value.trim(),
+                    father_phone: document.getElementById('adm-s-father-phone').value.trim(),
+                    mother_name: document.getElementById('adm-s-mother-name').value.trim(),
+                    mother_phone: document.getElementById('adm-s-mother-phone').value.trim()
+                };
+
+                let savedStudent = { ...newStudentData, student_id: Date.now() };
+
+                try {
+                    const res = await fetch('/api/addstudent', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newStudentData)
+                    });
+                    const result = await res.json();
+                    if (result.status === 'success' && result.student) {
+                        savedStudent = result.student;
+                    }
+                } catch (err) {
+                    console.error('Add student error:', err);
+                }
+
+                studentsDataset.unshift(savedStudent);
+                renderStudentsTableRows(studentsDataset);
+                updateKpis();
+
+                const modalElem = document.getElementById('adminAddNewStudentModal');
+                if (modalElem && typeof bootstrap !== 'undefined') {
+                    const bsModal = bootstrap.Modal.getInstance(modalElem);
+                    if (bsModal) bsModal.hide();
+                }
+
+                addStudentForm.reset();
+                document.getElementById('adm-s-code').value = `STD-2026-00${studentsDataset.length + 1}`;
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="bi bi-database-fill-add me-1"></i> រក្សាទុកទិន្នន័យក្នុង Database';
+                }
+
+                const toast = document.getElementById('admin-student-toast');
+                if (toast) {
+                    toast.className = 'alert alert-success bg-success-subtle text-success border border-success rounded-4 mb-4 d-flex align-items-center justify-content-between';
+                    document.getElementById('admin-student-toast-msg').innerText = `បានបន្ថែមទិន្នន័យសិស្ស "${newStudentData.full_name}" (${newStudentData.student_code}) ទៅក្នុង Database ដោយជោគជ័យ!`;
+                    toast.classList.remove('d-none');
+                }
+            });
+        }
+
+        // Live Search Filter
         const searchInput = document.getElementById('student-search-input');
         if (searchInput) {
             searchInput.addEventListener('input', function () {
                 const q = this.value.toLowerCase().trim();
                 const filtered = studentsDataset.filter(s =>
-                    s.full_name.toLowerCase().includes(q) ||
-                    s.student_code.toLowerCase().includes(q) ||
-                    s.phone.toLowerCase().includes(q) ||
-                    s.email.toLowerCase().includes(q) ||
+                    (s.full_name && s.full_name.toLowerCase().includes(q)) ||
+                    (s.student_code && s.student_code.toLowerCase().includes(q)) ||
+                    (s.phone && s.phone.toLowerCase().includes(q)) ||
                     (s.father_name && s.father_name.toLowerCase().includes(q)) ||
-                    (s.mother_name && s.mother_name.toLowerCase().includes(q))
+                    (s.mother_name && s.mother_name.toLowerCase().includes(q)) ||
+                    (s.address && s.address.toLowerCase().includes(q))
                 );
                 renderStudentsTableRows(filtered);
             });
         }
 
-        renderStudentsTableRows(studentsDataset);
+        // Fetch students from Backend API
+        async function fetchStudentsFromAPI() {
+            try {
+                const res = await fetch('/api/students');
+                const data = await res.json();
+                if (data.status === 'success' && Array.isArray(data.students)) {
+                    studentsDataset = data.students;
+                }
+            } catch (err) {
+                console.error('Failed to fetch students from API:', err);
+            }
+            renderStudentsTableRows(studentsDataset);
+            updateKpis();
+            if (document.getElementById('adm-s-code')) {
+                document.getElementById('adm-s-code').value = `STD-2026-00${studentsDataset.length + 1}`;
+            }
+        }
+
+        // Initial Load
+        fetchStudentsFromAPI();
     })();
 </script>

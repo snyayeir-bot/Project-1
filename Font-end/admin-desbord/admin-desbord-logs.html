@@ -1,7 +1,68 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Siemreap&display=swap');
+
     /* Premium Ultra-Modern Dark & Gold Audit Logs Architecture */
-    * {
-        font-family: 'Kantumruy Pro', 'Plus Jakarta Sans', sans-serif;
+    *,
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span:not(.bi):not(.fa):not([class*="bi-"]):not([class*="fa-"]),
+    a,
+    div,
+    table,
+    th,
+    td,
+    input,
+    select,
+    textarea,
+    button,
+    label,
+    strong {
+        font-family: 'Kantumruy Pro', 'Siemreap', 'Plus Jakarta Sans', sans-serif;
+        box-sizing: border-box;
+    }
+
+    /* Protect Bootstrap Icons and Font Awesome */
+    .bi,
+    [class^="bi-"],
+    [class*=" bi-"] {
+        font-family: 'bootstrap-icons' !important;
+        font-style: normal;
+        font-weight: normal !important;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        vertical-align: -.125em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .fa,
+    .fa-solid,
+    .fa-regular,
+    .fa-brands,
+    .fas,
+    .far,
+    .fab,
+    [class^="fa-"],
+    [class*=" fa-"] {
+        font-family: "Font Awesome 6 Free", "FontAwesome" !important;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+    }
+
+    .fa-solid,
+    .fas {
+        font-weight: 900 !important;
     }
 
     /* Executive Hero Header Banner */
@@ -102,24 +163,6 @@
         color: #000000;
     }
 
-    .btn-card-details {
-        background: linear-gradient(135deg, #d4af37 0%, #f5d061 100%);
-        color: #050508;
-        font-weight: 800;
-        border: 1px solid rgba(255, 215, 0, 0.5);
-        border-radius: 12px;
-        padding: 6px 14px;
-        font-size: 0.81rem;
-        box-shadow: 0 4px 18px rgba(212, 175, 55, 0.4);
-        transition: all 0.28s ease;
-    }
-
-    .btn-card-details:hover {
-        box-shadow: 0 8px 28px rgba(212, 175, 55, 0.75);
-        transform: translateY(-2px);
-        color: #000000;
-    }
-
     .btn-outline-glass {
         background: rgba(22, 22, 32, 0.85);
         border: 1px solid rgba(212, 175, 55, 0.4);
@@ -140,12 +183,13 @@
     /* Clean Compact Audit Table Headers */
     .log-table th {
         padding: 12px 14px !important;
-        font-size: 0.83rem;
+        font-size: 0.84rem;
         white-space: nowrap;
         background: rgba(16, 16, 26, 0.95) !important;
         border-bottom: 2px solid rgba(212, 175, 55, 0.4) !important;
         color: #d4af37 !important;
         letter-spacing: 0.3px;
+        font-weight: 700;
     }
 
     .log-table td {
@@ -161,7 +205,7 @@
         border: 1px solid rgba(239, 68, 68, 0.3);
         padding: 2px 8px;
         border-radius: 6px;
-        font-family: monospace;
+        font-family: 'Kantumruy Pro', monospace !important;
         font-size: 0.82rem;
         text-decoration: line-through;
     }
@@ -172,9 +216,36 @@
         border: 1px solid rgba(52, 211, 153, 0.3);
         padding: 2px 8px;
         border-radius: 6px;
-        font-family: monospace;
+        font-family: 'Kantumruy Pro', monospace !important;
         font-size: 0.82rem;
         font-weight: 700;
+    }
+
+    .edited-badge {
+        background: rgba(168, 85, 247, 0.2);
+        color: #c084fc;
+        border: 1px solid rgba(168, 85, 247, 0.4);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.72rem;
+    }
+
+    .log-timestamp-cell {
+        color: #ffffff !important;
+        font-weight: 700;
+        font-size: 0.88rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.07);
+        padding: 5px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(212, 175, 55, 0.35);
+        letter-spacing: 0.3px;
+    }
+
+    .log-timestamp-cell i {
+        color: #ffd700 !important;
     }
 </style>
 
@@ -183,13 +254,20 @@
     <div class="logs-hero-banner p-4 mb-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div>
-                <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;"><i class="bi bi-clock-history me-1"></i> ប្រព័ន្ធកំណត់ត្រាសកម្មភាព និង ការកែប្រែទិន្នន័យ</span>
+                <span class="badge text-dark mb-2" style="background:#d4af37; font-weight:700;"><i
+                        class="bi bi-clock-history me-1"></i> ប្រព័ន្ធកំណត់ត្រាសកម្មភាព និង ការកែប្រែទិន្នន័យ (Audit
+                    Logs)</span>
                 <h2 class="fw-bold text-white mb-1">កំណត់ត្រាសកម្មភាព (Audit Logs & Data Change History)</h2>
-                <p class="text-muted small mb-0">តាមដានសកម្មភាពកែច្នៃទិន្នន័យសិស្ស, គ្រូបង្រៀន, និង ការសម្រេចរបស់នាយកសាលា/Admin ថាបានកែប្រែអ្វីខ្លះ។</p>
+                <p class="text-muted small mb-0">តាមដានសកម្មភាពកែប្រែឈ្មោះសិស្ស, ការបើកនិងបិទឆ្នាំសិក្សា, ការឡើងថ្នាក់,
+                    និងការកែច្នៃទិន្នន័យនានា។</p>
             </div>
-            <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-outline-glass btn-sm"><i class="bi bi-download me-1"></i> ទាញយកកំណត់ត្រា (Excel)</button>
-                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#adminAddNewLogModal"><i class="bi bi-plus-lg me-1"></i> ➕ បញ្ចូលកំណត់ត្រាសកម្មភាពថ្មី</button>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-outline-glass btn-sm" id="btn-refresh-logs"><i
+                        class="bi bi-arrow-clockwise me-1"></i> ផ្ទុកឡើងវិញ</button>
+                <button class="btn btn-outline-glass btn-sm" id="btn-export-logs-csv"><i
+                        class="bi bi-download me-1"></i> ទាញយក Excel/CSV</button>
+                <button class="btn-gold-shimmer" data-bs-toggle="modal" data-bs-target="#adminAddNewLogModal"><i
+                        class="bi bi-plus-lg me-1"></i> ➕ បញ្ចូលកំណត់ត្រាថ្មី</button>
             </div>
         </div>
     </div>
@@ -202,38 +280,41 @@
                     <span class="text-muted extra-small">📝 កំណត់ត្រាកែប្រែសរុប</span>
                     <i class="bi bi-file-earmark-text text-warning fs-5" style="color:#d4af37;"></i>
                 </div>
-                <h3 class="fw-bold text-white mb-0" id="kpi-total-logs">១,៤៨២ កំណត់ត្រា</h3>
-                <span class="text-success extra-small"><i class="bi bi-check-circle me-1"></i>ប្រព័ន្ធដំណើរការសកម្ម</span>
+                <h3 class="fw-bold text-white mb-0" id="kpi-total-logs">0 កំណត់ត្រា</h3>
+                <span class="text-success extra-small"><i
+                        class="bi bi-check-circle me-1"></i>ប្រព័ន្ធដំណើរការសកម្ម</span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="glass-log-kpi" style="border-color: rgba(212, 175, 55, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-warning extra-small fw-bold" style="color:#d4af37;">🎓 ការកែប្រែទិន្នន័យសិស្ស</span>
+                    <span class="text-warning extra-small fw-bold" style="color:#d4af37;">🎓
+                        ការកែប្រែទិន្នន័យសិស្ស</span>
                     <i class="bi bi-graduation-cap text-warning fs-5" style="color:#d4af37;"></i>
                 </div>
-                <h3 class="fw-bold text-warning mb-0" style="color:#d4af37;" id="kpi-student-logs">៨៥០ កំណត់ត្រា</h3>
-                <span class="text-warning extra-small" style="color:#d4af37;">ពិន្ទុ, វត្តមាន, ប្រវត្តិរូប</span>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="glass-log-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-success extra-small fw-bold">👨‍🏫 ការកែប្រែទិន្នន័យគ្រូ</span>
-                    <i class="bi bi-person-workspace text-success fs-5"></i>
-                </div>
-                <h3 class="fw-bold text-success mb-0" id="kpi-teacher-logs">៣៨០ កំណត់ត្រា</h3>
-                <span class="text-success extra-small"><i class="bi bi-graph-up me-1"></i>ថ្នាក់បន្ទុក, កាលវិភាគ</span>
+                <h3 class="fw-bold text-warning mb-0" style="color:#d4af37;" id="kpi-student-logs">0 កំណត់ត្រា</h3>
+                <span class="text-warning extra-small" style="color:#d4af37;">កែឈ្មោះ, ពិន្ទុ, ប្រវត្តិរូប</span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="glass-log-kpi" style="border-color: rgba(56, 189, 248, 0.4);">
                 <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="text-info extra-small fw-bold">🏛️ សកម្មភាពនាយក/Admin</span>
-                    <i class="bi bi-building-gear text-info fs-5"></i>
+                    <span class="text-info extra-small fw-bold">📅 បើក/បិទ ឆ្នាំសិក្សា</span>
+                    <i class="bi bi-calendar-range text-info fs-5"></i>
                 </div>
-                <h3 class="fw-bold text-info mb-0" id="kpi-principal-logs">២៥២ កំណត់ត្រា</h3>
-                <span class="text-info extra-small">ការអនុម័ត & កំណត់សិទ្ធិ</span>
+                <h3 class="fw-bold text-info mb-0" id="kpi-academic-year-logs">0 កំណត់ត្រា</h3>
+                <span class="text-info extra-small">បើកឆ្នាំថ្មី, ឡើងថ្នាក់, បិទឆ្នាំ</span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-log-kpi" style="border-color: rgba(16, 185, 129, 0.4);">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="text-success extra-small fw-bold">👨‍🏫 គ្រូ & សកម្មភាព Admin</span>
+                    <i class="bi bi-building-gear text-success fs-5"></i>
+                </div>
+                <h3 class="fw-bold text-success mb-0" id="kpi-teacher-logs">0 កំណត់ត្រា</h3>
+                <span class="text-success extra-small"><i class="bi bi-shield-check me-1"></i>ចាត់តាំងគ្រូ &
+                    សុវត្ថិភាព</span>
             </div>
         </div>
     </div>
@@ -241,22 +322,31 @@
     <!-- Filter Capsule Bar & Search Input -->
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
         <div class="filter-capsule-bar flex-wrap" id="log-category-filter-pills">
-            <button class="filter-pill-btn active" data-category="All"><i class="bi bi-grid-fill me-1"></i> កំណត់ត្រាទាំងអស់</button>
-            <button class="filter-pill-btn" data-category="Student"><i class="bi bi-graduation-cap me-1"></i> 🎓 ទិន្នន័យសិស្ស</button>
-            <button class="filter-pill-btn" data-category="Teacher"><i class="bi bi-person-badge me-1"></i> 👨‍🏫 ទិន្នន័យគ្រូ</button>
-            <button class="filter-pill-btn" data-category="Principal"><i class="bi bi-building me-1"></i> 🏛️ នាយកសាលា & Admin</button>
+            <button class="filter-pill-btn active" data-category="All"><i class="bi bi-grid-fill me-1"></i>
+                កំណត់ត្រាទាំងអស់</button>
+            <button class="filter-pill-btn" data-category="Student"><i class="bi bi-graduation-cap me-1"></i> 🎓
+                ទិន្នន័យសិស្ស (កែឈ្មោះ/ពិន្ទុ)</button>
+            <button class="filter-pill-btn" data-category="AcademicYear"><i class="bi bi-calendar-check me-1"></i> 📅
+                បើក/បិទ ឆ្នាំសិក្សា</button>
+            <button class="filter-pill-btn" data-category="Teacher"><i class="bi bi-person-badge me-1"></i> 👨‍🏫
+                ទិន្នន័យគ្រូ</button>
+            <button class="filter-pill-btn" data-category="Principal"><i class="bi bi-building me-1"></i> 🏛️ នាយកសាលា &
+                Admin</button>
         </div>
         <div class="search-box" style="width: 320px;">
             <i class="bi bi-search text-muted"></i>
-            <input type="text" id="log-search-input" placeholder="ស្វែងរក ឈ្មោះអ្នកកែប្រែ, សិស្ស, គ្រូ...">
+            <input type="text" id="log-search-input" placeholder="ស្វែងរក ឈ្មោះអ្នកកែ, សិស្ស, សកម្មភាព...">
         </div>
     </div>
 
     <!-- Audit Logs Master Table -->
     <div class="card-custom p-4 mb-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="fw-bold text-white mb-0"><i class="bi bi-list-columns-reverse me-2" style="color:#d4af37 !important;"></i>តារាងសកម្មភាពកែប្រែទិន្នន័យ (Audit Log History Table)</h5>
-            <span class="badge text-dark px-3 py-1.5" style="background:#d4af37; font-weight:700;" id="total-logs-badge">១,៤៨២ កំណត់ត្រា</span>
+            <h5 class="fw-bold text-white mb-0"><i class="bi bi-list-columns-reverse me-2"
+                    style="color:#d4af37 !important;"></i>តារាងសកម្មភាពកែប្រែទិន្នន័យជាក់ស្តែង (Audit Log History Table)
+            </h5>
+            <span class="badge text-dark px-3 py-1.5" style="background:#d4af37; font-weight:700;"
+                id="total-logs-badge">0 កំណត់ត្រា</span>
         </div>
 
         <div class="table-responsive">
@@ -273,72 +363,94 @@
                     </tr>
                 </thead>
                 <tbody id="audit-log-table-body">
-                    <!-- Dynamic Audit Log Rows Rendered Here -->
+                    <tr>
+                        <td colspan="7" class="text-center py-4 text-muted">កំពុងទាញយកទិន្នន័យ...</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 
-<!-- Audit Log Detail Modal -->
+<!-- Modal 1: Audit Log Detail Modal -->
 <div class="modal fade" id="logDetailModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
             <div class="modal-header border-bottom border-dark p-4">
                 <div class="d-flex align-items-center gap-3">
-                    <div class="p-3 bg-dark rounded-circle border border-warning text-warning" style="color:#d4af37 !important;">
+                    <div class="p-3 bg-dark rounded-circle border border-warning text-warning"
+                        style="color:#d4af37 !important;">
                         <i class="bi bi-file-earmark-diff fs-4"></i>
                     </div>
                     <div>
-                        <span class="badge text-dark fw-bold mb-1" style="background:#d4af37;" id="modal-log-id">LOG-2026-8801</span>
+                        <span class="badge text-dark fw-bold mb-1" style="background:#d4af37;"
+                            id="modal-log-id">LOG-0001</span>
                         <h4 class="fw-bold text-white mb-0" id="modal-log-title">ព័ត៌មានលម្អិតអំពីការកែប្រែទិន្នន័យ</h4>
                     </div>
                 </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-muted extra-small d-block mb-1">⏰ កាលបរិច្ឆេទ និង ម៉ោងកែប្រែ</span>
-                            <h6 class="fw-bold text-white mb-0" id="modal-log-time">០៩ សីហា ២០២៦ (១៥:៤៥:១២)</h6>
+                            <span class="text-warning extra-small d-block mb-1" style="color:#d4af37 !important;"><i
+                                    class="bi bi-clock-history me-1"></i> កាលបរិច្ឆេទ និង ម៉ោងកែប្រែ</span>
+                            <h5 class="fw-bold text-white mb-0" id="modal-log-time">—</h5>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
                             <span class="text-muted extra-small d-block mb-1">👤 អ្នកធ្វើសកម្មភាព (Performed By)</span>
-                            <h6 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;" id="modal-log-user">នាយកសាលា សុខ វិបុល (Principal)</h6>
+                            <h6 class="fw-bold text-warning mb-0" style="color:#d4af37 !important;" id="modal-log-user">
+                                —</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-muted extra-small d-block mb-1">🎯 មុខសញ្ញាដែលត្រូវកែប្រែ (Target Entity)</span>
-                            <h6 class="fw-bold text-white mb-0" id="modal-log-target">🎓 សិស្ស: សុខ ចាន់ដារ៉ា (STD-2026-001)</h6>
+                            <span class="text-muted extra-small d-block mb-1">🎯 មុខសញ្ញាដែលត្រូវកែប្រែ (Target
+                                Entity)</span>
+                            <h6 class="fw-bold text-white mb-0" id="modal-log-target">—</h6>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
                             <span class="text-muted extra-small d-block mb-1">📝 ប្រភេទសកម្មភាព</span>
-                            <h6 class="fw-bold text-white mb-0" id="modal-log-action-type">✏️ កែប្រែពិន្ទុប្រឡង (Update Exam Score)</h6>
+                            <h5 class="fw-bold text-white mb-0" id="modal-log-action-type">—</h5>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="p-3 rounded-3 bg-black border border-secondary">
-                            <span class="text-muted extra-small d-block mb-2">🔍 ប្រៀបធៀបទិន្នន័យមុន និង ក្រោយកែប្រែ (Before vs After JSON Diff)</span>
-                            <div class="d-flex align-items-center gap-3 p-2 bg-dark rounded border border-secondary">
-                                <div><span class="text-muted small">ទិន្នន័យចាស់:</span> <span class="diff-badge-old" id="modal-log-old-val">គណិតវិទ្យា: ៨៥ ពិន្ទុ</span></div>
-                                <i class="bi bi-arrow-right text-warning" style="color:#d4af37 !important;"></i>
-                                <div><span class="text-muted small">ទិន្នន័យថ្មី:</span> <span class="diff-badge-new" id="modal-log-new-val">គណិតវិទ្យា: ៩៥ ពិន្ទុ</span></div>
+                            <span class="text-muted extra-small d-block mb-2">🔍 ប្រៀបធៀបទិន្នន័យមុន និង ក្រោយកែប្រែ
+                                (Before vs After Diff)</span>
+                            <div
+                                class="d-flex flex-wrap align-items-center gap-3 p-3 bg-dark rounded border border-secondary">
+                                <div><span class="text-muted small d-block mb-1">តម្លៃចាស់ (Old):</span> <span
+                                        class="diff-badge-old fs-6" id="modal-log-old-val">—</span></div>
+                                <i class="bi bi-arrow-right text-warning fs-5 mx-2"
+                                    style="color:#d4af37 !important;"></i>
+                                <div><span class="text-muted small d-block mb-1">តម្លៃថ្មី (New):</span> <span
+                                        class="diff-badge-new fs-6" id="modal-log-new-val">—</span></div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12" id="modal-log-details-container">
+                        <div class="p-3 rounded-3 bg-black border border-secondary">
+                            <span class="text-muted extra-small d-block mb-1">📋 បរិយាយលម្អិត (Details / Notes)</span>
+                            <p class="text-light small mb-0" id="modal-log-details">—</p>
+                        </div>
+                    </div>
                     <div class="col-md-12">
-                        <div class="p-3 rounded-3 bg-black border border-secondary d-flex justify-content-between align-items-center">
+                        <div
+                            class="p-3 rounded-3 bg-black border border-secondary d-flex justify-content-between align-items-center">
                             <div>
                                 <span class="text-muted extra-small d-block mb-1">🌐 អាសយដ្ឋាន IP & ឧបករណ៍</span>
-                                <h6 class="fw-bold text-white mb-0" id="modal-log-ip">192.168.1.45 (Windows PC • Chrome Browser)</h6>
+                                <h6 class="fw-bold text-white mb-0" id="modal-log-ip">—</h6>
                             </div>
-                            <span class="badge bg-success-subtle text-success px-3 py-2 fw-bold"><i class="bi bi-shield-check me-1"></i> កត់ត្រាក្នុងប្រព័ន្ធសុវត្ថិភាព</span>
+                            <span class="badge bg-success-subtle text-success px-3 py-2 fw-bold"><i
+                                    class="bi bi-shield-check me-1"></i> កត់ត្រាក្នុងប្រព័ន្ធសុវត្ថិភាព</span>
                         </div>
                     </div>
                 </div>
@@ -350,96 +462,250 @@
     </div>
 </div>
 
+<!-- Modal 2: Edit Audit Log Modal (អនុញ្ញាតឱ្យកែប្រែកំណត់ត្រាផ្ទាល់) -->
+<div class="modal fade" id="adminEditLogModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-pencil-square fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">កែប្រែកំណត់ត្រា (Edit
+                            Log)</span>
+                        <h4 class="fw-bold text-white mb-0" id="edit-log-modal-header">កែប្រែព័ត៌មាន Log Entry</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-edit-log-form">
+                    <input type="hidden" id="edit-log-id">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អ្នកធ្វើសកម្មភាព
+                                (Performed By)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="edit-log-user" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ផ្នែក/ជំពូក
+                                (Category)</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="edit-log-category"
+                                required>
+                                <option value="Student">🎓 សិស្សរៀន (Student)</option>
+                                <option value="AcademicYear">📅 ឆ្នាំសិក្សា (Academic Year)</option>
+                                <option value="Teacher">👨‍🏫 គ្រូបង្រៀន (Teacher)</option>
+                                <option value="Exam">🏆 ពិន្ទុ/ប្រឡង (Exam)</option>
+                                <option value="Principal">🏛️ នាយកសាលា & Admin</option>
+                                <option value="System">⚙️ ប្រព័ន្ធសុវត្ថិភាព (System)</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">មុខសញ្ញា (Target
+                                Entity)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="edit-log-target" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ប្រភេទសកម្មភាព
+                                (Action Type)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="edit-log-action" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">តម្លៃចាស់ (Old
+                                Value)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="edit-log-old">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">តម្លៃថ្មី (New
+                                Value)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="edit-log-new">
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កំណត់ចំណាំបន្ថែម /
+                                មូលហេតុ (Details & Remarks)</label>
+                            <textarea class="form-control bg-dark text-white border-secondary" id="edit-log-details"
+                                rows="2" placeholder="បញ្ចូលកំណត់ចំណាំនៃការកែប្រែ..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm"
+                            data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm" id="btn-submit-edit-log"><i
+                                class="bi bi-save me-1"></i> រក្សាទុកការកែប្រែ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3: Add New Log Form Modal -->
+<div class="modal fade" id="adminAddNewLogModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4"
+            style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
+            <div class="modal-header border-bottom border-dark p-4">
+                <div class="d-flex align-items-center gap-2.5">
+                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning"
+                        style="color:#d4af37 !important;">
+                        <i class="bi bi-clock-history fs-5"></i>
+                    </div>
+                    <div>
+                        <span class="badge text-white fw-bold mb-1"
+                            style="background:#d4af37;">សុវត្ថិភាពប្រព័ន្ធ</span>
+                        <h4 class="fw-bold text-white mb-0">ទម្រង់បញ្ចូលកំណត់ត្រាសកម្មភាពថ្មី (Add Audit Log Entry)</h4>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="admin-add-log-form">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">អ្នកធ្វើសកម្មភាព
+                                (Performed By)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="adm-log-user" value="លោក នាយកសាលា (Admin)" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ផ្នែក/ជំពូក
+                                (Category)</label>
+                            <select class="form-select bg-dark text-white border-secondary" id="adm-log-category"
+                                required>
+                                <option value="Student" selected>🎓 សិស្សរៀន (Student)</option>
+                                <option value="AcademicYear">📅 ឆ្នាំសិក្សា (Academic Year)</option>
+                                <option value="Teacher">👨‍🏫 គ្រូបង្រៀន (Teacher)</option>
+                                <option value="Exam">🏆 ពិន្ទុ/ប្រឡង (Exam)</option>
+                                <option value="Principal">🏛️ នាយកសាលា & Admin</option>
+                                <option value="System">⚙️ ប្រព័ន្ធសុវត្ថិភាព (System)</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">មុខសញ្ញាកែប្រែ
+                                (Target Entity)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="adm-log-target" placeholder="ឧ. សិស្ស: សុខ ចាន់ដារ៉ា ឬ ឆ្នាំសិក្សា..." required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">ប្រភេទសកម្មភាព
+                                (Action Title)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary"
+                                id="adm-log-action" placeholder="ឧ. ✏️ កែប្រែឈ្មោះសិស្ស..." required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">តម្លៃចាស់ (Old
+                                Value)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-log-old"
+                                placeholder="ឧ. ឈ្មោះចាស់: សុខ ចាន់ដា">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">តម្លៃថ្មី (New
+                                Value)</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-log-new"
+                                placeholder="ឧ. ឈ្មោះថ្មី: សុខ ចាន់ដារ៉ា">
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label text-white extra-small text-uppercase fw-bold">កំណត់ចំណាំលម្អិត
+                                (Details / Notes)</label>
+                            <textarea class="form-control bg-dark text-white border-secondary" id="adm-log-details"
+                                rows="2" placeholder="ព័ត៌មានលម្អិតពីការកែប្រែ..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
+                        <button type="button" class="btn btn-outline-glass btn-sm"
+                            data-bs-dismiss="modal">បោះបង់</button>
+                        <button type="submit" class="btn-gold-shimmer btn-sm" id="btn-submit-new-log"><i
+                                class="bi bi-shield-check me-1"></i> រក្សាទុកកំណត់ត្រា</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     (function () {
-        // Dataset of Audit Logs tracking modifications for Students, Teachers, and Principal/Admin Actions
-        const auditLogsDataset = [
-            {
-                "id": "LOG-2026-8801",
-                "timestamp": "០៩ សីហា ២០២៦ (១៥:៤៥)",
-                "category": "Student",
-                "performed_by": "នាយកសាលា សុខ វិបុល",
-                "role_badge": "🏛️ នាយកសាលា",
-                "target_name": "សិស្ស: សុខ ចាន់ដារ៉ា (ថ្នាក់ទី ១២-A)",
-                "action_type": "✏️ កែប្រែពិន្ទុប្រឡង",
-                "old_val": "គណិតវិទ្យា: ៨៥",
-                "new_val": "គណិតវិទ្យា: ៩៥",
-                "ip": "192.168.1.45 (Windows PC)"
-            },
-            {
-                "id": "LOG-2026-8802",
-                "timestamp": "០៩ សីហា ២០២៦ (១៤:២០)",
-                "category": "Teacher",
-                "performed_by": "នាយកសាលា សុខ វិបុល",
-                "role_badge": "🏛️ នាយកសាលា",
-                "target_name": "គ្រូ: ស្រី ពេជ្រ",
-                "action_type": "🏫 ផ្លាស់ប្តូរគ្រូបន្ទុកថ្នាក់",
-                "old_val": "មិនទាន់មានថ្នាក់",
-                "new_val": "ថ្នាក់ទី ១២-A",
-                "ip": "192.168.1.45 (Windows PC)"
-            },
-            {
-                "id": "LOG-2026-8803",
-                "timestamp": "០៩ សីហា ២០២៦ (១១:១០)",
-                "category": "Student",
-                "performed_by": "Admin ឈឹម វិចិត្រ",
-                "role_badge": "👨‍💼 System Admin",
-                "target_name": "សិស្ស: គឹម ស៊ាងហៃ",
-                "action_type": "🟡 ធ្វើបច្ចុប្បន្នភាពវត្តមាន",
-                "old_val": "អវត្តមានអត់ច្បាប់",
-                "new_val": "អវត្តមានមានច្បាប់",
-                "ip": "192.168.1.88 (MacBook Pro)"
-            },
-            {
-                "id": "LOG-2026-8804",
-                "timestamp": "០៨ សីហា ២០២៦ (១៦:៥០)",
-                "category": "Principal",
-                "performed_by": "នាយកសាលា សុខ វិបុល",
-                "role_badge": "🏛️ នាយកសាលា",
-                "target_name": "កាលវិភាគប្រឡងឆមាស",
-                "action_type": "🔒 អនុម័តកាលវិភាគប្រឡង",
-                "old_val": "ព្រាង (Draft)",
-                "new_val": "ផ្លូវការ (Approved)",
-                "ip": "192.168.1.45 (Windows PC)"
-            },
-            {
-                "id": "LOG-2026-8805",
-                "timestamp": "០៨ សីហា ២០២៦ (១០:១៥)",
-                "category": "Teacher",
-                "performed_by": "Admin ឈឹម វិចិត្រ",
-                "role_badge": "👨‍💼 System Admin",
-                "target_name": "គ្រូ: សុខ វិបុល",
-                "action_type": "✏️ កែប្រែប្រវត្តិរូបគ្រូ",
-                "old_val": "បរិញ្ញាបត្រ",
-                "new_val": "បរិញ្ញាបត្រជាន់ខ្ពស់",
-                "ip": "192.168.1.88 (MacBook Pro)"
-            },
-            {
-                "id": "LOG-2026-8806",
-                "timestamp": "០៧ សីហា ២០២៦ (០៩:០៥)",
-                "category": "Student",
-                "performed_by": "គ្រូ ស្រី ពេជ្រ",
-                "role_badge": "👩‍🏫 គ្រូបន្ទុកថ្នាក់",
-                "target_name": "សិស្ស: អ៊ុង វីរៈ",
-                "action_type": "➕ បញ្ចូលកំណត់ត្រាអាកប្បកិរិយា",
-                "old_val": "ធម្មតា",
-                "new_val": "🚨 ត្រូវតាមដាន",
-                "ip": "192.168.1.102 (iPad OS)"
-            }
-        ];
-
+        let allAuditLogs = [];
         let activeCategoryFilter = "All";
 
-        // Render Table Rows (បង្ហាញទិន្នន័យកែប្រែរបស់ សិស្ស, គ្រូ, និង នាយកសាលា/Admin)
+        // 1. Fetch Logs from Real API
+        async function fetchAuditLogs() {
+            try {
+                const tbody = document.getElementById('audit-log-table-body');
+                if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-muted"><i class="bi bi-hourglass-split me-1 text-warning"></i> កំពុងទាញយកទិន្នន័យកំណត់ត្រាសកម្មភាព...</td></tr>`;
+
+                const res = await fetch('/api/logs?limit=300');
+                if (!res.ok) throw new Error(`HTTP Error ${res.status}`);
+                const data = await res.json();
+
+                if (data.status === 'success') {
+                    allAuditLogs = data.logs || [];
+                    updateKPIs(data.kpi || {});
+                    renderAuditLogRows(allAuditLogs);
+                } else {
+                    if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-danger">មិនអាចទាញយកទិន្នន័យបានឡើយ: ${data.message}</td></tr>`;
+                }
+            } catch (err) {
+                console.error("[-] Error fetching audit logs:", err);
+                const tbody = document.getElementById('audit-log-table-body');
+                if (tbody) tbody.innerHTML = `<tr><td colspan="7" class="text-center py-4 text-danger">កំហុសក្នុងការតភ្ជាប់: ${err.message}</td></tr>`;
+            }
+        }
+
+        // 2. Update KPI Stats Cards
+        function updateKPIs(kpi) {
+            const elTotal = document.getElementById('kpi-total-logs');
+            const elStudent = document.getElementById('kpi-student-logs');
+            const elAy = document.getElementById('kpi-academic-year-logs');
+            const elTeacher = document.getElementById('kpi-teacher-logs');
+
+            if (elTotal) elTotal.innerText = `${(kpi.total || allAuditLogs.length).toLocaleString()} កំណត់ត្រា`;
+            if (elStudent) elStudent.innerText = `${(kpi.student || 0).toLocaleString()} កំណត់ត្រា`;
+            if (elAy) elAy.innerText = `${(kpi.academic_year || 0).toLocaleString()} កំណត់ត្រា`;
+            if (elTeacher) elTeacher.innerText = `${((kpi.teacher || 0) + (kpi.principal || 0)).toLocaleString()} កំណត់ត្រា`;
+        }
+
+        // 3. Render Audit Log Table Rows
         function renderAuditLogRows(logsList) {
             const tbody = document.getElementById('audit-log-table-body');
             const badge = document.getElementById('total-logs-badge');
             if (!tbody) return;
 
-            let filtered = logsList;
-            if (activeCategoryFilter !== 'All') {
-                filtered = logsList.filter(l => l.category.toLowerCase() === activeCategoryFilter.toLowerCase());
-            }
+            const q = (document.getElementById('log-search-input')?.value || '').toLowerCase().trim();
+
+            let filtered = logsList.filter(l => {
+                if (activeCategoryFilter !== 'All') {
+                    if (l.category.toLowerCase() !== activeCategoryFilter.toLowerCase()) return false;
+                }
+                if (q) {
+                    const matchUser = l.performed_by && l.performed_by.toLowerCase().includes(q);
+                    const matchTarget = l.target_name && l.target_name.toLowerCase().includes(q);
+                    const matchAction = l.action_type && l.action_type.toLowerCase().includes(q);
+                    const matchOld = l.old_val && l.old_val.toLowerCase().includes(q);
+                    const matchNew = l.new_val && l.new_val.toLowerCase().includes(q);
+                    const matchDetails = l.details && l.details.toLowerCase().includes(q);
+                    if (!matchUser && !matchTarget && !matchAction && !matchOld && !matchNew && !matchDetails) return false;
+                }
+                return true;
+            });
 
             if (badge) {
                 badge.innerText = `${filtered.length} កំណត់ត្រា`;
@@ -449,195 +715,281 @@
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="7" class="text-center p-4 text-muted">
-                            <i class="bi bi-inbox fs-2 d-block mb-2 text-warning"></i>
-                            មិនមានទិន្នន័យកំណត់ត្រាក្នុងប្រភេទនេះឡើយ។
+                            <i class="bi bi-inbox fs-2 d-block mb-2 text-warning" style="color:#d4af37 !important;"></i>
+                            មិនមានទិន្នន័យកំណត់ត្រាដែលត្រូវនឹងលក្ខខណ្ឌស្វែងរកឡើយ។
                         </td>
                     </tr>`;
                 return;
             }
 
-            tbody.innerHTML = filtered.map((l, index) => `
-                <tr>
-                    <td><span class="text-muted extra-small"><i class="bi bi-clock me-1 text-warning" style="color:#d4af37 !important;"></i>${l.timestamp}</span></td>
-                    <td>
-                        <div class="fw-semibold text-white mb-0.5">${l.performed_by}</div>
-                        <span class="badge bg-dark border border-secondary text-warning extra-small" style="color:#d4af37 !important;">${l.role_badge}</span>
-                    </td>
-                    <td><span class="fw-semibold text-white">${l.target_name}</span></td>
-                    <td><span class="badge bg-secondary-subtle text-light px-2.5 py-1">${l.action_type}</span></td>
-                    <td>
-                        <div class="d-flex align-items-center gap-1.5 extra-small">
-                            <span class="diff-badge-old">${l.old_val}</span>
-                            <i class="bi bi-arrow-right text-warning" style="color:#d4af37 !important;"></i>
-                            <span class="diff-badge-new">${l.new_val}</span>
-                        </div>
-                    </td>
-                    <td><code class="extra-small">${l.ip}</code></td>
-                    <td class="text-end">
-                        <button class="btn-card-details view-log-modal-btn" data-log-index="${index}">
-                            <i class="bi bi-eye-fill me-1"></i> មើលព័ត៌មានលម្អិត 👁️
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
+            tbody.innerHTML = filtered.map(l => {
+                const isEditedBadge = l.is_edited ? `<span class="edited-badge ms-1" title="បានកែប្រែដោយ ${l.edited_by || 'Admin'}">កែប្រែរួច ✎</span>` : '';
+                return `
+                    <tr>
+                        <td>
+                            <div class="log-timestamp-cell mb-1">
+                                <i class="bi bi-clock-history"></i>
+                                <span>${l.timestamp}</span>
+                            </div>
+                            ${isEditedBadge ? `<div class="mt-1">${isEditedBadge}</div>` : ''}
+                        </td>
+                        <td>
+                            <div class="fw-semibold text-white mb-0.5">${l.performed_by}</div>
+                            <span class="badge bg-dark border border-secondary text-warning extra-small" style="color:#d4af37 !important;">${l.role_badge || '🏛️ នាយកសាលា'}</span>
+                        </td>
+                        <td>
+                            <span class="fw-semibold text-white">${l.target_name}</span>
+                            ${l.target_id ? `<code class="d-block extra-small text-muted">${l.target_id}</code>` : ''}
+                        </td>
+                        <td><span class="fw-bold text-white" style="font-size:0.88rem;">${l.action_type}</span></td>
+                        <td>
+                            <div class="d-flex align-items-center gap-1.5 extra-small">
+                                <span class="diff-badge-old">${l.old_val || '—'}</span>
+                                <i class="bi bi-arrow-right text-warning" style="color:#d4af37 !important;"></i>
+                                <span class="diff-badge-new">${l.new_val || '—'}</span>
+                            </div>
+                        </td>
+                        <td><code class="extra-small">${l.ip || '127.0.0.1'}</code></td>
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-outline-glass btn-sm btn-view-log" data-log-id="${l.log_id}" title="មើលលម្អិត">
+                                    <i class="bi bi-eye text-warning"></i>
+                                </button>
+                                <button class="btn btn-outline-glass btn-sm btn-edit-log" data-log-id="${l.log_id}" title="កែប្រែកំណត់ត្រានេះ">
+                                    <i class="bi bi-pencil-square text-info"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm btn-delete-log" data-log-id="${l.log_id}" title="លុបកំណត់ត្រា">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
 
-            // Click listener for modal
-            document.querySelectorAll('.view-log-modal-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
-                    const idx = parseInt(this.getAttribute('data-log-index'));
-                    const logObj = filtered[idx] || filtered[0];
-                    showLogDetailModal(logObj);
-                });
+            bindLogActionEvents();
+        }
+
+        // 4. Bind Action Buttons (View, Edit, Delete)
+        function bindLogActionEvents() {
+            // View Details Modal
+            document.querySelectorAll('.btn-view-log').forEach(btn => {
+                btn.onclick = function (e) {
+                    e.stopPropagation();
+                    const logId = this.getAttribute('data-log-id');
+                    const logObj = allAuditLogs.find(l => String(l.log_id) === String(logId));
+                    if (logObj) showLogDetailModal(logObj);
+                };
+            });
+
+            // Edit Log Modal
+            document.querySelectorAll('.btn-edit-log').forEach(btn => {
+                btn.onclick = function (e) {
+                    e.stopPropagation();
+                    const logId = this.getAttribute('data-log-id');
+                    const logObj = allAuditLogs.find(l => String(l.log_id) === String(logId));
+                    if (logObj) openEditLogModal(logObj);
+                };
+            });
+
+            // Delete Log
+            document.querySelectorAll('.btn-delete-log').forEach(btn => {
+                btn.onclick = async function (e) {
+                    e.stopPropagation();
+                    const logId = this.getAttribute('data-log-id');
+                    if (confirm(`តើអ្នកពិតជាចង់លុបកំណត់ត្រាសកម្មភាព #${logId} នេះចេញពីប្រព័ន្ធមែនទេ?`)) {
+                        try {
+                            const res = await fetch(`/api/logs/${logId}`, { method: 'DELETE' });
+                            const data = await res.json();
+                            if (res.ok) {
+                                alert(data.message || 'បានលុបដោយជោគជ័យ!');
+                                fetchAuditLogs();
+                            } else {
+                                alert(data.message || 'មានបញ្ហាក្នុងការលុប');
+                            }
+                        } catch (err) {
+                            alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                        }
+                    }
+                };
             });
         }
 
-        // Show Modal Function
+        // 5. Show Detail Modal
         function showLogDetailModal(logObj) {
-            document.getElementById('modal-log-id').innerText = logObj.id;
+            document.getElementById('modal-log-id').innerText = logObj.id || `LOG-${logObj.log_id}`;
             document.getElementById('modal-log-time').innerText = logObj.timestamp;
-            document.getElementById('modal-log-user').innerText = `${logObj.performed_by} (${logObj.role_badge})`;
-            document.getElementById('modal-log-target').innerText = logObj.target_name;
+            document.getElementById('modal-log-user').innerText = `${logObj.performed_by} (${logObj.role_badge || 'User'})`;
+            document.getElementById('modal-log-target').innerText = logObj.target_name + (logObj.target_id ? ` (${logObj.target_id})` : '');
             document.getElementById('modal-log-action-type').innerText = logObj.action_type;
-            document.getElementById('modal-log-old-val').innerText = logObj.old_val;
-            document.getElementById('modal-log-new-val').innerText = logObj.new_val;
-            document.getElementById('modal-log-ip').innerText = logObj.ip;
+            document.getElementById('modal-log-old-val').innerText = logObj.old_val || '—';
+            document.getElementById('modal-log-new-val').innerText = logObj.new_val || '—';
+            document.getElementById('modal-log-details').innerText = logObj.details || 'គ្មានកំណត់ចំណាំបន្ថែម';
+            document.getElementById('modal-log-ip').innerText = logObj.ip || '127.0.0.1';
 
             const modalElem = document.getElementById('logDetailModal');
             if (modalElem && typeof bootstrap !== 'undefined') {
-                const bsModal = new bootstrap.Modal(modalElem);
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
                 bsModal.show();
             }
         }
 
-        // Category Filter Pills Listener
+        // 6. Open Edit Modal
+        function openEditLogModal(logObj) {
+            document.getElementById('edit-log-id').value = logObj.log_id;
+            document.getElementById('edit-log-modal-header').innerText = `កែប្រែកំណត់ត្រា ${logObj.id || '#' + logObj.log_id}`;
+            document.getElementById('edit-log-user').value = logObj.performed_by || '';
+            document.getElementById('edit-log-category').value = logObj.category || 'Student';
+            document.getElementById('edit-log-target').value = logObj.target_name || '';
+            document.getElementById('edit-log-action').value = logObj.action_type || '';
+            document.getElementById('edit-log-old').value = logObj.old_val || '';
+            document.getElementById('edit-log-new').value = logObj.new_val || '';
+            document.getElementById('edit-log-details').value = logObj.details || '';
+
+            const modalElem = document.getElementById('adminEditLogModal');
+            if (modalElem && typeof bootstrap !== 'undefined') {
+                const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
+                bsModal.show();
+            }
+        }
+
+        // 7. Submit Edit Log Form
+        const editLogForm = document.getElementById('admin-edit-log-form');
+        if (editLogForm) {
+            editLogForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const logId = document.getElementById('edit-log-id').value;
+                const submitBtn = document.getElementById('btn-submit-edit-log');
+
+                const payload = {
+                    performed_by: document.getElementById('edit-log-user').value.trim(),
+                    category: document.getElementById('edit-log-category').value,
+                    target_name: document.getElementById('edit-log-target').value.trim(),
+                    action_type: document.getElementById('edit-log-action').value.trim(),
+                    old_val: document.getElementById('edit-log-old').value.trim(),
+                    new_val: document.getElementById('edit-log-new').value.trim(),
+                    details: document.getElementById('edit-log-details').value.trim(),
+                    edited_by: "លោក នាយកសាលា (Admin)"
+                };
+
+                try {
+                    if (submitBtn) submitBtn.disabled = true;
+                    const res = await fetch(`/api/logs/${logId}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+
+                    if (res.ok && data.status === 'success') {
+                        alert(data.message || 'បានកែប្រែកំណត់ត្រាដោយជោគជ័យ!');
+                        const modalElem = document.getElementById('adminEditLogModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+                        fetchAuditLogs();
+                    } else {
+                        alert(data.message || 'បរាជ័យក្នុងការកែប្រែ');
+                    }
+                } catch (err) {
+                    alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                } finally {
+                    if (submitBtn) submitBtn.disabled = false;
+                }
+            });
+        }
+
+        // 8. Submit Add New Log Form
+        const addLogForm = document.getElementById('admin-add-log-form');
+        if (addLogForm) {
+            addLogForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const submitBtn = document.getElementById('btn-submit-new-log');
+
+                const payload = {
+                    performed_by: document.getElementById('adm-log-user').value.trim(),
+                    category: document.getElementById('adm-log-category').value,
+                    target_name: document.getElementById('adm-log-target').value.trim(),
+                    action_type: document.getElementById('adm-log-action').value.trim(),
+                    old_val: document.getElementById('adm-log-old').value.trim(),
+                    new_val: document.getElementById('adm-log-new').value.trim(),
+                    details: document.getElementById('adm-log-details').value.trim(),
+                    role_badge: "🏛️ នាយកសាលា / Admin"
+                };
+
+                try {
+                    if (submitBtn) submitBtn.disabled = true;
+                    const res = await fetch('/api/logs', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+
+                    if (res.ok && data.status === 'success') {
+                        alert(data.message || 'បានបញ្ចូលកំណត់ត្រាសកម្មភាពដោយជោគជ័យ!');
+                        const modalElem = document.getElementById('adminAddNewLogModal');
+                        if (modalElem && typeof bootstrap !== 'undefined') {
+                            const bsModal = bootstrap.Modal.getInstance(modalElem);
+                            if (bsModal) bsModal.hide();
+                        }
+                        addLogForm.reset();
+                        fetchAuditLogs();
+                    } else {
+                        alert(data.message || 'បរាជ័យក្នុងការបញ្ចូល');
+                    }
+                } catch (err) {
+                    alert('កំហុសប្រព័ន្ធ៖ ' + err.message);
+                } finally {
+                    if (submitBtn) submitBtn.disabled = false;
+                }
+            });
+        }
+
+        // 9. Category Filter Pills Listener
         document.querySelectorAll('#log-category-filter-pills .filter-pill-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('#log-category-filter-pills .filter-pill-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
 
                 activeCategoryFilter = this.getAttribute('data-category');
-                renderAuditLogRows(auditLogsDataset);
+                renderAuditLogRows(allAuditLogs);
             });
         });
 
-        // Search Input Filter
-        const searchInput = document.getElementById('log-search-input');
-        if (searchInput) {
-            searchInput.addEventListener('input', function () {
-                const q = this.value.toLowerCase().trim();
-                const filtered = auditLogsDataset.filter(l =>
-                    l.performed_by.toLowerCase().includes(q) ||
-                    l.target_name.toLowerCase().includes(q) ||
-                    l.action_type.toLowerCase().includes(q) ||
-                    l.old_val.toLowerCase().includes(q) ||
-                    l.new_val.toLowerCase().includes(q)
-                );
-                renderAuditLogRows(filtered);
+        // 10. Search Input Filter
+        document.getElementById('log-search-input')?.addEventListener('input', () => {
+            renderAuditLogRows(allAuditLogs);
+        });
+
+        // 11. Refresh Button
+        document.getElementById('btn-refresh-logs')?.addEventListener('click', () => {
+            fetchAuditLogs();
+        });
+
+        // 12. Export to CSV/Excel
+        document.getElementById('btn-export-logs-csv')?.addEventListener('click', () => {
+            if (!allAuditLogs || allAuditLogs.length === 0) {
+                alert('គ្មានទិន្នន័យកំណត់ត្រាសម្រាប់ទាញយកទេ');
+                return;
+            }
+            let csv = "ID,កាលបរិច្ឆេទ,អ្នកធ្វើសកម្មភាព,តួនាទី,មុខសញ្ញា,ប្រភេទសកម្មភាព,តម្លៃចាស់,តម្លៃថ្មី,IP\n";
+            allAuditLogs.forEach(l => {
+                const clean = (txt) => `"${(txt || '').replace(/"/g, '""')}"`;
+                csv += `${clean(l.id)},${clean(l.timestamp)},${clean(l.performed_by)},${clean(l.role_badge)},${clean(l.target_name)},${clean(l.action_type)},${clean(l.old_val)},${clean(l.new_val)},${clean(l.ip)}\n`;
             });
-        }
 
-        // Add Audit Log Submission Handler
-        const addLogForm = document.getElementById('admin-add-log-form');
-        if (addLogForm) {
-            addLogForm.addEventListener('submit', function (e) {
-                e.preventDefault();
+            const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", `Audit_Logs_${new Date().toISOString().slice(0, 10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
 
-                const user = document.getElementById('adm-log-user').value.trim();
-                const category = document.getElementById('adm-log-category').value;
-                const action = document.getElementById('adm-log-action').value.trim();
-                const oldVal = document.getElementById('adm-log-old').value.trim();
-                const newVal = document.getElementById('adm-log-new').value.trim();
-
-                if (user && action) {
-                    auditLogsDataset.unshift({
-                        id: `LOG-2026-${Date.now().toString().slice(-3)}`,
-                        time: "ទើបតែបន្ថែម",
-                        date: "១២ សីហា ២០២៦",
-                        performed_by: user,
-                        role: "Admin / កត់ត្រាផ្ទាល់",
-                        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80",
-                        target_name: "ប្រព័ន្ធគ្រប់គ្រងសាលា",
-                        target_id: "SYS-MAIN",
-                        category: category,
-                        action_type: action,
-                        old_val: oldVal || "—",
-                        new_val: newVal || "ទិន្នន័យថ្មី",
-                        ip: "192.168.1.15",
-                        status: "success"
-                    });
-
-                    renderAuditLogRows(auditLogsDataset);
-
-                    const modalElem = document.getElementById('adminAddNewLogModal');
-                    if (modalElem && typeof bootstrap !== 'undefined') {
-                        const bsModal = bootstrap.Modal.getInstance(modalElem);
-                        if (bsModal) bsModal.hide();
-                    }
-                    addLogForm.reset();
-                }
-            });
-        }
-
-        // Initial Render
-        renderAuditLogRows(auditLogsDataset);
+        // Initial Fetch Execution
+        fetchAuditLogs();
     })();
 </script>
-
-<!-- Modal: Admin Add New Log Form Modal -->
-<div class="modal fade" id="adminAddNewLogModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark text-white border border-warning shadow-lg rounded-4" style="background: linear-gradient(145deg, #12121a, #181826) !important; border-color: rgba(212, 175, 55, 0.5) !important;">
-            <div class="modal-header border-bottom border-dark p-4">
-                <div class="d-flex align-items-center gap-2.5">
-                    <div class="p-2 bg-warning-subtle rounded-circle text-warning border border-warning" style="color:#d4af37 !important;">
-                        <i class="bi bi-clock-history fs-5"></i>
-                    </div>
-                    <div>
-                        <span class="badge text-white fw-bold mb-1" style="background:#d4af37;">សុវត្ថិភាពប្រព័ន្ធ</span>
-                        <h4 class="fw-bold text-white mb-0">ទម្រង់បញ្ចូលកំណត់ត្រាសកម្មភាពថ្មី (Add Audit Log Entry Form)</h4>
-                    </div>
-                </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body p-4">
-                <form id="admin-add-log-form">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">អ្នកធ្វើសកម្មភាព (Performed By)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-log-user" value="លោក នាយកសាលា (Admin)" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ផ្នែក/ជំពូក (Category)</label>
-                            <select class="form-select bg-dark text-white border-secondary" id="adm-log-category" required>
-                                <option value="Student" selected>🎓 សិស្សរៀន (Student)</option>
-                                <option value="Teacher">👨‍🏫 គ្រូបង្រៀន (Teacher)</option>
-                                <option value="Exam">🏆 ពិន្ទុ/ប្រឡង (Exam)</option>
-                                <option value="System">⚙️ ប្រព័ន្ធសុវត្ថិភាព (System)</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-12">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">ប្រភេទសកម្មភាព (Action Title)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-log-action" placeholder="ឧ. បានធ្វើបច្ចុប្បន្នភាពព័ត៌មាន..." required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">តម្លៃចាស់ (Old Value)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-log-old" placeholder="ឧ. ថ្នាក់ទី ១១-A">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label text-white extra-small text-uppercase fw-bold">តម្លៃថ្មី (New Value)</label>
-                            <input type="text" class="form-control bg-dark text-white border-secondary" id="adm-log-new" placeholder="ឧ. ថ្នាក់ទី ១២-A">
-                        </div>
-                    </div>
-
-                    <div class="modal-footer border-top border-dark p-0 pt-3 mt-4">
-                        <button type="button" class="btn btn-outline-glass btn-sm" data-bs-dismiss="modal">បោះបង់</button>
-                        <button type="submit" class="btn-gold-shimmer btn-sm"><i class="bi bi-shield-check me-1"></i> រក្សាទុកកំណត់ត្រា</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
