@@ -1,4 +1,5 @@
 import sys
+import os
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 if hasattr(sys.stderr, 'reconfigure'):
@@ -56,4 +57,5 @@ app.register_blueprint(logs_bp)
 app.register_blueprint(router_bp)
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=3000, debug=True)
+    port = int(os.environ.get('PORT', 3000))
+    app.run(host='0.0.0.0', port=port, debug=True)

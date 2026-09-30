@@ -1,14 +1,15 @@
+import os
 import mysql.connector
 
 # Centralized Database Connection Module
 def get_db_connection():
     try:
         conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="school_management",
-            port=3306
+            host=os.environ.get('DB_HOST', 'localhost'),
+            user=os.environ.get('DB_USER', 'root'),
+            password=os.environ.get('DB_PASSWORD', ''),
+            database=os.environ.get('DB_NAME', 'school_management'),
+            port=int(os.environ.get('DB_PORT', 3306))
         )
         return conn
     except mysql.connector.Error as err:
